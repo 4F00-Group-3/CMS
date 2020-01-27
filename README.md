@@ -1,2 +1,2 @@
 # CMS
-Main repository for the group project CMS
+v1 of website. Skeleton site with limited functionality to build off of.
