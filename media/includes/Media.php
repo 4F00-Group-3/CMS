@@ -17,9 +17,8 @@ class Media extends Dbh{
             ->PREPARE("SELECT * FROM user_media WHERE user_id=?");
         $stmt->execute([$userId]);
         while ($row = $stmt->fetch()){
-            $path[] = $row['path'];
+            $imageData[] = $row;
         }
-        return $path;
-
+        return $imageData;
     }
 }
