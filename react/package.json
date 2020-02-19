@@ -1,0 +1,51 @@
+{
+  "name": "drag-and-drop",
+  "version": "0.1.0",
+  "private": true,
+  "dependencies": {
+    "@atlaskit/css-reset": "^5.0.9",
+    "@lourenci/react-kanban": "^1.0.1",
+    "@material-ui/core": "^4.9.2",
+    "@material-ui/icons": "^4.9.1",
+    "@testing-library/jest-dom": "^4.2.4",
+    "@testing-library/react": "^9.3.2",
+    "@testing-library/user-event": "^7.1.2",
+    "@trendmicro/react-sidenav": "^0.5.0",
+    "react": "^16.12.0",
+    "react-beautiful-dnd": "^12.2.0",
+    "react-dnd": "^10.0.2",
+    "react-dnd-html5-backend": "^10.0.2",
+    "react-dom": "^16.12.0",
+    "react-mdl": "^2.1.0",
+    "react-router-dom": "^5.1.2",
+    "react-scripts": "3.3.1",
+    "react-sidebar": "^3.0.2",
+    "reactstrap": "^8.4.1",
+    "styled-components": "^5.0.1"
+  },
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test",
+    "eject": "react-scripts eject"
+  },
+  "eslintConfig": {
+    "extends": "react-app"
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  },
+  "description": "This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).",
+  "main": "index.js",
+  "author": "",
+  "license": "ISC"
+}
