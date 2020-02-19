@@ -29,16 +29,16 @@ if(isset($_POST['submit'])){
     if(in_array($fileActualExt,$allowed)){
         if($fileError===0){
             if($fileSize < 1000000){
-//                $fileNameNew = uniqid('',true).".".$fileActualExt;// for files with same name
-                $fileDestination = 'uploads/'.$user->getUserId().'/'.$fileName;
-                $check = move_uploaded_file($fileTmpName, $fileDestination);
+                $fileNameNew = uniqid('',true).".".$fileActualExt;// for files with same name
+                $fileDestination = 'uploads/'.$user->getUserId().'/'.$fileNameNew;
+                $check = move_uploaded_file($fileNameNew, $fileDestination);
                 if($check != true){
                     mkdir('uploads/'.$user->getUserId());
                     $check = move_uploaded_file($fileTmpName, $fileDestination);
                 }
                 $media = new Media();
-                $media->addImage(1,$fileActualExt,$fileDestination,"rawrXD");
-                header("Location: download.php?uploadsuccess");
+                $media->addImage(1,$fileActualExt,$fileDestination,"test caption");
+                header("Location: download.php?upload=success");
             }else{
                 echo "Your file is too big.";
             }

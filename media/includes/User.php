@@ -8,7 +8,6 @@ class User extends Dbh{
     private $lastName;
     private $type;
     private $password;
-    private $images;
 
     function __construct($userId, $email, $firstName, $lastName, $type,  $password) {
         $this->userId = $userId;
@@ -17,7 +16,6 @@ class User extends Dbh{
         $this->lastName = $lastName;
         $this->type = $type;
         $this->password = $password;
-        $this->images = Media::getAllImages($userId);
     }
 
     /**
@@ -66,6 +64,15 @@ class User extends Dbh{
     public function getUserId()
     {
         return $this->userId;
+    }
+
+    /**
+     * @return array
+     * @param userId users ID
+     */
+    public function getImages()
+    {
+        return Media::getAllImages($this->userId);
     }
 
 
