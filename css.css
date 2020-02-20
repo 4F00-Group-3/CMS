@@ -1,14 +1,6 @@
-img{
+`img{
 max-width:100%;
 height: auto;
-}
-
-p{
-color:black;
-}
-
-h2{
-color:black;
 }
 
 img.center{
@@ -16,104 +8,38 @@ display:block;
 margin:auto;
 } /*Center image class*/
 
-table{
-border: 0.5px solid black;
+.submitnextbutton{
+	background-color: dodgerblue;
+	border-color: dodgerblue;
+	border-radius: 5px;
+	color:white;
+	font-size:110%;
+	border-style: solid;
+
+	/*Elongate*/
+	padding-bottom:2%;
+	padding-top:2%;
+
+	/*Center Horizontally*/
+	width: 40%;
+	margin-left: 30%;
+	margin-right: 30%;
+
+	height: 40%;
 }
 
-
-#logo{
-padding:0.5%;
-float:left;
-padding-left:1%;
-padding-right:1%;
-background-color:dodgerblue;
-} /*The logo in the top left of the page*/
-
-#logo:hover{
-background-color:#dddddd;
-color:blue;
+.emailaddressbar{
+	background-color: rgb(240,240,240);
+	padding-top:1%;
+	padding-bottom:1%;
+	width: 100%;	/*Widen*/
 }
 
-#current{
-background-color:grey;
+.submitformdiv{
+	background-color:white;
+	margin:10%;
+	margin-left:35%;
+	margin-right:35%;
+	padding:1%;
 }
 
-.button { 
-
-padding:0.5%;
-float:right;
-padding-left:1%;
-padding-right:1%;
-display:block;
-color:black;
-text-decoration:none;
-} /*Menu buttons*/
-
-.button:hover {
-background-color: grey;
-}
-
-.navbackground{
-overflow: hidden;
-background-color: #dddddd;
-border-bottom: 1px solid #555;
-margin:0;
-padding:0;
-} /*The nav bar background*/
-
-footer{
-color:grey;
-text-align:center;
-background-color:#dddddd;
-margin-top:8%;
-padding:1%;
-}
-
-@media print {
-nav{display:none;}
-} /*Removes the nav when printing the page*/
-
-#banner{
-border-top:1px solid black;
-border-bottom: 1px solid black;
-}
-
-#benefits{
-padding: 1%;
-background-color:rgba(25,25,200,0.5);
-}
-
-body{
-margin:0;
-padding:0;
-}
-
-.content{
-margin-left:10%;
-margin-right:10%;
-padding-top:2.5%;
-padding-bottom:5%;
-}
-
-
- 
-.blueheading{
-color:dodgerblue;
-font-size:125%;
-}
-
-.button2 { 
-
-padding:0.25%;
-float:left;
-padding-left:0.5%;
-padding-right:0.5%;
-display:block;
-color:black;
-text-decoration:none;
-border: 1px black solid;
-} /*Learn more button on product overview page*/
-
-.button2:hover{
-background-color:blue;
-}
