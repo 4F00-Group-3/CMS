@@ -1,14 +1,13 @@
-import React from 'react';
-import EditorStart from './EditorStart'
-import Screen from './Page';
-
+import React from "react";
+import EditorStart from "./EditorStart";
+import Screen from "./Components/StartPage";
 
 function App() {
   return (
     <div>
-        <Screen/>
+      <Screen />
     </div>
-  )
+  );
 }
 
-export default App
+export default App;
