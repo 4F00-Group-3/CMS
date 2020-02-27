@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import PageEditor from './PageEditor';
-import PageItem from './PageItem';
+import PageListItem from './PageListItem';
 
 class Page extends Component {
     constructor(props) {
@@ -41,7 +41,7 @@ class Page extends Component {
         if (this.state.isEditing) {
             return (
                 <PageEditor
-                    {...this.props}
+                  
                     onPageCancel={this.handleOnPageCancel}
                 />
             );
@@ -49,7 +49,7 @@ class Page extends Component {
         else {
 
             return (
-                <PageItem
+                <PageListItem
 
                     {...this.props}
                     isEditing={this.props.isEditing}
