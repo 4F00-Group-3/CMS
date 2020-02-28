@@ -41,7 +41,6 @@ class Page extends Component {
         if (this.state.isEditing) {
             return (
                 <PageEditor
-                  
                     onPageCancel={this.handleOnPageCancel}
                 />
             );

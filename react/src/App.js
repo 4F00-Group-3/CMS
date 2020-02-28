@@ -1,5 +1,5 @@
 import React from 'react';
-import EditorStart from './editor/EditorStart'
+import EditorStart from './editor/components/EditorSidebar';
 
 
 function App() {
