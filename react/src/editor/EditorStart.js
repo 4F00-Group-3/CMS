@@ -1,7 +1,4 @@
 import React from 'react';
-import Page from './Page';
-import PageEditor from './PageEditor';
-import PageItem from './PageItem';
 import PageAdmin from './PageAdmin';
 
 class Backend {
@@ -58,32 +55,6 @@ class Backend {
   }
 }
 
-const pages = [
-  {
-    'id': 1,
-    'title': 'Home',
-    'segment': 'home',
-    'body': 'this is the home page',
-  },
-  {
-    'id': 2,
-    'title': 'About',
-    'segment': 'about',
-    'body': 'this is the about page',
-  },
-  {
-    'id': 3,
-    'title': 'Products',
-    'segment': 'products',
-    'body': 'this is the products page',
-  },
-  {
-    'id': 4,
-    'title': 'Contact',
-    'segment': 'contact',
-    'body': 'this is the contact page',
-  },
-]
 
 let backend = new Backend();
 

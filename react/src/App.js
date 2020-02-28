@@ -1,12 +1,11 @@
 import React from 'react';
-import EditorStart from './EditorStart'
-import Screen from './Page';
+import EditorStart from './editor/components/EditorSidebar';
 
 
 function App() {
   return (
     <div>
-        <Screen/>
+        <EditorStart/>
     </div>
   )
 }

@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import * as constants from './constants';
 
 class PageEditor extends Component {
     constructor(props) {
@@ -28,9 +29,13 @@ class PageEditor extends Component {
         // })
     }
 
+    componentDidMount(props){
+
+    }
+
     render() {
         return (
-            <div>
+            <div style={containerStyle}>
                 <div>
                     <input
                         type="text"
@@ -55,5 +60,17 @@ class PageEditor extends Component {
         );
     }
 }
+
+const containerStyle = {
+    marginLeft: (constants.SideBarWidthAsInt) + "vh",
+    marginRight: (constants.SideBarWidthAsInt) + "vh",
+    marginTop: "2vh",
+    margin: "auto",
+    width: "90vh",
+    border: "3px solid green",
+    padding: "10px",
+}
+
+
 
 export default PageEditor;
