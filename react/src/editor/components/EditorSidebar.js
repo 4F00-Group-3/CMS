@@ -1,60 +1,33 @@
 import React, { Component } from 'react';
-import * as constants from '../constants';
-
 import {
-    faFont, 
+    faFont,
     faFileImage,
     faBars,
-    faArrowsAlt,
-    faAlignLeft,
     faAlignRight,
     faAsterisk,
     faArrowDown,
-    faCircle 
+    faCircle
 } from "@fortawesome/free-solid-svg-icons";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-
-function Button(props) {
-    return (
-        <button style={buttonContainerStyle} onClick={sideBarButton_OnClick}>
-            <FontAwesomeIcon icon={props.faIcon} style={sideBarIconStyle}/>
-            <p style={sideBarTextStyle}>{props.text}</p>
-        </button>
-        );
-}
-
-
-function sideBarButton_OnClick(buttonName) {
-    console.log(buttonName + " clicked");
-}
-
-
+import EditorButton from './EditorButton';
+import * as constants from '../constants';
 
 
 
 class EditorSideBar extends Component {
-    constructor(props){
-        super(props);
-        this.sideBarButton_OnClick.bind(this);
-    }
-
-    sideBarButton_OnClick() {
-        console.log("clicked");
-    }
 
     render() {
 
 
         return (
             <div style={sideBarContainerStyle}>
-                <Button text="Heading" faIcon={faFont}/>
-                <Button text="Image" faIcon={faFileImage}/>
-                <Button text="Button" faIcon={faAsterisk}/>
-                <Button text="Dividers"  faIcon={faBars}/>
-                <Button text="Align Right" faIcon={faAlignRight}/>
-                <Button text="Increase Size" faIcon={faAsterisk}/>
-                <Button text="Decrease Size" faIcon={faArrowDown}/>
-                <Button text="Colour" faIcon={faCircle}/>
+                <EditorButton text="Heading" faIcon={faFont} />
+                <EditorButton text="Image" faIcon={faFileImage} />
+                <EditorButton text="Button" faIcon={faAsterisk} />
+                <EditorButton text="Dividers" faIcon={faBars} />
+                <EditorButton text="Spacer" faIcon={faAlignRight} />
+                <EditorButton text="Size" faIcon={faAsterisk} />
+                <EditorButton text="Icon" faIcon={faArrowDown} />
+                <EditorButton text="Video" faIcon={faCircle} />
             </div>
         );
     };
@@ -73,24 +46,6 @@ const sideBarContainerStyle = {
     padding: "10px",
     float: "left",
 };
-
-const buttonContainerStyle = {
-    height: "20%", 
-    width: constants.EditorSideBarButtonWidth,
-    borderRadius: "16px",
-    margin: "5%",
-    
-}
-
-const sideBarIconStyle = {
-    height: "7vh",
-    width: "7vh",
-    
-}
-
-const sideBarTextStyle = {
-
-}
 
 
 export default EditorSideBar
