@@ -12,11 +12,13 @@ class PageListItem extends Component {
 
     render() {
         return (
-            <div>
+            <div className="PageListItem">
                 {this.props.title}
-                <div style={LinkContainerStyle}>
-                    <a href='#' style={LinkStyle}  onClick={this.props.onPageEdit}> Edit</a>
-                    <a href='#' style={LinkStyle} onClick={this.props.onPageDelete}> Delete</a>
+                <div className="LinkContainer">
+                {/* style={LinkContainerStyle} */}
+                    <a href='#' className="Link" onClick={this.props.onPageEdit}> Edit</a>
+                    {/* style={LinkStyle} */}
+                    <a href='#' className="Link" onClick={this.props.onPageDelete}> Delete</a>
                 </div>
             </div>
         );

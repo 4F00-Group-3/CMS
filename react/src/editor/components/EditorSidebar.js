@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import * as constants from '../constants';
+import '../../css/Editor.css'
 
 import {
     faFont, 
@@ -16,8 +17,10 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 function Button(props) {
     return (
-        <button style={buttonContainerStyle} onClick={sideBarButton_OnClick}>
-            <FontAwesomeIcon icon={props.faIcon} style={sideBarIconStyle}/>
+        <button className="Editor-Sidebar-ButtonContainer"  onClick={sideBarButton_OnClick}>
+            {/* style={buttonContainerStyle} */}
+            <FontAwesomeIcon className="Editor-SideBar-Icon" icon={props.faIcon} />
+            {/* style={sideBarIconStyle} */}
             <p style={sideBarTextStyle}>{props.text}</p>
         </button>
         );
@@ -46,7 +49,8 @@ class EditorSideBar extends Component {
 
 
         return (
-            <div style={sideBarContainerStyle}>
+            <div className="Editor-SideBar-Container" >
+                {/* style={sideBarContainerStyle} */}
                 <Button text="Heading" faIcon={faFont}/>
                 <Button text="Image" faIcon={faFileImage}/>
                 <Button text="Button" faIcon={faAsterisk}/>

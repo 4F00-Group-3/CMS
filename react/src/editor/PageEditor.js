@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import * as constants from './constants';
+import '../css/Editor.css'
 
 class PageEditor extends Component {
     constructor(props) {
@@ -35,7 +36,8 @@ class PageEditor extends Component {
 
     render() {
         return (
-            <div style={containerStyle}>
+            <div className="PageEditor-Container">
+                {/* style={containerStyle} */}
                 <div>
                     <input
                         type="text"

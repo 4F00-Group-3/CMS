@@ -1,0 +1,44 @@
+.PagesContainer{
+    margin-left: 10vh;
+    margin-right: 10vh;
+    margin-top: 2vh;
+    margin: auto;
+    width: 80%;
+    padding: 10px;
+}
+
+.ListItemContainer{
+    margin: auto;
+    margin-bottom: 5px;
+    width: 90%;
+    padding: 10px;
+    border-radius: 16px;
+    background: lightgrey;
+}
+
+.PagesList{
+    list-style: none;
+    margin: auto;
+    width: 100%;
+    padding: 10px;
+}
+
+.SideBySide{
+    display: flex;
+    flex-direction: row;
+}
+
+.TopBar{
+    height: 10vh;
+}
+
+.TopBar-Icon{
+    height: 5vh;
+    width: 5vh;
+}
+
+.SideNav{
+    width: "25vh";
+    height: "90vh";
+    background: "lightgrey";
+}
