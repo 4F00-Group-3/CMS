@@ -8,8 +8,6 @@ import {
   CardText,
   CardActions
 } from "react-mdl";
-import ReactDOM from "react-dom";
-import AnchorLink from "react-anchor-link-smooth-scroll";
 
 class landingPage extends Component {
   render() {
