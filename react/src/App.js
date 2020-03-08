@@ -1,11 +1,11 @@
 import React from 'react';
-import EditorStart from './editor/components/EditorSidebar';
-
+import Editor from './editor/Editor';
+import PagesDashBackend from './dashboard/PagesDashBackend';
 
 function App() {
   return (
     <div>
-        <EditorStart/>
+        <PagesDashBackend/>
     </div>
   )
 }

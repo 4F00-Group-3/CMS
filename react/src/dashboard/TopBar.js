@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
-import * as constants from './constants'
+import * as constants from '../editor/constants'
 import {
     Collapse,
     Navbar,

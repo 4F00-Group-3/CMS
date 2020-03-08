@@ -11,23 +11,18 @@ import {
 import EditorButton from './EditorButton';
 import * as constants from '../constants';
 
-
-
 class EditorSideBar extends Component {
-
     render() {
-
-
         return (
             <div style={sideBarContainerStyle}>
-                <EditorButton text="Heading" faIcon={faFont} />
-                <EditorButton text="Image" faIcon={faFileImage} />
-                <EditorButton text="Button" faIcon={faAsterisk} />
-                <EditorButton text="Dividers" faIcon={faBars} />
-                <EditorButton text="Spacer" faIcon={faAlignRight} />
-                <EditorButton text="Size" faIcon={faAsterisk} />
-                <EditorButton text="Icon" faIcon={faArrowDown} />
-                <EditorButton text="Video" faIcon={faCircle} />
+                <EditorButton text="Heading" faIcon={faFont} onClick={this.props.onPush}/>
+                <EditorButton text="Image" faIcon={faFileImage} onClick={this.props.onPush}/>
+                <EditorButton text="Button" faIcon={faAsterisk} onClick={this.props.onPush}/>
+                <EditorButton text="Dividers" faIcon={faBars} onClick={this.props.onPush}/>
+                <EditorButton text="Spacer" faIcon={faAlignRight} onClick={this.props.onPush}/>
+                <EditorButton text="Size" faIcon={faAsterisk} onClick={this.props.onPush}/>
+                <EditorButton text="Icon" faIcon={faArrowDown} onClick={this.props.onPush}/>
+                <EditorButton text="Video" faIcon={faCircle} onClick={this.props.onPush}/>
             </div>
         );
     };
@@ -39,7 +34,7 @@ const sideBarContainerStyle = {
     marginRight: (constants.SideBarWidthAsInt) + "vh",
     marginTop: "2vh",
     margin: "auto",
-    width: "50vh",
+    width: constants.EditorSideBarWidth,
     height: "100vh",
     background: "grey",
     border: "3px solid green",

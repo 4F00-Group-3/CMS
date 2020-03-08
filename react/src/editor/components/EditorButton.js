@@ -3,18 +3,9 @@ import * as constants from '../constants';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 class EditorButton extends Component {
-    constructor(props) {
-        super(props);
-        this.onClick.bind(this.onClick);
-    }
-
-    onClick = (props) => {
-        console.log(props.text);
-    }
-
     render() {
         return (
-            <button style={buttonContainerStyle} onClick={() => this.onClick(this.props)}>
+            <button style={buttonContainerStyle} onClick={() => this.props.onClick(this.props.text)}>
                 <FontAwesomeIcon icon={this.props.faIcon} style={sideBarIconStyle} />
                 <p style={sideBarTextStyle}>{this.props.text}</p>
             </button>

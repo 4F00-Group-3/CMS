@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import Page from './Page';
 import TopBar from './TopBar';
 import SideBar from './SideBar';
-import * as constants from './constants';
+import * as constants from '../editor/constants';
 
 
 
@@ -68,6 +68,7 @@ class PageAdmin extends Component {
                                             onPageInsert={this.handlePageInsert}
                                             onPageUpdate={this.handlePageUpdate}
                                             onPageDelete={this.handlePageDelete}
+                                            page={this.state.pages[i]}
 
 
                                         />
