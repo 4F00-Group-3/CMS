@@ -13,25 +13,25 @@ class Backend {
         'id': 1,
         'title': 'Home',
         'segment': 'home',
-        'body': 'this is the home page',
+        'body': [],
       },
       {
         'id': 2,
         'title': 'About',
         'segment': 'about',
-        'body': 'this is the about page',
+        'body': [],
       },
       {
         'id': 3,
         'title': 'Products',
         'segment': 'products',
-        'body': 'this is the products page',
+        'body': [],
       },
       {
         'id': 4,
         'title': 'Contact',
         'segment': 'contact',
-        'body': 'this is the contact page',
+        'body': [],
       },
     ].filter((page) => this.deleted.indexOf(page.id) === -1)
     .map((page) => {

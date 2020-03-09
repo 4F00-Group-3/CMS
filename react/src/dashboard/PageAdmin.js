@@ -71,6 +71,7 @@ class PageAdmin extends Component {
                                             onPageInsert={this.handlePageInsert}
                                             onPageUpdate={this.handlePageUpdate}
                                             onPageDelete={this.handlePageDelete}
+                                            page={this.state.pages[i]}
 
 
                                         />
