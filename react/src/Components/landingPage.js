@@ -8,6 +8,7 @@ import {
   CardText,
   CardActions
 } from "react-mdl";
+import ReactDOM from "react-dom";
 
 class landingPage extends Component {
   render() {

@@ -11,7 +11,6 @@ import {
   FooterLinkList
 } from "react-mdl";
 import Main from "./Components/main";
-import AnchorLink from "react-anchor-link-smooth-scroll";
 
 class App extends Component {
   render() {
@@ -25,7 +24,7 @@ class App extends Component {
         >
           <Header transparent title="NO." style={{ color: "white" }}>
             <Navigation>
-              <a href="/login">Log In</a>
+              <a href="/loginpage">Log In</a>
               <a href="/getstarted" style={{ fontWeight: "bold" }}>
                 Get Started
               </a>

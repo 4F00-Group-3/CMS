@@ -14,7 +14,6 @@ import {
   FooterLinkList
 } from "react-mdl";
 import Main from "./Components/main";
-import AnchorLink from "react-anchor-link-smooth-scroll";
 
 class tempPage extends Component {
   render() {
