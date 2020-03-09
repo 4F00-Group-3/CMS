@@ -1,6 +1,8 @@
 import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
-import * as constants from '../editor/constants'
+import * as constants from './constants'
+import '../css/PageAdmin.css'
+
 import {
     Collapse,
     Navbar,
@@ -38,11 +40,13 @@ class TopBar extends Component {
         const { navCollapsed } = this.state
         return (
             <div>
-                <Navbar className="bg-light justify-content-between" sticky="top" style={TopBarContainerStyles} color="light" light expand="md">
+                <Navbar className="bg-light justify-content-between TopBar" sticky="top"  color="light" light expand="md">
+                {/* style={TopBarContainerStyles} */}
                     <NavbarBrand href="#">{/**this has to be here so icon is right aligned**/}</NavbarBrand>
                     <NavbarBrand href="#">
 
-                        <i className="fa fa-address-book" style={TopBarIconStyle}></i>
+                        <i className="fa fa-address-book TopBar-Icon"></i>
+                        {/* style={TopBarIconStyle} */}
 
                     </NavbarBrand>
                 </Navbar>
