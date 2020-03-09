@@ -9,6 +9,11 @@ class EditingPage extends Component {
         }
     }
 
+
+    Refresh() {
+        this.setState({page: this.props.page});
+    }
+
     /**
      * This method renders a page from JSON onto the actual page editor
      * Can be reused for actual page viewing as well
@@ -29,15 +34,15 @@ class EditingPage extends Component {
                         break;
                     }
                     case "image": {
-                        page.push(<img src={section.url} alt={section.text} style={section.style[0]} />)
+                        page.push(<img key={index} src={section.url} alt={section.text} style={section.style[0]} />)
                         break;
                     }
                     case "button": {
-                        page.push(<button onClick={section.onClick} style={section.style[0]}>{section.text}</button>)
+                        page.push(<button key={index} onClick={section.onClick} style={section.style[0]}>{section.text}</button>)
                         break;
                     }
                     case "spacer": {
-                        page.push(<div style={section.style[0]}></div>);
+                        page.push(<div key={index} style={section.style[0]}></div>);
                         break;
                     }
                     case "video": {

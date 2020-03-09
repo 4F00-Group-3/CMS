@@ -40,6 +40,7 @@ const sideBarContainerStyle = {
     border: "3px solid green",
     padding: "10px",
     float: "left",
+    position: "fixed",
 };
 
 

@@ -1,6 +1,9 @@
 import React, { Component } from 'react';
 import EditorSideBar from './components/EditorSidebar';
 import EditingPage from '../editor/components/EditingPage';
+import EditorBackend from './EditorBackend';
+
+const backend = new EditorBackend();
 
 class Editor extends Component {
     constructor(props) {
@@ -12,52 +15,47 @@ class Editor extends Component {
         }
     }
 
-    onClick(name) {
+    onClick = (name) => {
         console.log(name);
         switch (name) {
             case "Heading": {
-                console.log(this.state)
-
+                backend.add("Heading");
+                this.setState({ page: backend.getPage() })
                 break;
             }
             case "Image": {
-                
-                console.log(name);
-                //this.state.page.concat(<p>img</p>)
-               break;
+                backend.add("Image");
+                this.setState({ page: backend.getPage() })
+                break;
             }
             case "Button": {
-                
-                console.log(name);
-                //this.state.page.concat(<p>btn</p>)
+                backend.add("Button");
+                this.setState({ page: backend.getPage() })
                 break;
             }
             case "Dividers": {
-                
-                console.log(name);
-                //this.state.page.concat(<p>div</p>)
+                backend.add("Dividers");
+                this.setState({ page: backend.getPage() })
                 break;
             }
             case "Spacer": {
-                
-                console.log(name);
-                //this.state.page.concat(<p>space</p>)
+                backend.add("Spacer");
+                this.setState({ page: backend.getPage() })
                 break;
             }
             case "Size": {
-                
-                console.log(name);
-                //this.state.page.concat(<p>size</p>)
+                backend.add("Size");
+                this.setState({ page: backend.getPage() })
                 break;
             }
             case "Icon": {
-                console.log(name);
-                //this.state.page.concat(<p>icon</p>)
+                backend.add("Icon");
+                this.setState({ page: backend.getPage() })
                 break;
             }
             case "Video": {
-                //this.state.page.concat(<p>vid</p>)
-                console.log(name);
+                backend.add("Video");
+                this.setState({ page: backend.getPage() })
                 break;
             }
             default:
