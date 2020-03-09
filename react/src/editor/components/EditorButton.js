@@ -15,6 +15,7 @@ class EditorButton extends Component {
 
 
 
+
 const buttonContainerStyle = {
     height: "20%",
     width: constants.EditorSideBarButtonWidth,

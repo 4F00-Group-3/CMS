@@ -12,7 +12,7 @@ import {
     faCircle
 } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import {EditorButton} from './EditorButton';
+import EditorButton from '../components/EditorButton';
 
 function Button(props) {
     return (
