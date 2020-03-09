@@ -6,13 +6,13 @@ class loginpage extends Component {
   render() {
     return (
       <div>
-        <Container maxWidth="sm" style={{ backgroundcolor: "black" }}>
+        <Container maxWidth="sm" className="signupProcess">
           <Card>
-            <div style={{ padding: "20px" }}>
-              <h2 style={{ textalign: "center" }}>Login To Your Account</h2>
+            <div className="boxPadding">
+              <h2>Log into your account</h2>
 
-              <form style={{ padding: "5%" }}>
-                <label for="email">Username</label>
+              <form>
+                <label for="email">Username:</label>
                 <br></br>
                 <input
                   type="text"
@@ -21,10 +21,13 @@ class loginpage extends Component {
                   class="emailaddressbar"
                 />
                 <br></br>
+                <br></br>
 
-                <label for="email">Password</label>
+                <label for="email">Password:</label>
                 <br></br>
                 <input type="text" id="pw" pass="pw" class="emailaddressbar" />
+                <br></br>
+                <br></br>
                 <br></br>
 
                 <input type="submit" value="Login" class="submitnextbutton" />

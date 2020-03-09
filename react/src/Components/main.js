@@ -4,6 +4,7 @@ import landingPage from "./landingPage";
 import getStarted from "./getStarted";
 import tempPage from "../tempPage";
 import loginpage from "./loginpage";
+import passwordsubmit from "./passwordsubmit";
 
 const Main = () => (
   <BrowserRouter>
@@ -12,6 +13,7 @@ const Main = () => (
       <Route path="/loginpage" component={loginpage} />
       <Route path="/getStarted" component={getStarted} />
       <Route path="/tempPage" component={tempPage} />
+      <Route path="/passwordsubmit" component={passwordsubmit} />
     </Switch>
   </BrowserRouter>
 );

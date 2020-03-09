@@ -42,3 +42,7 @@ img.center {
   margin-right: 35%;
   padding: 1%;
 }
+
+.boxPadding {
+  padding: "20px";
+}
