@@ -9,6 +9,9 @@ class EditorBackend {
         return this.state.page;
     }
 
+    /**
+     * This is where we would request JSON page from backend
+     */
     all() {
         return [
             {
