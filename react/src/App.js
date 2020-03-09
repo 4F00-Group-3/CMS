@@ -11,6 +11,7 @@ import {
   FooterLinkList
 } from "react-mdl";
 import Main from "./Components/main";
+import StickyFooter from "react-sticky-footer";
 
 class App extends Component {
   render() {
@@ -35,14 +36,6 @@ class App extends Component {
           <Content>
             <div className="page-content" />
             <Main />
-            <Footer size="mini">
-              <FooterSection type="left" logo="NO.">
-                <FooterLinkList>
-                  <a href="#">Help</a>
-                  <a href="#">Privacy & Terms</a>
-                </FooterLinkList>
-              </FooterSection>
-            </Footer>
           </Content>
         </Layout>
       </div>

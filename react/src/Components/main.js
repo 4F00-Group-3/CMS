@@ -1,7 +1,6 @@
 import React from "react";
 import { BrowserRouter, Switch, Route } from "react-router-dom";
 import landingPage from "./landingPage";
-import login from "./logIn";
 import getStarted from "./getStarted";
 import tempPage from "../tempPage";
 import loginpage from "./loginpage";

@@ -49,6 +49,16 @@ class tempPage extends Component {
             <Cell col={4}>4</Cell>
           </Grid>
         </div>
+        <div style={{ paddingbottom: "60px" }}>
+          <Footer size="mini">
+            <FooterSection type="left" logo="NO.">
+              <FooterLinkList>
+                <a href="#">Help</a>
+                <a href="#">Privacy & Terms</a>
+              </FooterLinkList>
+            </FooterSection>
+          </Footer>
+        </div>
       </div>
     );
   }
