@@ -3,7 +3,7 @@ import Page from './Page';
 import TopBar from './TopBar';
 import SideBar from './SideBar';
 import * as constants from './constants';
-
+import '../css/PageAdmin.css'
 
 
 class PageAdmin extends Component {
@@ -54,20 +54,24 @@ class PageAdmin extends Component {
             <>
 
                 <TopBar />
-                <div style={sideBySide}>
-
+                <div className="SideBySide">
+                {/* style={sideBySide} */}
                     <SideBar />
-                    <div style={PagesContainerStyle}>
-                        <ol style={PageListStyle}>
+                    <div className="PagesContainer" >
+                    {/* style={PagesContainerStyle} */}
+                        <ol className="PageList">
+                        {/* style={PageListStyle} */}
                             {this.state.pages.map((page, i) => {
                                 return (
-                                    <li key={i} style={ListItemContainer}>
+                                    <li key={i}  className="ListItemContainer">
+                                        {/* style={ListItemContainer} */}
                                         <Page
                                             {...page}
                                             onPageEdit={this.handlePageEdit}
                                             onPageInsert={this.handlePageInsert}
                                             onPageUpdate={this.handlePageUpdate}
                                             onPageDelete={this.handlePageDelete}
+                                            page={this.state.pages[i]}
 
 
                                         />
