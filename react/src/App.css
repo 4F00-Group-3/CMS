@@ -1,0 +1,56 @@
+.home-page-title {
+  padding-top: 3em;
+  padding-right: 3em;
+  padding-left: 3em;
+  text-align: center;
+  color: white;
+  font-weight: 600;
+}
+
+.faq-page {
+  padding-top: 800;
+  text-align: center;
+  color: grey;
+  font-weight: 600;
+  text-decoration: underline;
+  margin-top: "30px";
+}
+
+.home-page-subtitle {
+  text-align: center;
+  color: white;
+}
+
+.faq-cards-actions {
+  height: "52px";
+  padding: "16px";
+}
+
+.faq-cards {
+  width: "256px";
+  height: "256px";
+  background-color: skyblue;
+  margin: "auto";
+}
+
+.faq-grid {
+  display: flex;
+  padding-bottom: "20px";
+}
+
+.started-grid {
+  display: flex;
+  margin-bottom: "100px";
+}
+
+.temp-grid {
+  display: flex;
+  margin-bottom: "100px";
+  background-color: white;
+}
+
+.cat-grid {
+  color: grey;
+  text-decoration: none;
+  padding: "-30";
+}
