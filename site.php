@@ -1,6 +1,6 @@
 #!/usr/bin/php-cgi
 <?php
-require_once ('header_functions.php');
+require_once('header_functions.php');
 
 if(isset($_POST['submit'])){
 

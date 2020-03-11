@@ -2,7 +2,7 @@
 <?php
 //set this to 1 so we don't infintely redirect to login.php
 session_id('1');
-require_once ('header_functions.php');
+require_once('header_functions.php');
 
 $success = false;
 if ( ! empty( $_POST ) ) {
