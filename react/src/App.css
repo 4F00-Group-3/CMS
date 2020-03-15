@@ -58,20 +58,3 @@
 h2 {
   text-align: center;
 }
-
-p {
-  text-align: center;
-} /*for all boxed text*/
-
-form {
-  text-align: center;
-  padding: 5%;
-}
-
-.signupProcess {
-  background-color: "black";
-}
-
-.boxPadding {
-  padding: "20px";
-}

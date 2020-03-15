@@ -1,17 +1,19 @@
 import React, { Component } from "react";
 import Container from "@material-ui/core/Container";
 import Card from "@material-ui/core/Card";
+import { FooterSection, Footer, FooterLinkList } from "react-mdl";
+import "./css.css";
 
 class loginpage extends Component {
   render() {
     return (
       <div>
-        <Container maxWidth="sm" className="signupProcess">
+        <Container maxWidth="sm">
           <Card>
             <div className="boxPadding">
               <h2>Log into your account</h2>
 
-              <form>
+              <form className="centerBoxItems">
                 <label for="email">Username:</label>
                 <br></br>
                 <input

@@ -4,36 +4,31 @@ import Card from "@material-ui/core/Card";
 import { FooterSection, Footer, FooterLinkList } from "react-mdl";
 import "./css.css";
 
-class passwordsubmit extends Component {
+class securityCode extends Component {
   render() {
     return (
       <div>
         <Container maxWidth="sm">
           <Card>
             <div>
-              <div class="submitformdiv">
-                <h2>Step 3</h2>
-                <p>
-                  Please enter a new password that is secure that you will
-                  remember.
-                </p>
+              <div className="submitformdiv">
+                <h2>Verifcation Code</h2>
+                <p>Please enter the security code we emailed you.</p>
                 <form className="centerBoxItems">
-                  <label for="password">Password</label>
+                  <label for="securitycode">Security Code</label>
                   <br></br>
                   <input
                     type="text"
-                    id="password"
-                    code="password"
+                    id="securitycode"
+                    code="securitycode"
                     class="emailaddressbar"
                   />
                   <br></br>
                   <br></br>
-                  <input
-                    type="submit"
-                    value="Next"
-                    className="submitnextbutton"
-                  />
+                  <input type="submit" value="Next" class="submitnextbutton" />
                 </form>
+
+                <br></br>
               </div>
             </div>
           </Card>
@@ -43,4 +38,4 @@ class passwordsubmit extends Component {
   }
 }
 
-export default passwordsubmit;
+export default securityCode;
