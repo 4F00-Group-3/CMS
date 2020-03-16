@@ -34,7 +34,6 @@ class App extends Component {
   
   handleEditorClick(){
     this.setState({viewPage: "Editor"});
-    console.log("Editor clicked")
   }
 
   handleHomeClick(){
