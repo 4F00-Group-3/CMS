@@ -52,3 +52,8 @@ img.center {
 .centerBoxItems {
   text-align: center;
 }
+
+.imgMenu {
+  height: "500px";
+  position: "relative";
+}
