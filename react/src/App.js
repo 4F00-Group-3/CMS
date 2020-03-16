@@ -12,9 +12,9 @@ import {
   Link
 } from "react-mdl";
 import Main from "./Components/main";
-import StickyFooter from "react-sticky-footer";
-import Home from './HomePage';
-import Editor from './editor/Editor';
+
+import Home from "./HomePage";
+import Editor from "./editor/Editor";
 
 var renderCanvas= false;
 var testCanvas = null;
