@@ -1,42 +1,53 @@
-.Editor-SideBar-Icon{
-    height: 7vh;
-    width: 7vh;
+.Editor-SideBar-Icon {
+  height: 7vh;
+  width: 7vh;
 }
 
-.Editor-Sidebar-ButtonContainer{
-    height: 20%;
-    width: 40%;
-    border-radius: 16px;
-    margin: 5%;
+.Editor-Sidebar-ButtonContainer {
+  height: 20%;
+  width: 40%;
+  border-radius: 16px;
+  margin: 5%;
 }
 
-.Editor-SideBar-Container{
-    margin-left: 10vh;
-    margin-right: 10vh;
-    margin-top: 2vh;
-    margin: auto;
-    width: 50vh;
-    height: 100vh;
-    background: grey;
-    border: 3px solid green;
-    padding: 10px;
-    float: left;
+.Editor-SideBar-Container {
+  margin-left: 10vh;
+  margin-right: 10vh;
+  margin-top: 2vh;
+  margin: auto;
+  width: 50vh;
+  height: 100vh;
+  background: grey;
+  border: 3px solid green;
+  padding: 10px;
+  float: left;
 }
 
-.PageEditor-Container{
-    margin-left: 10vh;
-    margin-right: 10vh;
-    margin-top: 2vh;
-    margin:  auto;
-    width: 90vh;
-    border: 3px solid green;
-    padding: 10px;
+.PageEditor-Container {
+  margin-left: 10vh;
+  margin-right: 10vh;
+  margin-top: 2vh;
+  margin: auto;
+  width: 90vh;
+  border: 3px solid green;
+  padding: 10px;
 }
 
-.PageListItem .LinkContainer{
-    float: right;
+.PageListItem .LinkContainer {
+  float: right;
 }
 
-.PageListItem .LinkContainer .Link{
-    padding-left: 7vh;
+.PageListItem .LinkContainer .Link {
+  padding-left: 7vh;
+}
+
+.Components-Editor {
+  margin-top: 2vh;
+  margin: auto;
+  width: 60vh;
+  height: 100vh;
+  background: grey;
+  padding: 10px;
+  text-decoration: white;
+  float: left;
 }

@@ -11,7 +11,7 @@ import {
   FooterLinkList
 } from "react-mdl";
 import Main from "./Components/main";
-
+import footera from "./Components/main";
 import Home from "./HomePage";
 import Editor from "./editor/Editor";
 
