@@ -13,6 +13,8 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import EditorButton from '../components/EditorButton';
+import Heading from './HeadingEditor'
+
 
 function Button(props) {
     return (
@@ -38,14 +40,15 @@ class EditorSideBar extends Component {
     render() {
         return (
             <div className="Editor-SideBar-Container">
-                <EditorButton text="Heading" faIcon={faFont} onClick={this.props.onPush}/>
+                {/* <EditorButton text="Heading" faIcon={faFont} onClick={this.props.onPush}/>
                 <EditorButton text="Image" faIcon={faFileImage} onClick={this.props.onPush}/>
                 <EditorButton text="Button" faIcon={faAsterisk} onClick={this.props.onPush}/>
                 <EditorButton text="Dividers" faIcon={faBars} onClick={this.props.onPush}/>
                 <EditorButton text="Spacer" faIcon={faAlignRight} onClick={this.props.onPush}/>
                 <EditorButton text="Size" faIcon={faAsterisk} onClick={this.props.onPush}/>
                 <EditorButton text="Icon" faIcon={faArrowDown} onClick={this.props.onPush}/>
-                <EditorButton text="Video" faIcon={faCircle} onClick={this.props.onPush}/>
+                <EditorButton text="Video" faIcon={faCircle} onClick={this.props.onPush}/> */}
+                <Heading/>
             </div>
         );
     };
