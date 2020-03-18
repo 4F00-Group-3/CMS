@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import Page from './Page';
 import TopBar from './TopBar';
 import SideBar from './SideBar';
-import * as constants from './constants';
+import * as constants from '../constants';
 import '../css/PageAdmin.css'
 
 
