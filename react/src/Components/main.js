@@ -4,6 +4,11 @@ import landingPage from "./landingPage";
 import getStarted from "./getStarted";
 import tempPage from "../tempPage";
 import loginpage from "./loginpage";
+import passwordsubmit from "./passwordsubmit";
+import submitemail from "./submitemail";
+import securityCode from "./securityCode";
+import createAccount from "./createAccount";
+import imageEditorMenu from "./imageEditorMenu";
 
 const Main = () => (
   <BrowserRouter>
@@ -12,6 +17,11 @@ const Main = () => (
       <Route path="/loginpage" component={loginpage} />
       <Route path="/getStarted" component={getStarted} />
       <Route path="/tempPage" component={tempPage} />
+      <Route path="/passwordsubmit" component={passwordsubmit} />
+      <Route path="/submitemail" component={submitemail} />
+      <Route path="/securityCode" component={securityCode} />
+      <Route path="/createAccount" component={createAccount} />
+      <Route path="/imageEditorMenu" component={imageEditorMenu} />
     </Switch>
   </BrowserRouter>
 );
