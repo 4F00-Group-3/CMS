@@ -44,7 +44,7 @@ class Account {
 	}
 
 	//returns a new Account object or false if invalid ID was given
-    public static function getAccountById($account_id){
+    public static function getAccountById($account_id = 0){
         $stmt = Dbh::connect() ->PREPARE("SELECT * FROM accounts WHERE account_id=?");
         $stmt->execute([$account_id]);
 

@@ -36,13 +36,13 @@ class loginpage extends Component {
               </form>
 
               <a
-                href="forgot-password.html"
+                href="submitemail"
                 style={{ color: "grey", textdecoration: "none" }}
               >
                 Forgot Password
               </a>
               <a
-                href="create-account.html"
+                href="createaccount"
                 style={{
                   color: "grey",
                   textdecoration: "none",

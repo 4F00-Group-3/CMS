@@ -16,7 +16,7 @@ class imageEditorMenu extends Component {
   render() {
     return (
       <div>
-        <Layout fixedDrawer>
+        {/* <Layout fixedDrawer>
           <Tabs
             value={value}
             onChange={handleChange}
@@ -29,7 +29,7 @@ class imageEditorMenu extends Component {
             <Tab label="Item Three" />
           </Tabs>
           <Content />
-        </Layout>
+        </Layout> */}
       </div>
     );
   }

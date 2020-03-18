@@ -59,10 +59,9 @@ class Media{
 
     //add a new file to the database
     public static function addImage($fileType, $path, $accountId, $caption =''){
-//        $date = time();
-        $data = array($fileType, $path, $caption, $accountId);
+        $data = array($fileType, $path, $caption, $accountId, time());
 
-		$stmt = Dbh::connect() ->PREPARE('INSERT INTO account_media (file_type, path, caption, account_id) VALUES (?, ?, ?, ?) ON CONFLICT DO NOTHING RETURNING media_id');
+		$stmt = Dbh::connect() ->PREPARE('INSERT INTO account_media (file_type, path, caption, account_id, date) VALUES (?, ?, ?, ?, ?) ON CONFLICT DO NOTHING RETURNING media_id');
 		$stmt->execute($data);
 		
 		$mediaId = $stmt->fetch(PDO::FETCH_ASSOC)['media_id'];
