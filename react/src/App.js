@@ -16,16 +16,6 @@ class App extends Component {
               "url(http://www.getmdl.io/assets/demos/transparent.jpg) center / cover"
           }}
         >
-          <Header transparent title="NO." style={{ color: "white" }}>
-            <Navigation>
-              <a href="/loginpage">Log In</a>
-              <a href="/getstarted" style={{ fontWeight: "bold" }}>
-                Get Started
-              </a>
-              <a href="/#pl-pr">Plans & Pricing</a>
-              <a href="/#faq-page">FAQ</a>
-            </Navigation>
-          </Header>
           <Content>
             <Main />
           </Content>

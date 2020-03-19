@@ -6,13 +6,25 @@ import {
   Card,
   CardTitle,
   CardText,
-  CardActions
+  CardActions,
+  Header,
+  Navigation
 } from "react-mdl";
 
 class getStarted extends Component {
   render() {
     return (
       <div>
+        <Header transparent title="NO." style={{ color: "white" }}>
+          <Navigation>
+            <a href="/loginpage">Log In</a>
+            <a href="/getstarted" style={{ fontWeight: "bold" }}>
+              Get Started
+            </a>
+            <a href="/#pl-pr">Plans & Pricing</a>
+            <a href="/#faq-page">FAQ</a>
+          </Navigation>
+        </Header>
         <Grid>
           <Cell col={12}>
             {/* Row 1 */}
