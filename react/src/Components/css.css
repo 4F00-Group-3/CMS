@@ -57,3 +57,14 @@ img.center {
   color: white;
   text-align: center;
 }
+
+.Components-Editor {
+  margin-top: 2vh;
+  margin: auto;
+  width: 60vh;
+  height: 100vh;
+  background: grey;
+  padding: 10px;
+  text-decoration: white;
+  float: left;
+}

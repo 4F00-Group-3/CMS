@@ -1,16 +1,6 @@
 import React, { Component } from "react";
 import "./css.css";
-import {
-  FooterSection,
-  Footer,
-  FooterLinkList,
-  Layout,
-  Drawer,
-  Navigation,
-  Content,
-  Tab,
-  Tabs
-} from "react-mdl";
+import { Tab, Tabs } from "react-mdl";
 
 class ImageEditor extends React.Component {
   constructor(props) {

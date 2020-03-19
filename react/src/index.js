@@ -5,6 +5,7 @@ import App from "./App";
 import * as serviceWorker from "./serviceWorker";
 import "react-mdl/extra/material.css";
 import "react-mdl/extra/material.js";
+import Main from "./Components/main.js";
 
 ReactDOM.render(<App />, document.getElementById("root"));
 
