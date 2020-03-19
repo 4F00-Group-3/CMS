@@ -1,33 +1,28 @@
-import React from 'react';
+import React, { Component } from 'react';
 import { Nav, NavItem, NavLink } from 'reactstrap';
-import '../css/PageAdmin.css'
+import '../css/PageAdmin.css';
 
-const SideBar = (props) => {
-  return (
-    <div className="SideNav">
-       {/* style={SideNavStyle} */}
-      <Nav vertical className="bg-light justify-content-between">
-        <NavItem >
-          <NavLink href="#">Pages</NavLink>
-        </NavItem>
-        <NavItem>
-          <NavLink href="#">Users</NavLink>
-        </NavItem>
-        <NavItem>
-          <NavLink href="#">Settings</NavLink>
-        </NavItem>
-        {/* <NavItem>
-          <NavLink disabled href="#">Disabled Link</NavLink>
-        </NavItem> */}
-      </Nav>
-    </div>
-  );
-}
-
-const SideNavStyle = {
-  width: "25vh",
-  height: "90vh",
-  background: "lightgrey",
+class SideBar extends Component {
+  render() {
+    return (
+      <div className="SideNav">
+        <Nav vertical className="bg-light justify-content-between">
+          <NavItem >
+            <button onClick={() => this.props.onPush("Pages")}>Pages</button>
+          </NavItem>
+          <NavItem>
+            <button onClick={() => this.props.onPush("Users")}>Users</button>
+          </NavItem>
+          <NavItem>
+            <button onClick={() => this.props.onPush("Settings")}>Settings</button>
+          </NavItem>
+          <NavItem>
+            <button onClick={() => this.props.onPush("Log Out")}>Log Out</button>
+          </NavItem>
+        </Nav>
+      </div>
+    );
+  }
 }
 
 
