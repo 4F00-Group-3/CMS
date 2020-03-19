@@ -1,7 +1,4 @@
-import React from 'react';
-import PageAdmin from './PageAdmin';
-
-class Backend {
+class DashboardBackend {
   constructor() {
     this.deleted = [];
     this.updates = [];
@@ -55,15 +52,4 @@ class Backend {
   }
 }
 
-
-let backend = new Backend();
-
-function App() {
-  return (
-    <div>
-      <PageAdmin backend={backend}/>
-    </div>
-  )
-}
-
-export default App
+export default DashboardBackend;

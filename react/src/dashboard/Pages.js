@@ -1,12 +1,9 @@
 import React, { Component } from 'react';
 import Page from './Page';
-import TopBar from './TopBar';
-import SideBar from './SideBar';
-import * as constants from './constants';
 import '../css/PageAdmin.css'
 
 
-class PageAdmin extends Component {
+class Pages extends Component {
     constructor(props) {
         super(props);
         this.handlePageEdit = this.handlePageEdit.bind(this);
@@ -14,7 +11,6 @@ class PageAdmin extends Component {
         this.handlePageInsert = this.handlePageInsert.bind(this);
         this.handlePageUpdate = this.handlePageUpdate.bind(this);
         this.onClick = this.onClick.bind(this);
-
         this.state = {
             'pages': this.props.backend.all(),
         }
@@ -52,19 +48,11 @@ class PageAdmin extends Component {
     render() {
         return (
             <>
-
-                <TopBar />
-                <div className="SideBySide">
-                {/* style={sideBySide} */}
-                    <SideBar />
-                    <div className="PagesContainer" >
-                    {/* style={PagesContainerStyle} */}
+                <div className="PagesContainer" >
                         <ol className="PageList">
-                        {/* style={PageListStyle} */}
                             {this.state.pages.map((page, i) => {
                                 return (
                                     <li key={i}  className="ListItemContainer">
-                                        {/* style={ListItemContainer} */}
                                         <Page
                                             {...page}
                                             onPageEdit={this.handlePageEdit}
@@ -72,54 +60,15 @@ class PageAdmin extends Component {
                                             onPageUpdate={this.handlePageUpdate}
                                             onPageDelete={this.handlePageDelete}
                                             page={this.state.pages[i]}
-
-
                                         />
                                     </li>
                                 );
                             })}
                         </ol>
                     </div>
-                </div>
             </>
         );
     }
 }
 
-const PagesContainerStyle = {
-    marginLeft: (constants.SideBarWidthAsInt) + "vh",
-    marginRight: (constants.SideBarWidthAsInt) + "vh",
-    marginTop: "2vh",
-    margin: "auto",
-    width: "80%",
-    //border: "3px solid green",
-    padding: "10px",
-}
-
-const ListItemContainer = {
-    margin: "auto",
-    width: "90%",
-    // border: "0px solid green",
-    padding: "10px",
-    borderRadius: "16px",
-    background: "lightgrey",
-    marginBottom: "5px"
-}
-
-const PageListStyle = {
-    listStyleType: "none",
-    margin: "auto",
-    width: "100%",
-    //border: "3px solid green",
-    padding: "10px",
-}
-
-const sideBySide = {
-    display: "flex",
-    flexDirection: "row",
-}
-
-
-
-
-export default PageAdmin;
+export default Pages;

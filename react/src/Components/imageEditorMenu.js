@@ -9,6 +9,8 @@ import {
   Layout,
   Drawer,
   Navigation,
+  Tabs,
+  Tab,
   Content
 } from "react-mdl";
 import "./css.css";
@@ -18,7 +20,7 @@ class imageEditorMenu extends Component {
     return (
       <div>
         <Layout fixedDrawer>
-          <Tabs
+          {/* <Tabs
             value={value}
             onChange={handleChange}
             indicatorColor="primary"
@@ -28,7 +30,7 @@ class imageEditorMenu extends Component {
             <Tab label="Item One" />
             <Tab label="Item Two" />
             <Tab label="Item Three" />
-          </Tabs>
+          </Tabs> */}
           <Content />
         </Layout>
       </div>
