@@ -1,4 +1,3 @@
-/*
 import React, { Component } from "react";
 import Container from "@material-ui/core/Container";
 import Card from "@material-ui/core/Card";
@@ -39,4 +38,3 @@ class imageEditorMenu extends Component {
 }
 
 export default imageEditorMenu;
-*/
