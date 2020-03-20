@@ -15,7 +15,7 @@
     margin-right: 10vh;
     margin-top: 2vh;
     margin: auto;
-    width: 15vw;
+    width: 50vh;
     height: 100vh;
     background: grey;
     border: 3px solid green;
@@ -29,7 +29,7 @@
     margin-right: 10vh;
     margin-top: 2vh;
     margin:  auto;
-    width: 30vw;
+    width: 90vh;
     border: 3px solid green;
     padding: 10px;
 }
