@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
-import PageEditor from './PageEditor';
-import PageListItem from './PageListItem';
-import Editor from '../editor/Editor';
+import ListItem from '../components/ListItem';
+import Editor from '../../editor/Editor';
 import NewWindow from 'react-new-window'
 
 class Page extends Component {
@@ -49,8 +48,8 @@ class Page extends Component {
                         page={this.props.page}
                     />
                 </NewWindow>
-                <PageListItem
-
+                <ListItem
+                    type={"page"}
                     {...this.props}
                     isEditing={this.props.isEditing}
                     onPageEdit={this.handlePageEdit}
@@ -63,8 +62,8 @@ class Page extends Component {
         }
         else {
             return (
-                <PageListItem
-
+                <ListItem
+                    type={"page"}
                     {...this.props}
                     isEditing={this.props.isEditing}
                     onPageEdit={this.handlePageEdit}

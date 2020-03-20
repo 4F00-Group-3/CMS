@@ -1,15 +1,17 @@
 import React, { Component } from 'react';
-import Pages from './Pages';
-import TopBar from './TopBar';
-import SideBar from './SideBar';
+import Pages from './components/Pages';
+import TopBar from './components/TopBar';
+import SideBar from './components/SideBar';
 import * as constants from '../constants';
 import '../css/PageAdmin.css'
-import UserAdmin from './UserAdmin';
-import Settings from './Settings';
+import Users from './components/Users';
+import Settings from './components/Settings';
 import {Redirect, Router} from 'react-router-dom';
-import DashboardBackend from './DashboardBackend';
+import DashboardBackend from './backend/DashboardBackend';
+import UserAdminBackend from './backend/UserAdminBackend';
 
 let backend = new DashboardBackend()
+let userAdminBackend = new UserAdminBackend()
 
 class Dashboard extends Component {
     constructor(props){
@@ -30,7 +32,7 @@ class Dashboard extends Component {
             }
             case "Users": {
                 this.setState(
-                    {page: <UserAdmin/>},
+                    {page: <Users backend={userAdminBackend}/>},
                 );
                 break;
             }
@@ -43,7 +45,7 @@ class Dashboard extends Component {
             case "Log Out": {
                 this.setState({
                     page: <Router><Redirect to='/' /></Router>,
-                })
+                });
                 break;
             }
             default: {
@@ -64,41 +66,6 @@ class Dashboard extends Component {
         );
     }
 }
-
-const PagesContainerStyle = {
-    marginLeft: (constants.SideBarWidthAsInt) + "vh",
-    marginRight: (constants.SideBarWidthAsInt) + "vh",
-    marginTop: "2vh",
-    margin: "auto",
-    width: "80%",
-    //border: "3px solid green",
-    padding: "10px",
-}
-
-const ListItemContainer = {
-    margin: "auto",
-    width: "90%",
-    // border: "0px solid green",
-    padding: "10px",
-    borderRadius: "16px",
-    background: "lightgrey",
-    marginBottom: "5px"
-}
-
-const PageListStyle = {
-    listStyleType: "none",
-    margin: "auto",
-    width: "100%",
-    //border: "3px solid green",
-    padding: "10px",
-}
-
-const sideBySide = {
-    display: "flex",
-    flexDirection: "row",
-}
-
-
 
 
 export default Dashboard;
