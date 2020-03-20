@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import '../../css/Component.css'
 
-import{
+import {
     faAlignLeft,
     faAlignCenter,
     faAlignRight,
@@ -10,38 +10,34 @@ import{
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
-function TextInput(){
-    return(
+function TextInput() {
+    return (
         <div className="TextInput">
             <p className="Title">Title</p>
-            <div className="Input-Container">
-                 <textbox onBlur={addTextToHeading}></textbox>
-            </div>
+            <textarea onBlur={addTextToHeading}></textarea>
         </div>
     );
 }
 
-function addTextToHeading(textbox){
+function addTextToHeading(textbox) {
     console.log(textbox);
 }
 
-function LinkInput(){
-    return(
+function LinkInput() {
+    return (
         <div className="LinkInput">
             <p className="Title">Link</p>
-            <div className="Input-Container">
-                <input type="text" placeholder="Place URL or Type" onBlur={addLinkToHeading}></input>
-            </div>
+            <input type="text" placeholder="Place URL or Type" onBlur={addLinkToHeading}></input>
         </div>
     );
 }
 
-function addLinkToHeading(input){
+function addLinkToHeading(input) {
     console.log(input);
 }
 
-function SizeInput(){
-    return(
+function SizeInput() {
+    return (
         <div className="SizeInput">
             <label className="Title" for="SizeSelector">Size</label>
             <select id="SizeSelector" onBlur={changeSize}>
@@ -54,12 +50,12 @@ function SizeInput(){
     );
 }
 
-function changeSize(select){
+function changeSize(select) {
     console.log(select);
 }
 
-function HTMLTagInput(){
-    return(
+function HTMLTagInput() {
+    return (
         <div className="HTMLTagInput">
             <label className="Title" for="HeadingTagSelector">Size</label>
             <select id="HeadingTagSelector" onBlur={changeHeadingType}>
@@ -74,54 +70,50 @@ function HTMLTagInput(){
     );
 }
 
-function changeHeadingType(select){
+function changeHeadingType(select) {
     console.log(select);
 }
 
-function AlignmentInput(){
-    return(
+function AlignmentInput() {
+    return (
         <div className="AlignmentInput">
             <p className="Title">Alignment</p>
             <div>
                 <button>
-                    <FontAwesomeIcon icon={faAlignLeft} onClick={changeAlignment}/>
+                    <FontAwesomeIcon icon={faAlignLeft} onClick={changeAlignment} />
                 </button>
                 <button>
-                    <FontAwesomeIcon icon={faAlignCenter} onClick={changeAlignment}/>
+                    <FontAwesomeIcon icon={faAlignCenter} onClick={changeAlignment} />
                 </button>
                 <button>
-                    <FontAwesomeIcon icon={faAlignRight} onClick={changeAlignment}/>
+                    <FontAwesomeIcon icon={faAlignRight} onClick={changeAlignment} />
                 </button>
                 <button>
-                    <FontAwesomeIcon icon={faAlignJustify} onClick={changeAlignment}/>
+                    <FontAwesomeIcon icon={faAlignJustify} onClick={changeAlignment} />
                 </button>
             </div>
         </div>
     );
 }
 
-function changeAlignment(button){
+function changeAlignment(button) {
     console.log(button)
 }
 
-class HeadingEditor extends Component{
-    constructor(props){
-        super(props);
-    }
-
-    render(){
+class HeadingEditor extends Component {
+    render() {
         return (
-        <div>
-            <section>
-                <TextInput/>
-            </section>
-            <section>
-                <LinkInput/>
-                <SizeInput/>
-                <HTMLTagInput/>
-                <AlignmentInput/>
-            </section>
-        </div>
+            <div>
+                <section>
+                    <TextInput />
+                </section>
+                <section>
+                    <LinkInput />
+                    <SizeInput />
+                    <HTMLTagInput />
+                    <AlignmentInput />
+                </section>
+            </div>
         );
     };
 }
