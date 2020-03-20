@@ -37,4 +37,4 @@ class imageEditorMenu extends Component {
   }
 }
 
-// export default imageEditorMenu;
+export default imageEditorMenu;
