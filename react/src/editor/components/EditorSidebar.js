@@ -1,24 +1,26 @@
 import React, { Component } from 'react';
-import * as constants from '../constants';
+import * as constants from '../../constants';
+import '../../css/Editor.css'
 
 import {
-    faFont, 
+    faFont,
     faFileImage,
     faBars,
-    faArrowsAlt,
-    faAlignLeft,
     faAlignRight,
     faAsterisk,
     faArrowDown,
-    faCircle 
+    faCircle
 } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import EditorButton from '../components/EditorButton';
 
 function Button(props) {
     return (
-        <button style={buttonContainerStyle} onClick={sideBarButton_OnClick}>
-            <FontAwesomeIcon icon={props.faIcon} style={sideBarIconStyle}/>
-            <p style={sideBarTextStyle}>{props.text}</p>
+        <button className="Editor-Sidebar-ButtonContainer"  onClick={sideBarButton_OnClick}>
+            {/* style={buttonContainerStyle} */}
+            <FontAwesomeIcon className="Editor-SideBar-Icon" icon={props.faIcon} />
+            {/* style={sideBarIconStyle} */}
+            <p>{props.text}</p>
         </button>
         );
 }
@@ -33,28 +35,17 @@ function sideBarButton_OnClick(buttonName) {
 
 
 class EditorSideBar extends Component {
-    constructor(props){
-        super(props);
-        this.sideBarButton_OnClick.bind(this);
-    }
-
-    sideBarButton_OnClick() {
-        console.log("clicked");
-    }
-
     render() {
-
-
         return (
-            <div style={sideBarContainerStyle}>
-                <Button text="Heading" faIcon={faFont}/>
-                <Button text="Image" faIcon={faFileImage}/>
-                <Button text="Button" faIcon={faAsterisk}/>
-                <Button text="Dividers"  faIcon={faBars}/>
-                <Button text="Align Right" faIcon={faAlignRight}/>
-                <Button text="Increase Size" faIcon={faAsterisk}/>
-                <Button text="Decrease Size" faIcon={faArrowDown}/>
-                <Button text="Colour" faIcon={faCircle}/>
+            <div className="Editor-SideBar-Container">
+                <EditorButton text="Heading" faIcon={faFont} onClick={this.props.onPush}/>
+                <EditorButton text="Image" faIcon={faFileImage} onClick={this.props.onPush}/>
+                <EditorButton text="Button" faIcon={faAsterisk} onClick={this.props.onPush}/>
+                <EditorButton text="Dividers" faIcon={faBars} onClick={this.props.onPush}/>
+                <EditorButton text="Spacer" faIcon={faAlignRight} onClick={this.props.onPush}/>
+                <EditorButton text="Size" faIcon={faAsterisk} onClick={this.props.onPush}/>
+                <EditorButton text="Icon" faIcon={faArrowDown} onClick={this.props.onPush}/>
+                <EditorButton text="Video" faIcon={faCircle} onClick={this.props.onPush}/>
             </div>
         );
     };
@@ -66,31 +57,14 @@ const sideBarContainerStyle = {
     marginRight: (constants.SideBarWidthAsInt) + "vh",
     marginTop: "2vh",
     margin: "auto",
-    width: "50vh",
+    width: constants.EditorSideBarWidth,
     height: "100vh",
     background: "grey",
     border: "3px solid green",
     padding: "10px",
     float: "left",
+    position: "fixed",
 };
-
-const buttonContainerStyle = {
-    height: "20%", 
-    width: constants.EditorSideBarButtonWidth,
-    borderRadius: "16px",
-    margin: "5%",
-    
-}
-
-const sideBarIconStyle = {
-    height: "7vh",
-    width: "7vh",
-    
-}
-
-const sideBarTextStyle = {
-
-}
 
 
 export default EditorSideBar
