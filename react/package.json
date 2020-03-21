@@ -55,5 +55,8 @@
   "main": "index.js",
   "author": "",
   "license": "ISC",
-  "homepage": "."
+  "homepage": ".",
+  "devDependencies": {
+    "jquery": "^3.4.1"
+  }
 }
