@@ -1,0 +1,23 @@
+.HeadingEditorContainer{
+    background-color: pink;
+    position: relative;
+    top: 25%;
+}
+
+.Title{
+    padding-right: 5%;
+}
+
+.Input-Container{
+    width: 80%;
+    margin: 0 auto;
+}
+
+.TextInput > textbox{
+    width: 100%;
+    height: 150px;
+}
+
+.LinkInput > input{
+    width: 100%;
+}

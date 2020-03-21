@@ -1,0 +1,28 @@
+.TextInput {
+    background-color: lightslategray;
+    padding: 5%;
+    display: flex;
+}
+
+.LinkInput {
+    background-color: lightslategray;
+    padding: 5%;
+    display: flex;
+}
+
+.HTMLTagInput {
+    background-color: lightslategray;
+    padding: 5%;
+}
+
+.AlignmentInput {
+    background-color: lightslategray;
+    padding: 5%;
+    display: flex;
+}
+
+.SizeInput {
+    background-color: lightslategray;
+    padding: 5%;
+    display: flex;
+}
