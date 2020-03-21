@@ -10,9 +10,8 @@ class EditingPage extends Component {
         }
     }
 
-
-    Refresh() {
-        this.setState({page: this.props.page});
+    onSectionClick = (id, type) => {
+      
     }
 
     /**
@@ -21,23 +20,21 @@ class EditingPage extends Component {
      */
     returnPage() {
         try {
-            console.log(this.props.page);
             let page = [];
             for (let index = 0; index < this.props.page.length; index++) {
                 let section = this.props.page[index];
                 page.push(
                     <PageSection 
-                        type={section.type} 
-                        index={index} 
+                        index={section.id}
+                        type={section.type}
                         style={section.style[0]}
                         text={section.text}
                         faClassName={section.faClassName}
                         onClick={section.onClick}
                         url={section.url}
+                        onSectionPush={this.props.onSectionPush}
 
-                        />)
-
-
+                        />);
             }
 
             return page;

@@ -6,12 +6,8 @@ import {
   Header,
   Navigation,
   Content,
-  FooterSection,
-  Footer,
-  FooterLinkList
 } from "react-mdl";
 import Main from "./Components/main";
-import StickyFooter from "react-sticky-footer";
 
 class HomePage extends Component {
   render() {

@@ -1,4 +1,11 @@
+.HeadingEditorContainer{
+    background-color: pink;
+    position: relative;
+    top: 25%;
+}
+
 .Title{
+    padding-right: 5%;
 }
 
 .TextInput > textarea{
@@ -8,11 +15,4 @@
 
 .LinkInput > input{
     width: 100%;
-}
-
-.AlignmentInput{
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: center;
 }
