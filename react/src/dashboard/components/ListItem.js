@@ -17,8 +17,8 @@ class ListItem extends Component {
                 <div className="PageListItem">
                     {this.props.title}
                     <div className="LinkContainer">
-                        <a href='#' className="Link" onClick={this.props.onPageEdit}> Edit</a>
-                        <a href='#' className="Link" onClick={this.props.onPageDelete}> Delete</a>
+                        <button className="Link" onClick={this.props.onPageEdit}> Edit</button>
+                        <button href='#' className="Link" onClick={this.props.onPageDelete}> Delete</button>
                     </div>
                 </div>
             );
@@ -28,7 +28,7 @@ class ListItem extends Component {
                 <div className="UserListItem">
                     {this.props.title}
                     <div className="LinkContainer">
-                        <a href='#' className="Link" onClick={this.props.onDelete}> Delete</a>
+                        <button href='#' className="Link" onClick={this.props.onDelete}> Delete</button>
                     </div>
                 </div>
             );

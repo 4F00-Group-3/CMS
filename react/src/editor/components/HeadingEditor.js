@@ -1,32 +1,31 @@
 import React, { Component } from 'react';
-import '../../css/Component.css'
-
-import{
+import '../../css/Component.css';
+import '../../css/HeadingEditor.css';
+import {
     faAlignLeft,
     faAlignCenter,
     faAlignRight,
     faAlignJustify
 } from "@fortawesome/free-solid-svg-icons";
-
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
-function TextInput(){
-    return(
+function TextInput() {
+    return (
         <div className="TextInput">
             <p className="Title">Title</p>
             <div className="Input-Container">
-                 <textbox onBlur={addTextToHeading}></textbox>
+                <input type="text" placeholder="Heading Text" onBlur={addTextToHeading}></input>
             </div>
         </div>
     );
 }
 
-function addTextToHeading(textbox){
+function addTextToHeading(textbox) {
     console.log(textbox);
 }
 
-function LinkInput(){
-    return(
+function LinkInput() {
+    return (
         <div className="LinkInput">
             <p className="Title">Link</p>
             <div className="Input-Container">
@@ -36,14 +35,14 @@ function LinkInput(){
     );
 }
 
-function addLinkToHeading(input){
+function addLinkToHeading(input) {
     console.log(input);
 }
 
-function SizeInput(){
-    return(
+function SizeInput() {
+    return (
         <div className="SizeInput">
-            <label className="Title" for="SizeSelector">Size</label>
+            <p className="Title">Size</p>
             <select id="SizeSelector" onBlur={changeSize}>
                 <option>Small</option>
                 <option>Medium</option>
@@ -54,14 +53,14 @@ function SizeInput(){
     );
 }
 
-function changeSize(select){
+function changeSize(select) {
     console.log(select);
 }
 
-function HTMLTagInput(){
-    return(
+function HTMLTagInput() {
+    return (
         <div className="HTMLTagInput">
-            <label className="Title" for="HeadingTagSelector">Size</label>
+            <label className="Title">Size</label>
             <select id="HeadingTagSelector" onBlur={changeHeadingType}>
                 <option>H1</option>
                 <option>H2</option>
@@ -74,54 +73,46 @@ function HTMLTagInput(){
     );
 }
 
-function changeHeadingType(select){
+function changeHeadingType(select) {
     console.log(select);
 }
 
-function AlignmentInput(){
-    return(
+function AlignmentInput() {
+    return (
         <div className="AlignmentInput">
             <p className="Title">Alignment</p>
             <div>
                 <button>
-                    <FontAwesomeIcon icon={faAlignLeft} onClick={changeAlignment}/>
+                    <FontAwesomeIcon icon={faAlignLeft} onClick={changeAlignment} />
                 </button>
                 <button>
-                    <FontAwesomeIcon icon={faAlignCenter} onClick={changeAlignment}/>
+                    <FontAwesomeIcon icon={faAlignCenter} onClick={changeAlignment} />
                 </button>
                 <button>
-                    <FontAwesomeIcon icon={faAlignRight} onClick={changeAlignment}/>
+                    <FontAwesomeIcon icon={faAlignRight} onClick={changeAlignment} />
                 </button>
                 <button>
-                    <FontAwesomeIcon icon={faAlignJustify} onClick={changeAlignment}/>
+                    <FontAwesomeIcon icon={faAlignJustify} onClick={changeAlignment} />
                 </button>
             </div>
         </div>
     );
 }
 
-function changeAlignment(button){
+function changeAlignment(button) {
     console.log(button)
 }
 
-class HeadingEditor extends Component{
-    constructor(props){
-        super(props);
-    }
-
-    render(){
+class HeadingEditor extends Component {
+    render() {
         return (
-        <div>
-            <section>
-                <TextInput/>
-            </section>
-            <section>
-                <LinkInput/>
-                <SizeInput/>
-                <HTMLTagInput/>
-                <AlignmentInput/>
-            </section>
-        </div>
+            <div className="HeadingEditorContainer">
+                    <TextInput />
+                    <LinkInput />
+                    <SizeInput />
+                    <HTMLTagInput />
+                    <AlignmentInput />
+            </div>
         );
     };
 }

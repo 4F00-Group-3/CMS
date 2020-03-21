@@ -5,15 +5,10 @@ import {
   Cell,
   List,
   ListItem,
-  Layout,
-  Header,
-  Navigation,
-  Content,
   FooterSection,
   Footer,
   FooterLinkList
 } from "react-mdl";
-import Main from "./Components/main";
 
 class tempPage extends Component {
   render() {
@@ -53,8 +48,9 @@ class tempPage extends Component {
           <Footer size="mini">
             <FooterSection type="left" logo="NO.">
               <FooterLinkList>
-                <a href="#">Help</a>
-                <a href="#">Privacy & Terms</a>
+              {/* commented to supress warnings */}
+                {/* <a href="#">Help</a>
+                <a href="#">Privacy & Terms</a> */}
               </FooterLinkList>
             </FooterSection>
           </Footer>

@@ -122,9 +122,10 @@ class EditorBackend {
 
     add(pageSection) {
         var page = this.state.page;
+        var jsonObj;
         switch (pageSection) {
             case "Heading": {
-                var jsonObj = {
+                jsonObj = {
                     id: page.length + 1,
                     type: "heading",
                     text: "heading 1",
@@ -140,7 +141,7 @@ class EditorBackend {
                 break;
             }
             case "Dividers": {
-                var jsonObj = {
+                jsonObj = {
                     id: page.length + 1,
                     type: "divider",
                     text: "rounded divider",
@@ -155,7 +156,7 @@ class EditorBackend {
                 break;
             }
             case "Image": {
-                var jsonObj = {
+                jsonObj = {
                     id: page.length + 1,
                     type: "image",
                     text: "alt text here",
@@ -171,7 +172,7 @@ class EditorBackend {
                 break;
             }
             case "Button": {
-                var jsonObj = {
+                jsonObj = {
                     id: page.length + 1,
                     type: "button",
                     text: "button text here",
@@ -187,7 +188,7 @@ class EditorBackend {
                 break;
             }
             case "Spacer": {
-                var jsonObj = {
+                jsonObj = {
                     id: page.length + 1,
                     type: "spacer",
                     text: "heading 1",
@@ -202,7 +203,7 @@ class EditorBackend {
                 break;
             }
             case "video": {
-                var jsonObj = {
+                jsonObj = {
                     id: page.length + 1,
                     type: "spacer",
                     text: "heading 1",
@@ -218,7 +219,7 @@ class EditorBackend {
                 break;
             }
             case "Icon": {
-                var jsonObj = {
+                jsonObj = {
                     id: page.length + 1,
                     type: "icon",
                     faClassName: "fab fa-accessible-icon",

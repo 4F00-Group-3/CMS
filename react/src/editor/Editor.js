@@ -8,10 +8,10 @@ const backend = new EditorBackend();
 class Editor extends Component {
     constructor(props) {
         super(props);
-        console.log("Constructor: ", this.props)
         this.onClick.bind(this.onClick);
         this.state = {
             page: props.page,
+            menu: "main",
         }
     }
 
@@ -64,11 +64,28 @@ class Editor extends Component {
 
     }
 
+    onSectionPush = (id, type) => {
+        console.log(type)
+        switch(type) {
+            case "heading": {
+                this.setState({
+                    menu: "heading",
+                })
+                break;
+            }
+            default: {
+                this.setState({
+                    menu: "main",
+                })
+            }
+        }
+    }
+
     render() {
         return (
             <>
-                <EditorSideBar onPush={this.onClick} page={this.props.page} />
-                <EditingPage page={this.state.page} />
+                <EditorSideBar onPush={this.onClick} menu={this.state.menu}/>
+                <EditingPage page={this.state.page} onSectionPush = {this.onSectionPush}/>
             </>
         );
     }

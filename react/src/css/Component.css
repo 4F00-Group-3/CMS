@@ -1,4 +1,5 @@
 .Title{
+    padding-right: 5%;
 }
 
 .Input-Container{
@@ -13,11 +14,4 @@
 
 .LinkInput > input{
     width: 100%;
-}
-
-.AlignmentInput{
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: center;
 }
