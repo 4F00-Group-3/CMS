@@ -5,8 +5,13 @@ import {
   Button,
   Card,
   CardTitle,
+  CardText,
   CardActions,
+  FooterSection,
+  Footer,
+  FooterLinkList
 } from "react-mdl";
+import ReactDOM from "react-dom";
 
 class landingPage extends Component {
   render() {
@@ -171,6 +176,16 @@ class landingPage extends Component {
               </div>
             </Cell>
           </Grid>
+        </div>
+        <div style={{ paddingbottom: "60px" }}>
+          <Footer size="mini">
+            <FooterSection type="left" logo="NO.">
+              <FooterLinkList>
+                <a href="#">Help</a>
+                <a href="#">Privacy & Terms</a>
+              </FooterLinkList>
+            </FooterSection>
+          </Footer>
         </div>
       </div>
     );
