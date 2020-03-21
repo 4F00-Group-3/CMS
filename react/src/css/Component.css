@@ -1,3 +1,9 @@
+.HeadingEditorContainer{
+    background-color: pink;
+    position: relative;
+    top: 25%;
+}
+
 .Title{
     padding-right: 5%;
 }

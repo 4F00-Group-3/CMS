@@ -1,9 +1,3 @@
-.HeadingEditorContainer{
-    background-color: pink;
-    position: relative;
-    top: 25%;
-}
-
 .TextInput {
     background-color: lightslategray;
     padding: 5%;

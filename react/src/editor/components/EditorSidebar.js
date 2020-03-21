@@ -10,7 +10,7 @@ import {
     faCircle
 } from "@fortawesome/free-solid-svg-icons";
 import EditorButton from '../components/EditorButton';
-import HeadingEditor from './HeadingEditor';
+import HeadingEditor from './HeadingEditorMenu';
 
 
 class EditorSideBar extends Component {
