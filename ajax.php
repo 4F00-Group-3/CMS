@@ -2,10 +2,20 @@
 <?php
 require_once ('header_functions.php');
 
-$functions = array('test', 'currentUser', 'currentUserId', 'addUser', 'getMedia', 'getPage', 'addMedia', 'addPage');
+$functions = array('test', 'currentUser', 'currentUserId', 'addUser', 'getMedia', 'getPage', 'addMedia', 'addPage', 'getWebsiteData');
 
 if(isset($_POST['function']) && in_array($_POST['function'], $functions)){
     $_POST['function']();
+}
+
+function getWebsiteData(){
+    $message = $_POST['message'];
+    if($message == 'hello'){
+        echo 'hello';
+    } else {
+        echo 'good bye';
+    }
+    die;
 }
 
 function test(){

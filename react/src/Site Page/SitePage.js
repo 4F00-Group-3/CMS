@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import axios from 'axios';
 import SiteIcon from './SiteIcon';
 import '../css/SitePage.css'
+import AjaxCall from '../ajax.js';
 
 export default class SitePage extends Component {
 
@@ -15,20 +16,24 @@ export default class SitePage extends Component {
     }
 
     componentDidMount() {
-        var target = 'https://www.google.com';
-        axios({
-            method: 'post',
-            url: "http://api.linkpreview.net",
-            dataType: 'jsonp',
-            data: { q: target, key: '123456' }
-        }).then(response => {
-            this.setState({
-                title: response.data.title,
-                image: response.data.image,
-                description: response.data.description
-            });
-            console.log(response);
-        });
+
+        AjaxCall(    {function:'getWebsiteData', email:this.state.email, password:this.state.pw},
+            function(response){});
+
+        // var target = 'https://www.google.com';
+        // axios({
+        //     method: 'post',
+        //     url: "http://api.linkpreview.net",
+        //     dataType: 'jsonp',
+        //     data: { q: target, key: '123456' }
+        // }).then(response => {
+        //     this.setState({
+        //         title: response.data.title,
+        //         image: response.data.image,
+        //         description: response.data.description
+        //     });
+        //     console.log(response);
+        // });
     }
 
     render() {
