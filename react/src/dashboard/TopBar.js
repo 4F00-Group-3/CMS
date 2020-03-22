@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
-import * as constants from './constants'
+import * as constants from '../constants'
 import '../css/PageAdmin.css'
 
 import {

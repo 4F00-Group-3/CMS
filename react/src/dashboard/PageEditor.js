@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import * as constants from './constants';
+import * as constants from '../constants';
 import '../css/Editor.css'
 
 class PageEditor extends Component {
