@@ -9,11 +9,20 @@ if(isset($_POST['function']) && in_array($_POST['function'], $functions)){
 }
 
 function getWebsiteData(){
-    $message = $_POST['message'];
-    if($message == 'hello'){
-        echo 'hello';
-    } else {
-        echo 'good bye';
+    $success = false;
+    if (!empty($_POST['accountId'])) {
+        $accountId = $_POST['accountId'];
+        $data = Account::getWebsiteData($accountId);
+        // Verify account password and set $_SESSION
+        if ($data !== false) {
+            $json = json_encode($data);
+            $success = true;
+        }
+    }
+    if($success === true){
+        echo $json;
+    }else{
+        echo "false";
     }
     die;
 }

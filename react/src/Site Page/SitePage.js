@@ -16,9 +16,14 @@ export default class SitePage extends Component {
     }
 
     componentDidMount() {
-
-        AjaxCall(    {function:'getWebsiteData', email:this.state.email, password:this.state.pw},
-            function(response){});
+        if(sessionStorage.getItem('id')!==null) {
+            AjaxCall({function: 'getWebsiteData', accountId: sessionStorage.getItem('id')},
+                function (response) {
+                    //TODO: This is where you can perform actions with the response that you recieved from the backend
+                });
+        }else{
+            // TODO: Redirect to loginpage
+        }
 
         // var target = 'https://www.google.com';
         // axios({

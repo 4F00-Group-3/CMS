@@ -109,7 +109,7 @@ class Account {
             }
             return $websites;
         }else{
-            return "Incorrect credentials!";
+            return false;
         }
     }
 
