@@ -5,14 +5,31 @@ import {
   Button,
   Card,
   CardTitle,
+  CardActions,
   CardText,
-  CardActions
+  Content,
+  FooterSection,
+  Footer,
+  FooterLinkList,
+  Header,
+  Navigation
 } from "react-mdl";
+import { Link, Route } from "react-router-dom";
 
 class getStarted extends Component {
   render() {
     return (
       <div>
+        <Header transparent title="NO." style={{ color: "white" }}>
+          <Navigation>
+            <Link to="/loginpage">Log In</Link>
+            <Link to="/getstarted" style={{ fontWeight: "bold" }}>
+              Get Started
+            </Link>
+            <a href="/#pl-pr">Plans & Pricing</a>
+            <a href="/#faq-page">FAQ</a>
+          </Navigation>
+        </Header>
         <Grid>
           <Cell col={12}>
             {/* Row 1 */}

@@ -68,3 +68,7 @@ img.center {
   text-decoration: white;
   float: left;
 }
+
+.centreBoxOnPage {
+  margin-top: 5%;
+}
