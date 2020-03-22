@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import "./css.css";
 import { Button, Tab, Tabs } from "react-mdl";
-import axios from "axios";
 
 /*This file contains all of the sub-components of the Image Editor Component of the Website Editor*/
 

@@ -1,14 +1,13 @@
 import React, { Component } from "react";
 import Container from "@material-ui/core/Container";
 import Card from "@material-ui/core/Card";
-import { Header } from "react-mdl";
+import { FooterSection, Footer, FooterLinkList } from "react-mdl";
 import "./css.css";
 
 class passwordsubmit extends Component {
   render() {
     return (
       <div>
-        <Header transparent title="NO." style={{ color: "white" }}></Header>
         <Container maxWidth="sm">
           <Card>
             <div>

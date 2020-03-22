@@ -63,18 +63,8 @@ img.center {
   margin: auto;
   width: 60vh;
   height: 100vh;
-  background: rgba(30, 9, 107, 0.541);
+  background: grey;
   padding: 10px;
   text-decoration: white;
   float: left;
-}
-
-.Menu-Heading {
-  color: white;
-}
-
-.inputNum {
-  width: 80px;
-  margin-right: 15px;
-  margin-top: 6px;
 }
