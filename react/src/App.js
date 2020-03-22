@@ -5,7 +5,7 @@ import { Layout, Content } from "react-mdl";
 import landingPage from "./Components/landingPage";
 import getStarted from "./Components/getStarted";
 import loginpage from "./Components/loginpage";
-import { Route } from "react-router-dom";
+import { Route, Switch, Redirect } from "react-router-dom";
 
 import Home from "./HomePage";
 import Editor from "./editor/Editor";
@@ -22,13 +22,10 @@ class App extends Component {
         >
           <Content>
             <div className="page-content" />
-            <Switch>
-              <Route exact path="/" component={landingPage} />{" "}
-              {/* exact path keeps page content from overlapping */}
-              <Route path="/loginpage" component={loginpage} />
-              <Route path="/getStarted" component={getStarted} />
-              <Redirect to="/" />
-            </Switch>
+            <Route exact path="/" component={landingPage} />{" "}
+            {/* exact path keeps page content from overlapping */}
+            <Route path="/loginpage" component={loginpage} />
+            <Route path="/getStarted" component={getStarted} />
           </Content>
         </Layout>
       </div>
