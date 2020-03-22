@@ -59,3 +59,159 @@
   left:0;
   margin-bottom: 10%;
 }
+
+
+.ButtonType {
+  background-color: lightslategray;
+  padding: 5%;
+  display: flex;
+}
+
+.DividerStyle {
+  background-color: lightslategray;
+  padding: 5%;
+  display: flex;
+}
+
+.DividerColour {
+  background-color: lightslategray;
+  padding: 5%;
+  display: flex;
+}
+
+.DividerWidth {
+  background-color: lightslategray;
+  padding: 5%;
+  display: flex;
+}
+
+.AddElementOptions {
+  background-color: lightslategray;
+  padding: 5%;
+  display: flex;
+}
+
+.SpacerThickness {
+  background-color: lightslategray;
+  padding: 5%;
+  display: flex;
+}
+
+.VideoSource {
+  background-color: lightslategray;
+  padding: 5%;
+  display: flex;
+}
+
+.VideoStart {
+  background-color: lightslategray;
+  padding: 5%;
+  display: flex;
+}
+
+.VideoEnd {
+  background-color: lightslategray;
+  padding: 5%;
+  display: flex;
+}
+
+.AutoPlay {
+  background-color: lightslategray;
+  padding: 5%;
+  display: flex;
+}
+
+.Mute {
+  background-color: lightslategray;
+  padding: 5%;
+  display: flex;
+}
+
+.Loop {
+  background-color: lightslategray;
+  padding: 5%;
+  display: flex;
+}
+
+.SelectImage {
+  background-color: lightslategray;
+  padding: 5%;
+  display: flex;
+}
+
+.SelectIcon {
+  background-color: lightslategray;
+  padding: 5%;
+  display: flex;
+}
+
+.SetView {
+  background-color: lightslategray;
+  padding: 5%;
+  display: flex;
+}
+
+.SetImageSize {
+  background-color: lightslategray;
+  padding: 5%;
+  
+}
+.Selector {
+  display: flex;
+}
+
+.SetCaption {
+  background-color: lightslategray;
+  padding: 5%;
+  display: flex;
+}
+
+/* CSS for buttons for Video Component */
+.switch {
+  position: relative;
+  display: inline-block;
+  width: 60px;
+  height: 34px;
+}
+
+.switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.slider.round {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #ccc;
+  transition: .4s;
+  border-radius: 34px;
+}
+
+.slider.round:before {
+  position: absolute;
+  content: "";
+  height: 26px;
+  width: 26px;
+  left: 4px;
+  bottom: 4px;
+  background-color: white;
+  transition: .4s;
+  border-radius: 50%;
+}
+
+.input:checked + .slider.round {
+  background-color: #2196F3;
+}
+
+.input:focus + .slider:before {
+  box-shadow: 0 0 1px #2196F3;
+}
+
+.input:checked + .slider.round:before {
+  transform: translateX(26px);
+}
