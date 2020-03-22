@@ -2,7 +2,7 @@
 <?php
 require_once ('header_functions.php');
 
-$functions = array('test', 'currentUser', 'currentUserId', 'addUser', 'getMedia', 'getPage', 'addMedia', 'addPage');
+$functions = array('test', 'currentUser', 'currentUserId', 'addUser', 'getAllPages', 'getAllUsers', 'getMedia', 'getPage', 'addMedia', 'addPage', 'deletePage', 'deleteUser');
 
 if(isset($_POST['function']) && in_array($_POST['function'], $functions)){
     $_POST['function']();
@@ -29,7 +29,7 @@ function currentUserId(){
 }
 
 function addUser(){
-    $newUserId = User::addUser($_POST['email'], $_POST['firstName'], $_POST['lastName'], $_POST['type'], $_POST['password']);
+    $newUserId = Account::addAccount($_POST['email'], $_POST['firstName'], $_POST['lastName'], $_POST['type'], $_POST['password']);
     if($newUserId){
         echo '1';
     } else {
@@ -39,7 +39,17 @@ function addUser(){
     die;
 }
 
+function getAllPages(){
+    $all_pages = Website::getAllPagesJSON(DB_SCHEMA);
+    echo json_encode($all_pages);
+    die;
+}
 
+function getAllUsers(){
+    $all_users = Account::getAllAccounts();
+    echo json_encode($all_users);
+    die;
+}
 
 function getMedia(){
 
@@ -54,5 +64,15 @@ function addMedia(){
 }
 
 function addPage(){
+    $newPageId = Website::addPageJSON(DB_SCHEMA, $_POST['content'], $_POST['name']);
+    echo $newPageId;
+    die;
+}
 
+function deleteUser(){
+    echo Account::deleteAccount($_POST['accountId']);
+}
+
+function deletePage(){
+    echo Website::deletePage(DB_SCHEMA, $_POST['pageId']);
 }

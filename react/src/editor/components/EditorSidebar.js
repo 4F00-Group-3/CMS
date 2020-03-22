@@ -46,8 +46,7 @@ class EditorSideBar extends Component {
 
             <div className="Editor-SideBar-Container">
                 {/* editor menus to be tested here */}
-                {/* {this.returnMenu()} */}
-                <EditDivider/>
+                {this.returnMenu()}
             </div>
         );
     };

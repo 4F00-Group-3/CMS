@@ -12,9 +12,7 @@ if ( ! empty( $_POST ) ) {
 
         // Verify account password and set $_SESSION
         if($account !== false){
-            // echo '<pre>'.var_export(print_r($account, true)).'</pre>';
-            $pHash = password_hash($account->password, 1);
-            if ( password_verify( $_POST['password'], $pHash) ) {
+            if ( password_verify( $_POST['password'], $account->password) ) {
                 $_SESSION['account_id'] = $account->accountId;
                 $success = true;
             }
