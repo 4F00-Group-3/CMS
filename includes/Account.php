@@ -28,13 +28,13 @@ class Account {
 	}
 
 //	returns account data
-	public function get_account_data(){
+	public function get_account_data() {
         return array(
-            'accountId' => $accountId,
-            'email' => $email,
-            'firstName' => $firstName,
-            'lastName' => $lastName,
-            'type' => $type
+            'accountId' => $this->accountId,
+            'email' => $this->email,
+            'firstName' => $this->firstName,
+            'lastName' => $this->lastName,
+            'type' => $this->type
         );
     }
 	
@@ -94,6 +94,23 @@ class Account {
             $accounts[] = new Account($row['account_id'], $row['email'], $row['first_name'], $row['last_name'], $row['account_type'], $row['password']);
         }
         return $accounts;
+    }
+
+    // Retrieve websites associated with account
+    public static function getWebsiteData($account_id) {
+        $stmt = Dbh::connect()
+            ->PREPARE("SELECT * FROM websites WHERE account_id=?");
+        $stmt->execute([$account_id]);
+        $websites = array();
+        if($stmt->rowCount()){
+            while ($row = $stmt->fetch()){
+                $data = array("name"=>$row['site_name'], "image"=>['image'], "description"=>['description']);
+                $websites[] = $data;
+            }
+            return $websites;
+        }else{
+            return "Incorrect credentials!";
+        }
     }
 
 }
