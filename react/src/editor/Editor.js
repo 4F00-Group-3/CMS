@@ -8,10 +8,11 @@ const backend = new EditorBackend();
 class Editor extends Component {
     constructor(props) {
         super(props);
-        console.log("Constructor: ", this.props)
         this.onClick.bind(this.onClick);
         this.state = {
             page: props.page,
+            menu: "main",
+            selectedId: undefined,
         }
     }
 
@@ -64,11 +65,39 @@ class Editor extends Component {
 
     }
 
+    onSectionPush = (_id, _type, _style) => {
+        console.log(_type)
+        switch(_type) {
+            case "heading": {
+                this.setState({
+                    menu: "heading",
+                    selectedId: _id,
+                })
+                break;
+            }
+            default: {
+                this.setState({
+                    menu: "main",
+                    selectedId: undefined,
+                })
+            }
+        }
+    }
+
+    menuComponentOnClick = (css) =>{
+        var cssKey = css.split(":")[0]
+        var cssValue = css.split(":")[1]
+        backend.editSection(this.state.selectedId, cssKey, cssValue);
+        this.setState(
+            {page: backend.getPage(),}
+        )
+    }
+
     render() {
         return (
             <>
-                <EditorSideBar onPush={this.onClick} page={this.props.page} />
-                <EditingPage page={this.state.page} />
+                <EditorSideBar onPush={this.onClick} menu={this.state.menu} selectedId={this.state.selectedId} menuComponentOnClick={this.menuComponentOnClick}/>
+                <EditingPage page={this.state.page} onSectionPush = {this.onSectionPush}/>
             </>
         );
     }

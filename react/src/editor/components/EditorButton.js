@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import * as constants from '../constants';
+import * as constants from '../../constants';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 class EditorButton extends Component {
@@ -13,9 +13,6 @@ class EditorButton extends Component {
     }
 }
 
-
-
-
 const buttonContainerStyle = {
     height: "20%",
     width: constants.EditorSideBarButtonWidth,
@@ -23,7 +20,6 @@ const buttonContainerStyle = {
     margin: "5%",
 
 }
-
 
 const sideBarIconStyle = {
     height: "7vh",

@@ -1,10 +1,9 @@
 import React, { Component } from "react";
 import Container from "@material-ui/core/Container";
 import Card from "@material-ui/core/Card";
-import { FooterSection, Footer, FooterLinkList } from "react-mdl";
 import "./css.css";
 
-class loginpage extends Component {
+class LoginPage extends Component {
   render() {
     return (
       <div>
@@ -66,4 +65,4 @@ class loginpage extends Component {
   }
 }
 
-export default loginpage;
+export default LoginPage;

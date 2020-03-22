@@ -6,17 +6,10 @@ import {
   Card,
   CardTitle,
   CardActions,
-  Content,
-  FooterSection,
-  Footer,
-  FooterLinkList,
-  Header,
-  Navigation
 } from "react-mdl";
-import { Link, Route } from "react-router-dom";
-import ReactDOM from "react-dom";
 
 class landingPage extends Component {
+  
   render() {
     return (
       <div>
@@ -27,10 +20,12 @@ class landingPage extends Component {
               <Link to="/getstarted" style={{ fontWeight: "bold" }}>
                 Get Started
               </Link>
-              <a href="/#pl-pr">Plans & Pricing</a>
-              <a href="/#faq-page">FAQ</a>
             </Navigation>
-          </Header>
+            </Header>
+        <div style={{ background: "white" }}>
+          <section ref={this.props.scrollDiv} id="faq-page">
+            <h2 className="faq-page">FAQ</h2>
+          </section>
           <Grid>
             <Cell col={12}>
               <h2 className="home-page-title">
@@ -46,6 +41,7 @@ class landingPage extends Component {
               </div>
             </Cell>
           </Grid>
+          </div>
           <div style={{ background: "white" }}>
             <section id="faq-page">
               <h2 className="faq-page">FAQ</h2>
