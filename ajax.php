@@ -17,10 +17,10 @@ function createAccount(){
             echo 'Account created!';
         }
     }
+    die;
 }
 
-function login()
-{
+function login(){
     $success = false;
     if (!empty($_POST)) {
         if (!empty($_POST['email']) && !empty($_POST['password'])) {
@@ -39,11 +39,12 @@ function login()
             }
         }
     }
-    if($success){
+    if($success === true){
         echo $account->accountId;
     }else{
-        echo false;
+        echo "false";
     }
+    die;
 }
 
 function test(){

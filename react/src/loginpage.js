@@ -2,32 +2,33 @@ import React, { Component } from "react";
 import Container from "@material-ui/core/Container";
 import Card from "@material-ui/core/Card";
 import AjaxCall from './ajax.js';
+import Dashboard from './dashboard/Dashboard'
 
 class loginpage extends Component {
-
   constructor(props) {
     super(props);
     this.state = {
       email: '',
-      pw: ''
+      pw: '',
     };
+    this.handleFormSubmit.bind(this);
+    this.handleChange.bind(this);
   }
 
-  handleFormSubmit = ( event ) => {
+
+  handleFormSubmit = (event) => {
     event.preventDefault();
-    // alert("You are submitting " + this.state.email + " "+ this.state.pw);
     AjaxCall(    {function:'login', email:this.state.email, password:this.state.pw},
         function(response){
-      if (response !== false){
+      if (!(response.toString().includes("false"))){
         let accountId = response.toString().indexOf(' ');
         sessionStorage.setItem("id", response.toString().slice(accountId));
-
       }
-      console.clear();
-      console.log(response);
-      });
-
-
+      console.log(response.toString());
+    });
+    if(sessionStorage.length===1) {
+      this.props.handleDashClick();
+    }
   };
 
   handleChange = ( event )  => {
@@ -48,17 +49,22 @@ class loginpage extends Component {
             <div style={{ padding: "20px" }}>
               <h2 style={{ textalign: "center" }}>Login To Your Account</h2>
 
-
-              <form style={{ padding: "5%" }} onSubmit={this.handleFormSubmit}>
+              <form style={{ padding: "5%" }} onSubmit ={this.handleFormSubmit}>
                 <label for="email">Username</label>
                 <br></br>
-                <input type="text" id="email" name="email"
+                <input type="email"
+                       id="email"
+                       name="email"
+                       value={this.state.email}
                        onChange= {this.handleChange}
                 />
                 <br></br>
                 <label for="email">Password</label>
                 <br></br>
-                <input type="password" id="pw" name="pw"
+                <input type="password"
+                       id="pw"
+                       name="pw"
+                       value={this.state.pw}
                        onChange= {this.handleChange}
                 />
                 <br></br>

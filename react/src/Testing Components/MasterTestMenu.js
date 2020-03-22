@@ -2,7 +2,8 @@ import React, { Component } from "react";
 import Home from '../HomePage';
 import Editor from '../editor/Editor';
 import Dashboard from '../dashboard/Dashboard'
-
+import Login from '../loginpage';
+import CreateAccount from '../Components/createAccount.js';
 
 class MasterTestMenu extends Component {
   constructor(props) {
@@ -12,9 +13,18 @@ class MasterTestMenu extends Component {
       viewPage: ""
     };
 
+    // this.handler = this.handler.bind(this);
+
     this.handleEditorClick = this.handleEditorClick.bind(this);
     this.handleHomeClick = this.handleHomeClick.bind(this);
     this.handleDashClick = this.handleDashClick.bind(this);
+    this.handleLoginClick = this.handleLoginClick.bind(this);
+    this.handleCreateAccountClick = this.handleCreateAccountClick.bind(this);
+
+  }
+
+  handler() {
+    this.setState({ viewPage: "Dash" });
   }
 
   handleEditorClick() {
@@ -27,6 +37,14 @@ class MasterTestMenu extends Component {
 
   handleDashClick() {
     this.setState({ viewPage: "Dash" });
+  }
+
+  handleLoginClick() {
+    this.setState({ viewPage: "Login" });
+  }
+
+  handleCreateAccountClick() {
+    this.setState({ viewPage: "Create Account" });
   }
 
 
@@ -44,6 +62,14 @@ class MasterTestMenu extends Component {
         page = <Dashboard />;
         break;
       }
+      case "Login": {
+        page = <Login handleDashClick={this.handleDashClick}/>;
+        break;
+      }
+      case "Create Account": {
+        page = <CreateAccount />;
+        break;
+      }
       default:
         page = <Home />;
     }
@@ -53,6 +79,8 @@ class MasterTestMenu extends Component {
           <button onClick={this.handleEditorClick}>Editor</button>
           <button onClick={this.handleHomeClick}>Home</button>
           <button onClick={this.handleDashClick}>Dash</button>
+          <button onClick={this.handleLoginClick}>Login</button>
+          <button onClick={this.handleCreateAccountClick}>Create Account</button>
         </div>
         <div id="testingCanvas">
           {page}
