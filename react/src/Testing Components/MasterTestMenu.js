@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import Home from '../HomePage';
 import Editor from '../editor/Editor';
 import Dashboard from '../dashboard/Dashboard'
+import SitePage from '../Site Page/SitePage';
 
 
 class MasterTestMenu extends Component {
@@ -15,6 +16,7 @@ class MasterTestMenu extends Component {
     this.handleEditorClick = this.handleEditorClick.bind(this);
     this.handleHomeClick = this.handleHomeClick.bind(this);
     this.handleDashClick = this.handleDashClick.bind(this);
+    this.handleSitePageClick = this.handleSitePageClick.bind(this);
   }
 
   handleEditorClick() {
@@ -29,6 +31,10 @@ class MasterTestMenu extends Component {
     this.setState({ viewPage: "Dash" });
   }
 
+  handleSitePageClick() {
+    this.setState({ viewPage: "SitePage" });
+  }
+
 
   render() {
     const view = this.state.viewPage;
@@ -40,10 +46,12 @@ class MasterTestMenu extends Component {
       case "Home":
         page = <Home />;
         break;
-      case "Dash": {
+      case "Dash": 
         page = <Dashboard />;
         break;
-      }
+      case "SitePage":
+        page = <SitePage />
+        break;
       default:
         page = <Home />;
     }
@@ -53,6 +61,8 @@ class MasterTestMenu extends Component {
           <button onClick={this.handleEditorClick}>Editor</button>
           <button onClick={this.handleHomeClick}>Home</button>
           <button onClick={this.handleDashClick}>Dash</button>
+          <button onClick={this.handleSitePageClick}>Site Page</button>
+
         </div>
         <div id="testingCanvas">
           {page}
