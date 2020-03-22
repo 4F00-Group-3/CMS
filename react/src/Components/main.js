@@ -2,13 +2,8 @@ import React from "react";
 import { BrowserRouter, Switch, Route } from "react-router-dom";
 import landingPage from "./landingPage";
 import getStarted from "./getStarted";
-<<<<<<< HEAD
-import loginpage from "./loginpage";
-import tempPage from "../tempPage";
-=======
 import tempPage from "../tempPage";
 import LoginPage from "./LoginPage";
->>>>>>> 7aa83d383397030f9f6e9950fa0f8d37733b511a
 import passwordsubmit from "./passwordsubmit";
 import submitemail from "./submitemail";
 import securityCode from "./securityCode";
