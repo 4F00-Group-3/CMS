@@ -9,6 +9,47 @@ class EditorBackend {
         return this.state.page;
     }
 
+    editSection(_id, style_key, style_value){
+        var page = this.getPage()
+        var result = [];
+        for (let index = 0; index < page.length; index++) {
+            var pageSection = page[index];
+            if(pageSection.id === _id) {
+
+                //repopulate new css
+                var css = pageSection.style[0];
+                var newCSS = {};
+                for (var attribute in css) {              
+                    if (attribute === style_key) {
+                        newCSS[attribute] = style_value;
+                    }
+                    else {
+                        newCSS[attribute] =  css[attribute];
+                    }
+                }
+                
+                //repopulate new page section
+                var newPageSection = {};
+                for (const key in pageSection) {
+                    if(key === "style") {
+                        newPageSection[key] = [newCSS];
+                    }
+                    else {
+                        newPageSection[key] = pageSection[key];
+                    }
+                }
+
+                result.push(newPageSection);
+            }
+            else {
+                result.push(pageSection)
+            }
+            
+        }
+        console.log(result);
+        this.state.page = result;
+    }
+
     /**
      * This is where we would request JSON page from backend
      */
