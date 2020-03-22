@@ -1,25 +1,41 @@
 import React, { Component } from 'react';
-import '../../css/Component.css';
 import {
-    TextInput, 
-    LinkInput, 
-    SizeInput, 
-    HTMLTagInput, 
-    AlignmentInput
+    TextInput,
+    LinkInput,
+    SizeInput,
+    HTMLTagInput,
+    AlignmentInput,
+    NumericInput
 } from './EditorMenuComponents';
 
 
-
 class HeadingEditor extends Component {
+
+    onChange(props) {
+        console.log(props);
+    }
+
     render() {
         return (
-            <div className="HeadingEditorContainer">
+            <>
+                <div className="HeadingEditorContainer">
                     <TextInput />
                     <LinkInput />
                     <SizeInput />
+                    <NumericInput
+                        rightAddon={"px"}
+                        placeholder={"Font size"}
+                        inputType={"number"}
+                    />
                     <HTMLTagInput />
-                    <AlignmentInput />
-            </div>
+                    <AlignmentInput onClick={this.props.menuComponentOnClick} />
+
+
+                </div>
+                <div className="PrimaryButton">
+                    <button type="button" className="btn btn-primary">Back</button>
+                </div>
+            </>
         );
     };
 }

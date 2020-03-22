@@ -1,28 +1,61 @@
+.HeadingEditorContainer {
+  background-color: lightslategray;
+  position: relative;
+  top:15%;
+}
+
+.Title {
+  padding-right: 5%;
+}
+
+.TextInput > textarea {
+  width: 100%;
+  height: 150px;
+}
+
+.LinkInput > input {
+  width: 100%;
+}
+
 .TextInput {
-    background-color: lightslategray;
-    padding: 5%;
-    display: flex;
+  background-color: lightslategray;
+  padding: 5%;
+  display: flex;
 }
 
 .LinkInput {
-    background-color: lightslategray;
-    padding: 5%;
-    display: flex;
+  background-color: lightslategray;
+  padding: 5%;
+  display: flex;
 }
 
 .HTMLTagInput {
-    background-color: lightslategray;
-    padding: 5%;
+  background-color: lightslategray;
+  padding: 5%;
 }
 
 .AlignmentInput {
-    background-color: lightslategray;
-    padding: 5%;
-    display: flex;
+  background-color: lightslategray;
+  padding: 5%;
+  display: flex;
 }
 
 .SizeInput {
-    background-color: lightslategray;
-    padding: 5%;
-    display: flex;
+  background-color: lightslategray;
+  padding: 5%;
+  display: flex;
+}
+
+.NumericInput {
+  background-color: lightslategray;
+  padding: 5%;
+}
+
+.PrimaryButton {
+  padding-left:4%;
+  padding-right: 10%;
+  position:absolute;
+  bottom:0;
+  left:0;
+  margin-bottom: 10%;
 }

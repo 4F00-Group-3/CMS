@@ -52,7 +52,7 @@ class PageSection extends Component {
 
     render() {
         return (
-            <div className="pageSection" onClick={() => this.props.onSectionPush(this.props.index, this.props.type)}>
+            <div className="pageSection" onClick={() => this.props.onSectionPush(this.props.index, this.props.type, this.props.style)}>
                 {this.returnElement()}
             </div>
         );
