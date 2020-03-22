@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import axios from 'axios';
 import SiteIcon from './SiteIcon';
+import '../css/SitePage.css'
 
 export default class SitePage extends Component {
 
@@ -10,37 +11,42 @@ export default class SitePage extends Component {
             title: '',
             image: '',
             description: '',
-            renderSite: false
         }
     }
 
     componentDidMount() {
         var target = 'https://www.google.com';
-        fetch("http://playground.ajaxtown.com/link_preview/class.linkpreview.php?url" + target)
-            .then(res => res.json())
-            .then(data => {
-                console.log(data);
-            });
         axios({
             method: 'post',
             url: "http://api.linkpreview.net",
             dataType: 'jsonp',
             data: { q: target, key: '123456' }
-        }).then(data => {
+        }).then(response => {
             this.setState({
-                title: data.data.title,
-                image: data.data.image,
-                description: data.data.description
+                title: response.data.title,
+                image: response.data.image,
+                description: response.data.description
             });
-            console.log(data);
-            this.setState({renderSite:true});
+            console.log(response);
         });
     }
 
     render() {
         return (
-            <div>
-            {this.state.render ? <SiteIcon title={this.state.title} image={this.state.image} description={this.state.description} /> : 'hi'}
+            <div className="SitePage">
+                <div className="Menu">
+                    <a href="#AccountSettings">Account Settings</a>
+                    <a href="#LogOut">Log Out</a>
+                    <a href="#Upgrade">Upgrade</a>
+                </div>
+                <div className="Content">
+                    <div className="SiteList">
+                    {/* this code should be refactored as a SiteIcon component, need to figure out how to update a component on completion of an async call. */}
+                        <h1>{this.state.title}</h1>
+                        <img src={this.state.image} alt="test" width="500" height="250" />
+                        <p>{this.state.description}</p>
+                    </div>
+                </div>
             </div>
         );
     }

@@ -12,11 +12,7 @@ export default class SiteIcon extends Component {
 
     render() {
         return (
-            <div>
-                <h1>{this.state.title}</h1>
-                <img src={this.state.image} alt="test" width="500" height="250" />
-                <p>{this.state.description}</p>
-            </div>
+           <div></div>
         );
     }
 }
