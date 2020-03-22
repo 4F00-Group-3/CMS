@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import Page from './Page';
-import '../css/PageAdmin.css'
+import '../../css/PageAdmin.css'
 
 
 class Pages extends Component {
@@ -23,7 +23,7 @@ class Pages extends Component {
     }
 
     handlePageEdit() {
-        console.log("handle page edit clicked");
+        console.log("handle page edSDFGJDFZGJXFGJXFGJit clicked");
     }
 
     handlePageDelete(id) {

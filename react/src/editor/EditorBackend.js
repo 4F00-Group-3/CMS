@@ -9,6 +9,47 @@ class EditorBackend {
         return this.state.page;
     }
 
+    editSection(_id, style_key, style_value){
+        var page = this.getPage()
+        var result = [];
+        for (let index = 0; index < page.length; index++) {
+            var pageSection = page[index];
+            if(pageSection.id === _id) {
+
+                //repopulate new css
+                var css = pageSection.style[0];
+                var newCSS = {};
+                for (var attribute in css) {              
+                    if (attribute === style_key) {
+                        newCSS[attribute] = style_value;
+                    }
+                    else {
+                        newCSS[attribute] =  css[attribute];
+                    }
+                }
+                
+                //repopulate new page section
+                var newPageSection = {};
+                for (const key in pageSection) {
+                    if(key === "style") {
+                        newPageSection[key] = [newCSS];
+                    }
+                    else {
+                        newPageSection[key] = pageSection[key];
+                    }
+                }
+
+                result.push(newPageSection);
+            }
+            else {
+                result.push(pageSection)
+            }
+            
+        }
+        console.log(result);
+        this.state.page = result;
+    }
+
     /**
      * This is where we would request JSON page from backend
      */
@@ -122,9 +163,10 @@ class EditorBackend {
 
     add(pageSection) {
         var page = this.state.page;
+        var jsonObj;
         switch (pageSection) {
             case "Heading": {
-                var jsonObj = {
+                jsonObj = {
                     id: page.length + 1,
                     type: "heading",
                     text: "heading 1",
@@ -140,7 +182,7 @@ class EditorBackend {
                 break;
             }
             case "Dividers": {
-                var jsonObj = {
+                jsonObj = {
                     id: page.length + 1,
                     type: "divider",
                     text: "rounded divider",
@@ -155,7 +197,7 @@ class EditorBackend {
                 break;
             }
             case "Image": {
-                var jsonObj = {
+                jsonObj = {
                     id: page.length + 1,
                     type: "image",
                     text: "alt text here",
@@ -171,7 +213,7 @@ class EditorBackend {
                 break;
             }
             case "Button": {
-                var jsonObj = {
+                jsonObj = {
                     id: page.length + 1,
                     type: "button",
                     text: "button text here",
@@ -187,7 +229,7 @@ class EditorBackend {
                 break;
             }
             case "Spacer": {
-                var jsonObj = {
+                jsonObj = {
                     id: page.length + 1,
                     type: "spacer",
                     text: "heading 1",
@@ -202,7 +244,7 @@ class EditorBackend {
                 break;
             }
             case "video": {
-                var jsonObj = {
+                jsonObj = {
                     id: page.length + 1,
                     type: "spacer",
                     text: "heading 1",
@@ -218,7 +260,7 @@ class EditorBackend {
                 break;
             }
             case "Icon": {
-                var jsonObj = {
+                jsonObj = {
                     id: page.length + 1,
                     type: "icon",
                     faClassName: "fab fa-accessible-icon",

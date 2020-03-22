@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import { Nav, NavItem, NavLink } from 'reactstrap';
-import '../css/PageAdmin.css';
+import { Nav, NavItem } from 'reactstrap';
+import '../../css/PageAdmin.css';
 
 class SideBar extends Component {
   render() {

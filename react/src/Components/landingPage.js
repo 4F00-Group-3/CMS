@@ -5,15 +5,11 @@ import {
   Button,
   Card,
   CardTitle,
-  CardText,
   CardActions,
-  FooterSection,
-  Footer,
-  FooterLinkList
 } from "react-mdl";
-import ReactDOM from "react-dom";
 
 class landingPage extends Component {
+  
   render() {
     return (
       <div>
@@ -33,7 +29,7 @@ class landingPage extends Component {
           </Cell>
         </Grid>
         <div style={{ background: "white" }}>
-          <section id="faq-page">
+          <section ref={this.props.scrollDiv} id="faq-page">
             <h2 className="faq-page">FAQ</h2>
           </section>
           <Grid>
