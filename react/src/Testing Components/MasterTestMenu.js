@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import Home from '../HomePage';
 import Editor from '../editor/Editor';
 import Dashboard from '../dashboard/Dashboard'
-import Login from '../loginpage';
+import Login from '../Components/loginpage';
 import CreateAccount from '../Components/createAccount.js';
 
 class MasterTestMenu extends Component {
@@ -13,14 +13,11 @@ class MasterTestMenu extends Component {
       viewPage: ""
     };
 
-    // this.handler = this.handler.bind(this);
-
     this.handleEditorClick = this.handleEditorClick.bind(this);
     this.handleHomeClick = this.handleHomeClick.bind(this);
     this.handleDashClick = this.handleDashClick.bind(this);
     this.handleLoginClick = this.handleLoginClick.bind(this);
     this.handleCreateAccountClick = this.handleCreateAccountClick.bind(this);
-
   }
 
   handler() {

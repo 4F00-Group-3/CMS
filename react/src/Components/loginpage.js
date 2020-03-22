@@ -1,8 +1,7 @@
 import React, { Component } from "react";
 import Container from "@material-ui/core/Container";
 import Card from "@material-ui/core/Card";
-import AjaxCall from './ajax.js';
-import Dashboard from './dashboard/Dashboard'
+import AjaxCall from '../ajax.js';
 
 class loginpage extends Component {
   constructor(props) {
