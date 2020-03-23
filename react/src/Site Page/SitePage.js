@@ -30,17 +30,18 @@ export default class SitePage extends Component {
             });
             console.log(response);
         });
-        if(sessionStorage.getItem('id')!==null) {
-            AjaxCall({function: 'getWebsiteData', accountId: sessionStorage.getItem('id')},
+        if (sessionStorage.getItem('id') !== null) {
+            AjaxCall({ function: 'getWebsiteData', accountId: sessionStorage.getItem('id') },
                 function (response) {
                     //TODO: This is where you can perform actions with the response that you recieved from the backend
                 });
-        }else{
+        } else {
+        }
     }
 
     render() {
         // Essentially what my response should look like from server
-        const websites =[
+        const websites = [
             {
                 title: "Website1",
                 image: "https://cdn.pixabay.com/photo/2013/11/28/10/36/road-220058_1280.jpg",
