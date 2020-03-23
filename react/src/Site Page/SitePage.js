@@ -29,7 +29,7 @@ export default class SitePage extends Component {
             console.log(this.state.siteInfo);
         });
 
-        sessionStorage.setItem('id', 79); // for testing purposes
+        sessionStorage.setItem('id', "79"); // for testing purposes
         if (sessionStorage.getItem('id') !== null) {
             console.log("ajaxcall"); // to see if it actually went thru
             AjaxCall({ function: 'getWebsiteData', accountId: sessionStorage.getItem('id') }, // There is no response from this call coming, having Casey look into this
