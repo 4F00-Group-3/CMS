@@ -6,15 +6,13 @@ import {
   Button,
   Card,
   CardTitle,
+  CardText,
   CardActions,
-  Footer,
   FooterSection,
-  FooterLinkList,
-  Content,
-  Header,
-  Navigation
+  Footer,
+  FooterLinkList
 } from "react-mdl";
-import { Link } from "react-router-dom";
+import ReactDOM from "react-dom";
 
 class landingPage extends Component {
   render() {
@@ -222,14 +220,16 @@ class landingPage extends Component {
             </Cell>
           </Grid>
         </div>
-        <Footer size="mini">
-          <FooterSection type="left" logo="No">
-            <FooterLinkList>
-              <a href="#">Help</a>
-              <a href="#">Privacy & Terms</a>
-            </FooterLinkList>
-          </FooterSection>
-        </Footer>
+        <div style={{ paddingbottom: "60px" }}>
+          <Footer size="mini">
+            <FooterSection type="left" logo="NO.">
+              <FooterLinkList>
+                <a href="#">Help</a>
+                <a href="#">Privacy & Terms</a>
+              </FooterLinkList>
+            </FooterSection>
+          </Footer>
+        </div>
       </div>
     );
   }

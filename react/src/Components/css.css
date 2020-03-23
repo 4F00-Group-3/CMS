@@ -32,14 +32,14 @@ img.center {
   background-color: rgb(240, 240, 240);
   padding-top: 1%;
   padding-bottom: 1%;
-  width: 50%; /*Widen*/
+  width: 100%; /*Widen*/
 }
 
 .submitformdiv {
   background-color: white;
   margin: 10%;
-  margin-left: 15%;
-  margin-right: 15%;
+  margin-left: 35%;
+  margin-right: 35%;
   padding: 1%;
   text-align: center;
 }

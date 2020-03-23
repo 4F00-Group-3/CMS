@@ -12,6 +12,14 @@ class Dbh {
 		$dbPassword= "Brockus12!";
 		$dbName= "c4f00g03";
 		$charset= "utf8mb4";
+
+//        $dbServername= "sandcastle.cosc.brocku.ca";
+//        $dbUsername= "cm15sp";
+//        $dbPassword= "6017974";
+//        $dbName= "cm15sp";
+//        $charset= "utf8mb4";
+
+
 		try{
 			$dsn = "pgsql:host=".$dbServername.";port=5432;dbname=".$dbName
 				.";user=".$dbUsername.";password=".$dbPassword;
