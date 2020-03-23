@@ -4,7 +4,7 @@ import Card from "@material-ui/core/Card";
 import "./css.css";
 import AjaxCall from '../ajax.js';
 
-class loginpage extends Component {
+class LoginPage extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -97,4 +97,4 @@ class loginpage extends Component {
   }
 }
 
-export default loginpage;
+export default LoginPage;
