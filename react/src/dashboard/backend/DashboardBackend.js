@@ -7,6 +7,9 @@ class DashboardBackend {
   }
 
 
+  setPages(response){
+    console.log(response);}
+
 
   all() {
     return [

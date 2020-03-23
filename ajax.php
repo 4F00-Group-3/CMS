@@ -95,7 +95,7 @@ function addUser(){
 }
 
 function getAllPages(){
-    $all_pages = Website::getAllPagesJSON(DB_SCHEMA);
+    $all_pages = Website::getAllPagesJSON($_POST['schema']);
     echo json_encode($all_pages);
     die;
 }

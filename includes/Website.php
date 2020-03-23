@@ -125,13 +125,17 @@ class Website{
     }
 
     public static function getAllPagesJSON($schema){
-        $stmt = Dbh::connect()
-            ->query("SELECT * FROM  $schema.pages");
+        $stmt = Dbh::connect()->query("SELECT * FROM  $schema.pages");
         $pages = array();
-        while ($row = $stmt->fetch(PDO::FETCH_ASSOC)){
-            $pages[] = $row;
+        if($stmt->rowCount()){
+            while ($row = $stmt->fetch()) {
+                $pages[] = $row;
+            }
+            return $pages;
         }
-        return $pages;
+        else{
+                return false;
+            }
     }
 
     public static function getPagesWithCountCheck($schema, $page_id){
@@ -162,7 +166,6 @@ class Website{
 
     public static function addPageJSON($schema, $content, $pageName){
         $data = array($content, $pageName);
-
 		$stmt = Dbh::connect() ->PREPARE("INSERT INTO $schema.pages (content, name) VALUES (?, ?) ON CONFLICT DO NOTHING RETURNING page_id");
 		$stmt->execute($data);
 

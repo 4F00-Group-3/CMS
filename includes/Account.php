@@ -57,14 +57,14 @@ class Account {
     }
 
 	//returns a new Account object or false if invalid email was given
-	public static function getAccountByEmail($email){
+	public static function getAccountByEmail($email) {
         $stmt = Dbh::connect() ->PREPARE("SELECT * FROM accounts WHERE email=?");
         $stmt->execute([$email]);
 
         if($stmt->rowCount()){
             $accountInfo = $stmt->fetch(PDO::FETCH_ASSOC);
             return new Account($accountInfo['account_id'], $accountInfo['email'], $accountInfo['first_name'], $accountInfo['last_name'], $accountInfo['account_type'], $accountInfo['password']);
-        } else {
+        }else {
             return false;
         }
     }
@@ -104,7 +104,7 @@ class Account {
 	}
 
     // Retrieve websites associated with account
-    public static function getWebsiteData($account_id) {
+    public static function getWebsiteData($account_id){
         $stmt = Dbh::connect()
             ->PREPARE("SELECT * FROM websites WHERE account_id=?");
         $stmt->execute([$account_id]);
