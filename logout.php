@@ -5,6 +5,7 @@ session_start();
 
 $_SESSION = array();
 session_destroy();
-header("Location: https://www.cosc.brocku.ca/~c4f00g03/login.php");
+header("Location: /login.php");
+//header("Location: https://www.cosc.brocku.ca/~c4f00g03/login.php");
 die;
 ?>
