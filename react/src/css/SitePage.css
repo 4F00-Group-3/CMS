@@ -20,5 +20,16 @@
 .SitePage .Content {
     margin-left: 160px;
     font-size: 28px;
-    padding: 0px 20px;
+    padding: 0px 20px;    
+}
+
+.SitePage .SiteIcon{
+    float: left;
+    padding: 10px 10px;
+    width: 200px;
+}
+
+.SitePage .SiteIcon img{
+    width: 200px;
+    height: 100px;
 }

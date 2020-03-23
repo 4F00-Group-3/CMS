@@ -71,7 +71,7 @@ class MasterTestMenu extends Component {
         page = <CreateAccount />;
         break;
       case "SitePage":
-        page = <SitePage />
+        page = <SitePage onClick={this.handleDashClick}/>
         break;
       default:
         page = <Home />;

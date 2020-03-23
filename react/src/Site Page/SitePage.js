@@ -16,32 +16,48 @@ export default class SitePage extends Component {
     }
 
     componentDidMount() {
+        var target = 'https://www.google.com';
+        axios({
+            method: 'post',
+            url: "http://api.linkpreview.net",
+            dataType: 'jsonp',
+            data: { q: target, key: '123456' } // 
+        }).then(response => {
+            this.setState({
+                title: response.data.title,
+                image: response.data.image,
+                description: response.data.description
+            });
+            console.log(response);
+        });
         if(sessionStorage.getItem('id')!==null) {
             AjaxCall({function: 'getWebsiteData', accountId: sessionStorage.getItem('id')},
                 function (response) {
                     //TODO: This is where you can perform actions with the response that you recieved from the backend
                 });
         }else{
-            // TODO: Redirect to loginpage
-        }
-
-        // var target = 'https://www.google.com';
-        // axios({
-        //     method: 'post',
-        //     url: "http://api.linkpreview.net",
-        //     dataType: 'jsonp',
-        //     data: { q: target, key: '123456' }
-        // }).then(response => {
-        //     this.setState({
-        //         title: response.data.title,
-        //         image: response.data.image,
-        //         description: response.data.description
-        //     });
-        //     console.log(response);
-        // });
     }
 
     render() {
+        // Essentially what my response should look like from server
+        const websites =[
+            {
+                title: "Website1",
+                image: "https://cdn.pixabay.com/photo/2013/11/28/10/36/road-220058_1280.jpg",
+                description: "Web1"
+            },
+            {
+                title: "Website2",
+                image: "https://cdn.pixabay.com/photo/2013/10/02/23/03/dawn-190055_1280.jpg",
+                description: "Web2"
+            },
+            {
+                title: "Website3",
+                image: "https://cdn.pixabay.com/photo/2014/09/10/00/59/utah-440520_1280.jpg",
+                description: "Web3"
+            }
+        ];
+        console.log(websites)
         return (
             <div className="SitePage">
                 <div className="Menu">
@@ -51,10 +67,20 @@ export default class SitePage extends Component {
                 </div>
                 <div className="Content">
                     <div className="SiteList">
-                    {/* this code should be refactored as a SiteIcon component, need to figure out how to update a component on completion of an async call. */}
-                        <h1>{this.state.title}</h1>
-                        <img src={this.state.image} alt="test" width="500" height="250" />
-                        <p>{this.state.description}</p>
+                        <div>
+                            <div className="SiteIcon" onClick={this.props.onClick}>
+                                <p>{this.state.title}</p>
+                                <img src={this.state.image} alt="test" />
+                                <p>description: {this.state.description}</p>
+                            </div>
+                            {websites.map((site) =>
+                                <div className="SiteIcon" onClick={this.props.onClick}>
+                                    <p>{site.title}</p>
+                                    <img src={site.image} alt="test" />
+                                    <p>description: {site.description}</p>
+                                </div>
+                            )}
+                        </div>
                     </div>
                 </div>
             </div>
