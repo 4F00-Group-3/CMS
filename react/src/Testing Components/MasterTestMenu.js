@@ -50,7 +50,7 @@ class MasterTestMenu extends Component {
         page = <Dashboard />;
         break;
       case "SitePage":
-        page = <SitePage />
+        page = <SitePage onClick={this.handleDashClick}/>
         break;
       default:
         page = <Home />;
