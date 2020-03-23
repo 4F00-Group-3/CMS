@@ -112,7 +112,7 @@ class ImageEditor extends Component {
 
   render() {
     return (
-      <div className="demo-tabs">
+      <div>
         <h5 className="editorMenu">Image Editor</h5>
         <Tabs
           defaultIndex={0}

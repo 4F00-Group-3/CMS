@@ -11,15 +11,15 @@
 }
 
 .Editor-SideBar-Container {
+  text-align: center; /*aligns all buttone*/
   margin-left: 10vh;
   margin-right: 10vh;
   margin-top: 2vh;
   margin: auto;
   width: 50vh;
   height: 100vh;
-  background: grey;
-  border: 3px solid green;
-  padding: 10px;
+  background: rgb(26, 26, 26);
+  /*border: 3px solid green;*/
   float: left;
   position: fixed;
 }
@@ -47,7 +47,7 @@
   margin: auto;
   width: 60vh;
   height: 100vh;
-  background: grey;
+  background: rgb(55, 1, 105);
   padding: 10px;
   text-decoration: white;
   float: left;

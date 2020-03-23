@@ -6,10 +6,13 @@ import {
   Card,
   CardTitle,
   CardActions,
+  Content,
+  Header,
+  Navigation
 } from "react-mdl";
+import { Link } from "react-router-dom";
 
 class landingPage extends Component {
-  
   render() {
     return (
       <div>
@@ -21,26 +24,26 @@ class landingPage extends Component {
                 Get Started
               </Link>
             </Navigation>
-            </Header>
-        <div style={{ background: "white" }}>
-          <section ref={this.props.scrollDiv} id="faq-page">
-            <h2 className="faq-page">FAQ</h2>
-          </section>
-          <Grid>
-            <Cell col={12}>
-              <h2 className="home-page-title">
-                Proin placerat finibus porttitor mauris eu malesuada.
-              </h2>
-              <h4 className="home-page-subtitle">
-                Proin placerat finibus porttitor mauris eu malesuada.
-              </h4>
-              <div style={{ textAlign: "center", paddingBottom: "270px" }}>
-                <Button raised ripple primary>
-                  Get Started
-                </Button>
-              </div>
-            </Cell>
-          </Grid>
+          </Header>
+          <div style={{ background: "white" }}>
+            <section ref={this.props.scrollDiv} id="faq-page">
+              <h2 className="faq-page">FAQ</h2>
+            </section>
+            <Grid>
+              <Cell col={12}>
+                <h2 className="home-page-title">
+                  Proin placerat finibus porttitor mauris eu malesuada.
+                </h2>
+                <h4 className="home-page-subtitle">
+                  Proin placerat finibus porttitor mauris eu malesuada.
+                </h4>
+                <div style={{ textAlign: "center", paddingBottom: "270px" }}>
+                  <Button raised ripple primary>
+                    Get Started
+                  </Button>
+                </div>
+              </Cell>
+            </Grid>
           </div>
           <div style={{ background: "white" }}>
             <section id="faq-page">
