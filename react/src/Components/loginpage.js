@@ -50,7 +50,7 @@ class LoginPage extends Component {
             <div style={{ padding: "20px" }}>
               <h2 style={{ textalign: "center" }}>Login To Your Account</h2>
 
-              <form style={{ padding: "5%" }} onSubmit={this.handleFormSubmit}>
+              <form className="centerBoxItems" onSubmit={this.handleFormSubmit}>
                 <label for="email">Username</label>
                 <br></br>
                 <input
@@ -70,8 +70,9 @@ class LoginPage extends Component {
                   value={this.state.pw}
                   onChange={this.handleChange}
                 />
-                <br></br>
-
+                <br />
+                <br />
+                <br />
                 <input type="submit" value="Login" class="submitnextbutton" />
               </form>
 

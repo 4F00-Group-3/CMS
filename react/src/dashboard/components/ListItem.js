@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import "../../css/PageAdmin.css";
 
 class ListItem extends Component {
   constructor(props) {
@@ -16,11 +17,18 @@ class ListItem extends Component {
         <div className="PageListItem">
           {this.props.title}
           <div className="LinkContainer">
-            <button className="Link" onClick={this.props.onPageEdit}>
+            <button
+              className="inner-edit-dashButtons"
+              onClick={this.props.onPageEdit}
+            >
               {" "}
               Edit
             </button>
-            <button href="#" className="Link" onClick={this.props.onPageDelete}>
+            <button
+              href="#"
+              className="inner-delete-dashButtons"
+              onClick={this.props.onPageDelete}
+            >
               {" "}
               Delete
             </button>
@@ -32,7 +40,11 @@ class ListItem extends Component {
         <div className="UserListItem">
           {this.props.title}
           <div className="LinkContainer">
-            <button href="#" className="Link" onClick={this.props.onDelete}>
+            <button
+              href="#"
+              className="inner-delete-dashButtons"
+              onClick={this.props.onDelete}
+            >
               {" "}
               Delete
             </button>

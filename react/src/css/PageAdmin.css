@@ -12,8 +12,9 @@
   margin-bottom: 5px;
   width: 90%;
   padding: 10px;
-  border-radius: 16px;
-  background: lightgrey;
+  border-radius: 1px;
+  background: rgb(233, 228, 255);
+  color: rgb(0, 0, 0);
 }
 
 .PagesList {
@@ -37,8 +38,52 @@
   width: 5vh;
 }
 
-.SideNav {
-  width: "25vh";
-  height: "90vh";
-  background: "lightgrey";
+.dashButtons {
+  /*Pages, Users, Settings, LogOut*/
+  background-color: rgb(52, 51, 56);
+  border: none;
+  border-radius: 5px;
+  color: white;
+  padding: 12px 32px;
+  text-align: center;
+  display: inline-block;
+  font-size: 16px;
+  margin-bottom: 5px;
+  margin-left: 10px;
+  width: 130px;
+}
+
+.dashButtons:hover {
+  background-color: rgb(82, 82, 85);
+}
+
+.inner-edit-dashButtons {
+  background-color: rgb(113, 98, 243);
+  border: none;
+  border-radius: 5px;
+  color: black;
+  padding: 5px 10px;
+  text-align: center;
+  display: inline-block;
+  font-size: 12px;
+}
+
+.inner-edit-dashButtons:hover {
+  background-color: rgb(169, 161, 240);
+}
+
+.inner-delete-dashButtons {
+  background-color: rgb(255, 31, 31);
+  border: none;
+  border-radius: 5px;
+  color: black;
+  padding: 5px 10px;
+  text-align: center;
+  display: inline-block;
+  font-size: 12px;
+  margin-left: 5px;
+}
+
+.inner-delete-dashButtons:hover {
+  background-color: rgb(255, 87, 87);
 }
