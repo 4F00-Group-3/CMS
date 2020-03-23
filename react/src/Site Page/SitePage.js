@@ -31,11 +31,20 @@ export default class SitePage extends Component {
 
         sessionStorage.setItem('id', "79"); // for testing purposes
         if (sessionStorage.getItem('id') !== null) {
-            console.log("ajaxcall"); // to see if it actually went thru
+            // console.log("ajaxcall"); // to see if it actually went thru
             AjaxCall({function: 'getWebsiteData', accountId: sessionStorage.getItem('id')},
                 function (response) {
                     console.log(response.toString());
-                    console.log("Wassup");
+                    // console.log("Wassup");
+                    self.setState({
+                        siteInfo: [
+                            {
+                                title: response.data.title,
+                                image: response.data.image,
+                                description: response.data.description
+                            }
+                        ]
+                    });
                     //TODO: This is where you can perform actions with the response that you recieved from the backend
                 });
         } else {
@@ -43,27 +52,6 @@ export default class SitePage extends Component {
             console.log("hello");
         }
     }
-    //         AjaxCall({ function: 'getWebsiteData', accountId: sessionStorage.getItem('id') }, // There is no response from this call coming, having Casey look into this
-    //             function (response) {
-    //
-    //                 console.log("Hi") // testing to see if there is even a response
-    //                 console.log(response);
-    //
-    //
-    //                 self.setState({
-    //                     siteInfo: [
-    //                         {
-    //                             title: response.data.title,
-    //                             image: response.data.image,
-    //                             description: response.data.description
-    //                         }
-    //                     ]
-    //                 });
-    //                 console.log(this.state.siteInfo);
-    //             });
-    //     } else {
-    //     }
-    // }
 
     render() {
         return (
