@@ -7,38 +7,35 @@ import AjaxCall from '../ajax.js';
 export default class SitePage extends Component {
 
     componentDidMount() {
-        var target = 'https://www.google.com';
-        const self = this;
+        // var target = 'https://www.google.com';
+        // const self = this;
+        //
+        // // Just for testing purposes, When the database is filled with valid data, remove the axios code.
+        // axios({
+        //     method: 'post',
+        //     url: "http://api.linkpreview.net",
+        //     dataType: 'jsonp',
+        //     data: { q: target, key: '123456' } //
+        // }).then(response => {
+        //     self.setState({
+        //         siteInfo: [
+        //             {
+        //                 title: response.data.title,
+        //                 image: response.data.image,
+        //                 description: response.data.description
+        //             }
+        //         ]
+        //     });
+        //     console.log(this.state.siteInfo);
+        // });
 
-        // Just for testing purposes, When the database is filled with valid data, remove the axios code.
-        axios({
-            method: 'post',
-            url: "http://api.linkpreview.net",
-            dataType: 'jsonp',
-            data: { q: target, key: '123456' } // 
-        }).then(response => {
-            self.setState({
-                siteInfo: [
-                    {
-                        title: response.data.title,
-                        image: response.data.image,
-                        description: response.data.description
-                    }
-                ]
-            });
-            console.log(this.state.siteInfo);
-        });
-
-        sessionStorage.setItem('id', 79); // for testing purposes
+        sessionStorage.setItem('id', "79"); // for testing purposes
         if (sessionStorage.getItem('id') !== null) {
-            console.log("ajaxcall"); // to see if it actually went thru
-            AjaxCall({ function: 'getWebsiteData', accountId: sessionStorage.getItem('id') }, // There is no response from this call coming, having Casey look into this
+            // console.log("ajaxcall"); // to see if it actually went thru
+            AjaxCall({function: 'getWebsiteData', accountId: sessionStorage.getItem('id')},
                 function (response) {
-
-                    console.log("Hi") // testing to see if there is even a response
-                    console.log(response);
-
-                    
+                    console.log(response.toString());
+                    // console.log("Wassup");
                     self.setState({
                         siteInfo: [
                             {
@@ -48,9 +45,11 @@ export default class SitePage extends Component {
                             }
                         ]
                     });
-                    console.log(this.state.siteInfo);
+                    //TODO: This is where you can perform actions with the response that you recieved from the backend
                 });
         } else {
+            // TODO: Redirect to loginpage
+            console.log("hello");
         }
     }
 

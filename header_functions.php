@@ -18,7 +18,7 @@
 //    die;
 //}
 
-constants GROUP
+//constants GROUP
 define('DB_NAME', 'c4f00g03');
 define('DB_PASS', 'Brockus12!');
 // define('DB_SCHEMA', 'c4f00g03'); //website specific, e.g. SELECT * FROM DB_SCHEMA.pages WHERE...
