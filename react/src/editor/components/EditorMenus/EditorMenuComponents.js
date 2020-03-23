@@ -10,14 +10,14 @@ import {
     faFont
 } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { ChromePicker  } from 'react-color';
+import { ChromePicker } from 'react-color';
 
 export class NumericInput extends Component {
     render() {
         return (
             <div className="NumericInput input-group mb-3">
-                <input type={this.props.inputType} className="form-control" placeholder={this.props.placeholder}  aria-label={this.props.placeholder} aria-describedby="basic-addon1" />
-                
+                <input onChange={(event) => this.props.onChange("fontSize|" + event.target.value + "px")} type={this.props.inputType} className="form-control" placeholder={this.props.placeholder} aria-label={this.props.placeholder} aria-describedby="basic-addon1" />
+
                 <div className="input-group-append">
                     <span className="input-group-text" id="basic-addon1">{this.props.rightAddon}</span>
                 </div>
@@ -32,7 +32,7 @@ export class TextInput extends Component {
             <div className="TextInput">
                 <p className="Title">Title</p>
                 <div className="Input-Container">
-                    <input type="text" placeholder="Heading Text"></input>
+                    <input onChange={(event) => this.props.onChange("text|" + event.target.value + "|text")} type="text" placeholder="Heading Text"></input>
                 </div>
             </div>
         );
@@ -43,9 +43,9 @@ export class LinkInput extends Component {
     render() {
         return (
             <div className="LinkInput">
-                <p className="Title">Link</p>
+                <p className="Title">{this.props.title}</p>
                 <div className="Input-Container">
-                    <input type="text" placeholder="Place URL or Type"></input>
+                    <input onChange={(event) => this.props.onChange("url|" + event.target.value + "|url")} type="text" placeholder="Place URL or Type"></input>
                 </div>
             </div>
         );
@@ -92,16 +92,16 @@ export class AlignmentInput extends Component {
             <div className="AlignmentInput" >
                 <p className="Title">Alignment</p>
                 <div>
-                    <button onClick={() => this.props.onClick("textAlign:left")}>
+                    <button onClick={() => this.props.onClick("textAlign|left")}>
                         <FontAwesomeIcon icon={faAlignLeft} />
                     </button>
-                    <button onClick={() => this.props.onClick("textAlign:center")}>
+                    <button onClick={() => this.props.onClick("textAlign|center")}>
                         <FontAwesomeIcon icon={faAlignCenter} />
                     </button>
-                    <button onClick={() => this.props.onClick("textAlign:right")}>
+                    <button onClick={() => this.props.onClick("textAlign|right")}>
                         <FontAwesomeIcon icon={faAlignRight} />
                     </button>
-                    <button onClick={() => this.props.onClick("textAlign:justify")}>
+                    <button onClick={() => this.props.onClick("textAlign|justify")}>
                         <FontAwesomeIcon icon={faAlignJustify} />
                     </button>
                 </div>
@@ -126,7 +126,7 @@ export function ButtonType() {
     );
 }
 
-export function DividerStyle(){
+export function DividerStyle() {
     return (
         <div className="DividerStyle">
             <p className="Title">Style</p>
@@ -140,7 +140,7 @@ export function DividerStyle(){
     );
 }
 
-export function DividerColour(){
+export function DividerColour() {
     return (
         <div className="DividerColour">
             <p className="Title">Colour</p>
@@ -159,12 +159,12 @@ export function DividerColour(){
     );
 }
 
-export function DividerWidth(){
+export function DividerWidth() {
     return (
         <div className="DividerWidth">
             <p className="Title">Width</p>
             <div className="WidthContainer">
-                <NumericInput className="DividerWidthValue" min = {0} max = {100} value = {100} size = "4"></NumericInput>
+                <NumericInput className="DividerWidthValue" min={0} max={100} value={100} size="4"></NumericInput>
                 {/* <input type="range" min = "0" max = "100" value = "100" id = "divideWidth"></input>
                 <input type="text" id = "textInputDiv" placeholder = "100"></input> */}
             </div>
@@ -172,31 +172,31 @@ export function DividerWidth(){
     );
 }
 
-export function AddElement(){
+export function AddElement() {
     return (
         <div className="AddElementOptions">
             <p className="Title">Add Element</p>
             <div>
                 <button>
-                    <FontAwesomeIcon icon={faBan}/>
+                    <FontAwesomeIcon icon={faBan} />
                 </button>
                 <button>
-                    <FontAwesomeIcon icon={faFont}/>
+                    <FontAwesomeIcon icon={faFont} />
                 </button>
                 <button>
-                    <FontAwesomeIcon icon={faStar}/>
+                    <FontAwesomeIcon icon={faStar} />
                 </button>
             </div>
         </div>
     );
 }
 
-export function SpacerThickness(){
+export function SpacerThickness() {
     return (
         <div className="SpacerThickness">
             <p className="Title">Space</p>
             <div className="ThicknessContainer">
-                <NumericInput className="SpacerThicknessValue" min = {0} max = {1000} value = {50} size = "5"></NumericInput>
+                <NumericInput className="SpacerThicknessValue" min={0} max={1000} value={50} size="5"></NumericInput>
                 {/* <input type="range" min = "0" max = "1000" value = "50" id = "spaceThickness"></input>
                 <input type="text" id = "textInputSpacer" placeholder = "50"></input> */}
             </div>
@@ -206,7 +206,7 @@ export function SpacerThickness(){
 
 
 
-export function VideoSource(){
+export function VideoSource() {
     return (
         <div className="VideoSource">
             <p className="Title">Type</p>
@@ -220,7 +220,7 @@ export function VideoSource(){
     );
 }
 
-export function VideoStartTime(){
+export function VideoStartTime() {
     return (
         <div className="VideoStart">
             <p className="Title">Start</p>
@@ -231,7 +231,7 @@ export function VideoStartTime(){
     );
 }
 
-export function VideoEndTime(){
+export function VideoEndTime() {
     return (
         <div className="VideoEnd">
             <p className="Title">End</p>
@@ -242,71 +242,71 @@ export function VideoEndTime(){
     );
 }
 
-export function AutoPlaySwitch(){
+export function AutoPlaySwitch() {
     return (
         <div className="AutoPlay">
             <p className="Title">Autoplay</p>
             <div className="AutoPlayContainer">
-                <label class = "switch">
-                    <input type = "checkbox"></input>
-                    <span class = "slider round"></span>
+                <label class="switch">
+                    <input type="checkbox"></input>
+                    <span class="slider round"></span>
                 </label>
             </div>
         </div>
     );
 }
 
-export function MuteVideoSwitch(){
+export function MuteVideoSwitch() {
     return (
         <div className="Mute">
             <p className="Title">Mute</p>
             <div className="MuteContainer">
-                <label class = "switch">
-                    <input type = "checkbox"></input>
-                    <span class = "slider round"></span>
+                <label class="switch">
+                    <input type="checkbox"></input>
+                    <span class="slider round"></span>
                 </label>
             </div>
         </div>
     );
 }
 
-export function LoopVideoSwitch(){
+export function LoopVideoSwitch() {
     return (
         <div className="Loop">
             <p className="Title">Loop</p>
             <div className="LoopContainer">
-                <label class = "switch">
-                    <input type = "checkbox"></input>
-                    <span class = "slider round"></span>
+                <label class="switch">
+                    <input type="checkbox"></input>
+                    <span class="slider round"></span>
                 </label>
             </div>
         </div>
     );
 }
 
-export function SelectImage(){
+export function SelectImage() {
     return (
         <div className="SelectImage">
             <p className="Title">Select Image</p>
             <div className="SelectImageContainer">
-                <button type = "button">Select Image</button>
+                <button type="button">Select Image</button>
             </div>
         </div>
     );
 }
 
-export function SelectIcon(){
+export function SelectIcon() {
     return (
         <div className="SelectIcon">
             <p className="Title">Select Icon</p>
             <div className="SelectIconContainer">
-                <button type = "button">Select Icon</button>
+                <button type="button">Select Icon</button>
             </div>
         </div>
     );
 }
 
-export function SetView(){
+export function SetView() {
     return (
         <div className="SetView">
             <p className="Title">Set View</p>
@@ -319,13 +319,13 @@ export function SetView(){
     );
 }
 
-export function SetImageSize(){
+export function SetImageSize() {
     return (
         <div className="SetImageSize">
             {/* <p className="Title">Image Size</p> */}
             <div className="ImageSizeContainer">
                 <div className="Selector">
-                <p className="Title">Image Size</p>
+                    <p className="Title">Image Size</p>
                     <select id="ImageSizeSelector">
                         <option>Custom</option>
                         <option>Set Size 1</option>
@@ -334,21 +334,21 @@ export function SetImageSize(){
                 </div>
                 <br></br>
                 <div>
-                    <label for = "height">Height:&nbsp;</label>
-                    <input type="text" id = "height" maxLength = "4" size = "5"></input>
-                    
-                    <label for = "width">&nbsp;&nbsp;&nbsp;Width: &nbsp;</label>
-                    <input type="text" id = "width" maxLength = "4" size = "5"></input>
+                    <label for="height">Height:&nbsp;</label>
+                    <input type="text" id="height" maxLength="4" size="5"></input>
+
+                    <label for="width">&nbsp;&nbsp;&nbsp;Width: &nbsp;</label>
+                    <input type="text" id="width" maxLength="4" size="5"></input>
                     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                    <button type = "button">Apply</button>
+                    <button type="button">Apply</button>
                 </div>
-                
+
             </div>
         </div>
     );
 }
 
-export function SetCaption(){
+export function SetCaption() {
     return (
         <div className="SetCaption">
             <p className="Title">Caption</p>
@@ -359,22 +359,31 @@ export function SetCaption(){
     );
 }
 
-export default class ColourPicker extends Component {
-    state = {
-      background: '#fff',
-    };
-  
-    handleOnChange = (color) => {
-      this.setState({ background: color.hex });
-    };
-  
-    render() {
-      return (
-        <ChromePicker
-          color={ this.state.background }
-          onChange ={ this.handleOnChange  }
-        />
-      );
+export class ColourPicker extends Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            background: '#fff',
+        };
+        this.handler = this.handler.bind(this);
     }
-  }
-  
+
+    handler(){
+        this.props.onChange("color|" + this.state.background)
+    }
+
+    handleOnChange = (color) => {
+        this.setState({ background: color.hex });
+        this.handler()
+    };
+
+
+    render() {
+        return (
+            <ChromePicker
+                color={this.state.background}
+                onChange={this.handleOnChange}
+            />
+        );
+    }
+}

@@ -18,6 +18,7 @@ class Dashboard extends Component {
         this.state = {
             page: <Pages backend={backend}/>,
         }
+        //backend.returnAllPages();
     }
 
     onPush = (buttonName) => {

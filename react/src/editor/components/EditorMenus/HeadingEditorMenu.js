@@ -1,9 +1,7 @@
 import React, { Component } from 'react';
 import {
     TextInput,
-    LinkInput,
-    SizeInput,
-    HTMLTagInput,
+    ColourPicker,
     AlignmentInput,
     NumericInput
 } from './EditorMenuComponents';
@@ -19,18 +17,20 @@ class HeadingEditor extends Component {
         return (
             <>
                 <div className="HeadingEditorContainer">
-                    <TextInput />
-                    <LinkInput />
-                    <SizeInput />
+                    <TextInput
+                        onChange={this.props.menuComponentOnClick}
+                    />
+                    <p>Text Color:</p>
+                    <ColourPicker
+                        onChange={this.props.menuComponentOnClick}
+                    />
                     <NumericInput
                         rightAddon={"px"}
                         placeholder={"Font size"}
                         inputType={"number"}
+                        onChange={this.props.menuComponentOnClick}
                     />
-                    <HTMLTagInput />
                     <AlignmentInput onClick={this.props.menuComponentOnClick} />
-
-
                 </div>
                 <div className="PrimaryButton">
                     <button type="button" className="btn btn-primary">Back</button>

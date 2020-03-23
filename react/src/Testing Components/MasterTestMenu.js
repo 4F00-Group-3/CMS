@@ -53,7 +53,7 @@ class MasterTestMenu extends Component {
         page = <SitePage />
         break;
       default:
-        page = <Home />;
+        page = <Editor />;
     }
     return (
       <div>
