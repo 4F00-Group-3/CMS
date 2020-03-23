@@ -1,9 +1,11 @@
 import React, { Component } from "react";
 import Container from "@material-ui/core/Container";
 import Card from "@material-ui/core/Card";
+import "./css.css";
 import AjaxCall from '../ajax.js';
 
-class loginpage extends Component {
+
+class LoginPage extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -40,16 +42,17 @@ class loginpage extends Component {
     })
   };
 
+class LoginPage extends Component {
   render() {
     return (
       <div>
-        <Container maxWidth="sm" style={{ backgroundcolor: "black" }}>
+        <Container maxWidth="sm">
           <Card>
-            <div style={{ padding: "20px" }}>
-              <h2 style={{ textalign: "center" }}>Login To Your Account</h2>
+            <div className="boxPadding">
+              <h2>Log into your account</h2>
 
-              <form style={{ padding: "5%" }} onSubmit ={this.handleFormSubmit}>
-                <label for="email">Username</label>
+              <form className="centerBoxItems">
+                <label for="email">Username:</label>
                 <br></br>
                 <input type="email"
                        id="email"
@@ -58,7 +61,9 @@ class loginpage extends Component {
                        onChange= {this.handleChange}
                 />
                 <br></br>
-                <label for="email">Password</label>
+                <br></br>
+
+                <label for="email">Password:</label>
                 <br></br>
                 <input type="password"
                        id="pw"
@@ -95,4 +100,4 @@ class loginpage extends Component {
   }
 }
 
-export default loginpage;
+export default LoginPage;

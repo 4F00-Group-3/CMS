@@ -10,16 +10,20 @@ import {
     faCircle
 } from "@fortawesome/free-solid-svg-icons";
 import EditorButton from '../components/EditorButton';
-import HeadingEditor from './HeadingEditorMenu';
-
+import HeadingEditorMenu from './EditorMenus/HeadingEditorMenu';
+import ButtonEditorMenu from './EditorMenus/ButtonEditorMenu';
+import DividerEditorMenu from './EditorMenus/DividerEditorMenu';
+import EditDivider from './EditorMenus/EditDivider';
+import IconEditorMenu from './EditorMenus/IconEditorMenu';
+import ImageEditorMenu from './EditorMenus/ImageEditorMenu';
+import VideoEditorMenu from './EditorMenus/VideoEditorMenu';
 
 class EditorSideBar extends Component {
-
     returnMenu() {
         let menu = this.props.menu;
         switch (menu) {
             case "heading": {
-                return <HeadingEditor />
+                return <HeadingEditorMenu selectedId={this.props.selectedId} menuComponentOnClick={this.props.menuComponentOnClick}/>
             }
             default: {
                 return <>
@@ -36,12 +40,14 @@ class EditorSideBar extends Component {
         }
     }
 
+    
     render() {
         return (
 
             <div className="Editor-SideBar-Container">
-            {/* editor menus to be tested here */}
-                {this.returnMenu()}
+                {/* editor menus to be tested here */}
+                {/* {this.returnMenu()} */}
+                <EditDivider/>
             </div>
         );
     };
