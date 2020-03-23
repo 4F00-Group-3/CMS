@@ -25,7 +25,6 @@ class HomePage extends Component {
   }
 
   returnButtonCSS = (button) => {
-    console.log(button)
     if (button === this.state.activeButton) {
       return "btn btn-primary active"
     }

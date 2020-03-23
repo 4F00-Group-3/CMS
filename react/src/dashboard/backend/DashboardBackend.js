@@ -1,8 +1,12 @@
+import AjaxCall from "../../ajax" //change this
+
 class DashboardBackend {
   constructor() {
     this.deleted = [];
     this.updates = [];
   }
+
+
 
   all() {
     return [
@@ -31,15 +35,15 @@ class DashboardBackend {
         'body': [],
       },
     ].filter((page) => this.deleted.indexOf(page.id) === -1)
-    .map((page) => {
-      this.updates.forEach((update) => {
-        if(update[0] === page.id){
-          page[update[1]] = update[2];
-        }
-      });
+      .map((page) => {
+        this.updates.forEach((update) => {
+          if (update[0] === page.id) {
+            page[update[1]] = update[2];
+          }
+        });
 
-      return page;
-    });
+        return page;
+      });
 
   }
 
@@ -47,7 +51,7 @@ class DashboardBackend {
     this.deleted.push(id);
   }
 
-  update(id, field, value){
+  update(id, field, value) {
     this.updates.push([id, field, value]);
   }
 }
