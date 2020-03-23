@@ -334,13 +334,16 @@ export function SetImageSize(){
                 </div>
                 <br></br>
                 <div>
-                    <label for = "height">Height:&nbsp;</label>
+                    <label for = "height" className="HeightTag">Height:&nbsp;</label>
                     <input type="text" id = "height" maxLength = "4" size = "5"></input>
                     
-                    <label for = "width">&nbsp;&nbsp;&nbsp;Width: &nbsp;</label>
+                    <label for = "width" className = "WidthTag">&nbsp;&nbsp;&nbsp;&nbsp;Width: &nbsp;</label>
                     <input type="text" id = "width" maxLength = "4" size = "5"></input>
-                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                    <button type = "button">Apply</button>
+                    {/* &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; */}
+                    <div className = "ImageApply">
+                        <button type = "button">Apply</button>
+                    </div>
+                    
                 </div>
                 
             </div>
