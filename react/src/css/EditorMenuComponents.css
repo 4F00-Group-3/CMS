@@ -6,6 +6,7 @@
 
 .Title {
   padding-right: 5%;
+  font-weight: bold;
 }
 
 .TextInput > textarea {
@@ -179,7 +180,7 @@
   height: 0;
 }
 
-.slider.round {
+.slider {
   position: absolute;
   cursor: pointer;
   top: 0;
@@ -188,10 +189,14 @@
   bottom: 0;
   background-color: #ccc;
   transition: .4s;
+  
+}
+
+.slider.round {
   border-radius: 34px;
 }
 
-.slider.round:before {
+.slider:before {
   position: absolute;
   content: "";
   height: 26px;
@@ -200,17 +205,38 @@
   bottom: 4px;
   background-color: white;
   transition: .4s;
+  
+}
+
+.slider.round:before {
   border-radius: 50%;
 }
 
-.input:checked + .slider.round {
+.input:checked + .slider {
   background-color: #2196F3;
 }
 
-.input:focus + .slider:before {
+.input:focus + .slider {
   box-shadow: 0 0 1px #2196F3;
 }
 
-.input:checked + .slider.round:before {
+.input:checked + .slider:before {
   transform: translateX(26px);
+}
+
+.HeightTag{
+  font-weight: bold;
+}
+
+.WidthTag{
+  font-weight: bold;
+}
+
+.ImageApply{
+  margin: auto;
+  width: 20%;
+  /* padding: 10px; */
+  /* justify-content: center; */
+  /* margin-left: auto;
+  margin-right: auto; */
 }
