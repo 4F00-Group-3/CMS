@@ -1,15 +1,15 @@
 import React, { Component } from "react";
-import Container from "@material-ui/core/Container";
-import Card from "@material-ui/core/Card";
+//import Container from "@material-ui/core/Container";
+//import Card from "@material-ui/core/Card";
 import {
-  FooterSection,
-  Footer,
-  FooterLinkList,
-  Layout,
-  Drawer,
-  Navigation,
-  Tabs,
-  Tab,
+  // FooterSection,
+  // Footer,
+  // FooterLinkList,
+   Layout,
+  // Drawer,
+  // Navigation,
+  // Tabs,
+  // Tab,
   Content
 } from "react-mdl";
 import "./css.css";

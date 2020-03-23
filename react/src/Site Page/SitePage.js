@@ -1,7 +1,8 @@
 import React, { Component } from "react";
 import axios from 'axios';
 import SiteIcon from './SiteIcon';
-import '../css/SitePage.css';
+import '../css/SitePage.css'
+import AjaxCall from '../ajax.js';
 
 export default class SitePage extends Component {
 
@@ -29,6 +30,12 @@ export default class SitePage extends Component {
             });
             console.log(response);
         });
+        if(sessionStorage.getItem('id')!==null) {
+            AjaxCall({function: 'getWebsiteData', accountId: sessionStorage.getItem('id')},
+                function (response) {
+                    //TODO: This is where you can perform actions with the response that you recieved from the backend
+                });
+        }else{
     }
 
     render() {

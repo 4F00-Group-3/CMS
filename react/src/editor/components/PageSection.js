@@ -34,14 +34,14 @@ class PageSection extends Component {
             }
             case "video": {
                 return (
-                    <video style={this.props.style} controls>
+                    <video key={this.props.index} style={this.props.style} controls>
                         <source src={this.props.url} type="video/mp4" />
                         Your browser does not support HTML5 video.
                     </video>
                 );
             }
             case "icon": {
-                return (<i className={this.props.faClassName} style={this.props.style} />)
+                return (<i key={this.props.index} className={this.props.faClassName} style={this.props.style} />)
             }
             default: {
                 console.log("Not a caught switch in pagesection.js!");
@@ -52,7 +52,7 @@ class PageSection extends Component {
 
     render() {
         return (
-            <div className="pageSection">
+            <div className="pageSection" onClick={() => this.props.onSectionPush(this.props.index, this.props.type, this.props.style)}>
                 {this.returnElement()}
             </div>
         );

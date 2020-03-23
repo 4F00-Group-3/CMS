@@ -3,7 +3,8 @@ import Home from '../HomePage';
 import Editor from '../editor/Editor';
 import Dashboard from '../dashboard/Dashboard'
 import SitePage from '../Site Page/SitePage';
-
+import Login from '../Components/loginpage';
+import CreateAccount from '../Components/createAccount.js';
 
 class MasterTestMenu extends Component {
   constructor(props) {
@@ -17,6 +18,12 @@ class MasterTestMenu extends Component {
     this.handleHomeClick = this.handleHomeClick.bind(this);
     this.handleDashClick = this.handleDashClick.bind(this);
     this.handleSitePageClick = this.handleSitePageClick.bind(this);
+    this.handleLoginClick = this.handleLoginClick.bind(this);
+    this.handleCreateAccountClick = this.handleCreateAccountClick.bind(this);
+  }
+
+  handler() {
+    this.setState({ viewPage: "Dash" });
   }
 
   handleEditorClick() {
@@ -29,6 +36,14 @@ class MasterTestMenu extends Component {
 
   handleDashClick() {
     this.setState({ viewPage: "Dash" });
+  }
+
+  handleLoginClick() {
+    this.setState({ viewPage: "Login" });
+  }
+
+  handleCreateAccountClick() {
+    this.setState({ viewPage: "Create Account" });
   }
 
   handleSitePageClick() {
@@ -46,8 +61,14 @@ class MasterTestMenu extends Component {
       case "Home":
         page = <Home />;
         break;
-      case "Dash": 
+      case "Dash":
         page = <Dashboard />;
+        break;
+      case "Login":
+        page = <Login handleDashClick={this.handleDashClick}/>;
+        break;
+      case "Create Account":
+        page = <CreateAccount />;
         break;
       case "SitePage":
         page = <SitePage onClick={this.handleDashClick}/>
@@ -61,8 +82,9 @@ class MasterTestMenu extends Component {
           <button onClick={this.handleEditorClick}>Editor</button>
           <button onClick={this.handleHomeClick}>Home</button>
           <button onClick={this.handleDashClick}>Dash</button>
+          <button onClick={this.handleLoginClick}>Login</button>
+          <button onClick={this.handleCreateAccountClick}>Create Account</button>
           <button onClick={this.handleSitePageClick}>Site Page</button>
-
         </div>
         <div id="testingCanvas">
           {page}

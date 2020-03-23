@@ -31,8 +31,6 @@ export default function AjaxCall(args, callback) {
 	$.post("../../ajax.php", args, callback);
 }
 
-
-
 /** Note: 
  * the above doesn't need to be an ajax function, just something I 
  * used to make it easier to test from EditorSidebar.js. We

@@ -3,20 +3,21 @@ import ListItem from '../components/ListItem';
 import Editor from '../../editor/Editor';
 import NewWindow from 'react-new-window'
 
+
 class Page extends Component {
     constructor(props) {
         super(props);
+
+        this.handlePageEdit = this.handlePageEdit.bind(this);
+        this.handlePageDelete = this.handlePageDelete.bind(this);
+        this.handleOnPageCancel = this.handleOnPageCancel.bind(this);
 
         this.state = {
             'isEditing': false,
 
         }
 
-        this.handlePageEdit = this.handlePageEdit.bind(this);
-        this.handlePageDelete = this.handlePageDelete.bind(this);
-        this.handleOnPageCancel = this.handleOnPageCancel.bind(this);
     }
-
 
 
     handlePageEdit() {
@@ -38,40 +39,47 @@ class Page extends Component {
         console.log("time to cancel a page ");
     }
 
-    render() {
-        if (this.state.isEditing) {
-            return (
-                <>
-                <NewWindow>
-                    <Editor
-                        onPageCancel={this.handleOnPageCancel}
-                        page={this.props.page}
-                    />
-                </NewWindow>
-                <ListItem
-                    type={"page"}
-                    {...this.props}
-                    isEditing={this.props.isEditing}
-                    onPageEdit={this.handlePageEdit}
-                    onPageDelete={this.handlePageDelete}
+    onEditorUnload = () => {
+        this.setState({isEditing: false})
+    }
 
-                />
-                </>
-                
-            );
+    render() {
+        var result = null;
+        if (this.state.isEditing) {
+            result =
+                <>
+                    <NewWindow 
+                    name={"Editor"}  
+                    title={"Editor"}
+                    onUnload={this.onEditorUnload}>
+                        <Editor
+                            onPageCancel={this.handleOnPageCancel}
+                            page={this.props.page}
+                        />
+                    </NewWindow>
+                    <ListItem
+                        type={"page"}
+                        {...this.props}
+                        isEditing={this.props.isEditing}
+                        onPageEdit={this.handlePageEdit}
+                        onPageDelete={this.handlePageDelete}
+
+                    />
+                </>;
+
         }
         else {
-            return (
-                <ListItem
-                    type={"page"}
-                    {...this.props}
-                    isEditing={this.props.isEditing}
-                    onPageEdit={this.handlePageEdit}
-                    onPageDelete={this.handlePageDelete}
+            result = <ListItem
+                type={"page"}
+                {...this.props}
+                isEditing={this.props.isEditing}
+                onPageEdit={this.handlePageEdit}
+                onPageDelete={this.handlePageDelete}
 
-                />
-            );
+            />;
         }
+
+        return result;
     }
 }
 

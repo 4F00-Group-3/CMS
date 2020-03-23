@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import Pages from './components/Pages';
 import TopBar from './components/TopBar';
 import SideBar from './components/SideBar';
-import * as constants from '../constants';
 import '../css/PageAdmin.css'
 import Users from './components/Users';
 import Settings from './components/Settings';

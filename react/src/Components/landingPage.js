@@ -14,6 +14,7 @@ import {
 import ReactDOM from "react-dom";
 
 class landingPage extends Component {
+  
   render() {
     return (
       <div>
@@ -33,7 +34,7 @@ class landingPage extends Component {
           </Cell>
         </Grid>
         <div style={{ background: "white" }}>
-          <section id="faq-page">
+          <section ref={this.props.scrollDiv} id="faq-page">
             <h2 className="faq-page">FAQ</h2>
           </section>
           <Grid>
@@ -176,6 +177,16 @@ class landingPage extends Component {
               </div>
             </Cell>
           </Grid>
+        </div>
+        <div style={{ paddingbottom: "60px" }}>
+          <Footer size="mini">
+            <FooterSection type="left" logo="NO.">
+              <FooterLinkList>
+                <a href="#">Help</a>
+                <a href="#">Privacy & Terms</a>
+              </FooterLinkList>
+            </FooterSection>
+          </Footer>
         </div>
       </div>
     );
