@@ -8,7 +8,7 @@ export default class SitePage extends Component {
 
     componentDidMount() {
         // var target = 'https://www.google.com';
-        // const self = this;
+        const self = this;
         //
         // // Just for testing purposes, When the database is filled with valid data, remove the axios code.
         // axios({
@@ -37,13 +37,7 @@ export default class SitePage extends Component {
                     console.log(response.toString());
                     // console.log("Wassup");
                     self.setState({
-                        siteInfo: [
-                            {
-                                title: response.data.title,
-                                image: response.data.image,
-                                description: response.data.description
-                            }
-                        ]
+                        siteInfo: response
                     });
                     //TODO: This is where you can perform actions with the response that you recieved from the backend
                 });
