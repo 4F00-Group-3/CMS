@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+
 import {
   Grid,
   Cell,
@@ -6,6 +7,9 @@ import {
   Card,
   CardTitle,
   CardActions,
+  Footer,
+  FooterSection,
+  FooterLinkList,
   Content,
   Header,
   Navigation
@@ -17,7 +21,7 @@ class landingPage extends Component {
     return (
       <div>
         <section ref={this.props.scrollDiv} id="faq-page">
-          <h1 className="home-page-title">CMS</h1>
+          <h1 className="home-page-title">Group 3 - CMS</h1>
         </section>
         <Grid>
           <Cell col={12}>
@@ -27,6 +31,7 @@ class landingPage extends Component {
             <h4 className="home-page-subtitle">
               Proin placerat finibus porttitor mauris eu malesuada.
             </h4>
+            <br />
             <div style={{ textAlign: "center" }}>
               <Button raised ripple primary>
                 Get Started
@@ -34,11 +39,27 @@ class landingPage extends Component {
             </div>
           </Cell>
         </Grid>
-        <div style={{ background: "white" }}>
+        <br />
+        <br />
+        <br />
+        <div
+          style={{
+            background: "white"
+          }}
+        >
           <section id="faq-page">
-            <h2 className="faq-page">FAQ</h2>
+            <br />
+            <br />
+            <h1 className="faq-page">Frequently Asked Questions</h1>
+            <br />
+            <br />
           </section>
-          <Grid>
+
+          <Grid
+            style={{
+              background: "white"
+            }}
+          >
             <Cell col={12}>
               {/* Row 1 */}
               <div className="faq-grid" style={{ paddingBottom: "30px" }}>
@@ -47,7 +68,7 @@ class landingPage extends Component {
                   style={{
                     width: "256px",
                     height: "256px",
-                    background: "skyblue",
+                    background: "url(/imagesFolder/FAQ1.jpg)",
                     margin: "auto"
                   }}
                   shadow={0}
@@ -60,7 +81,7 @@ class landingPage extends Component {
                   style={{
                     width: "256px",
                     height: "256px",
-                    background: "skyblue",
+                    background: "url(/imagesFolder/FAQ2b.jpg)",
                     margin: "auto"
                   }}
                   shadow={0}
@@ -73,7 +94,7 @@ class landingPage extends Component {
                   style={{
                     width: "256px",
                     height: "256px",
-                    background: "skyblue",
+                    background: "url(/imagesFolder/FAQ3.jpg)",
                     margin: "auto"
                   }}
                   shadow={0}
@@ -91,7 +112,7 @@ class landingPage extends Component {
                   style={{
                     width: "256px",
                     height: "256px",
-                    background: "skyblue",
+                    background: "url(/imagesFolder/FAQ4b.jpg)",
                     margin: "auto"
                   }}
                   shadow={0}
@@ -104,7 +125,7 @@ class landingPage extends Component {
                   style={{
                     width: "256px",
                     height: "256px",
-                    background: "skyblue",
+                    background: "url(/imagesFolder/FAQ5.jpg)",
                     margin: "auto"
                   }}
                   shadow={0}
@@ -117,7 +138,7 @@ class landingPage extends Component {
                   style={{
                     width: "256px",
                     height: "256px",
-                    background: "skyblue",
+                    background: "url(/imagesFolder/FAQ6b.jpg)",
                     margin: "auto"
                   }}
                   shadow={0}
@@ -129,8 +150,20 @@ class landingPage extends Component {
             </Cell>
           </Grid>
         </div>
-        <div style={{ background: "white" }}>
+        <div
+          style={{
+            background: "transparent"
+          }}
+        >
           <br />
+          <br />
+          <br />
+        </div>
+        <div
+          style={{
+            background: "white"
+          }}
+        >
           <br />
           <br />
           <h1 className="faq-page">
@@ -138,8 +171,11 @@ class landingPage extends Component {
             for your business!
           </h1>
           <br />
-
-          <Grid>
+          <Grid
+            style={{
+              background: "white"
+            }}
+          >
             <Cell col={12}>
               {/* Row 1 */}
               <div className="faq-grid">
@@ -148,10 +184,10 @@ class landingPage extends Component {
                   style={{
                     width: "256px",
                     height: "256px",
-                    background: "url(/FirstPlanSquare.jpg)",
+                    background: "url(/imagesFolder/FirstPlanSquare.jpg)",
                     margin: "auto"
                   }}
-                  shadow={0}
+                  shadow={2}
                 >
                   <CardTitle expand />
                   <CardActions className="faq-cards-actions"></CardActions>
@@ -161,10 +197,10 @@ class landingPage extends Component {
                   style={{
                     width: "256px",
                     height: "256px",
-                    background: "url(/SecondPlanSquare.jpg)",
+                    background: "url(/imagesFolder/SecondPlanSquare.jpg)",
                     margin: "auto"
                   }}
-                  shadow={0}
+                  shadow={2}
                 >
                   <CardTitle expand />
                   <CardActions className="faq-cards-actions"></CardActions>
@@ -174,10 +210,10 @@ class landingPage extends Component {
                   style={{
                     width: "256px",
                     height: "256px",
-                    background: "url(/ThirdPlanSquare.jpg)",
+                    background: "url(/imagesFolder/ThirdPlanSquare.jpg)",
                     margin: "auto"
                   }}
-                  shadow={0}
+                  shadow={2}
                 >
                   <CardTitle expand />
                   <CardActions className="faq-cards-actions"></CardActions>
@@ -186,6 +222,14 @@ class landingPage extends Component {
             </Cell>
           </Grid>
         </div>
+        <Footer size="mini">
+          <FooterSection type="left" logo="No">
+            <FooterLinkList>
+              <a href="#">Help</a>
+              <a href="#">Privacy & Terms</a>
+            </FooterLinkList>
+          </FooterSection>
+        </Footer>
       </div>
     );
   }

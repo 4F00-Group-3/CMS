@@ -20,15 +20,14 @@ const buttonContainerStyle = {
   height: "18%",
   width: constants.EditorSideBarButtonWidth,
   borderRadius: "20px",
-  margin: "3%",
-  color: "dark-grey",
-  bottom: 0
+  margin: "5%",
+  color: "dark-grey"
 };
 
 const sideBarIconStyle = {
   height: "8vh",
   width: "7vh",
-  color: "white"
+  color: "dark-grey"
 };
 
 const sideBarTextStyle = {};

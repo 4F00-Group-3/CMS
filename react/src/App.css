@@ -57,3 +57,13 @@
 h2 {
   text-align: center;
 }
+
+.gridBkgd {
+  background: "/coworkers-discussing-business-ideas-PWAASLV.jpg";
+}
+
+.landing-page-card-style {
+  width: 256px;
+  height: 256px;
+  margin: auto;
+} /*not used yet*/

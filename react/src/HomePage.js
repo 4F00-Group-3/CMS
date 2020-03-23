@@ -1,7 +1,15 @@
 //import React from "react";
 import React, { Component, createRef } from "react";
 import "./App.css";
-import { Layout, Header, Navigation, Content } from "react-mdl";
+import {
+  Layout,
+  Header,
+  Navigation,
+  Footer,
+  FooterSection,
+  FooterLinkList,
+  Content
+} from "react-mdl";
 import PlansPricing from "./Components/landingPage";
 import GetStarted from "./Components/getStarted";
 import LoginPage from "./Components/loginpage";
@@ -63,8 +71,8 @@ class HomePage extends Component {
       <div>
         <Layout
           style={{
-            background:
-              "url(http://www.getmdl.io/assets/demos/transparent.jpg) center / cover"
+            background: "url(/imagesFolder/techbkgrd2.jpg)",
+            backgroundSize: "cover"
           }}
         >
           <Header transparent title="NO." style={{ color: "white" }}>
@@ -96,6 +104,7 @@ class HomePage extends Component {
             {/* </Navigation> */}
           </Header>
           <Content>
+            {/*overflow: "hidden" Removes inner scrollbar */}
             {/* <div className="page-content" /> */}
             {/* <Main /> */}
             {this.state.page}

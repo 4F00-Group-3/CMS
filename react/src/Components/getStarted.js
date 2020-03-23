@@ -32,7 +32,7 @@ class getStarted extends Component {
                   expand
                   style={{
                     color: "#fff",
-                    background: "url(/FirstPlan.jpg)"
+                    background: "url(/imagesFolder/FirstPlan.jpg)"
                   }}
                 ></CardTitle>
                 <CardText>Get started with building web applications!</CardText>
@@ -49,7 +49,7 @@ class getStarted extends Component {
                   expand
                   style={{
                     color: "#fff",
-                    background: "url(/SecondPlan.jpg)"
+                    background: "url(/imagesFolder/SecondPlan.jpg)"
                   }}
                 ></CardTitle>
                 <CardText>
@@ -68,7 +68,7 @@ class getStarted extends Component {
                   expand
                   style={{
                     color: "#fff",
-                    background: "url(/ThirdPlan.jpg)"
+                    background: "url(/imagesFolder/ThirdPlan.jpg)"
                   }}
                 ></CardTitle>
                 <CardText>
@@ -82,6 +82,14 @@ class getStarted extends Component {
             </div>
           </Cell>
         </Grid>
+        <Footer size="mini">
+          <FooterSection type="left" logo="No">
+            <FooterLinkList>
+              <a href="#">Help</a>
+              <a href="#">Privacy & Terms</a>
+            </FooterLinkList>
+          </FooterSection>
+        </Footer>
       </div>
     );
   }
