@@ -2,7 +2,7 @@
 <?php
 require_once ('header_functions.php');
 
-$functions = array('test', 'currentUser', 'currentUserId', 'addUser', 'getAllPages', 'getAllUsers', 'getMedia', 'getPage', 'addMedia', 'addPage', 'deletePage', 'deleteUser', 'login', 'createAccount');
+$functions = array('test', 'currentUser', 'currentUserId', 'addUser', 'getAllPages', 'getAllUsers', 'getMedia', 'getPage', 'addMedia', 'addPage', 'deletePage', 'deleteUser', 'login', 'createAccount','getWebsiteData');
 
 if(isset($_POST['function']) && in_array($_POST['function'], $functions)){
     $_POST['function']();
@@ -38,6 +38,25 @@ function login(){
     }
     if($success === true){
         echo $account->accountId;
+    }else{
+        echo "false";
+    }
+    die;
+}
+
+function getWebsiteData(){
+    $success = false;
+    if (!empty($_POST['accountId'])) {
+        $accountId = $_POST['accountId'];
+        $data = Account::getWebsiteData($accountId);
+        // Verify account password and set $_SESSION
+        if ($data !== false) {
+            $json = json_encode($data);
+            $success = true;
+        }
+    }
+    if($success === true){
+        echo $json;
     }else{
         echo "false";
     }

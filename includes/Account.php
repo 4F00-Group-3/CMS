@@ -28,13 +28,13 @@ class Account {
 	}
 
 //	returns account data
-	public function get_account_data(){
+	public function get_account_data() {
         return array(
-            'accountId' => $accountId,
-            'email' => $email,
-            'firstName' => $firstName,
-            'lastName' => $lastName,
-            'type' => $type
+            'accountId' => $this->accountId,
+            'email' => $this->email,
+            'firstName' => $this->firstName,
+            'lastName' => $this->lastName,
+            'type' => $this->type
         );
     }
 	
@@ -95,12 +95,29 @@ class Account {
         }
         return $accounts;
 	}
-	
+
 	public static function deleteAccount($accountId = 0){
 		$stmt = Dbh::connect()->PREPARE("DELETE FROM accounts WHERE account_id=?");
 		$stmt->execute([$accountId]);
 
 		return $stmt->rowCount();
 	}
+
+    // Retrieve websites associated with account
+    public static function getWebsiteData($account_id) {
+        $stmt = Dbh::connect()
+            ->PREPARE("SELECT * FROM websites WHERE account_id=?");
+        $stmt->execute([$account_id]);
+        $websites = array();
+        if($stmt->rowCount()){
+            while ($row = $stmt->fetch()){
+                $data = array("name"=>$row['site_name'], "image"=>['image'], "description"=>['description']);
+                $websites[] = $data;
+            }
+            return $websites;
+        }else{
+            return false;
+        }
+    }
 
 }
