@@ -26,6 +26,9 @@ function login(){
         if (!empty($_POST['email']) && !empty($_POST['password'])) {
             $email = filter_var($_POST['email'], FILTER_VALIDATE_EMAIL);
             $account = Account::getAccountByEmail($email);
+            echo $account->password;
+            echo $_POST['email'];
+            echo $_POST['password'];
             if ($account !== false) {
                 if (password_verify($_POST['password'], $account->password)) {
                     $success = true;

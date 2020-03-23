@@ -58,16 +58,16 @@ class Account {
 
 	//returns a new Account object or false if invalid email was given
 	public static function getAccountByEmail($email){
-		$stmt = Dbh::connect() ->PREPARE("SELECT * FROM accounts WHERE email=?");
+        $stmt = Dbh::connect() ->PREPARE("SELECT * FROM accounts WHERE email=?");
         $stmt->execute([$email]);
 
         if($stmt->rowCount()){
-			$accountInfo = $stmt->fetch(PDO::FETCH_ASSOC);
+            $accountInfo = $stmt->fetch(PDO::FETCH_ASSOC);
             return new Account($accountInfo['account_id'], $accountInfo['email'], $accountInfo['first_name'], $accountInfo['last_name'], $accountInfo['account_type'], $accountInfo['password']);
         } else {
-			return false;
-		}
-	}
+            return false;
+        }
+    }
 
 	//add a new account to the database
 	public static function addAccount($email, $firstName, $lastName, $type,  $password){
