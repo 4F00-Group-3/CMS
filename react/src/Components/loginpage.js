@@ -42,7 +42,6 @@ class LoginPage extends Component {
     })
   };
 
-class LoginPage extends Component {
   render() {
     return (
       <div>
@@ -51,7 +50,7 @@ class LoginPage extends Component {
             <div className="boxPadding">
               <h2>Log into your account</h2>
 
-              <form className="centerBoxItems">
+              <form className="centerBoxItems" onSubmit={this.handleFormSubmit}>
                 <label for="email">Username:</label>
                 <br></br>
                 <input type="email"
