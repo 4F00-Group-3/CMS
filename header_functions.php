@@ -8,6 +8,8 @@
 //starts the browser session
 //session_start();
 
+// error_reporting(0);
+
 //redirect to login and end session
 //session_id() == 1 on pages to not check for logged in (e.g. create account, log in)
 //if ( !session_id() && !isset( $_SESSION['account_id']) ) {

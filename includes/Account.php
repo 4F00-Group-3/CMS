@@ -94,6 +94,13 @@ class Account {
             $accounts[] = new Account($row['account_id'], $row['email'], $row['first_name'], $row['last_name'], $row['account_type'], $row['password']);
         }
         return $accounts;
-    }
+	}
+	
+	public static function deleteAccount($accountId = 0){
+		$stmt = Dbh::connect()->PREPARE("DELETE FROM accounts WHERE account_id=?");
+		$stmt->execute([$accountId]);
+
+		return $stmt->rowCount();
+	}
 
 }

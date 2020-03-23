@@ -124,6 +124,16 @@ class Website{
         return $name;
     }
 
+    public static function getAllPagesJSON($schema){
+        $stmt = Dbh::connect()
+            ->query("SELECT * FROM  $schema.pages");
+        $pages = array();
+        while ($row = $stmt->fetch(PDO::FETCH_ASSOC)){
+            $pages[] = $row;
+        }
+        return $pages;
+    }
+
     public static function getPagesWithCountCheck($schema, $page_id){
         $stmt = Dbh::connect()
             ->PREPARE("SELECT * FROM $schema.pages WHERE pages_id=?");
@@ -148,6 +158,22 @@ class Website{
         $stmt->bindValue(':file', $file);
 
         $stmt->execute();
+    }
+
+    public static function addPageJSON($schema, $content, $pageName){
+        $data = array($content, $pageName);
+
+		$stmt = Dbh::connect() ->PREPARE("INSERT INTO $schema.pages (content, name) VALUES (?, ?) ON CONFLICT DO NOTHING RETURNING page_id");
+		$stmt->execute($data);
+
+		return $stmt->fetch(PDO::FETCH_ASSOC)['page_id'];
+    }
+
+    public static function deletePage($schema, $pageId=0){
+        $stmt = Dbh::connect()->PREPARE("DELETE FROM $schema.pages WHERE page_id=?");
+		$stmt->execute([$pageId]);
+
+		return $stmt->rowCount();
     }
 
 }
