@@ -13,6 +13,7 @@ class LoginPage extends Component {
     };
     this.handleFormSubmit.bind(this);
     this.handleChange.bind(this);
+
   }
 
 
