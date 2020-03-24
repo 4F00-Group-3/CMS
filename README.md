@@ -21,6 +21,6 @@ Main repository for the group project CMS
     - Param J (Lead Developer for Front-end technologies)
     - Tokunbo O (Front-end Developer)
     - Jon (Front-end/Back-end Developer)
-    - Steve U (Front-end/Back-end Developer)
+    - Steve B (Front-end/Back-end Developer)
     - Greg (Administrative)
     - Ahmed (Who?)
