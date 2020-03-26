@@ -15,20 +15,11 @@ import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd';  //
     
     /*********************************************************** */
     const getItemStyle = (isDragging, draggableStyle) => ({
-        padding: `10%`,   //make components suitable size
-        margin: `1%`,    //make dark gray border wider
-    
+
         background: isDragging ? 'lightblue' : 'rgb(250,250,250)', //when dragging, make background colour blue. Else grey.
-    
         ...draggableStyle
     }); //style for when dragging
     
-    
-    const getListStyle = isDraggingOver => ({
-        background: isDraggingOver ? 'lightgreen' : 'lightgrey',
-        margin:`5%`,  //center components
-        width: `90%`  //let draggable components take up most of page
-    });
     /*********************************************************** */
 
 
@@ -45,13 +36,13 @@ class EditingPage extends Component {
     state = {
         page: this.props.page,
     };
-
+*/
     id2List = {
-        droppable: 'page',
-    };
+        droppable: 'items',
+    };//?
 
-    getList = id => this.state[this.id2List[id]];
-
+    getList = id => this.id2List[id];//?
+/*
     onDragEnd = result => {
         const { source, destination } = result;
 
@@ -102,7 +93,7 @@ class EditingPage extends Component {
         } catch (error) {
 
         }
-    }
+    }   //returns the sections added to the editor page
 
     /******************* */
     onDragEnd = result => {
@@ -121,19 +112,19 @@ class EditingPage extends Component {
 
         } 
 
-    };
+    };  //What to do after the drag is done
     /******************* */
 
     render() {
-        console.log(this.returnPage());
-        if ( this.returnPage() == null ){
-            return(
-                <div style={containerStyle}>
-                    {this.returnPage()}
-                </div>
+        console.log("Page: "+this.returnPage());
+        /*
+        try{
+            this.returnPage().map((item, index) => (
+                //console.log("Index: "+index))
+                console.log("Section: "+this.props.page[index]))   //undefined NO GOOD
             )
-        }
-        else {
+        } catch(error){}*/
+        if ( this.returnPage() != null ){   //if there is something on the editor screen, then we can drag and drop
             return (
                 <DragDropContext onDragEnd={this.onDragEnd}>
                     <Droppable droppableId="droppable">
@@ -141,23 +132,26 @@ class EditingPage extends Component {
                             <div
                             {...provided.droppableProps}
                             ref={provided.innerRef}
+                            style={ containerStyle }//whole editor page style
                             >
                             
-                            {this.returnPage().map((item, index) => (
-                                <Draggable key={item.id} draggableId={item.id} index={index}>
+                            {this.returnPage().map((item, index) => (//this.returnPage() returns array of sections (components)
+                                //                section id                                   section id
+                                <Draggable key={this.props.page[index].id} draggableId={this.props.page[index].id} index={index}>
+                                
                                 {(provided, snapshot) => (
+                                    
                                     <div
                                     ref={provided.innerRef}
                                     {...provided.draggableProps}
                                     {...provided.dragHandleProps}
                                     style={
-                                        containerStyle
-                                        /*getItemStyle(
-                                        snapshot.isDragging,
-                                        provided.draggableProps.style)*/
+                                          getItemStyle(
+                                          snapshot.isDragging,
+                                          provided.draggableProps.style)
                                     }
                                     >
-                                    {this.returnPage()}
+                                    {this.returnPage()[index]/*1component i.e. a header*/}
                                     </div>
                                 )}
                                 </Draggable>
@@ -167,8 +161,7 @@ class EditingPage extends Component {
                         )}
                     </Droppable>
                 </DragDropContext>
-
-            /*
+                /*
                 <DragDropContext onDragEnd={this.onDragEnd}>
                     <Droppable droppableId="droppable">
                         {provided => (
@@ -179,10 +172,22 @@ class EditingPage extends Component {
                     </Droppable>
                 </DragDropContext>
                 */
-            );
+               );
+        }
+        else {      //if theres nothing on the editor screen yet, just print
+            return(
+                <div style={containerStyle}>
+                    {this.returnPage()}
+                </div>
+            )
         }
     }
 }
+
+/*
+const containerStyle = isDraggingOver => ({
+    background: isDraggingOver ? 'lightgreen' : 'lightgrey',    //change page color when dragging
+});*/
 
 const containerStyle = {
     background: "white",
@@ -190,7 +195,8 @@ const containerStyle = {
     height: "100vh",
     border: "3px solid red",
     marginLeft: constants.EditorSideBarWidth,
-}
+    
+}//containerStyle --> styling for whole page not 1 component
 
 
 
