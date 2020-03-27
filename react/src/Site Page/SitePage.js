@@ -1,10 +1,22 @@
 import React, { Component } from "react";
-import axios from 'axios';
-import SiteIcon from './SiteIcon';
+// import axios from 'axios';
+// import SiteIcon from './SiteIcon';
 import '../css/SitePage.css'
 import AjaxCall from '../ajax.js';
+import Login from '../Components/loginpage';
 
 export default class SitePage extends Component {
+
+    constructor(props) {
+        super(props);
+
+        this.state = {
+            userLoggedIn: true
+        }
+        this.handleLogOut = this.handleLogOut.bind(this);
+        this.handleRedirectToAccoutingSettings = this.handleRedirectToAccoutingSettings.bind(this);
+        this.handleUpgradePlan = this.handleUpgradePlan.bind(this);
+    }
 
     componentDidMount() {
         // var target = 'https://www.google.com';
@@ -29,9 +41,10 @@ export default class SitePage extends Component {
         //     console.log(this.state.siteInfo);
         // });
 
-        sessionStorage.setItem('id', "79"); // for testing purposes
+        //sessionStorage.setItem('id', "79"); // for testing purposes
         if (sessionStorage.getItem('id') !== null) {
-            // console.log("ajaxcall"); // to see if it actually went thru
+            this.setState({ userLoggedIn: true });
+            console.log("ajaxcall"); // to see if it actually went thru
             AjaxCall({ function: 'getWebsiteData', accountId: sessionStorage.getItem('id') },
                 function (response) {
                     response = response.split("php-cgi")[1].trim();
@@ -41,40 +54,94 @@ export default class SitePage extends Component {
                     self.setState({
                         siteInfo: json
                     });
-                    //TODO: This is where you can perform actions with the response that you recieved from the backend
                 });
         } else {
-            // TODO: Redirect to loginpage
-            console.log("hello");
+            // Redirect to login
+            this.setState({ userLoggedIn: false });
+
+            // The code below is for testing purposes 
+            /*
+            sessionStorage.setItem('id', "79"); // for testing purposes
+            var json = [
+                { "name": "Website1", "image": "https:\/\/cdn.pixabay.com\/photo\/2013\/11\/28\/10\/36\/road-220058_1280.jpg", "description": "Web1" },
+                { "name": "Website2", "image": "https:\/\/cdn.pixabay.com\/photo\/2013\/10\/02\/23\/03\/dawn-190055_1280.jpg", "description": "Web2" },
+                { "name": "Website3", "image": "https:\/\/cdn.pixabay.com\/photo\/2014\/09\/10\/00\/59\/utah-440520_1280.jpg", "description": "Web3" }
+            ];
+            self.setState({
+                siteInfo: json
+            });
+            */
         }
     }
 
+    /**
+     * This method handles user log out
+     */
+    handleLogOut() {
+        // For testing purposes
+        var id = sessionStorage.getItem('id');
+        alert(id + " Logged Out!");
+        sessionStorage.removeItem("id");
+    }
+
+    /**
+     * This method handles redirect to account settings
+     */
+    handleRedirectToAccoutingSettings() {
+        // For testing purposes
+        alert("Redirecting to Account Settings...oops we don't have an account settings page");
+    }
+
+    /**
+    * This method handles redirect to account settings
+    */
+    handleUpgradePlan() {
+        // For testing purposes
+        alert("Upgrading you to Supreme Overlord of the Universe!!");
+    }
+
     render() {
+        var userLoggedIn = this.state.userLoggedIn;
         return (
-            <div className="SitePage">
-                <div className="Menu">
-                    <a href="#AccountSettings">Account Settings</a>
-                    <a href="#LogOut">Log Out</a>
-                    <a href="#Upgrade">Upgrade</a>
-                </div>
-                <div className="Content">
-                    <div className="SiteList">
-                        <div>
-                            {this.state && this.state.siteInfo &&
-                                this.state.siteInfo.map((site, index) =>
-                                    <div key={index}>
-                                        <div className="SiteIcon" onClick={this.props.onClick}>
-                                            <p>{site.name}</p>
-                                            <img src={site.image} alt={site.name} />
-                                            <p>description: {site.description}</p>
-                                        </div>
-                                    </div>
-                                )
-                            }
+            <>
+                {userLoggedIn ?
+                    <div className="SitePage">
+                        <div className="Menu">
+                            <p onClick={this.handleRedirectToAccoutingSettings}>Account Settings</p>
+                            <p onClick={this.handleLogOut}>Log Out</p>
+                            <p onClick={this.handleUpgradePlan}>Upgrade</p>
+                        </div>
+                        <div className="Content">
+                            <div className="SiteList">
+                                <div>
+                                    {this.state && this.state.siteInfo &&
+                                        this.state.siteInfo.map((site, index) =>
+                                            <div key={index}>
+                                                <div className="SiteIcon">
+                                                    <p>{site.name}</p>
+                                                    <img src={site.image} alt={site.name} />
+                                                    <p>description: {site.description}</p>
+                                                    <div className="row">
+                                                        <div className="column">
+                                                            <button onClick={this.props.onClick} value="Edit">Edit</button>
+                                                        </div>
+                                                        <div className="column">
+                                                            <button value="View">View</button>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        )
+                                    }
+                                </div>
+                            </div>
                         </div>
                     </div>
-                </div>
-            </div>
+                    :
+                    <Login />
+                }
+            </>
+
         );
     }
 }
