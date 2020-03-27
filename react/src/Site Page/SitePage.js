@@ -32,12 +32,14 @@ export default class SitePage extends Component {
         sessionStorage.setItem('id', "79"); // for testing purposes
         if (sessionStorage.getItem('id') !== null) {
             // console.log("ajaxcall"); // to see if it actually went thru
-            AjaxCall({function: 'getWebsiteData', accountId: sessionStorage.getItem('id')},
+            AjaxCall({ function: 'getWebsiteData', accountId: sessionStorage.getItem('id') },
                 function (response) {
-                    console.log(response.toString());
+                    response = response.split("php-cgi")[1].trim();
+                    var json = JSON.parse(response);
+                    console.log(json);
                     // console.log("Wassup");
                     self.setState({
-                        siteInfo: response
+                        siteInfo: json
                     });
                     //TODO: This is where you can perform actions with the response that you recieved from the backend
                 });
@@ -62,8 +64,8 @@ export default class SitePage extends Component {
                                 this.state.siteInfo.map((site, index) =>
                                     <div key={index}>
                                         <div className="SiteIcon" onClick={this.props.onClick}>
-                                            <p>{site.title}</p>
-                                            <img src={site.image} alt={site.title} />
+                                            <p>{site.name}</p>
+                                            <img src={site.image} alt={site.name} />
                                             <p>description: {site.description}</p>
                                         </div>
                                     </div>

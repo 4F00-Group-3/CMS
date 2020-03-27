@@ -74,7 +74,7 @@ class MasterTestMenu extends Component {
         page = <SitePage onClick={this.handleDashClick}/>
         break;
       default:
-        page = <Home />;
+        page = <Editor />;
     }
     return (
       <div>

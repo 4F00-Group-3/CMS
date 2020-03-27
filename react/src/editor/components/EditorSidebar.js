@@ -12,7 +12,6 @@ import {
 import EditorButton from '../components/EditorButton';
 import HeadingEditorMenu from './EditorMenus/HeadingEditorMenu';
 import ButtonEditorMenu from './EditorMenus/ButtonEditorMenu';
-import DividerEditorMenu from './EditorMenus/DividerEditorMenu';
 import EditDivider from './EditorMenus/EditDivider';
 import IconEditorMenu from './EditorMenus/IconEditorMenu';
 import ImageEditorMenu from './EditorMenus/ImageEditorMenu';
@@ -24,6 +23,24 @@ class EditorSideBar extends Component {
         switch (menu) {
             case "heading": {
                 return <HeadingEditorMenu selectedId={this.props.selectedId} menuComponentOnClick={this.props.menuComponentOnClick}/>
+            }
+            case "divider": {
+                return <EditDivider selectedId={this.props.selectedId} menuComponentOnClick={this.props.menuComponentOnClick}/>
+            }
+            case "image": {
+                return <ImageEditorMenu selectedId={this.props.selectedId} menuComponentOnClick={this.props.menuComponentOnClick}/>
+            }
+            case "icon": {
+                return <IconEditorMenu selectedId={this.props.selectedId} menuComponentOnClick={this.props.menuComponentOnClick}/>
+            }
+            case "video": {
+                return <VideoEditorMenu selectedId={this.props.selectedId} menuComponentOnClick={this.props.menuComponentOnClick}/>
+            }
+            case "button": {
+                return <ButtonEditorMenu selectedId={this.props.selectedId} menuComponentOnClick={this.props.menuComponentOnClick}/>
+            }
+            case "spacer": {
+                return <EditDivider selectedId={this.props.selectedId} menuComponentOnClick={this.props.menuComponentOnClick}/>
             }
             default: {
                 return <>
