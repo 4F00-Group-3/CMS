@@ -29,7 +29,7 @@ class EditingPage extends Component {
                         onClick={section.onClick}
                         url={section.url}
                         onSectionPush={this.props.onSectionPush}
-
+                        key={index}
                         />);
             }
 
