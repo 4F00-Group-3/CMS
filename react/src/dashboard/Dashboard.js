@@ -13,12 +13,13 @@ let backend = new DashboardBackend();
 let userAdminBackend = new UserAdminBackend();
 
 class Dashboard extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      page: <Pages backend={backend} />
-    };
-  }
+    constructor(props){
+        super(props);
+        this.state = {
+            page: <Pages backend={backend}/>,
+        }
+        //backend.returnAllPages();
+    }
 
   onPush = buttonName => {
     console.log(buttonName);
