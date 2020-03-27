@@ -8,7 +8,7 @@ import passwordsubmit from "./passwordsubmit";
 import submitemail from "./submitemail";
 import securityCode from "./securityCode";
 import createAccount from "./createAccount";
-import imageEditorMenu from "./imageEditorMenu";
+import ImageEditor from "./ImageEditor";
 
 const Main = () => (
   <BrowserRouter>
@@ -21,7 +21,7 @@ const Main = () => (
       <Route path="/submitemail" component={submitemail} />
       <Route path="/securityCode" component={securityCode} />
       <Route path="/createAccount" component={createAccount} />
-      <Route path="/imageEditorMenu" component={imageEditorMenu} />
+      <Route path="/ImageEditor" component={ImageEditor} />
     </Switch>
   </BrowserRouter>
 );

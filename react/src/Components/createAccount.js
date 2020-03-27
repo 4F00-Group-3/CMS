@@ -2,38 +2,45 @@ import React, { Component } from "react";
 import Container from "@material-ui/core/Container";
 import Card from "@material-ui/core/Card";
 import "./css.css";
-import AjaxCall from '../ajax.js';
-
+import AjaxCall from "../ajax.js";
 
 class createAccount extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      email: '',
-      pw: '',
-      fn: '',
-      ln: ''
+      email: "",
+      pw: "",
+      fn: "",
+      ln: ""
     };
   }
 
-  handleFormSubmit = ( event ) => {
+  handleFormSubmit = event => {
     event.preventDefault();
 
-    AjaxCall(    {function:'createAccount', email:this.state.email, password:this.state.pw, first_name:this.state.fn, last_name:this.state.ln},
-        function(response){
-          console.clear();
-          console.log(response);
-        });
+    AjaxCall(
+      {
+        function: "createAccount",
+        email: this.state.email,
+        password: this.state.pw,
+        first_name: this.state.fn,
+        last_name: this.state.ln
+      },
+      function(response) {
+        console.clear();
+        console.log(response);
+      }
+    );
   };
 
-  handleChange = ( event )  => {
+  handleChange = event => {
     event.preventDefault();
     console.log(event);
     console.log(event.target.name);
     console.log(event.target.value);
     this.setState({
       [event.target.name]: event.target.value
-    })
+    });
   };
 
   render() {
@@ -45,28 +52,30 @@ class createAccount extends Component {
               <div className="submitformdiv">
                 <h2>Create An Account</h2>
                 <p>Please enter the security code we emailed you.</p>
-                <form className="centerBoxItems" onSubmit={this.handleFormSubmit}>
-
+                <form
+                  className="centerBoxItems"
+                  onSubmit={this.handleFormSubmit}
+                >
                   <label htmlFor="fn">First Name</label>
                   <br></br>
                   <input
-                      type="text"
-                      id="email"
-                      emailaddr="email"
-                      className="emailaddressbar"
-                      name="fn"
-                      onChange= {this.handleChange}
+                    type="text"
+                    id="email"
+                    emailaddr="email"
+                    className="emailaddressbar"
+                    name="fn"
+                    onChange={this.handleChange}
                   />
 
                   <label htmlFor="ln">Last Name</label>
                   <br></br>
                   <input
-                      type="text"
-                      id="email"
-                      emailaddr="email"
-                      className="emailaddressbar"
-                      name="ln"
-                      onChange= {this.handleChange}
+                    type="text"
+                    id="email"
+                    emailaddr="email"
+                    className="emailaddressbar"
+                    name="ln"
+                    onChange={this.handleChange}
                   />
 
                   <label for="email">Email</label>
@@ -77,7 +86,7 @@ class createAccount extends Component {
                     emailaddr="email"
                     class="emailaddressbar"
                     name="email"
-                    onChange= {this.handleChange}
+                    onChange={this.handleChange}
                   />
                   <br></br>
 
@@ -89,7 +98,7 @@ class createAccount extends Component {
                     pass="pw"
                     class="emailaddressbar"
                     name="pw"
-                    onChange= {this.handleChange}
+                    onChange={this.handleChange}
                   />
                   <br></br>
 
