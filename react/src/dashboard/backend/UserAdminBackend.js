@@ -3,6 +3,10 @@ class UserAdminBackend {
       this.deleted = [];
       this.updates = [];
     }
+
+    returnAllUsers(){
+      
+    }
   
     all() {
       return [
