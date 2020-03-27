@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-
 // import axios from 'axios';
 // import SiteIcon from './SiteIcon';
 import '../css/SitePage.css'
@@ -7,15 +6,7 @@ import AjaxCall from '../ajax.js';
 import Login from '../Components/loginpage';
 
 export default class SitePage extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      title: "",
-      image: "",
-      description: ""
-    };
-  }
-  
+
     constructor(props) {
         super(props);
 
@@ -81,10 +72,7 @@ export default class SitePage extends Component {
             });
             */
         }
-      );
-    } else {
     }
-  }
 
     /**
      * This method handles user log out
