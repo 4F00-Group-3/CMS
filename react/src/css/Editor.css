@@ -10,6 +10,25 @@
   margin: 5%;
 }
 
+.editor-buttons-container {
+  text-align: center; /*aligns all buttone*/
+  margin-left: 10vh;
+  margin-right: 10vh;
+  margin-top: 2vh;
+  margin: auto;
+  width: 50vh;
+  height: 100vh;
+  background: rgb(26, 26, 26);
+  /*border: 3px solid green;*/
+  float: left;
+  position: fixed;
+  
+  
+  justify-content:center;
+  align-items:center;
+
+}
+
 .Editor-SideBar-Container {
   text-align: center; /*aligns all buttone*/
   margin-left: 10vh;
@@ -22,6 +41,11 @@
   /*border: 3px solid green;*/
   float: left;
   position: fixed;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  /* height: 100%; */
 }
 
 .PageEditor-Container {

@@ -2,19 +2,14 @@ import React, { Component } from "react";
 import {
   Grid,
   Cell,
-  Button,
   Card,
   CardTitle,
   CardActions,
   CardText,
-  Content,
   FooterSection,
   Footer,
   FooterLinkList,
-  Header,
-  Navigation
 } from "react-mdl";
-import { Link, Route } from "react-router-dom";
 
 class getStarted extends Component {
   render() {

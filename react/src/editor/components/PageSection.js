@@ -24,7 +24,8 @@ class PageSection extends Component {
                 return (<hr key={this.props.index} style={this.props.style} />);
             }
             case "image": {
-                return (<img key={this.props.index} src={this.props.url} alt={this.props.text} style={this.props.style} />)
+                console.log(this.props.style['textAlign'])
+                return (<div style = {{textAlign: this.props.style['textAlign']}}><img key={this.props.index}  style={this.props.style} src={this.props.url} alt={this.props.text}  /></div>)
             }
             case "button": {
                 return (<button key={this.props.index} onClick={this.props.onClick} style={this.props.style}>{this.props.text}</button>)
@@ -52,7 +53,7 @@ class PageSection extends Component {
 
     render() {
         return (
-            <div className="pageSection" onClick={() => this.props.onSectionPush(this.props.index, this.props.type, this.props.style)}>
+            <div className="pageSection"  onClick={() => this.props.onSectionPush(this.props.index, this.props.type, this.props.style)}>
                 {this.returnElement()}
             </div>
         );

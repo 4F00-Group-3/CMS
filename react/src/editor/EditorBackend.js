@@ -28,6 +28,8 @@ class EditorBackend {
                     }
                 }
 
+                console.log(newCSS);
+
                 //repopulate new page section
                 var newPageSection = {};
                 for (const key in pageSection) {
@@ -40,13 +42,14 @@ class EditorBackend {
                 }
 
                 result.push(newPageSection);
+
+                console.log("section style changed", newPageSection)
             }
             else {
                 result.push(pageSection)
             }
 
         }
-        console.log("section style chagned")
         this.state.page = result;
     }
 
@@ -240,8 +243,14 @@ class EditorBackend {
                     url: "https://images.unsplash.com/photo-1583485056322-f0ba6fe51508?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1006&q=80",
                     style: [
                         {
-                            width: "100%",
+                            width: "50%",
                             borderRadius: "5px",
+                            marginLeft: "0",
+                            marginRight: "0",
+                            marginTop: "0",
+                            marginBottom: "0",
+                            textAlign: "center",
+
                         }
                     ],
                 }

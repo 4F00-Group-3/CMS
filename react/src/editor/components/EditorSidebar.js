@@ -22,42 +22,44 @@ class EditorSideBar extends Component {
         let menu = this.props.menu;
         switch (menu) {
             case "heading": {
-                return <HeadingEditorMenu selectedId={this.props.selectedId} menuComponentOnClick={this.props.menuComponentOnClick}/>
+                return <HeadingEditorMenu selectedId={this.props.selectedId} menuComponentOnClick={this.props.menuComponentOnClick} />
             }
             case "divider": {
-                return <EditDivider selectedId={this.props.selectedId} menuComponentOnClick={this.props.menuComponentOnClick}/>
+                return <EditDivider selectedId={this.props.selectedId} menuComponentOnClick={this.props.menuComponentOnClick} />
             }
             case "image": {
-                return <ImageEditorMenu selectedId={this.props.selectedId} menuComponentOnClick={this.props.menuComponentOnClick}/>
+                return <ImageEditorMenu selectedId={this.props.selectedId} menuComponentOnClick={this.props.menuComponentOnClick} />
             }
             case "icon": {
-                return <IconEditorMenu selectedId={this.props.selectedId} menuComponentOnClick={this.props.menuComponentOnClick}/>
+                return <IconEditorMenu selectedId={this.props.selectedId} menuComponentOnClick={this.props.menuComponentOnClick} />
             }
             case "video": {
-                return <VideoEditorMenu selectedId={this.props.selectedId} menuComponentOnClick={this.props.menuComponentOnClick}/>
+                return <VideoEditorMenu selectedId={this.props.selectedId} menuComponentOnClick={this.props.menuComponentOnClick} />
             }
             case "button": {
-                return <ButtonEditorMenu selectedId={this.props.selectedId} menuComponentOnClick={this.props.menuComponentOnClick}/>
+                return <ButtonEditorMenu selectedId={this.props.selectedId} menuComponentOnClick={this.props.menuComponentOnClick} />
             }
             case "spacer": {
-                return <EditDivider selectedId={this.props.selectedId} menuComponentOnClick={this.props.menuComponentOnClick}/>
+                return <EditDivider selectedId={this.props.selectedId} menuComponentOnClick={this.props.menuComponentOnClick} />
             }
             default: {
                 return <>
-                    <EditorButton text="Heading" faIcon={faFont} onClick={this.props.onPush} />
-                    <EditorButton text="Image" faIcon={faFileImage} onClick={this.props.onPush} />
-                    <EditorButton text="Button" faIcon={faAsterisk} onClick={this.props.onPush} />
-                    <EditorButton text="Dividers" faIcon={faBars} onClick={this.props.onPush} />
-                    <EditorButton text="Spacer" faIcon={faAlignRight} onClick={this.props.onPush} />
-                    <EditorButton text="Size" faIcon={faAsterisk} onClick={this.props.onPush} />
-                    <EditorButton text="Icon" faIcon={faArrowDown} onClick={this.props.onPush} />
-                    <EditorButton text="Video" faIcon={faCircle} onClick={this.props.onPush} />
+                    <div className="editor-buttons-container">
+                        <EditorButton text="Heading" faIcon={faFont} onClick={this.props.onPush} />
+                        <EditorButton text="Image" faIcon={faFileImage} onClick={this.props.onPush} />
+                        <EditorButton text="Button" faIcon={faAsterisk} onClick={this.props.onPush} />
+                        <EditorButton text="Dividers" faIcon={faBars} onClick={this.props.onPush} />
+                        <EditorButton text="Spacer" faIcon={faAlignRight} onClick={this.props.onPush} />
+                        <EditorButton text="Size" faIcon={faAsterisk} onClick={this.props.onPush} />
+                        <EditorButton text="Icon" faIcon={faArrowDown} onClick={this.props.onPush} />
+                        <EditorButton text="Video" faIcon={faCircle} onClick={this.props.onPush} />
+                    </div>
                 </>
             }
         }
     }
 
-    
+
     render() {
         return (
 

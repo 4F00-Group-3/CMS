@@ -4,10 +4,6 @@ import "./App.css";
 import {
   Layout,
   Header,
-  Navigation,
-  Footer,
-  FooterSection,
-  FooterLinkList,
   Content
 } from "react-mdl";
 import PlansPricing from "./Components/landingPage";

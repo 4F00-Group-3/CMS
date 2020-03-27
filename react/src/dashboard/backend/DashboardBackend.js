@@ -1,4 +1,4 @@
-import AjaxCall from "../../ajax" //change this
+//import AjaxCall from "../../ajax" //change this
 
 class DashboardBackend {
   constructor() {

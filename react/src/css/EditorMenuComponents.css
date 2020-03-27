@@ -1,7 +1,6 @@
 .HeadingEditorContainer {
   background-color: lightslategray;
-  position: relative;
-  top: 15%;
+
 }
 
 .Title {
@@ -35,7 +34,6 @@
 }
 
 .AlignmentInput {
-  background-color: lightslategray;
   padding: 5%;
   display: flex;
 }
@@ -59,7 +57,6 @@
   left: 0;
   margin-bottom: 10%;
 }
-
 
 .ButtonType {
   background-color: lightslategray;
@@ -154,7 +151,6 @@
 .SetImageSize {
   background-color: lightslategray;
   padding: 5%;
-  
 }
 .Selector {
   display: flex;
@@ -188,8 +184,7 @@
   right: 0;
   bottom: 0;
   background-color: #ccc;
-  transition: .4s;
-  
+  transition: 0.4s;
 }
 
 .slider.round {
@@ -204,8 +199,7 @@
   left: 4px;
   bottom: 4px;
   background-color: white;
-  transition: .4s;
-  
+  transition: 0.4s;
 }
 
 .slider.round:before {
@@ -213,30 +207,46 @@
 }
 
 .input:checked + .slider {
-  background-color: #2196F3;
+  background-color: #2196f3;
 }
 
 .input:focus + .slider {
-  box-shadow: 0 0 1px #2196F3;
+  box-shadow: 0 0 1px #2196f3;
 }
 
 .input:checked + .slider:before {
   transform: translateX(26px);
 }
 
-.HeightTag{
+.HeightTag {
   font-weight: bold;
 }
 
-.WidthTag{
+.WidthTag {
   font-weight: bold;
 }
 
-.ImageApply{
+.ImageApply {
   margin: auto;
   width: 20%;
   /* padding: 10px; */
   /* justify-content: center; */
   /* margin-left: auto;
   margin-right: auto; */
+}
+
+.left {
+  text-align: left !important;
+}
+
+.editor-menu {
+  margin: 2%;
+}
+
+.image-editor-menu-form-row {
+  width: 95%;
+  justify-content:center;
+  align-items:center;
+  margin-right: 0;
+  margin-left: 0;
 }

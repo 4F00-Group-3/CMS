@@ -52,7 +52,7 @@ const containerStyle = {
     background: "white",
     width: (100 - constants.EditorSideBarWidth) + "%",
     height: "100vh",
-    border: "3px solid red",
+    //border: "3px solid red",
     marginLeft: constants.EditorSideBarWidth,
 }
 
