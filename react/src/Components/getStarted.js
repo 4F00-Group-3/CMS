@@ -36,7 +36,7 @@ class getStarted extends Component {
                   convallis.
                 </CardText>
                 <CardActions border>
-                  <Button colored>Sign Up</Button>
+                  <a href="#" onClick={this.props.signUp_click}>Sign up</a>
                 </CardActions>
               </Card>
 
@@ -59,7 +59,7 @@ class getStarted extends Component {
                   convallis.
                 </CardText>
                 <CardActions border>
-                  <Button colored>Sign Up</Button>
+                  <a href="#" onClick={this.props.signUp_click}>Sign up</a>
                 </CardActions>
               </Card>
 
@@ -82,13 +82,14 @@ class getStarted extends Component {
                   convallis.
                 </CardText>
                 <CardActions border>
-                  <Button colored>Sign Up</Button>
+                  <a href="#" onClick={this.props.signUp_click}>Sign up</a>
                 </CardActions>
               </Card>
             </div>
           </Cell>
         </Grid>
       </div>
+
     );
   }
 }

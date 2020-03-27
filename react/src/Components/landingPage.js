@@ -28,7 +28,7 @@ class landingPage extends Component {
             </div>
           </Cell>
         </Grid>
-        <div style={{ background: "white" }}>
+        <div style={{ background: "white" }} id="faqsec">
           <section ref={this.props.scrollDiv} id="faq-page">
             <h2 className="faq-page">FAQ</h2>
           </section>
@@ -120,15 +120,103 @@ class landingPage extends Component {
                   <CardActions className="faq-cards-actions"></CardActions>
                 </Card>
               </div>
+              <span> </span>
+              
+              {/* Row 3 */}
+              <div className="faq-grid" style={{ paddingBottom: "30px" }}>
+                {/* Card 1 */}
+                <Card
+                  style={{
+                    width: "256px",
+                    height: "256px",
+                    background: "skyblue",
+                    margin: "auto"
+                  }}
+                  shadow={0}
+                >
+                  <CardTitle expand />
+                  <CardActions className="faq-cards-actions"></CardActions>
+                </Card>
+                {/* Card 2 */}
+                <Card
+                  style={{
+                    width: "256px",
+                    height: "256px",
+                    background: "skyblue",
+                    margin: "auto"
+                  }}
+                  shadow={0}
+                >
+                  <CardTitle expand />
+                  <CardActions className="faq-cards-actions"></CardActions>
+                </Card>
+                {/* Card 3 */}
+                <Card
+                  style={{
+                    width: "256px",
+                    height: "256px",
+                    background: "skyblue",
+                    margin: "auto"
+                  }}
+                  shadow={0}
+                >
+                  <CardTitle expand />
+                  <CardActions className="faq-cards-actions"></CardActions>
+                </Card>
+              </div>
+              <span> </span>
             </Cell>
           </Grid>
         </div>
-        <div style={{ background: "white" }}>
+        <div style={{ background: "white" }} id = "planspricing">
           <section id="pl-pr"></section>
           <h2 className="faq-page">Plans and Pricing</h2>
           <Grid>
             <Cell col={12}>
               {/* Row 1 */}
+              <div className="faq-grid">
+                {/* Card 1 */}
+                <Card
+                  style={{
+                    width: "256px",
+                    height: "256px",
+                    background: "skyblue",
+                    margin: "auto"
+                  }}
+                  shadow={0}
+                >
+                  <CardTitle expand />
+                  <CardActions className="faq-cards-actions"></CardActions>
+                </Card>
+                {/* Card 2 */}
+                <Card
+                  style={{
+                    width: "256px",
+                    height: "256px",
+                    background: "skyblue",
+                    margin: "auto"
+                  }}
+                  shadow={0}
+                >
+                  <CardTitle expand />
+                  <CardActions className="faq-cards-actions"></CardActions>
+                </Card>
+                {/* Card 3 */}
+                <Card
+                  style={{
+                    width: "256px",
+                    height: "256px",
+                    background: "skyblue",
+                    margin: "auto"
+                  }}
+                  shadow={0}
+                >
+                  <CardTitle expand />
+                  <CardActions className="faq-cards-actions"></CardActions>
+                </Card>
+              </div>
+              <span> </span>
+              {/* Row 2 */}
               <div className="faq-grid">
                 {/* Card 1 */}
                 <Card
