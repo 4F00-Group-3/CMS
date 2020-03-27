@@ -1,7 +1,3 @@
-.HeadingEditorContainer {
-  background-color: lightslategray;
-
-}
 
 .Title {
   padding-right: 5%;
@@ -44,10 +40,6 @@
   display: flex;
 }
 
-.NumericInput {
-  background-color: lightslategray;
-  padding: 5%;
-}
 
 .PrimaryButton {
   padding-left: 4%;

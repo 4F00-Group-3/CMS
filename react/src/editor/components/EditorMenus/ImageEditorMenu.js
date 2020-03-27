@@ -5,7 +5,7 @@ import Col from 'react-bootstrap/Col';
 import { AlignmentImage } from './EditorMenuComponents';
 
 
-class ImageEditor extends Component {
+class ImageEditorMenu extends Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -47,18 +47,6 @@ class ImageEditor extends Component {
                         </Col>
 
                     </Form.Row>
-
-                    {/* <Form.Row>
-                        <Col><Form.Label>Top:</Form.Label></Col>
-                        <Col>
-                            <Form.Control onChange={(event) => this.props.menuComponentOnClick("marginTop|" + event.target.value + this.state.marginUnits)} type="number" placeholder="0" />
-                        </Col>
-                        <Col><Form.Label>Bottom:</Form.Label></Col>
-                        <Col>
-                            <Form.Control onChange={(event) => this.props.menuComponentOnClick("marginBottom|" + event.target.value + this.state.marginUnits)} type="number" placeholder="0" />
-                        </Col>
-                    </Form.Row> */}
-
                     <Col >
                         <Form.Control
                             as="select"
@@ -154,4 +142,4 @@ class ImageEditor extends Component {
     };
 }
 
-export default ImageEditor
+export default ImageEditorMenu
