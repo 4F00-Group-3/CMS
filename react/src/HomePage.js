@@ -11,13 +11,13 @@ import PlansPricing from './Components/landingPage';
 import GetStarted from './Components/getStarted';
 import LoginPage from "./Components/loginpage";
 import LandingPage from "./Components/landingPage";
-
+import CreateAccount from "./Components/createAccount";
 
 class HomePage extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      page: <GetStarted />,
+      page: <GetStarted signUp_click = {this.signUp_OnClick}/>,
       activeButton: "get-started",
     }
     
@@ -33,9 +33,16 @@ class HomePage extends Component {
     }
   }
 
+  signUp_OnClick = () => {
+    this.setState({
+      page: <CreateAccount />,
+      activeButton: ""
+    })
+  }
+
   getStarted_OnClick = () => {
     this.setState({
-      page: <GetStarted />,
+      page: <GetStarted signUp_click = {this.signUp_OnClick}/>,
       activeButton: "get-started",
     })
 
@@ -44,7 +51,7 @@ class HomePage extends Component {
   plansPricing_OnClick = () => {
     this.setState({
       page: <PlansPricing />,
-      activeButton: "get-started",
+      activeButton: "plans-pricing",
     })
   }
 
@@ -74,14 +81,14 @@ class HomePage extends Component {
               "url(http://www.getmdl.io/assets/demos/transparent.jpg) center / cover"
           }}
         >
-          <Header transparent title="NO." style={{ color: "white" }}>
+          <Header transparent title="NO." style={{ color: "white" }}> 
             {/* <Navigation> */}
             <button onClick={this.login_OnClick} className={this.returnButtonCSS("log-in")}>Log In</button>
             <button onClick={this.getStarted_OnClick} className={this.returnButtonCSS("get-started")}>
               Get Started
               </button>
-            <button onClick={this.plansPricing_OnClick} className={this.returnButtonCSS("plans-pricing")}>Plans & Pricing</button>
-            <button onClick={this.FAQ_OnClick} className={this.returnButtonCSS("faq")}>FAQ</button>
+            <a href="#planspricing" onClick={this.plansPricing_OnClick} className={this.returnButtonCSS("plans-pricing")}>Plans & Pricing</a>
+            <a href="#faqsec" onClick={this.FAQ_OnClick} className={this.returnButtonCSS("faq")}>FAQ</a>
             {/* </Navigation> */}
           </Header>
           <Content>
