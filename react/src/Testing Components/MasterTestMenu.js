@@ -78,7 +78,7 @@ class MasterTestMenu extends Component {
     }
     return (
       <div>
-        <div>
+        <div className="sticky-top">
           <button onClick={this.handleEditorClick}>Editor</button>
           <button onClick={this.handleHomeClick}>Home</button>
           <button onClick={this.handleDashClick}>Dash</button>

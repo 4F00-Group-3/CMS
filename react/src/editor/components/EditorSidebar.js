@@ -16,31 +16,42 @@ import EditDivider from './EditorMenus/EditDivider';
 import IconEditorMenu from './EditorMenus/IconEditorMenu';
 import ImageEditorMenu from './EditorMenus/ImageEditorMenu';
 import VideoEditorMenu from './EditorMenus/VideoEditorMenu';
+import EditMenuNav from './EditorMenus/EditorMenuNav';
 
 class EditorSideBar extends Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+          menu:this.props.menu
+        };
+    }
+
+
+
+
     returnMenu() {
         let menu = this.props.menu;
         switch (menu) {
             case "heading": {
-                return <HeadingEditorMenu selectedId={this.props.selectedId} menuComponentOnClick={this.props.menuComponentOnClick}/>
+                return <> <HeadingEditorMenu selectedId={this.props.selectedId} menuComponentOnClick={this.props.menuComponentOnClick}/> <EditMenuNav handleBack={this.props.handleBack} handleDelete={this.props.handleDelete}/> </> 
             }
             case "divider": {
-                return <EditDivider selectedId={this.props.selectedId} menuComponentOnClick={this.props.menuComponentOnClick}/>
+                return <> <EditDivider selectedId={this.props.selectedId} menuComponentOnClick={this.props.menuComponentOnClick}/><EditMenuNav handleBack={this.props.handleBack} handleDelete={this.props.handleDelete}/> </>
             }
             case "image": {
-                return <ImageEditorMenu selectedId={this.props.selectedId} menuComponentOnClick={this.props.menuComponentOnClick}/>
+                return <> <ImageEditorMenu selectedId={this.props.selectedId} menuComponentOnClick={this.props.menuComponentOnClick}/> <EditMenuNav handleBack={this.props.handleBack} handleDelete={this.props.handleDelete}/> </> 
             }
             case "icon": {
-                return <IconEditorMenu selectedId={this.props.selectedId} menuComponentOnClick={this.props.menuComponentOnClick}/>
+                return <> <IconEditorMenu selectedId={this.props.selectedId} menuComponentOnClick={this.props.menuComponentOnClick}/> <EditMenuNav handleBack={this.props.handleBack} handleDelete={this.props.handleDelete}/> </> 
             }
             case "video": {
-                return <VideoEditorMenu selectedId={this.props.selectedId} menuComponentOnClick={this.props.menuComponentOnClick}/>
+                return <> <VideoEditorMenu selectedId={this.props.selectedId} menuComponentOnClick={this.props.menuComponentOnClick}/> <EditMenuNav handleBack={this.props.handleBack} handleDelete={this.props.handleDelete}/> </> 
             }
             case "button": {
-                return <ButtonEditorMenu selectedId={this.props.selectedId} menuComponentOnClick={this.props.menuComponentOnClick}/>
+                return <> <ButtonEditorMenu selectedId={this.props.selectedId} menuComponentOnClick={this.props.menuComponentOnClick}/> <EditMenuNav handleBack={this.props.handleBack} handleDelete={this.props.handleDelete}/> </> 
             }
             case "spacer": {
-                return <EditDivider selectedId={this.props.selectedId} menuComponentOnClick={this.props.menuComponentOnClick}/>
+                return <> <EditDivider selectedId={this.props.selectedId} menuComponentOnClick={this.props.menuComponentOnClick}/> <EditMenuNav handleBack={this.props.handleBack} handleDelete={this.props.handleDelete}/> </> 
             }
             default: {
                 return <>

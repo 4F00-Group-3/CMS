@@ -13,6 +13,7 @@ class Editor extends Component {
             page: props.page,
             menu: "main",
             selectedId: undefined,
+            activeSection: undefined
         }
     }
 
@@ -152,11 +153,38 @@ class Editor extends Component {
         )
     }
 
+    handleBack = () => {
+        this.setState({menu:'main'});
+    }
+
+    handleDelete = () => {
+        var page = this.state.page;
+        var activeSection = this.state.activeSection.state.active;
+
+        console.log(page);
+
+        for (let i = 0; i < page.length; i++) {
+            if(page[i].id == activeSection){
+                page.splice(i, 1);
+
+            }
+        }
+        console.log(this.state.activeSection);
+
+        this.state.activeSection.setState({active:0});
+        this.handleBack();
+    }
+
+    setActive = (i, activeSec) => {
+        this.setState({activeSection: activeSec})
+    }
+
+
     render() {
         return (
             <>
-                <EditorSideBar onPush={this.onClick} menu={this.state.menu} selectedId={this.state.selectedId} menuComponentOnClick={this.menuComponentOnClick} />
-                <EditingPage page={this.state.page} onSectionPush={this.onSectionPush} />
+                <EditorSideBar onPush={this.onClick} menu={this.state.menu} selectedId={this.state.selectedId} menuComponentOnClick={this.menuComponentOnClick} handleBack={this.handleBack} handleDelete={this.handleDelete} />
+                <EditingPage page={this.state.page} onSectionPush={this.onSectionPush} setActive={this.setActive} />
             </>
         );
     }
