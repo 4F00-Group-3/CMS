@@ -5,9 +5,16 @@ import {
   Button,
   Card,
   CardTitle,
+  CardActions,
   CardText,
-  CardActions
+  Content,
+  FooterSection,
+  Footer,
+  FooterLinkList,
+  Header,
+  Navigation
 } from "react-mdl";
+import { Link, Route } from "react-router-dom";
 
 class getStarted extends Component {
   render() {
@@ -25,15 +32,28 @@ class getStarted extends Component {
                   expand
                   style={{
                     color: "#fff",
-                    background:
-                      "url(http://www.getmdl.io/assets/demos/dog.png) bottom right 15% no-repeat #46B6AC"
+                    background: "url(/imagesFolder/FirstPlan.jpg)"
                   }}
-                >
-                  Plan 1
-                </CardTitle>
+                ></CardTitle>
+                <CardText>Get started with building web applications!</CardText>
+                <CardActions border>
+                  <a href="#" onClick={this.props.signUp_click}>Sign up</a>
+                </CardActions>
+              </Card>
+
+              <Card
+                shadow={0}
+                style={{ width: "320px", height: "550px", margin: "auto" }}
+              >
+                <CardTitle
+                  expand
+                  style={{
+                    color: "#fff",
+                    background: "url(/imagesFolder/SecondPlan.jpg)"
+                  }}
+                ></CardTitle>
                 <CardText>
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenan
-                  convallis.
+                  Take your business to the next level with premium features!
                 </CardText>
                 <CardActions border>
                   <a href="#" onClick={this.props.signUp_click}>Sign up</a>
@@ -48,38 +68,12 @@ class getStarted extends Component {
                   expand
                   style={{
                     color: "#fff",
-                    background:
-                      "url(http://www.getmdl.io/assets/demos/dog.png) bottom right 15% no-repeat #46B6AC"
+                    background: "url(/imagesFolder/ThirdPlan.jpg)"
                   }}
-                >
-                  Plan 2
-                </CardTitle>
+                ></CardTitle>
                 <CardText>
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenan
-                  convallis.
-                </CardText>
-                <CardActions border>
-                  <a href="#" onClick={this.props.signUp_click}>Sign up</a>
-                </CardActions>
-              </Card>
-
-              <Card
-                shadow={0}
-                style={{ width: "320px", height: "550px", margin: "auto" }}
-              >
-                <CardTitle
-                  expand
-                  style={{
-                    color: "#fff",
-                    background:
-                      "url(http://www.getmdl.io/assets/demos/dog.png) bottom right 15% no-repeat #46B6AC"
-                  }}
-                >
-                  Plan 3
-                </CardTitle>
-                <CardText>
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenan
-                  convallis.
+                  Get the necessary tools to provide a great web experience for
+                  your customers!
                 </CardText>
                 <CardActions border>
                   <a href="#" onClick={this.props.signUp_click}>Sign up</a>
@@ -88,6 +82,14 @@ class getStarted extends Component {
             </div>
           </Cell>
         </Grid>
+        <Footer size="mini">
+          <FooterSection type="left" logo="No">
+            <FooterLinkList>
+              <a href="#">Help</a>
+              <a href="#">Privacy & Terms</a>
+            </FooterLinkList>
+          </FooterSection>
+        </Footer>
       </div>
 
     );
