@@ -41,7 +41,6 @@ class EditingPage extends Component {
                         key={index}
                         />);
             }
-
             return page;
         } catch (error) {
 

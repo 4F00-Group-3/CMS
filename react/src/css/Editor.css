@@ -42,7 +42,7 @@
   float: left;
   position: fixed;
 
-  display: flex;
+  display: block;
   justify-content: center;
   align-items: center;
   /* height: 100%; */
@@ -75,4 +75,8 @@
   padding: 10px;
   text-decoration: white;
   float: left;
+}
+
+.edit-menu-nav {
+  margin: 2%;
 }

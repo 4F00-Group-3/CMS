@@ -4,6 +4,7 @@ class DashboardBackend {
   constructor() {
     this.deleted = [];
     this.updates = [];
+    this.pages = this.all();
   }
 
 

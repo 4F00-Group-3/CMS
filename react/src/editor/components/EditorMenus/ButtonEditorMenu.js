@@ -100,6 +100,14 @@ class ButtonEditor extends Component {
         this.setState({ borderRadiusUnits: value })
     }
 
+    /**
+    * This method accounts for the units that the user selects for width
+    * @param {units of border radius} value 
+    */
+    onWidthUnitChange(value) {
+        this.setState({ widthUnits: value })
+    }
+
 
     render() {
         return (

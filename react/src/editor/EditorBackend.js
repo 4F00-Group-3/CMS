@@ -230,6 +230,7 @@ class EditorBackend {
                         {
                             borderTop: "8px solid #bbb",
                             borderRadius: "5px",
+                            width: "50%",
                         }
                     ],
                 }
