@@ -9,6 +9,11 @@ class PageSection extends Component {
         }
     }
 
+    toggleClickClass = () => {
+        this.props.onSectionPush(this.props.index, this.props.type, this.props.style);
+        this.props.toggleClickClass(this.props.index);
+    }
+
     returnElement() {
         switch (this.props.type) {
             case "heading": {
@@ -16,7 +21,7 @@ class PageSection extends Component {
                     <h1
                         key={this.props.index}
                         style={this.props.style}>
-                            {this.props.text}
+                        {this.props.text}
                     </h1>
                 )
             }
@@ -30,7 +35,11 @@ class PageSection extends Component {
                 return (<button key={this.props.index} onClick={this.props.onClick} style={this.props.style}>{this.props.text}</button>)
             }
             case "spacer": {
-                return (<div key={this.props.index} style={this.props.style}></div>);
+                return (
+                    <div key={this.props.index} style={this.props.style}>
+                        {'\xa0'}
+                    </div>
+                );
             }
             case "video": {
                 return (
@@ -51,8 +60,10 @@ class PageSection extends Component {
     }
 
     render() {
+        const isClicked = this.props.clicked;
+        var classList = isClicked ? "pageSectionClick" : "pageSection";
         return (
-            <div className="pageSection" onClick={() => this.props.onSectionPush(this.props.index, this.props.type, this.props.style)}>
+            <div className={classList} onClick={this.toggleClickClass}>
                 {this.returnElement()}
             </div>
         );

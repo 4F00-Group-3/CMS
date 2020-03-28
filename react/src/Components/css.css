@@ -32,14 +32,14 @@ img.center {
   background-color: rgb(240, 240, 240);
   padding-top: 1%;
   padding-bottom: 1%;
-  width: 50%; /*Widen*/
+  width: 100%; /*Widen*/
 }
 
 .submitformdiv {
   background-color: white;
   margin: 10%;
-  margin-left: 15%;
-  margin-right: 15%;
+  margin-left: 35%;
+  margin-right: 35%;
   padding: 1%;
   text-align: center;
 }
@@ -53,7 +53,22 @@ img.center {
   text-align: center;
 }
 
-.imgMenu {
-  height: "500px";
-  position: "relative";
+.editorMenu {
+  color: white;
+  text-align: center;
+}
+
+.Components-Editor {
+  margin-top: 2vh;
+  margin: auto;
+  width: 60vh;
+  height: 100vh;
+  background: grey;
+  padding: 10px;
+  text-decoration: white;
+  float: left;
+}
+
+.centreBoxOnPage {
+  margin-top: 5%;
 }

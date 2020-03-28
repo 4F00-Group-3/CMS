@@ -5,10 +5,16 @@ import {
   Layout,
   Header,
   Navigation,
-  Content,
+  Footer,
+  FooterSection,
+  FooterLinkList,
+  Content
 } from "react-mdl";
+
 import PlansPricing from './Components/landingPage';
 import GetStarted from './Components/getStarted';
+import PlansPricing from "./Components/landingPage";
+import GetStarted from "./Components/getStarted";
 import LoginPage from "./Components/loginpage";
 import LandingPage from "./Components/landingPage";
 import CreateAccount from "./Components/createAccount";
@@ -25,14 +31,12 @@ class HomePage extends Component {
   }
 
   returnButtonCSS = (button) => {
-    console.log(button)
     if (button === this.state.activeButton) {
-      return "btn btn-primary active"
+      return "btn btn-primary active";
+    } else {
+      return "btn btn-primary";
     }
-    else {
-      return "btn btn-primary"
-    }
-  }
+  };
 
   signUp_OnClick = () => {
     this.setState({
@@ -59,40 +63,50 @@ class HomePage extends Component {
   login_OnClick = () => {
     this.setState({
       page: <LoginPage />,
-      activeButton: "log-in",
-    })
-  }
+      activeButton: "log-in"
+    });
+  };
 
   FAQ_OnClick = () => {
     this.setState({
-      page: <LandingPage scrollDiv={this.scrollDiv}/>,
-      activeButton: "faq",
-    })
+      page: <LandingPage scrollDiv={this.scrollDiv} />,
+      activeButton: "faq"
+    });
     //this.scrollDiv.current.scrollIntoView({ behavior: 'smooth' })
     //eventually scroll to component here,
     //for the sake of time I'm going to leave this
-  }
+  };
 
   render() {
     return (
       <div>
         <Layout
           style={{
-            background:
-              "url(http://www.getmdl.io/assets/demos/transparent.jpg) center / cover"
+            background: "url(/imagesFolder/techbkgrd2.jpg)",
+            backgroundSize: "cover"
           }}
         >
           <Header transparent title="NO." style={{ color: "white" }}> 
             {/* <Navigation> */}
-            <button onClick={this.login_OnClick} className={this.returnButtonCSS("log-in")}>Log In</button>
-            <button onClick={this.getStarted_OnClick} className={this.returnButtonCSS("get-started")}>
+            <button
+              onClick={this.login_OnClick}
+              className={this.returnButtonCSS("log-in")}
+            >
+              Log In
+            </button>
+            <button
+              onClick={this.getStarted_OnClick}
+              className={this.returnButtonCSS("get-started")}
+            >
               Get Started
+
               </button>
             <a href="#planspricing" onClick={this.plansPricing_OnClick} className={this.returnButtonCSS("plans-pricing")}>Plans & Pricing</a>
             <a href="#faqsec" onClick={this.FAQ_OnClick} className={this.returnButtonCSS("faq")}>FAQ</a>
             {/* </Navigation> */}
           </Header>
           <Content>
+            {/*overflow: "hidden" Removes inner scrollbar */}
             {/* <div className="page-content" /> */}
             {/* <Main /> */}
             {this.state.page}

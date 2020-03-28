@@ -1,7 +1,7 @@
 .HeadingEditorContainer {
   background-color: lightslategray;
   position: relative;
-  top:15%;
+  top: 15%;
 }
 
 .Title {
@@ -25,7 +25,6 @@
 }
 
 .LinkInput {
-  background-color: lightslategray;
   padding: 5%;
   display: flex;
 }
@@ -53,11 +52,11 @@
 }
 
 .PrimaryButton {
-  padding-left:4%;
+  padding-left: 4%;
   padding-right: 10%;
-  position:absolute;
-  bottom:0;
-  left:0;
+  position: absolute;
+  bottom: 0;
+  left: 0;
   margin-bottom: 10%;
 }
 

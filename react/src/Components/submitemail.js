@@ -7,36 +7,38 @@ class submitemail extends Component {
   render() {
     return (
       <div>
-        <Container maxWidth="sm">
-          <Card>
-            <div>
-              <div className="submitformdiv">
-                <h2>Step 1</h2>
-                <p>Please enter your email.</p>
+        <div className="centreBoxOnPage">
+          <Container maxWidth="sm">
+            <Card>
+              <div>
+                <div className="submitformdiv">
+                  <h2>Step 1</h2>
+                  <p>Please enter your email.</p>
 
-                <form className="centerBoxItems">
-                  <label for="email">Email</label>
-                  <br></br>
-                  <input
-                    type="text"
-                    id="email"
-                    emailaddr="email"
-                    class="emailaddressbar"
-                  />
-                  <br></br>
-                  <br></br>
-                  <input
-                    type="submit"
-                    value="Next"
-                    className="submitnextbutton"
-                  />
-                  <br></br>
-                  <br></br>
-                </form>
+                  <form className="centerBoxItems">
+                    <label for="email">Email</label>
+                    <br></br>
+                    <input
+                      type="text"
+                      id="email"
+                      emailaddr="email"
+                      class="emailaddressbar"
+                    />
+                    <br></br>
+                    <br></br>
+                    <input
+                      type="submit"
+                      value="Next"
+                      className="submitnextbutton"
+                    />
+                    <br></br>
+                    <br></br>
+                  </form>
+                </div>
               </div>
-            </div>
-          </Card>
-        </Container>
+            </Card>
+          </Container>
+        </div>
       </div>
     );
   }
