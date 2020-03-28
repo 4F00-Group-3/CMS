@@ -37,7 +37,7 @@ class EditingPage extends Component {
                         url={section.url}
                         onSectionPush={this.props.onSectionPush}
                         toggleClickClass = {this.toggleClickClass}
-                        clicked = {this.state.active == section.id ? true : false}
+                        clicked = {this.state.active === section.id ? true : false}
                         key={index}
                         />);
             }
