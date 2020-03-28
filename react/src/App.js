@@ -11,3 +11,6 @@ class App extends Component {
   }
 }
 export default App;
+{
+  /* https://www.andreasreiterer.at/fix-browserrouter-on-apache/ -- ReactRouter help*/
+}

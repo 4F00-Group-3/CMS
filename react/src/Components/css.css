@@ -41,4 +41,34 @@ img.center {
   margin-left: 35%;
   margin-right: 35%;
   padding: 1%;
+  text-align: center;
+}
+
+/*For boxes*/
+.boxPadding {
+  padding: 20px;
+}
+
+.centerBoxItems {
+  text-align: center;
+}
+
+.editorMenu {
+  color: white;
+  text-align: center;
+}
+
+.Components-Editor {
+  margin-top: 2vh;
+  margin: auto;
+  width: 60vh;
+  height: 100vh;
+  background: grey;
+  padding: 10px;
+  text-decoration: white;
+  float: left;
+}
+
+.centreBoxOnPage {
+  margin-top: 5%;
 }

@@ -65,13 +65,13 @@ class MasterTestMenu extends Component {
         page = <Dashboard />;
         break;
       case "Login":
-        page = <Login handleDashClick={this.handleDashClick}/>;
+        page = <Login />;
         break;
       case "Create Account":
         page = <CreateAccount />;
         break;
       case "SitePage":
-        page = <SitePage onClick={this.handleDashClick}/>
+        page = <SitePage />
         break;
       default:
         page = <Editor />;
