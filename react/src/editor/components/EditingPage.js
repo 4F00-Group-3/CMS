@@ -1,7 +1,36 @@
-import React, { Component } from 'react';
-import * as constants from '../../constants';
-import PageSection from './PageSection';
-import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd';  //drag and drop
+import React, { Component, useRef, useCallback, useState } from "react";
+import { DndProvider } from "react-dnd";
+import { useDrag, useDrop } from "react-dnd";
+import Backend from "react-dnd-html5-backend";
+import * as constants from "../../constants";
+import PageSection from "./PageSection";
+import Board from "./Board";
+import Card from "./Card.jsx";
+//import Container from "./Container.jsx";
+import update from 'immutability-helper'
+import {DragDropContext, Draggable, Droppable } from "react-beautiful-dnd"
+
+const style = {
+  width: "60%",
+  height: "100vh",
+  marginLeft: "50vh",
+}
+
+const reorder = (list, startIndex, endIndex) => {
+    const result = Array.from(list);
+    const [removed] = result.splice(startIndex, 1);
+    result.splice(endIndex, 0, removed);
+
+    return result;
+};
+
+const Hello = () => {
+  try{
+    console.log(this.returnPage());
+  } catch (error){console.log("Error")}
+}
+
+
 
 
     
@@ -29,14 +58,22 @@ class EditingPage extends Component {
         super(props);
         this.state = {
             page: this.props.page,
-        }
+        };
+        //this.onDragEnd = this.onDragEnd.bind(this);
     }
+/*
+    getCardsArr(){
+      this.returnPage();
+      try{
+        return cardsArr;
+      } catch (error){}
+    };*/
 
     /*********************************************************** 
     state = {
         page: this.props.page,
     };
-*/
+*//*
     id2List = {
         droppable: 'items',
     };//?
@@ -73,6 +110,7 @@ class EditingPage extends Component {
     returnPage() {
         try {
             let page = [];
+            //cardsArr = [];
             for (let index = 0; index < this.props.page.length; index++) {
                 let section = this.props.page[index];
                 page.push(
@@ -91,39 +129,117 @@ class EditingPage extends Component {
 
             return page;
         } catch (error) {
-
+            return [];
         }
     }   //returns the sections added to the editor page
 
-    /******************* */
-    onDragEnd = result => {
+    /******************* *//*
+    onDragEnd(result) {
         const { source, destination } = result;
 
-        if (!destination) { //if invalid
+        if (!result.destination) { //if invalid
             return;         //cancel
         }
 
-        if (source.droppableId === destination.droppableId) {
+
+        /*if (source.droppableId === destination.droppableId) {
             const items = order(
                 this.getList(source.droppableId),
                 source.index,
                 destination.index
             );
 
-        } 
+        } *//*
+        const items = reorder(
+            this.returnPage(),
+            result.source.index,
+            result.destination.index
+          );
+      
+          this.setState({
+            items
+          });
 
     };  //What to do after the drag is done
     /******************* */
 
     render() {
+
+      const Container = () => {
+        {
+          try{
+            console.log("!!!"+this.returnPage());
+          }
+          catch(error){console.log("!!! no page");}
+      
+          try{
+            var x = this.returnPage();
+          }
+          catch (error){
+            var x = [" "];
+          }
+      
+          const [cards, setCards] = useState(x);
+         
+          const moveCard = useCallback(
+            (dragIndex, hoverIndex) => {
+              const dragCard = cards[dragIndex]
+              setCards(
+                update(cards, {
+                  $splice: [
+                    [dragIndex, 1],
+                    [hoverIndex, 0, dragCard],
+                  ],
+                }),
+              )
+            },
+            [cards],
+          )
+      
+          const renderCard = (card, index) => {
+            console.log(this.props.page[index].id);
+            return (
+              <Card
+                  key={this.props.page[index].id}
+                  index={index}
+                  id={this.props.page[index].id}
+                  text={this.props.page[index].text}
+                  faClassName={this.props.page[index].faClassName}
+                  onClick={this.props.page[index].onClick}
+                  url={this.props.page[index].url}
+                  onSectionPush={this.props.page[index].onSectionPush}
+                  moveCard={moveCard}
+                />
+                /*key={card.id}
+                index={index}
+                id={card.id}
+                text={card.text}
+                faClassName={card.faClassName}
+                onClick={card.onClick}
+                url={card.url}
+                onSectionPush={card.onSectionPush}
+                moveCard={moveCard}*/
+              
+            )
+          }
+          
+          return (
+            <>
+              <div style={style}>{cards.map((card, i) => renderCard(card, i))}</div>
+            </>
+          )
+        }
+      }
+
+      
         console.log("Page: "+this.returnPage());
         /*
         try{
             this.returnPage().map((item, index) => (
                 //console.log("Index: "+index))
-                console.log("Section: "+this.props.page[index]))   //undefined NO GOOD
+                console.log("Section: "+this.props.page[index].id))   //undefined NO GOOD
             )
-        } catch(error){}*/
+        } catch(error){}
         if ( this.returnPage() != null ){   //if there is something on the editor screen, then we can drag and drop
             return (
                 <DragDropContext onDragEnd={this.onDragEnd}>
@@ -136,6 +252,7 @@ class EditingPage extends Component {
                             >
                             
                             {this.returnPage().map((item, index) => (//this.returnPage() returns array of sections (components)
+
                                 //                section id                                   section id
                                 <Draggable key={this.props.page[index].id} draggableId={this.props.page[index].id} index={index}>
                                 
@@ -151,7 +268,7 @@ class EditingPage extends Component {
                                           provided.draggableProps.style)
                                     }
                                     >
-                                    {this.returnPage()[index]/*1component i.e. a header*/}
+                                    {this.returnPage()[index]/*1component i.e. a header*//*}
                                     </div>
                                 )}
                                 </Draggable>
@@ -171,7 +288,7 @@ class EditingPage extends Component {
                         )}
                     </Droppable>
                 </DragDropContext>
-                */
+                *//*
                );
         }
         else {      //if theres nothing on the editor screen yet, just print
@@ -182,7 +299,14 @@ class EditingPage extends Component {
             )
         }
     }
-}
+  }/**/
+    return(
+      <DndProvider backend={Backend}>
+        <Container />
+      </DndProvider>
+    )
+  }
+}/** *///<Container />
 
 /*
 const containerStyle = isDraggingOver => ({
@@ -195,8 +319,7 @@ const containerStyle = {
     height: "100vh",
     border: "3px solid red",
     marginLeft: constants.EditorSideBarWidth,
-    
-}//containerStyle --> styling for whole page not 1 component
+} //containerStyle --> styling for whole page not 1 component
 
 
 
