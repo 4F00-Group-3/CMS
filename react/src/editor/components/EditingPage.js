@@ -110,7 +110,6 @@ class EditingPage extends Component {
     returnPage() {
         try {
             let page = [];
-            //cardsArr = [];
             for (let index = 0; index < this.props.page.length; index++) {
                 let section = this.props.page[index];
                 page.push(
@@ -201,14 +200,17 @@ class EditingPage extends Component {
             return (
               <Card
                   key={this.props.page[index].id}
-                  index={index}
                   id={this.props.page[index].id}
+                  type={this.props.page[index].type}
+                  style={this.props.page[index].style[0]}
                   text={this.props.page[index].text}
                   faClassName={this.props.page[index].faClassName}
                   onClick={this.props.page[index].onClick}
                   url={this.props.page[index].url}
                   onSectionPush={this.props.page[index].onSectionPush}
+                  index={index}
                   moveCard={moveCard}
+                  
                 />
                 /*key={card.id}
                 index={index}
