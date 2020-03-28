@@ -9,6 +9,11 @@ class PageSection extends Component {
         }
     }
 
+    toggleClickClass = () => {
+        this.props.onSectionPush(this.props.index, this.props.type, this.props.style); 
+        this.props.toggleClickClass(this.props.index); 
+    }
+
     returnElement() {
         switch (this.props.type) {
             case "heading": {
@@ -51,8 +56,10 @@ class PageSection extends Component {
     }
 
     render() {
+        const isClicked = this.props.clicked;
+        var classList = isClicked ? "pageSectionClick" : "pageSection";
         return (
-            <div className="pageSection" onClick={() => this.props.onSectionPush(this.props.index, this.props.type, this.props.style)}>
+            <div className={classList} onClick={this.toggleClickClass}>
                 {this.returnElement()}
             </div>
         );
