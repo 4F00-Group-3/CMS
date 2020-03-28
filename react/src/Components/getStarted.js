@@ -37,7 +37,7 @@ class getStarted extends Component {
                 ></CardTitle>
                 <CardText>Get started with building web applications!</CardText>
                 <CardActions border>
-                  <Button colored>Sign Up</Button>
+                  <a href="#" onClick={this.props.signUp_click}>Sign up</a>
                 </CardActions>
               </Card>
 
@@ -56,7 +56,7 @@ class getStarted extends Component {
                   Take your business to the next level with premium features!
                 </CardText>
                 <CardActions border>
-                  <Button colored>Sign Up</Button>
+                  <a href="#" onClick={this.props.signUp_click}>Sign up</a>
                 </CardActions>
               </Card>
 
@@ -76,7 +76,7 @@ class getStarted extends Component {
                   your customers!
                 </CardText>
                 <CardActions border>
-                  <Button colored>Sign Up</Button>
+                  <a href="#" onClick={this.props.signUp_click}>Sign up</a>
                 </CardActions>
               </Card>
             </div>
@@ -91,6 +91,7 @@ class getStarted extends Component {
           </FooterSection>
         </Footer>
       </div>
+
     );
   }
 }

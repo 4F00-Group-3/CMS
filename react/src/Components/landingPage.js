@@ -37,20 +37,9 @@ class landingPage extends Component {
             </div>
           </Cell>
         </Grid>
-        <br />
-        <br />
-        <br />
-        <div
-          style={{
-            background: "white"
-          }}
-        >
-          <section id="faq-page">
-            <br />
-            <br />
-            <h1 className="faq-page">Frequently Asked Questions</h1>
-            <br />
-            <br />
+        <div style={{ background: "white" }} id="faqsec">
+          <section ref={this.props.scrollDiv} id="faq-page">
+            <h2 className="faq-page">FAQ</h2>
           </section>
 
           <Grid
@@ -145,35 +134,58 @@ class landingPage extends Component {
                   <CardActions className="faq-cards-actions"></CardActions>
                 </Card>
               </div>
+              <span> </span>
+              
+              {/* Row 3 */}
+              <div className="faq-grid" style={{ paddingBottom: "30px" }}>
+                {/* Card 1 */}
+                <Card
+                  style={{
+                    width: "256px",
+                    height: "256px",
+                    background: "skyblue",
+                    margin: "auto"
+                  }}
+                  shadow={0}
+                >
+                  <CardTitle expand />
+                  <CardActions className="faq-cards-actions"></CardActions>
+                </Card>
+                {/* Card 2 */}
+                <Card
+                  style={{
+                    width: "256px",
+                    height: "256px",
+                    background: "skyblue",
+                    margin: "auto"
+                  }}
+                  shadow={0}
+                >
+                  <CardTitle expand />
+                  <CardActions className="faq-cards-actions"></CardActions>
+                </Card>
+                {/* Card 3 */}
+                <Card
+                  style={{
+                    width: "256px",
+                    height: "256px",
+                    background: "skyblue",
+                    margin: "auto"
+                  }}
+                  shadow={0}
+                >
+                  <CardTitle expand />
+                  <CardActions className="faq-cards-actions"></CardActions>
+                </Card>
+              </div>
+              <span> </span>
             </Cell>
           </Grid>
         </div>
-        <div
-          style={{
-            background: "transparent"
-          }}
-        >
-          <br />
-          <br />
-          <br />
-        </div>
-        <div
-          style={{
-            background: "white"
-          }}
-        >
-          <br />
-          <br />
-          <h1 className="faq-page">
-            Find a plan that fits perfectly <br />
-            for your business!
-          </h1>
-          <br />
-          <Grid
-            style={{
-              background: "white"
-            }}
-          >
+        <div style={{ background: "white" }} id = "planspricing">
+          <section id="pl-pr"></section>
+          <h2 className="faq-page">Plans and Pricing</h2>
+          <Grid>
             <Cell col={12}>
               {/* Row 1 */}
               <div className="faq-grid">
@@ -212,6 +224,49 @@ class landingPage extends Component {
                     margin: "auto"
                   }}
                   shadow={2}
+                >
+                  <CardTitle expand />
+                  <CardActions className="faq-cards-actions"></CardActions>
+                </Card>
+              </div>
+              <span> </span>
+              {/* Row 2 */}
+              <div className="faq-grid">
+                {/* Card 1 */}
+                <Card
+                  style={{
+                    width: "256px",
+                    height: "256px",
+                    background: "skyblue",
+                    margin: "auto"
+                  }}
+                  shadow={0}
+                >
+                  <CardTitle expand />
+                  <CardActions className="faq-cards-actions"></CardActions>
+                </Card>
+                {/* Card 2 */}
+                <Card
+                  style={{
+                    width: "256px",
+                    height: "256px",
+                    background: "skyblue",
+                    margin: "auto"
+                  }}
+                  shadow={0}
+                >
+                  <CardTitle expand />
+                  <CardActions className="faq-cards-actions"></CardActions>
+                </Card>
+                {/* Card 3 */}
+                <Card
+                  style={{
+                    width: "256px",
+                    height: "256px",
+                    background: "skyblue",
+                    margin: "auto"
+                  }}
+                  shadow={0}
                 >
                   <CardTitle expand />
                   <CardActions className="faq-cards-actions"></CardActions>

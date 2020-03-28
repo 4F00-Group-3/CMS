@@ -10,10 +10,6 @@ class EditingPage extends Component {
         }
     }
 
-    onSectionClick = (id, type) => {
-      
-    }
-
     /**
      * This method renders a page from JSON onto the actual page editor
      * Can be reused for actual page viewing as well
@@ -33,7 +29,7 @@ class EditingPage extends Component {
                         onClick={section.onClick}
                         url={section.url}
                         onSectionPush={this.props.onSectionPush}
-
+                        key={index}
                         />);
             }
 

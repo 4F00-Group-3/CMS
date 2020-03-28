@@ -14,20 +14,20 @@ import PlansPricing from "./Components/landingPage";
 import GetStarted from "./Components/getStarted";
 import LoginPage from "./Components/loginpage";
 import LandingPage from "./Components/landingPage";
+import CreateAccount from "./Components/createAccount";
 
 class HomePage extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      page: <GetStarted />,
-      activeButton: "get-started"
-    };
-
+      page: <GetStarted signUp_click = {this.signUp_OnClick}/>,
+      activeButton: "get-started",
+    }
+    
     this.scrollDiv = createRef();
   }
 
-  returnButtonCSS = button => {
-    console.log(button);
+  returnButtonCSS = (button) => {
     if (button === this.state.activeButton) {
       return "btn btn-primary active";
     } else {
@@ -35,19 +35,27 @@ class HomePage extends Component {
     }
   };
 
+  signUp_OnClick = () => {
+    this.setState({
+      page: <CreateAccount />,
+      activeButton: ""
+    })
+  }
+
   getStarted_OnClick = () => {
     this.setState({
-      page: <GetStarted />,
-      activeButton: "get-started"
-    });
-  };
+      page: <GetStarted signUp_click = {this.signUp_OnClick}/>,
+      activeButton: "get-started",
+    })
+
+  }
 
   plansPricing_OnClick = () => {
     this.setState({
       page: <PlansPricing />,
-      activeButton: "get-started"
-    });
-  };
+      activeButton: "plans-pricing",
+    })
+  }
 
   login_OnClick = () => {
     this.setState({
@@ -75,7 +83,7 @@ class HomePage extends Component {
             backgroundSize: "cover"
           }}
         >
-          <Header transparent title="NO." style={{ color: "white" }}>
+          <Header transparent title="NO." style={{ color: "white" }}> 
             {/* <Navigation> */}
             <button
               onClick={this.login_OnClick}
@@ -88,19 +96,10 @@ class HomePage extends Component {
               className={this.returnButtonCSS("get-started")}
             >
               Get Started
-            </button>
-            <button
-              onClick={this.plansPricing_OnClick}
-              className={this.returnButtonCSS("plans-pricing")}
-            >
-              Plans & Pricing
-            </button>
-            <button
-              onClick={this.FAQ_OnClick}
-              className={this.returnButtonCSS("faq")}
-            >
-              FAQ
-            </button>
+
+              </button>
+            <a href="#planspricing" onClick={this.plansPricing_OnClick} className={this.returnButtonCSS("plans-pricing")}>Plans & Pricing</a>
+            <a href="#faqsec" onClick={this.FAQ_OnClick} className={this.returnButtonCSS("faq")}>FAQ</a>
             {/* </Navigation> */}
           </Header>
           <Content>
