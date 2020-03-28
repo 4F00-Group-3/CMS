@@ -51,6 +51,8 @@ const Card = ({ id, type, style, text, faClassName, onClick, url, onSectionPush,
       // but it's good here for the sake of performance
       // to avoid expensive index searches.
       item.index = hoverIndex
+      console.log("ITEM INDEX: "+item.index)
+      console.log("HOVER INDEX: "+hoverIndex);
     },
   })
   const [{ isDragging }, drag] = useDrag({
@@ -61,6 +63,7 @@ const Card = ({ id, type, style, text, faClassName, onClick, url, onSectionPush,
   })
   const opacity = isDragging ? 0 : 1
   drag(drop(ref))
+  /*
   console.log("ID "+id);
   console.log("TYPE "+type);
   console.log("STYLE "+style);
@@ -69,10 +72,12 @@ const Card = ({ id, type, style, text, faClassName, onClick, url, onSectionPush,
   console.log("ONCLICK "+onClick);
   console.log("URL "+url);
   console.log("ON SEC PUSH "+onSectionPush);
+  */
+
     return (
       <div ref={ref} style={{ ...style, opacity }}>
         { 
-            <PageSection
+          <PageSection
             index={id}
             type={type}
             style={style}
