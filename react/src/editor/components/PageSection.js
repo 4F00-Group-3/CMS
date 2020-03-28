@@ -10,8 +10,8 @@ class PageSection extends Component {
     }
 
     toggleClickClass = () => {
-        this.props.onSectionPush(this.props.index, this.props.type, this.props.style); 
-        this.props.toggleClickClass(this.props.index); 
+        this.props.onSectionPush(this.props.index, this.props.type, this.props.style);
+        this.props.toggleClickClass(this.props.index);
     }
 
     returnElement() {
@@ -21,7 +21,7 @@ class PageSection extends Component {
                     <h1
                         key={this.props.index}
                         style={this.props.style}>
-                            {this.props.text}
+                        {this.props.text}
                     </h1>
                 )
             }
@@ -35,7 +35,11 @@ class PageSection extends Component {
                 return (<button key={this.props.index} onClick={this.props.onClick} style={this.props.style}>{this.props.text}</button>)
             }
             case "spacer": {
-                return (<div key={this.props.index} style={this.props.style}></div>);
+                return (
+                    <div key={this.props.index} style={this.props.style}>
+                        {'\xa0'}
+                    </div>
+                );
             }
             case "video": {
                 return (

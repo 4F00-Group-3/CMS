@@ -10,6 +10,9 @@ import {
   FooterLinkList,
   Content
 } from "react-mdl";
+
+import PlansPricing from './Components/landingPage';
+import GetStarted from './Components/getStarted';
 import PlansPricing from "./Components/landingPage";
 import GetStarted from "./Components/getStarted";
 import LoginPage from "./Components/loginpage";
