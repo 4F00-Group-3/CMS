@@ -3,7 +3,7 @@
 require_once ('header_functions.php');
 
 $functions = array('test', 'currentUser', 'currentUserId', 'addUser', 'getAllPages', 'getAllUsers', 'getMedia', 'getPage',
-    'addMedia', 'addPage', 'deletePage', 'deleteUser', 'login', 'createAccount','getWebsiteData','getWebsiteData');
+    'addMedia', 'addPage', 'deletePage', 'deleteUser', 'login', 'createAccount','getWebsiteData','getAccountMedia');
 
 if(isset($_POST['function']) && in_array($_POST['function'], $functions)){
     $_POST['function']();
@@ -64,7 +64,7 @@ function getWebsiteData(){
     die;
 }
 
-function getAllMedia(){
+function getAccountMedia(){
     $success = false;
     if (!empty($_POST['accountId'])) {
         $data = Media::getMediaByAccount($_POST['accountId']);
