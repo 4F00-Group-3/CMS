@@ -7,7 +7,14 @@ class EditingPage extends Component {
         super(props);
         this.state = {
             page: this.props.page,
+            active: 0
         }
+    }
+
+    
+    toggleClickClass = (i) => {
+        this.setState({active:i});
+        this.props.setActive(i , this);
     }
 
     /**
@@ -29,6 +36,8 @@ class EditingPage extends Component {
                         href={section.href}
                         url={section.url}
                         onSectionPush={this.props.onSectionPush}
+                        toggleClickClass = {this.toggleClickClass}
+                        clicked = {this.state.active === section.id ? true : false}
                         key={index}
                         />);
             }

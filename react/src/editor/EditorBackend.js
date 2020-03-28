@@ -284,8 +284,9 @@ class EditorBackend {
                     text: "heading 1",
                     style: [
                         {
-                            height: "30px",
-                            width: "100%",
+                            color: "black",
+                            fontSize: "12px",
+                            textAlign: "left",
                         }
                     ],
                 }
