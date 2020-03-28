@@ -61,10 +61,27 @@ const Card = ({ id, type, style, text, faClassName, onClick, url, onSectionPush,
   })
   const opacity = isDragging ? 0 : 1
   drag(drop(ref))
+  console.log("ID "+id);
+  console.log("TYPE "+type);
+  console.log("STYLE "+style);
+  console.log("TEXT "+text);
+  console.log("CLASSNAME "+faClassName);
+  console.log("ONCLICK "+onClick);
+  console.log("URL "+url);
+  console.log("ON SEC PUSH "+onSectionPush);
     return (
       <div ref={ref} style={{ ...style, opacity }}>
         { 
-          text
+            <PageSection
+            index={id}
+            type={type}
+            style={style}
+            text={text}
+            faClassName={faClassName}
+            onClick={onClick}
+            url={url}
+            onSectionPush={onSectionPush}
+          />
         }
       </div>
     )
