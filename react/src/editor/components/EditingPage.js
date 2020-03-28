@@ -6,7 +6,6 @@ import * as constants from "../../constants";
 import PageSection from "./PageSection";
 import Board from "./Board";
 import Card from "./Card.jsx";
-//import Container from "./Container.jsx";
 import update from 'immutability-helper'
 import {DragDropContext, Draggable, Droppable } from "react-beautiful-dnd"
 
@@ -15,34 +14,6 @@ const style = {
   height: "100vh",
   marginLeft: "50vh",
 }
-
-/*
-const reorder = (list, startIndex, endIndex) => {
-    const result = Array.from(list);
-    const [removed] = result.splice(startIndex, 1);
-    result.splice(endIndex, 0, removed);
-
-    return result;
-};
-
-    const order = (list, startIndex, endIndex) => {
-        const result = Array.from(list);
-        const [removed] = result.splice(startIndex, 1);
-        result.splice(endIndex, 0, removed);
-    
-        return result;
-    };
-    */
-    
-    /*********************************************************** */
-    const getItemStyle = (isDragging, draggableStyle) => ({
-
-        background: isDragging ? 'lightblue' : 'rgb(250,250,250)', //when dragging, make background colour blue. Else grey.
-        ...draggableStyle
-    }); //style for when dragging
-    
-    /*********************************************************** */
-
 
 
 class EditingPage extends Component {
@@ -53,47 +24,7 @@ class EditingPage extends Component {
         };
         //this.onDragEnd = this.onDragEnd.bind(this);
     }
-/*
-    getCardsArr(){
-      this.returnPage();
-      try{
-        return cardsArr;
-      } catch (error){}
-    };*/
 
-    /*********************************************************** 
-    state = {
-        page: this.props.page,
-    };
-*//*
-    id2List = {
-        droppable: 'items',
-    };//?
-
-    getList = id => this.id2List[id];//?
-/*
-    onDragEnd = result => {
-        const { source, destination } = result;
-
-        if (!destination) { //if invalid
-            return;         //cancel
-        }
-
-        if (source.droppableId === destination.droppableId) {
-            const items = order(
-                this.getList(source.droppableId),
-                source.index,
-                destination.index
-            );
-
-            let state = { items };
-            this.setState(state);
-        }
-    }; 
-    /*********************************************************** */
-
-
-    
 
     /**
      * This method renders a page from JSON onto the actual page editor
@@ -124,35 +55,7 @@ class EditingPage extends Component {
         }
     }   //returns the sections added to the editor page
 
-    /******************* *//*
-    onDragEnd(result) {
-        const { source, destination } = result;
-
-        if (!result.destination) { //if invalid
-            return;         //cancel
-        }
-
-
-        /*if (source.droppableId === destination.droppableId) {
-            const items = order(
-                this.getList(source.droppableId),
-                source.index,
-                destination.index
-            );
-
-        } *//*
-        const items = reorder(
-            this.returnPage(),
-            result.source.index,
-            result.destination.index
-          );
-      
-          this.setState({
-            items
-          });
-
-    };  //What to do after the drag is done
-    /******************* */
+   
 
     render() {
 
@@ -171,11 +74,11 @@ class EditingPage extends Component {
             var x = [" "];
           }
       
-          const [cards, setCards] = useState(x);*/
+          const [cards, setCards] = useState(x);*///Doesn't work
 
           let x = [];
           try{
-            for (let i = 0; i < this.props.page.length; i++) {
+            for (let i = 0; i < this.props.page.length; i++) {  //works
               var y = {
                 key:this.props.page[i].id,
                 id:this.props.page[i].id,
@@ -238,85 +141,14 @@ class EditingPage extends Component {
 
       
         console.log("Page: "+this.returnPage());
-        /*
-        try{
-            this.returnPage().map((item, index) => (
-                //console.log("Index: "+index))
-                console.log("Section: "+this.props.page[index].id))   //undefined NO GOOD
-            )
-        } catch(error){}
-        if ( this.returnPage() != null ){   //if there is something on the editor screen, then we can drag and drop
-            return (
-                <DragDropContext onDragEnd={this.onDragEnd}>
-                    <Droppable droppableId="droppable">
-                        {(provided, snapshot) => (
-                            <div
-                            {...provided.droppableProps}
-                            ref={provided.innerRef}
-                            style={ containerStyle }//whole editor page style
-                            >
-                            
-                            {this.returnPage().map((item, index) => (//this.returnPage() returns array of sections (components)
-
-                                //                section id                                   section id
-                                <Draggable key={this.props.page[index].id} draggableId={this.props.page[index].id} index={index}>
-                                
-                                {(provided, snapshot) => (
-                                    
-                                    <div
-                                    ref={provided.innerRef}
-                                    {...provided.draggableProps}
-                                    {...provided.dragHandleProps}
-                                    style={
-                                          getItemStyle(
-                                          snapshot.isDragging,
-                                          provided.draggableProps.style)
-                                    }
-                                    >
-                                    {this.returnPage()[index]/*1component i.e. a header*//*}
-                                    </div>
-                                )}
-                                </Draggable>
-                            ))}
-                            {provided.placeholder}
-                            </div>
-                        )}
-                    </Droppable>
-                </DragDropContext>
-                /*
-                <DragDropContext onDragEnd={this.onDragEnd}>
-                    <Droppable droppableId="droppable">
-                        {provided => (
-                            <div style={containerStyle}>
-                                {this.returnPage()}
-                            </div>
-                        )}
-                    </Droppable>
-                </DragDropContext>
-                *//*
-               );
-        }
-        else {      //if theres nothing on the editor screen yet, just print
-            return(
-                <div style={containerStyle}>
-                    {this.returnPage()}
-                </div>
-            )
-        }
-    }
-  }/**/
+    
     return(
       <DndProvider backend={Backend}>
         <Container />
       </DndProvider>
     )
   }
-}/** *///<Container />
-
-/*
-const containerStyle = isDraggingOver => ({
-    background: isDraggingOver ? 'lightgreen' : 'lightgrey',    //change page color when dragging
-});*/
+}
 
 const containerStyle = {
     background: "white",
