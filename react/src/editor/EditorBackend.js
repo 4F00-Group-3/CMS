@@ -46,7 +46,7 @@ class EditorBackend {
             }
 
         }
-        console.log("section style chagned")
+        console.log("section style changed")
         this.state.page = result;
     }
 
@@ -271,8 +271,9 @@ class EditorBackend {
                     text: "heading 1",
                     style: [
                         {
-                            height: "30px",
-                            width: "100%",
+                            color: "black",
+                            fontSize: "12px",
+                            textAlign: "left",
                         }
                     ],
                 }
