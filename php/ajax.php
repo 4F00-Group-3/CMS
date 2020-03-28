@@ -2,7 +2,8 @@
 <?php
 require_once ('header_functions.php');
 
-$functions = array('test', 'currentUser', 'currentUserId', 'addUser', 'getAllPages', 'getAllUsers', 'getMedia', 'getPage', 'addMedia', 'addPage', 'deletePage', 'deleteUser', 'login', 'createAccount','getWebsiteData');
+$functions = array('test', 'currentUser', 'currentUserId', 'addUser', 'getAllPages', 'getAllUsers', 'getMedia', 'getPage',
+    'addMedia', 'addPage', 'deletePage', 'deleteUser', 'login', 'createAccount','getWebsiteData','getWebsiteData');
 
 if(isset($_POST['function']) && in_array($_POST['function'], $functions)){
     $_POST['function']();
@@ -66,7 +67,7 @@ function getWebsiteData(){
 function getAllMedia(){
     $success = false;
     if (!empty($_POST['accountId'])) {
-        $data = Media::getAllImages();
+        $data = Media::getMediaByAccount($_POST['accountId']);
         if ($data !== false) {
             $json = json_encode($data);
             $success = true;
