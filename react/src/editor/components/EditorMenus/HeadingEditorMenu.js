@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import {
-    TextInput,
     ColourPicker,
     AlignmentInput,
     NumericInput
@@ -56,7 +55,7 @@ class HeadingEditor extends Component {
                             <Form.Control
                                 type="text"
                                 placeholder="Heading Text"
-                                onChange={this.props.menuComponentOnClick}>
+                                onChange={(event) => this.props.menuComponentOnClick("text|" + event.target.value + "|text")}>
                             </Form.Control>
                         </Col>
                     </Form.Row>

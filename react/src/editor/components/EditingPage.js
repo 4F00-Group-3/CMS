@@ -26,7 +26,7 @@ class EditingPage extends Component {
                         style={section.style[0]}
                         text={section.text}
                         faClassName={section.faClassName}
-                        onClick={section.onClick}
+                        href={section.href}
                         url={section.url}
                         onSectionPush={this.props.onSectionPush}
                         key={index}

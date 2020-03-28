@@ -28,7 +28,7 @@ class PageSection extends Component {
                 return (<div style = {{textAlign: this.props.style['textAlign']}}><img key={this.props.index}  style={this.props.style} src={this.props.url} alt={this.props.text}  /></div>)
             }
             case "button": {
-                return (<button key={this.props.index} onClick={this.props.onClick} style={this.props.style}>{this.props.text}</button>)
+                return (<div style = {{textAlign: this.props.style['textAlign']}}><a className={"btn btn-primary"} key={this.props.index} href={this.props.href} style={this.props.style}>{this.props.text}</a></div>)
             }
             case "spacer": {
                 return (<div key={this.props.index} style={this.props.style}></div>);
