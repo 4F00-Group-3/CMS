@@ -16,6 +16,7 @@ const style = {
   marginLeft: "50vh",
 }
 
+/*
 const reorder = (list, startIndex, endIndex) => {
     const result = Array.from(list);
     const [removed] = result.splice(startIndex, 1);
@@ -24,16 +25,6 @@ const reorder = (list, startIndex, endIndex) => {
     return result;
 };
 
-const Hello = () => {
-  try{
-    console.log(this.returnPage());
-  } catch (error){console.log("Error")}
-}
-
-
-
-
-    
     const order = (list, startIndex, endIndex) => {
         const result = Array.from(list);
         const [removed] = result.splice(startIndex, 1);
@@ -41,6 +32,7 @@ const Hello = () => {
     
         return result;
     };
+    */
     
     /*********************************************************** */
     const getItemStyle = (isDragging, draggableStyle) => ({
@@ -171,6 +163,7 @@ class EditingPage extends Component {
           }
           catch(error){console.log("!!! no page");}
       
+          /*
           try{
             var x = this.returnPage();
           }
@@ -178,7 +171,27 @@ class EditingPage extends Component {
             var x = [" "];
           }
       
-          const [cards, setCards] = useState(x);
+          const [cards, setCards] = useState(x);*/
+
+          let x = [];
+          try{
+            for (let i = 0; i < this.props.page.length; i++) {
+              var y = {
+                key:this.props.page[i].id,
+                id:this.props.page[i].id,
+                type:this.props.page[i].type,
+                style:this.props.page[i].style[0],
+                text:this.props.page[i].text,
+                faClassName:this.props.page[i].faClassName,
+                onClick:this.props.page[i].onClick,
+                url:this.props.page[i].url,
+                onSectionPush:this.props.page[i].onSectionPush,
+              }
+              x.push(y)
+            }
+          } catch(e){}
+
+          const [cards, setCards] = useState(x)
          
           const moveCard = useCallback(
             (dragIndex, hoverIndex) => {
@@ -195,33 +208,23 @@ class EditingPage extends Component {
             [cards],
           )
       
-          const renderCard = (card, index) => {
-            console.log(this.props.page[index].id);
-            return (
+          const renderCard = (card, index) => {   //Renders a card (a component) i.e. an image or a header
+            console.log("okokok"+card.id);
+            return (      //returns a card which returns a page section with these vals
               <Card
-                  key={this.props.page[index].id}
-                  id={this.props.page[index].id}
-                  type={this.props.page[index].type}
-                  style={this.props.page[index].style[0]}
-                  text={this.props.page[index].text}
-                  faClassName={this.props.page[index].faClassName}
-                  onClick={this.props.page[index].onClick}
-                  url={this.props.page[index].url}
-                  onSectionPush={this.props.page[index].onSectionPush}
+                  key={card.id}
+                  id={card.id}
+                  type={card.type}
+                  style={card.style[0]}
+                  text={card.text}
+                  faClassName={card.faClassName}
+                  onClick={card.onClick}
+                  url={card.url}
+                  onSectionPush={card.onSectionPush}
                   index={index}
                   moveCard={moveCard}
                   
                 />
-                /*key={card.id}
-                index={index}
-                id={card.id}
-                text={card.text}
-                faClassName={card.faClassName}
-                onClick={card.onClick}
-                url={card.url}
-                onSectionPush={card.onSectionPush}
-                moveCard={moveCard}*/
-              
             )
           }
           
