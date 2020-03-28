@@ -76,10 +76,14 @@ class Media{
         $stmt->execute();
 
         $imageData = array();
-        while ($row = $stmt->fetch()){
-            $imageData[] = $row;
+        if($stmt->rowCount()){
+            while ($row = $stmt->fetch()) {
+                $imageData[] = $row;
+            }
+            return $imageData;
+        }else{
+            return false;
         }
-        return $imageData;
     }
 
 }

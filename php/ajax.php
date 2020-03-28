@@ -63,6 +63,23 @@ function getWebsiteData(){
     die;
 }
 
+function getAllMedia(){
+    $success = false;
+    if (!empty($_POST['accountId'])) {
+        $data = Media::getAllImages();
+        if ($data !== false) {
+            $json = json_encode($data);
+            $success = true;
+        }
+    }
+    if($success === true){
+        echo $json;
+    }else{
+        echo "false";
+    }
+    die;
+}
+
 function test(){
     $message = $_POST['message'];
     if($message == 'hello'){
