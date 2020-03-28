@@ -14,6 +14,10 @@ import HeadingEditorMenu from './EditorMenus/HeadingEditorMenu';
 import ButtonEditorMenu from './EditorMenus/ButtonEditorMenu';
 import DividerEditorMenu from './EditorMenus/DividerEditorMenu';
 import EditDivider from './EditorMenus/EditDivider';
+import EditSpacer from './EditorMenus/EditSpacer';
+import EditHeader from './EditorMenus/EditHeader';
+import EditVideo from './EditorMenus/EditVideo';
+import EditIcon from './EditorMenus/EditIcon';
 import IconEditorMenu from './EditorMenus/IconEditorMenu';
 import ImageEditorMenu from './EditorMenus/ImageEditorMenu';
 import VideoEditorMenu from './EditorMenus/VideoEditorMenu';
@@ -47,7 +51,7 @@ class EditorSideBar extends Component {
             <div className="Editor-SideBar-Container">
                 {/* editor menus to be tested here */}
                 {/* {this.returnMenu()} */}
-                <EditDivider/>
+                <EditIcon/>
             </div>
         );
     };
