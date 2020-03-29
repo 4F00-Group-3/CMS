@@ -294,10 +294,10 @@ class EditorBackend {
                 this.state.page.push(jsonObj)
                 break;
             }
-            case "video": {
+            case "Video": {
                 jsonObj = {
                     id: page.length + 1,
-                    type: "spacer",
+                    type: "video",
                     text: "heading 1",
                     style: [
                         {
