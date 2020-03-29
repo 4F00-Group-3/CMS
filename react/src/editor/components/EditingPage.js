@@ -16,10 +16,20 @@ class EditingPage extends Component {
         super(props);
         this.state = {
             page: this.props.page,
-        };
+            active: 0
+        }
     }
 
-    // return array with page section on the page
+    
+    toggleClickClass = (i) => {
+        this.setState({active:i});
+        this.props.setActive(i , this);
+    }
+
+    /**
+     * This method renders a page from JSON onto the actual page editor
+     * Can be reused for actual page viewing as well
+     */
     returnPage() {
         try {
             let page = [];
@@ -32,13 +42,14 @@ class EditingPage extends Component {
                         style={section.style[0]}
                         text={section.text}
                         faClassName={section.faClassName}
-                        onClick={section.onClick}
+                        href={section.href}
                         url={section.url}
                         onSectionPush={this.props.onSectionPush}
-                    />
-                )
+                        toggleClickClass = {this.toggleClickClass}
+                        clicked = {this.state.active === section.id ? true : false}
+                        key={index}
+                        />);
             }
-
             return page;
         } catch (error) {
 
@@ -144,7 +155,7 @@ const containerStyle = {
     background: "white",
     width: (100 - constants.EditorSideBarWidth) + "%",
     height: "100vh",
-    border: "3px solid red",
+    //border: "3px solid red",
     marginLeft: constants.EditorSideBarWidth,
 } //containerStyle --> styling for whole page not 1 component
 

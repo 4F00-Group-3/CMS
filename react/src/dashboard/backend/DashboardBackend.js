@@ -1,9 +1,10 @@
-import AjaxCall from "../../ajax" //change this
+//import AjaxCall from "../../ajax" //change this
 
 class DashboardBackend {
   constructor() {
     this.deleted = [];
     this.updates = [];
+    this.pages = this.all();
   }
 
 

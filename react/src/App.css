@@ -10,9 +10,8 @@
 .faq-page {
   padding-top: 800;
   text-align: center;
-  color: grey;
+  color: rgb(83, 83, 197);
   font-weight: 600;
-  text-decoration: underline;
   margin-top: "30px";
 }
 
@@ -58,3 +57,13 @@
 h2 {
   text-align: center;
 }
+
+.gridBkgd {
+  background: "/coworkers-discussing-business-ideas-PWAASLV.jpg";
+}
+
+.landing-page-card-style {
+  width: 256px;
+  height: 256px;
+  margin: auto;
+} /*not used yet*/

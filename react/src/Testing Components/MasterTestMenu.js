@@ -65,20 +65,20 @@ class MasterTestMenu extends Component {
         page = <Dashboard />;
         break;
       case "Login":
-        page = <Login handleDashClick={this.handleDashClick}/>;
+        page = <Login />;
         break;
       case "Create Account":
         page = <CreateAccount />;
         break;
       case "SitePage":
-        page = <SitePage onClick={this.handleDashClick}/>
+        page = <SitePage />
         break;
       default:
         page = <Editor />;
     }
     return (
       <div>
-        <div>
+        <div className="sticky-top">
           <button onClick={this.handleEditorClick}>Editor</button>
           <button onClick={this.handleHomeClick}>Home</button>
           <button onClick={this.handleDashClick}>Dash</button>

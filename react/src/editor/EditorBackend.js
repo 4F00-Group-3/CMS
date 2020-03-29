@@ -28,6 +28,8 @@ class EditorBackend {
                     }
                 }
 
+                console.log(newCSS);
+
                 //repopulate new page section
                 var newPageSection = {};
                 for (const key in pageSection) {
@@ -40,13 +42,14 @@ class EditorBackend {
                 }
 
                 result.push(newPageSection);
+
+                console.log("section style changed", newPageSection)
             }
             else {
                 result.push(pageSection)
             }
 
         }
-        console.log("section style chagned")
         this.state.page = result;
     }
 
@@ -211,6 +214,7 @@ class EditorBackend {
                             color: "black",
                             fontSize: "10vh",
                             textAlign: "left",
+                            fontFamily: "Georgia, serif",
                         }
                     ],
                 }
@@ -226,6 +230,7 @@ class EditorBackend {
                         {
                             borderTop: "8px solid #bbb",
                             borderRadius: "5px",
+                            width: "50%",
                         }
                     ],
                 }
@@ -240,8 +245,14 @@ class EditorBackend {
                     url: "https://images.unsplash.com/photo-1583485056322-f0ba6fe51508?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1006&q=80",
                     style: [
                         {
-                            width: "100%",
+                            width: "50%",
                             borderRadius: "5px",
+                            marginLeft: "0",
+                            marginRight: "0",
+                            marginTop: "0",
+                            marginBottom: "0",
+                            textAlign: "center",
+
                         }
                     ],
                 }
@@ -253,11 +264,14 @@ class EditorBackend {
                     id: page.length + 1,
                     type: "button",
                     text: "button text here",
-                    onClick: "some script maybe or something idk",
+                    href: "#",
                     style: [
                         {
-                            borderTop: "3px dotted #bbb",
-                            borderRadius: "5px",
+                            color: "#000",
+                            backgroundColor: "#FFF",
+                            textAlign: "center",
+                            border: "0px",
+                            borderRadius: "0px",
                         }
                     ],
                 }
@@ -271,8 +285,9 @@ class EditorBackend {
                     text: "heading 1",
                     style: [
                         {
-                            height: "30px",
-                            width: "100%",
+                            color: "black",
+                            fontSize: "12px",
+                            textAlign: "left",
                         }
                     ],
                 }
