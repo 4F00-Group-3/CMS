@@ -13,8 +13,8 @@ import EditorButton from '../components/EditorButton';
 import HeadingEditorMenu from './EditorMenus/HeadingEditorMenu';
 import ButtonEditorMenu from './EditorMenus/ButtonEditorMenu';
 import EditDivider from './EditorMenus/EditDivider';
-import EditSpacer from './EditorMenus/EditSpacer';
-import EditIcon from './EditorMenus/EditIcon';
+import SpacerEditorMenu from './EditorMenus/SpacerEditorMenu';
+import EditIcon from './EditorMenus/IconEditorMenu';
 import IconEditorMenu from './EditorMenus/IconEditorMenu';
 import ImageEditorMenu from './EditorMenus/ImageEditorMenu';
 import VideoEditorMenu from './EditorMenus/VideoEditorMenu';
@@ -50,7 +50,7 @@ class EditorSideBar extends Component {
                 return <> <ButtonEditorMenu selectedId={this.props.selectedId} menuComponentOnClick={this.props.menuComponentOnClick}/> <EditMenuNav handleBack={this.props.handleBack} handleDelete={this.props.handleDelete}/> </> 
             }
             case "spacer": {
-                return <> <EditSpacer selectedId={this.props.selectedId} menuComponentOnClick={this.props.menuComponentOnClick}/> <EditMenuNav handleBack={this.props.handleBack} handleDelete={this.props.handleDelete}/> </> 
+                return <> <SpacerEditorMenu selectedId={this.props.selectedId} menuComponentOnClick={this.props.menuComponentOnClick}/> <EditMenuNav handleBack={this.props.handleBack} handleDelete={this.props.handleDelete}/> </> 
             }
             default: {
                 return <>
