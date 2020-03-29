@@ -4,14 +4,11 @@ import "./App.css";
 import {
   Layout,
   Header,
-  Navigation,
-  Footer,
-  FooterSection,
-  FooterLinkList,
   Content
 } from "react-mdl";
-import PlansPricing from "./Components/landingPage";
-import GetStarted from "./Components/getStarted";
+
+import PlansPricing from './Components/landingPage';
+import GetStarted from './Components/getStarted';
 import LoginPage from "./Components/loginpage";
 import LandingPage from "./Components/landingPage";
 import CreateAccount from "./Components/createAccount";
@@ -79,7 +76,7 @@ class HomePage extends Component {
       <div>
         <Layout
           style={{
-            background: "url(/imagesFolder/techbkgrd2.jpg)",
+            background: "url(./imagesFolder/techbkgrd2.jpg)",
             backgroundSize: "cover"
           }}
         >

@@ -9,6 +9,11 @@ class PageSection extends Component {
         }
     }
 
+    toggleClickClass = () => {
+        this.props.onSectionPush(this.props.index, this.props.type, this.props.style);
+        this.props.toggleClickClass(this.props.index);
+    }
+
     returnElement() {
         switch (this.props.type) {
             case "heading": {
@@ -16,21 +21,27 @@ class PageSection extends Component {
                     <h1
                         key={this.props.index}
                         style={this.props.style}>
-                            {this.props.text}
+                        {this.props.text}
                     </h1>
                 )
             }
+            
             case "divider": {
                 return (<hr key={this.props.index} style={this.props.style} />);
             }
             case "image": {
-                return (<img key={this.props.index} src={this.props.url} alt={this.props.text} style={this.props.style} />)
+                console.log(this.props.style['textAlign'])
+                return (<div style = {{textAlign: this.props.style['textAlign']}}><img key={this.props.index}  style={this.props.style} src={this.props.url} alt={this.props.text}  /></div>)
             }
             case "button": {
-                return (<button key={this.props.index} onClick={this.props.onClick} style={this.props.style}>{this.props.text}</button>)
+                return (<div style = {{textAlign: this.props.style['textAlign']}}><a className={"btn btn-primary"} key={this.props.index} href={this.props.href} style={this.props.style}>{this.props.text}</a></div>)
             }
             case "spacer": {
-                return (<div key={this.props.index} style={this.props.style}></div>);
+                return (
+                    <div key={this.props.index} style={this.props.style}>
+                        {'\xa0'}
+                    </div>
+                );
             }
             case "video": {
                 return (
@@ -51,8 +62,10 @@ class PageSection extends Component {
     }
 
     render() {
+        const isClicked = this.props.clicked;
+        var classList = isClicked ? "pageSectionClick" : "pageSection";
         return (
-            <div className="pageSection" onClick={() => this.props.onSectionPush(this.props.index, this.props.type, this.props.style)}>
+            <div className={classList} onClick={this.toggleClickClass}>
                 {this.returnElement()}
             </div>
         );

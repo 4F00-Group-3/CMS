@@ -65,6 +65,7 @@ class Pages extends Component {
                                 );
                             })}
                         </ol>
+                        {/* add a page button  */}
                     </div>
             </>
         );

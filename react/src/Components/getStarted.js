@@ -2,19 +2,14 @@ import React, { Component } from "react";
 import {
   Grid,
   Cell,
-  Button,
   Card,
   CardTitle,
   CardActions,
   CardText,
-  Content,
   FooterSection,
   Footer,
   FooterLinkList,
-  Header,
-  Navigation
 } from "react-mdl";
-import { Link, Route } from "react-router-dom";
 
 class getStarted extends Component {
   render() {
@@ -32,7 +27,7 @@ class getStarted extends Component {
                   expand
                   style={{
                     color: "#fff",
-                    background: "url(/imagesFolder/FirstPlan.jpg)"
+                    background: "url(./imagesFolder/FirstPlan.jpg)"
                   }}
                 ></CardTitle>
                 <CardText>Get started with building web applications!</CardText>
@@ -49,7 +44,7 @@ class getStarted extends Component {
                   expand
                   style={{
                     color: "#fff",
-                    background: "url(/imagesFolder/SecondPlan.jpg)"
+                    background: "url(./imagesFolder/SecondPlan.jpg)"
                   }}
                 ></CardTitle>
                 <CardText>
@@ -68,7 +63,7 @@ class getStarted extends Component {
                   expand
                   style={{
                     color: "#fff",
-                    background: "url(/imagesFolder/ThirdPlan.jpg)"
+                    background: "url(./imagesFolder/ThirdPlan.jpg)"
                   }}
                 ></CardTitle>
                 <CardText>
