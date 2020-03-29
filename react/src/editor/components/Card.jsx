@@ -11,7 +11,7 @@ const style = { //styling of card
   cursor: 'move',
 }
 
-const Card = ({ id, type, style, text, faClassName, onClick, url, onSectionPush, index, moveCard }) => { //section fields + index + moveCard
+const Card = ({ id, type, style, text, faClassName, onClick, url, onSectionPush, index, moveCard, href, toggleClickClass, clicked}) => { //section fields + index + moveCard
   const ref = useRef(null)
   const [, drop] = useDrop({
     accept: ItemTypes.CARD,
@@ -62,15 +62,17 @@ const Card = ({ id, type, style, text, faClassName, onClick, url, onSectionPush,
     return (
       <div ref={ref} style={{ ...style, opacity }}>
         {   //card returns a page section
-          <PageSection
+           <PageSection
             index={id}
             type={type}
             style={style}
             text={text}
             faClassName={faClassName}
-            onClick={onClick}
+            href={href}
             url={url}
             onSectionPush={onSectionPush}
+            toggleClickClass={toggleClickClass}
+            clicked={clicked}
           />
         }
       </div>
