@@ -230,6 +230,7 @@ class EditorBackend {
                         {
                             borderTop: "8px solid #bbb",
                             borderRadius: "5px",
+                            width: "50%",
                         }
                     ],
                 }
@@ -263,11 +264,14 @@ class EditorBackend {
                     id: page.length + 1,
                     type: "button",
                     text: "button text here",
-                    onClick: "some script maybe or something idk",
+                    href: "#",
                     style: [
                         {
-                            borderTop: "3px dotted #bbb",
-                            borderRadius: "5px",
+                            color: "#000",
+                            backgroundColor: "#FFF",
+                            textAlign: "center",
+                            border: "0px",
+                            borderRadius: "0px",
                         }
                     ],
                 }

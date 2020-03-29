@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import {
-    TextInput,
     ColourPicker,
     AlignmentInput,
     NumericInput
@@ -48,7 +47,7 @@ class HeadingEditor extends Component {
             <>
                 <Form className="border bg-light rounded p-1 editor-menu">
                     <Form.Group>
-                        <Form.Label className="d-block font-weight-bold">Edit Image</Form.Label>
+                        <Form.Label className="d-block font-weight-bold">Edit Heading</Form.Label>
                     </Form.Group>
                     <Form.Row>
                         <Col><Form.Label className="d-block left w-50">Title</Form.Label></Col>
@@ -56,7 +55,7 @@ class HeadingEditor extends Component {
                             <Form.Control
                                 type="text"
                                 placeholder="Heading Text"
-                                onChange={this.props.menuComponentOnClick}>
+                                onChange={(event) => this.props.menuComponentOnClick("text|" + event.target.value + "|text")}>
                             </Form.Control>
                         </Col>
                     </Form.Row>

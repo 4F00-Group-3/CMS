@@ -12,13 +12,12 @@ import {
 import EditorButton from '../components/EditorButton';
 import HeadingEditorMenu from './EditorMenus/HeadingEditorMenu';
 import ButtonEditorMenu from './EditorMenus/ButtonEditorMenu';
-import EditDivider from './EditorMenus/EditDivider';
-import SpacerEditorMenu from './EditorMenus/SpacerEditorMenu';
-import EditIcon from './EditorMenus/IconEditorMenu';
+import EditDividerMenu from './EditorMenus/EditDividerMenu';
 import IconEditorMenu from './EditorMenus/IconEditorMenu';
 import ImageEditorMenu from './EditorMenus/ImageEditorMenu';
 import VideoEditorMenu from './EditorMenus/VideoEditorMenu';
 import EditMenuNav from './EditorMenus/EditorMenuNav';
+import SpacerEditorMenu from './EditorMenus/SpacerEditorMenu'
 
 class EditorSideBar extends Component {
     constructor(props) {
@@ -35,7 +34,7 @@ class EditorSideBar extends Component {
                 return <> <HeadingEditorMenu selectedId={this.props.selectedId} menuComponentOnClick={this.props.menuComponentOnClick}/> <EditMenuNav handleBack={this.props.handleBack} handleDelete={this.props.handleDelete}/> </> 
             }
             case "divider": {
-                return <> <EditDivider selectedId={this.props.selectedId} menuComponentOnClick={this.props.menuComponentOnClick}/><EditMenuNav handleBack={this.props.handleBack} handleDelete={this.props.handleDelete}/> </>
+                return <> <EditDividerMenu selectedId={this.props.selectedId} menuComponentOnClick={this.props.menuComponentOnClick}/><EditMenuNav handleBack={this.props.handleBack} handleDelete={this.props.handleDelete}/> </>
             }
             case "image": {
                 return <> <ImageEditorMenu selectedId={this.props.selectedId} menuComponentOnClick={this.props.menuComponentOnClick}/> <EditMenuNav handleBack={this.props.handleBack} handleDelete={this.props.handleDelete}/> </> 
@@ -75,8 +74,6 @@ class EditorSideBar extends Component {
 
             <div className="Editor-SideBar-Container">
                 {/* editor menus to be tested here */}
-                {/* {this.returnMenu()} */}
-                <EditIcon/>
                 {this.returnMenu()}
             </div>
         );
