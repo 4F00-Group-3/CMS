@@ -6,13 +6,12 @@ import {
   Button,
   Card,
   CardTitle,
-  CardText,
   CardActions,
   FooterSection,
   Footer,
   FooterLinkList
 } from "react-mdl";
-import ReactDOM from "react-dom";
+
 
 class landingPage extends Component {
   render() {

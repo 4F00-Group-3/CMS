@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import { Nav, NavItem } from "reactstrap";
 import "../../css/PageAdmin.css";
-import { Button, Tab, Tabs } from "react-mdl";
 
 class SideBar extends Component {
   render() {
