@@ -54,7 +54,7 @@ class landingPage extends Component {
                   style={{
                     width: "256px",
                     height: "256px",
-                    background: "url(/imagesFolder/FAQ1.jpg)",
+                    background: "url(./imagesFolder/FAQ1.jpg)",
                     margin: "auto"
                   }}
                   shadow={0}
@@ -67,7 +67,7 @@ class landingPage extends Component {
                   style={{
                     width: "256px",
                     height: "256px",
-                    background: "url(/imagesFolder/FAQ2b.jpg)",
+                    background: "url(./imagesFolder/FAQ2b.jpg)",
                     margin: "auto"
                   }}
                   shadow={0}
@@ -80,7 +80,7 @@ class landingPage extends Component {
                   style={{
                     width: "256px",
                     height: "256px",
-                    background: "url(/imagesFolder/FAQ3.jpg)",
+                    background: "url(./imagesFolder/FAQ3.jpg)",
                     margin: "auto"
                   }}
                   shadow={0}
@@ -98,7 +98,7 @@ class landingPage extends Component {
                   style={{
                     width: "256px",
                     height: "256px",
-                    background: "url(/imagesFolder/FAQ4b.jpg)",
+                    background: "url(./imagesFolder/FAQ4b.jpg)",
                     margin: "auto"
                   }}
                   shadow={0}
@@ -111,7 +111,7 @@ class landingPage extends Component {
                   style={{
                     width: "256px",
                     height: "256px",
-                    background: "url(/imagesFolder/FAQ5.jpg)",
+                    background: "url(./imagesFolder/FAQ5.jpg)",
                     margin: "auto"
                   }}
                   shadow={0}
@@ -124,7 +124,7 @@ class landingPage extends Component {
                   style={{
                     width: "256px",
                     height: "256px",
-                    background: "url(/imagesFolder/FAQ6b.jpg)",
+                    background: "url(./imagesFolder/FAQ6b.jpg)",
                     margin: "auto"
                   }}
                   shadow={0}
@@ -193,7 +193,7 @@ class landingPage extends Component {
                   style={{
                     width: "256px",
                     height: "256px",
-                    background: "url(/imagesFolder/FirstPlanSquare.jpg)",
+                    background: "url(./imagesFolder/FirstPlanSquare.jpg)",
                     margin: "auto"
                   }}
                   shadow={2}
@@ -206,7 +206,7 @@ class landingPage extends Component {
                   style={{
                     width: "256px",
                     height: "256px",
-                    background: "url(/imagesFolder/SecondPlanSquare.jpg)",
+                    background: "url(./imagesFolder/SecondPlanSquare.jpg)",
                     margin: "auto"
                   }}
                   shadow={2}
@@ -219,7 +219,7 @@ class landingPage extends Component {
                   style={{
                     width: "256px",
                     height: "256px",
-                    background: "url(/imagesFolder/ThirdPlanSquare.jpg)",
+                    background: "url(./imagesFolder/ThirdPlanSquare.jpg)",
                     margin: "auto"
                   }}
                   shadow={2}

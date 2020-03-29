@@ -76,7 +76,7 @@ class HomePage extends Component {
       <div>
         <Layout
           style={{
-            background: "url(/imagesFolder/techbkgrd2.jpg)",
+            background: "url(./imagesFolder/techbkgrd2.jpg)",
             backgroundSize: "cover"
           }}
         >
