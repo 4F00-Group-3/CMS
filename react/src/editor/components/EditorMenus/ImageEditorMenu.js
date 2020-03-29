@@ -50,7 +50,7 @@ class ImageEditorMenu extends Component {
                     <Col >
                         <Form.Control
                             as="select"
-                            className="d-block"
+                            className="d-block w-50"
                             onChange={(event) => this.onMarginUnitChange(event.target.value)}>
                             <option>px</option>
                             <option>%</option>
@@ -60,6 +60,8 @@ class ImageEditorMenu extends Component {
                             <option>vh</option>
                         </Form.Control>
                     </Col>
+                    <Col></Col>
+                    <Col></Col>
                 </Form.Row>
 
                 <Form.Row className="mt-2 left">

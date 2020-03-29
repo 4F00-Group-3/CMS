@@ -10,10 +10,10 @@ import {
 
 
 
-class SpacerEditor extends Component {
+class SpacerEditorMenu extends Component {
     render() {
         return (
-            <div className="SpacerEditorContainer">
+            <div className="SpacerEditorContainer editor-menu border bg-light rounded p-1">
                 <NumericInput
                     rightAddon={"px"}
                     placeholder={"space size"}
@@ -27,4 +27,4 @@ class SpacerEditor extends Component {
 
 
 
-export default SpacerEditor
+export default SpacerEditorMenu

@@ -382,6 +382,7 @@ export class ColourPicker extends Component {
     render() {
         return (
             <ChromePicker
+                className="mt-2 mb-2"
                 color={this.state.background}
                 onChange={this.handleOnChange}
             />
