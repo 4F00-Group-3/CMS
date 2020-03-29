@@ -107,7 +107,7 @@ class EditingPage extends Component {
                   key={card.id}
                   id={card.id}
                   type={card.type}
-                  style={card.style[0]}
+                  style={card.style}
                   text={card.text}
                   faClassName={card.faClassName}
                   onClick={card.onClick}
