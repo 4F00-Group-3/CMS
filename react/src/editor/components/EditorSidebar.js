@@ -12,16 +12,12 @@ import {
 import EditorButton from '../components/EditorButton';
 import HeadingEditorMenu from './EditorMenus/HeadingEditorMenu';
 import ButtonEditorMenu from './EditorMenus/ButtonEditorMenu';
-import EditDivider from './EditorMenus/EditDivider';
-import EditSpacer from './EditorMenus/EditSpacer';
-import EditHeader from './EditorMenus/EditHeader';
-import EditVideo from './EditorMenus/EditVideo';
-import EditIcon from './EditorMenus/EditIcon';
+import EditDividerMenu from './EditorMenus/EditDividerMenu';
 import IconEditorMenu from './EditorMenus/IconEditorMenu';
 import ImageEditorMenu from './EditorMenus/ImageEditorMenu';
 import VideoEditorMenu from './EditorMenus/VideoEditorMenu';
 import EditMenuNav from './EditorMenus/EditorMenuNav';
-import EditSpacer from './EditorMenus/SpacerEditorMenu'
+import SpacerEditorMenu from './EditorMenus/SpacerEditorMenu'
 
 class EditorSideBar extends Component {
     constructor(props) {
@@ -38,7 +34,7 @@ class EditorSideBar extends Component {
                 return <> <HeadingEditorMenu selectedId={this.props.selectedId} menuComponentOnClick={this.props.menuComponentOnClick}/> <EditMenuNav handleBack={this.props.handleBack} handleDelete={this.props.handleDelete}/> </> 
             }
             case "divider": {
-                return <> <EditDivider selectedId={this.props.selectedId} menuComponentOnClick={this.props.menuComponentOnClick}/><EditMenuNav handleBack={this.props.handleBack} handleDelete={this.props.handleDelete}/> </>
+                return <> <EditDividerMenu selectedId={this.props.selectedId} menuComponentOnClick={this.props.menuComponentOnClick}/><EditMenuNav handleBack={this.props.handleBack} handleDelete={this.props.handleDelete}/> </>
             }
             case "image": {
                 return <> <ImageEditorMenu selectedId={this.props.selectedId} menuComponentOnClick={this.props.menuComponentOnClick}/> <EditMenuNav handleBack={this.props.handleBack} handleDelete={this.props.handleDelete}/> </> 
@@ -53,31 +49,31 @@ class EditorSideBar extends Component {
                 return <> <ButtonEditorMenu selectedId={this.props.selectedId} menuComponentOnClick={this.props.menuComponentOnClick}/> <EditMenuNav handleBack={this.props.handleBack} handleDelete={this.props.handleDelete}/> </> 
             }
             case "spacer": {
-                return <> <EditSpacer selectedId={this.props.selectedId} menuComponentOnClick={this.props.menuComponentOnClick}/> <EditMenuNav handleBack={this.props.handleBack} handleDelete={this.props.handleDelete}/> </> 
+                return <> <SpacerEditorMenu selectedId={this.props.selectedId} menuComponentOnClick={this.props.menuComponentOnClick}/> <EditMenuNav handleBack={this.props.handleBack} handleDelete={this.props.handleDelete}/> </> 
             }
             default: {
                 return <>
-                    <EditorButton text="Heading" faIcon={faFont} onClick={this.props.onPush} />
-                    <EditorButton text="Image" faIcon={faFileImage} onClick={this.props.onPush} />
-                    <EditorButton text="Button" faIcon={faAsterisk} onClick={this.props.onPush} />
-                    <EditorButton text="Dividers" faIcon={faBars} onClick={this.props.onPush} />
-                    <EditorButton text="Spacer" faIcon={faAlignRight} onClick={this.props.onPush} />
-                    <EditorButton text="Size" faIcon={faAsterisk} onClick={this.props.onPush} />
-                    <EditorButton text="Icon" faIcon={faArrowDown} onClick={this.props.onPush} />
-                    <EditorButton text="Video" faIcon={faCircle} onClick={this.props.onPush} />
+                    <div className="editor-buttons-container">
+                        <EditorButton text="Heading" faIcon={faFont} onClick={this.props.onPush} />
+                        <EditorButton text="Image" faIcon={faFileImage} onClick={this.props.onPush} />
+                        <EditorButton text="Button" faIcon={faAsterisk} onClick={this.props.onPush} />
+                        <EditorButton text="Dividers" faIcon={faBars} onClick={this.props.onPush} />
+                        <EditorButton text="Spacer" faIcon={faAlignRight} onClick={this.props.onPush} />
+                        <EditorButton text="Size" faIcon={faAsterisk} onClick={this.props.onPush} />
+                        <EditorButton text="Icon" faIcon={faArrowDown} onClick={this.props.onPush} />
+                        <EditorButton text="Video" faIcon={faCircle} onClick={this.props.onPush} />
+                    </div>
                 </>
             }
         }
     }
 
-    
+
     render() {
         return (
 
             <div className="Editor-SideBar-Container">
                 {/* editor menus to be tested here */}
-                {/* {this.returnMenu()} */}
-                <EditIcon/>
                 {this.returnMenu()}
             </div>
         );
