@@ -19,6 +19,7 @@ class EditingPage extends Component {
         };
     }
 
+    // return array with page section on the page
     returnPage() {
         try {
             let page = [];
@@ -47,7 +48,7 @@ class EditingPage extends Component {
     render() {
 
       const Container = () => {
-        {
+        // {
           try{
             console.log("!!!"+this.returnPage());
           }
@@ -63,12 +64,13 @@ class EditingPage extends Component {
                 style:this.props.page[i].style[0],
                 text:this.props.page[i].text,
                 faClassName:this.props.page[i].faClassName,
-                onClick:this.props.page[i].onClick,
+                onClick:this.props.page.onClick,
                 url:this.props.page[i].url,
-                onSectionPush:this.props.page[i].onSectionPush,
+                onSectionPush:this.props.onSectionPush,
               }
               x.push(y) //push to array
             }
+            console.log(x);
           } catch(e){}
 
           const [cards, setCards] = useState(x) //set cards as section vals
@@ -123,7 +125,7 @@ class EditingPage extends Component {
               <div style={style}>{cards.map((card, i) => renderCard(card, i))}</div>
             </>
           )
-        }
+        // }
       }
 
       
