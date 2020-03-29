@@ -1,20 +1,17 @@
-import React, { Component, useRef, useCallback, useState } from "react";
+import React, { Component, useCallback, useState } from "react";
 import { DndProvider } from "react-dnd";
-import { useDrag, useDrop } from "react-dnd";
 import Backend from "react-dnd-html5-backend";
 import * as constants from "../../constants";
 import PageSection from "./PageSection";
-import Board from "./Board";
 import Card from "./Card.jsx";
 import update from 'immutability-helper'
-import {DragDropContext, Draggable, Droppable } from "react-beautiful-dnd"
 
 const style = {
   width: "60%",
   height: "100vh",
   marginLeft: "50vh",
 }
-
+    
 
 class EditingPage extends Component {
     constructor(props) {
@@ -22,14 +19,8 @@ class EditingPage extends Component {
         this.state = {
             page: this.props.page,
         };
-        //this.onDragEnd = this.onDragEnd.bind(this);
     }
 
-
-    /**
-     * This method renders a page from JSON onto the actual page editor
-     * Can be reused for actual page viewing as well
-     */
     returnPage() {
         try {
             let page = [];
@@ -51,11 +42,9 @@ class EditingPage extends Component {
 
             return page;
         } catch (error) {
-            return [];
+
         }
     }   //returns the sections added to the editor page
-
-   
 
     render() {
 
@@ -65,21 +54,11 @@ class EditingPage extends Component {
             console.log("!!!"+this.returnPage());
           }
           catch(error){console.log("!!! no page");}
-      
-          /*
-          try{
-            var x = this.returnPage();
-          }
-          catch (error){
-            var x = [" "];
-          }
-      
-          const [cards, setCards] = useState(x);*///Doesn't work
 
-          let x = [];
+          let x = []; //empty array
           try{
-            for (let i = 0; i < this.props.page.length; i++) {  //works
-              var y = {
+            for (let i = 0; i < this.props.page.length; i++) {  //for each section
+              var y = {   //get section values
                 key:this.props.page[i].id,
                 id:this.props.page[i].id,
                 type:this.props.page[i].type,
@@ -90,11 +69,11 @@ class EditingPage extends Component {
                 url:this.props.page[i].url,
                 onSectionPush:this.props.page[i].onSectionPush,
               }
-              x.push(y)
+              x.push(y) //push to array
             }
           } catch(e){}
 
-          const [cards, setCards] = useState(x)
+          const [cards, setCards] = useState(x) //set cards as section vals
          
           const moveCard = useCallback(
             (dragIndex, hoverIndex) => {
@@ -112,7 +91,17 @@ class EditingPage extends Component {
           )
       
           const renderCard = (card, index) => {   //Renders a card (a component) i.e. an image or a header
-            console.log("okokok"+card.id);
+
+            /*Update the page with the card's new order so that rearrangements reflect on page permanently.*/
+            this.props.page[index].id = card.id;
+            this.props.page[index].type = card.type;
+            this.props.page[index].style[0] = card.style;
+            this.props.page[index].text = card.text;
+            this.props.page[index].faClassName = card.faClassName;
+            this.props.page[index].onClick = card.onClick;
+            this.props.page[index].url = card.url;
+            this.props.page[index].onSectionPush = card.onSectionPush;
+
             return (      //returns a card which returns a page section with these vals
               <Card
                   key={card.id}
@@ -141,7 +130,7 @@ class EditingPage extends Component {
 
       
         console.log("Page: "+this.returnPage());
-    
+
     return(
       <DndProvider backend={Backend}>
         <Container />
@@ -149,6 +138,7 @@ class EditingPage extends Component {
     )
   }
 }
+
 
 const containerStyle = {
     background: "white",
