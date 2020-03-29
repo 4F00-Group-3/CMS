@@ -7,8 +7,6 @@ import Card from "./Card.jsx";
 import update from 'immutability-helper'
 
 const style = {
-  width: "60%",
-  height: "100vh",
   marginLeft: "50vh",
 }
     
