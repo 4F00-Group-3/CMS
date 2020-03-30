@@ -14,6 +14,7 @@ class PageSection extends Component {
         this.props.toggleClickClass(this.props.index);
     }
 
+
     returnElement() {
         switch (this.props.type) {
             case "heading": {
@@ -30,7 +31,6 @@ class PageSection extends Component {
                 return (<hr key={this.props.index} style={this.props.style} />);
             }
             case "image": {
-                console.log(this.props.style['textAlign'])
                 return (<div style = {{textAlign: this.props.style['textAlign']}}><img key={this.props.index}  style={this.props.style} src={this.props.url} alt={this.props.text}  /></div>)
             }
             case "button": {
