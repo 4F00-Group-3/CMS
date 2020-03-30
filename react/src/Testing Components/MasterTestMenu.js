@@ -65,7 +65,7 @@ class MasterTestMenu extends Component {
         page = <Dashboard />;
         break;
       case "Login":
-        page = <Login />;
+        page = <Login handleDashClick = {this.handleDashClick}/>;
         break;
       case "Create Account":
         page = <CreateAccount />;
