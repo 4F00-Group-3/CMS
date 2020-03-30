@@ -41,10 +41,10 @@ define('HOME_PATH', '/home/student/c4f00g03/public_html/');
 
 //includes
 //HOME_PATH is used so there is no uncertainty in the file path
-require_once (HOME_PATH.'includes/Dbh.php'); 
-require_once(HOME_PATH . 'includes/Account.php');
-require_once (HOME_PATH.'includes/Media.php');
-require_once (HOME_PATH.'includes/Website.php');
+require_once ('../includes/Dbh.php'); 
+require_once ('../includes/Account.php');
+require_once ('../includes/Media.php');
+require_once ('../includes/Website.php');
 
 
 function getCurrentAccountId(){

@@ -2,8 +2,13 @@ import React, { Component } from 'react';
 import '../../../css/EditorMenuComponents.css';
 import Form from 'react-bootstrap/Form';
 import Col from 'react-bootstrap/Col';
+import Row from 'react-bootstrap/Row';
+import Button from 'react-bootstrap/Button';
+import Container from 'react-bootstrap/Container';
 import { AlignmentImage } from './EditorMenuComponents';
-
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faUpload } from "@fortawesome/free-solid-svg-icons";
+import AjaxCall from './../../../ajax'; 
 
 class ImageEditorMenu extends Component {
     constructor(props) {
@@ -12,7 +17,45 @@ class ImageEditorMenu extends Component {
             marginUnits: "px",
             widthUnits: "px",
             borderRadiusUnits: "px",
+            showImageGallery: false,
+            images: [],
+            imageElements: []
         }
+
+        AjaxCall(
+            { function: "getAccountMedia", accountId: sessionStorage.getItem('id') || 0 },
+            (response) => {
+                if (!response.toString().includes("false")) {
+                    let responseArray = JSON.parse(response.split('php-cgi')[1].trim());
+                    console.log(responseArray);
+                    this.state.images =responseArray;
+                    console.log(this.state.images);
+
+                    var imageGallery = [];
+                    for(let i=0; i<Math.ceil(responseArray.length / 2); i++){
+                        var image1 = responseArray[i].path || "";
+                        var image2 = responseArray[i+1].path || "";
+
+                        imageGallery.push(<>
+                            <Row>
+                                <Col onClick={this.selectImageUpload}>
+                                    <img src={image1} ></img>
+                                </Col >
+                                <Col onClick={this.selectImageUpload}>
+                                    <img src={image2} ></img>
+                                </Col>
+                            </Row>
+                        </>);
+
+                        this.state.imageElements = imageGallery;
+                    }
+                  } else {
+                    console.log('no images');
+                  }
+                // console.log(response.toString());
+                return 'test';
+            }
+        );
     }
 
     onMarginUnitChange(value) {
@@ -25,6 +68,34 @@ class ImageEditorMenu extends Component {
 
     onBorderRadiusUnitChange(value) {
         this.setState({ borderRadiusUnits: value })
+    }
+
+    toggleShowImageGallery = () => {
+        // this.props.menuComponentOnClick("url|" + event.target.value + "|url")
+        this.setState({ showImageGallery: !this.state.showImageGallery });
+    }
+
+    uploadImage = () => {
+        console.log('CHanged!');
+        // ajax call to upload image and rerender, update url
+
+                // AjaxCall(
+        //     { function: "getAccountMedia", accountId: sessionStorage.getItem('id') || 0 },
+        //     function(response) {
+        //         if (!response.toString().includes("false")) {
+        //             let responseArray = JSON.parse(response.split('php-cgi')[1].trim());
+        //             console.log(responseArray);
+        //           } else {
+
+        //           }
+        //         console.log(response.toString());
+        //     }
+        // );
+    }
+
+    selectImageUpload = () => {
+        console.log('image Clicked!');
+        //update url
     }
 
     render() {
@@ -117,18 +188,37 @@ class ImageEditorMenu extends Component {
                     </Col>
                 </Form.Row>
 
-                <Form.Row>
-                    <Col>
-                        <Form.Label className="d-block left">Upload Image from URL:</Form.Label>
-                    </Col>
-                    <Col>
+                <Form.Row>           
+                    <Col ><Form.Label className="float-left">Upload Image<br/>from URL:</Form.Label></Col>
+                    <Col xs={6}>
                         <Form.Control
-                            className="w-100 left"
-                            type="text"
-                            onChange={(event) => this.props.menuComponentOnClick("url|" + event.target.value + "|url")}
+                        className=""
+                        type="text"
+                        onChange={(event) => this.props.menuComponentOnClick("url|" + event.target.value + "|url")}
                         />
                     </Col>
+                    <Col><Button onClick={this.toggleShowImageGallery}><FontAwesomeIcon icon={faUpload} style={{fontSize:"18px"}} /></Button></Col>
                 </Form.Row>
+
+                {this.state.showImageGallery ?
+                    <Container className="border bg-light rounded p-1">
+                        <div style={{overflowY:"scroll", minHeight:"200px"}}>
+                            {this.state.imageElements}   
+                        </div>
+  
+                        <Row className="mt-4">
+                            
+                            <Col>  
+                                <Form.Control  className="float-left" type="file" onChange={this.uploadImage}/>
+                            </Col>
+
+                            <Col> <Button className="float-right" onClick={this.toggleShowImageGallery}>Close</Button> </Col>
+                        </Row>
+                    </Container>
+                    :
+                    null
+                }
+
                 <Form.Row>
                     <Col>
                         <Form.Label className="d-block left">Alignment:</Form.Label>

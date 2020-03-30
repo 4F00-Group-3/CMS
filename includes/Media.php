@@ -32,7 +32,7 @@ class Media{
         $stmt->execute([$accountId]);
         $imageData = array();
         if($stmt->rowCount()){
-            while ($row = $stmt->fetch()){
+            while ($row = $stmt->fetch(PDO::FETCH_ASSOC)){
                 $imageData[] = $row;
             }
             return $imageData;
