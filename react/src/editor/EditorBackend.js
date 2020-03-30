@@ -314,7 +314,7 @@ class EditorBackend {
                 jsonObj = {
                     id: page.length + 1,
                     type: "icon",
-                    faClassName: "fab fa-accessible-icon",
+                    faClassName: "faBell",
                     style: [
                         {
                             color: "black",
@@ -331,7 +331,6 @@ class EditorBackend {
                 break;
             }
         }
-
     }
 }
 export default EditorBackend;

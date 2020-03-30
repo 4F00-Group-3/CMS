@@ -3,7 +3,7 @@ import React, { Component } from "react";
 import Form from 'react-bootstrap/Form';
 import Col from 'react-bootstrap/Col';
 import Button from 'react-bootstrap/Button';
-import ColourPicker from './EditorMenuComponents';
+import {ColourPicker} from './EditorMenuComponents';
 import {
     faAddressBook,
     faBell,
@@ -113,7 +113,7 @@ class EditIcon extends Component {
             <Form.Row>
                 <Col>
                     <Button>
-                        <FontAwesomeIcon icon = {faAddressBook}></FontAwesomeIcon>
+                        <FontAwesomeIcon icon = {faAddressBook}/>
                     </Button>
                 </Col>
                 <Col>

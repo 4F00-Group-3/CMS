@@ -1,5 +1,22 @@
 import React, { Component } from 'react';
 import "../../css/PageSection.css";
+import {
+    faAddressBook,
+    faBell,
+    faBook,
+    faCamera,
+    faCreditCard,
+    faEye,
+    faGift,
+    faHeart,
+    faLaptop,
+    faLock,
+
+
+} from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+
+
 
 class PageSection extends Component {
     constructor(props) {
@@ -14,6 +31,43 @@ class PageSection extends Component {
         this.props.toggleClickClass(this.props.index);
     }
 
+    returnIcon(icon) {
+        switch(icon) {
+            case "faLock": {
+                return <FontAwesomeIcon icon = {faLock}/>;
+            }
+            case "faLaptop": {
+                return <FontAwesomeIcon icon = {faLaptop}/>;
+            }
+            case "faHeart": {
+                return <FontAwesomeIcon icon = {faHeart}/>;
+            }
+            case "faGift": {
+                return <FontAwesomeIcon icon = {faGift}/>;
+            }
+            case "faEye": {
+                return <FontAwesomeIcon icon = {faEye}/>;
+            }
+            case "faCreditCard": {
+                return <FontAwesomeIcon icon = {faCreditCard}/>;
+            }
+            case "faCamera": {
+                return <FontAwesomeIcon icon = {faCamera}/>;
+            }
+            case "faBook": {
+                return <FontAwesomeIcon icon = {faBook}/>;
+            }
+            case "faAddressBook": {
+                return <FontAwesomeIcon icon = {faAddressBook}/>;
+            }
+            case "faBell": {
+                return <FontAwesomeIcon icon = {faBell}/>;
+            }
+            default: {
+                return <FontAwesomeIcon icon = {faLaptop}/>
+            }
+        }
+    }
 
     returnElement() {
         switch (this.props.type) {
@@ -52,7 +106,7 @@ class PageSection extends Component {
                 );
             }
             case "icon": {
-                return (<i key={this.props.index} className={this.props.faClassName} style={this.props.style} />)
+                return (this.returnIcon(this.props.faClassName))
             }
             default: {
                 console.log("Not a caught switch in pagesection.js!");
