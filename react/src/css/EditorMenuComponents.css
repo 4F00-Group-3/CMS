@@ -1,0 +1,244 @@
+
+.Title {
+  padding-right: 5%;
+  font-weight: bold;
+}
+
+.TextInput > textarea {
+  width: 100%;
+  height: 150px;
+}
+
+.LinkInput > input {
+  width: 100%;
+}
+
+.TextInput {
+  background-color: lightslategray;
+  padding: 5%;
+  display: flex;
+}
+
+.LinkInput {
+  padding: 5%;
+  display: flex;
+}
+
+.HTMLTagInput {
+  background-color: lightslategray;
+  padding: 5%;
+}
+
+.AlignmentInput {
+  padding: 5%;
+  display: flex;
+}
+
+.SizeInput {
+  background-color: lightslategray;
+  padding: 5%;
+  display: flex;
+}
+
+
+.PrimaryButton {
+  padding-left: 4%;
+  padding-right: 10%;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  margin-bottom: 10%;
+}
+
+.ButtonType {
+  background-color: lightslategray;
+  padding: 5%;
+  display: flex;
+}
+
+.DividerStyle {
+  background-color: lightslategray;
+  padding: 5%;
+  display: flex;
+}
+
+.DividerColour {
+  background-color: lightslategray;
+  padding: 5%;
+  display: flex;
+}
+
+.DividerWidth {
+  background-color: lightslategray;
+  padding: 5%;
+  display: flex;
+}
+
+.AddElementOptions {
+  background-color: lightslategray;
+  padding: 5%;
+  display: flex;
+}
+
+.SpacerThickness {
+  background-color: lightslategray;
+  padding: 5%;
+  display: flex;
+}
+
+.VideoSource {
+  background-color: lightslategray;
+  padding: 5%;
+  display: flex;
+}
+
+.VideoStart {
+  background-color: lightslategray;
+  padding: 5%;
+  display: flex;
+}
+
+.VideoEnd {
+  background-color: lightslategray;
+  padding: 5%;
+  display: flex;
+}
+
+.AutoPlay {
+  background-color: lightslategray;
+  padding: 5%;
+  display: flex;
+}
+
+.Mute {
+  background-color: lightslategray;
+  padding: 5%;
+  display: flex;
+}
+
+.Loop {
+  background-color: lightslategray;
+  padding: 5%;
+  display: flex;
+}
+
+.SelectImage {
+  background-color: lightslategray;
+  padding: 5%;
+  display: flex;
+}
+
+.SelectIcon {
+  background-color: lightslategray;
+  padding: 5%;
+  display: flex;
+}
+
+.SetView {
+  background-color: lightslategray;
+  padding: 5%;
+  display: flex;
+}
+
+.SetImageSize {
+  background-color: lightslategray;
+  padding: 5%;
+}
+.Selector {
+  display: flex;
+}
+
+.SetCaption {
+  background-color: lightslategray;
+  padding: 5%;
+  display: flex;
+}
+
+/* CSS for buttons for Video Component */
+.switch {
+  position: relative;
+  display: inline-block;
+  width: 60px;
+  height: 34px;
+}
+
+.switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #ccc;
+  transition: 0.4s;
+}
+
+.slider.round {
+  border-radius: 34px;
+}
+
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 26px;
+  width: 26px;
+  left: 4px;
+  bottom: 4px;
+  background-color: white;
+  transition: 0.4s;
+}
+
+.slider.round:before {
+  border-radius: 50%;
+}
+
+.input:checked + .slider {
+  background-color: #2196f3;
+}
+
+.input:focus + .slider {
+  box-shadow: 0 0 1px #2196f3;
+}
+
+.input:checked + .slider:before {
+  transform: translateX(26px);
+}
+
+.HeightTag {
+  font-weight: bold;
+}
+
+.WidthTag {
+  font-weight: bold;
+}
+
+.ImageApply {
+  margin: auto;
+  width: 20%;
+  /* padding: 10px; */
+  /* justify-content: center; */
+  /* margin-left: auto;
+  margin-right: auto; */
+}
+
+.left {
+  text-align: left !important;
+}
+
+.editor-menu {
+  margin: 2%;
+}
+
+.image-editor-menu-form-row {
+  width: 95%;
+  justify-content:center;
+  align-items:center;
+  margin-right: 0;
+  margin-left: 0;
+}

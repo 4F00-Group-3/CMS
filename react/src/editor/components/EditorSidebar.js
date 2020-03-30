@@ -1,95 +1,83 @@
 import React, { Component } from 'react';
-import * as constants from '../constants';
-
+import '../../css/Editor.css'
 import {
-    faFont, 
+    faFont,
     faFileImage,
     faBars,
-    faArrowsAlt,
-    faAlignLeft,
     faAlignRight,
     faAsterisk,
     faArrowDown,
-    faCircle 
+    faCircle
 } from "@fortawesome/free-solid-svg-icons";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-
-function Button(props) {
-    return (
-        <button style={buttonContainerStyle} onClick={sideBarButton_OnClick}>
-            <FontAwesomeIcon icon={props.faIcon} style={sideBarIconStyle}/>
-            <p style={sideBarTextStyle}>{props.text}</p>
-        </button>
-        );
-}
-
-
-function sideBarButton_OnClick(buttonName) {
-    console.log(buttonName + " clicked");
-}
-
-
-
-
+import EditorButton from '../components/EditorButton';
+import HeadingEditorMenu from './EditorMenus/HeadingEditorMenu';
+import ButtonEditorMenu from './EditorMenus/ButtonEditorMenu';
+import EditDividerMenu from './EditorMenus/EditDividerMenu';
+import IconEditorMenu from './EditorMenus/IconEditorMenu';
+import ImageEditorMenu from './EditorMenus/ImageEditorMenu';
+import VideoEditorMenu from './EditorMenus/VideoEditorMenu';
+import EditMenuNav from './EditorMenus/EditorMenuNav';
+import SpacerEditorMenu from './EditorMenus/SpacerEditorMenu'
 
 class EditorSideBar extends Component {
-    constructor(props){
+    constructor(props) {
         super(props);
-        this.sideBarButton_OnClick.bind(this);
+        this.state = {
+          menu:this.props.menu
+        };
     }
 
-    sideBarButton_OnClick() {
-        console.log("clicked");
+    returnMenu() {
+        let menu = this.props.menu;
+        switch (menu) {
+            case "heading": {
+                return <> <HeadingEditorMenu selectedId={this.props.selectedId} menuComponentOnClick={this.props.menuComponentOnClick}/> <EditMenuNav handleBack={this.props.handleBack} handleDelete={this.props.handleDelete}/> </> 
+            }
+            case "divider": {
+                return <> <EditDividerMenu selectedId={this.props.selectedId} menuComponentOnClick={this.props.menuComponentOnClick}/><EditMenuNav handleBack={this.props.handleBack} handleDelete={this.props.handleDelete}/> </>
+            }
+            case "image": {
+                return <> <ImageEditorMenu selectedId={this.props.selectedId} menuComponentOnClick={this.props.menuComponentOnClick}/> <EditMenuNav handleBack={this.props.handleBack} handleDelete={this.props.handleDelete}/> </> 
+            }
+            case "icon": {
+                return <> <IconEditorMenu selectedId={this.props.selectedId} menuComponentOnClick={this.props.menuComponentOnClick}/> <EditMenuNav handleBack={this.props.handleBack} handleDelete={this.props.handleDelete}/> </> 
+            }
+            case "video": {
+                return <> <VideoEditorMenu selectedId={this.props.selectedId} menuComponentOnClick={this.props.menuComponentOnClick}/> <EditMenuNav handleBack={this.props.handleBack} handleDelete={this.props.handleDelete}/> </> 
+            }
+            case "button": {
+                return <> <ButtonEditorMenu selectedId={this.props.selectedId} menuComponentOnClick={this.props.menuComponentOnClick}/> <EditMenuNav handleBack={this.props.handleBack} handleDelete={this.props.handleDelete}/> </> 
+            }
+            case "spacer": {
+                return <> <SpacerEditorMenu selectedId={this.props.selectedId} menuComponentOnClick={this.props.menuComponentOnClick}/> <EditMenuNav handleBack={this.props.handleBack} handleDelete={this.props.handleDelete}/> </> 
+            }
+            default: {
+                return <>
+                    <div className="editor-buttons-container">
+                        <EditorButton text="Heading" faIcon={faFont} onClick={this.props.onPush} />
+                        <EditorButton text="Image" faIcon={faFileImage} onClick={this.props.onPush} />
+                        <EditorButton text="Button" faIcon={faAsterisk} onClick={this.props.onPush} />
+                        <EditorButton text="Dividers" faIcon={faBars} onClick={this.props.onPush} />
+                        <EditorButton text="Spacer" faIcon={faAlignRight} onClick={this.props.onPush} />
+                        <EditorButton text="Size" faIcon={faAsterisk} onClick={this.props.onPush} />
+                        <EditorButton text="Icon" faIcon={faArrowDown} onClick={this.props.onPush} />
+                        <EditorButton text="Video" faIcon={faCircle} onClick={this.props.onPush} />
+                    </div>
+                </>
+            }
+        }
     }
+
 
     render() {
-
-
         return (
-            <div style={sideBarContainerStyle}>
-                <Button text="Heading" faIcon={faFont}/>
-                <Button text="Image" faIcon={faFileImage}/>
-                <Button text="Button" faIcon={faAsterisk}/>
-                <Button text="Dividers"  faIcon={faBars}/>
-                <Button text="Align Right" faIcon={faAlignRight}/>
-                <Button text="Increase Size" faIcon={faAsterisk}/>
-                <Button text="Decrease Size" faIcon={faArrowDown}/>
-                <Button text="Colour" faIcon={faCircle}/>
+
+            <div className="Editor-SideBar-Container">
+                {/* editor menus to be tested here */}
+                {this.returnMenu()}
             </div>
         );
     };
-}
-
-
-const sideBarContainerStyle = {
-    marginLeft: (constants.SideBarWidthAsInt) + "vh",
-    marginRight: (constants.SideBarWidthAsInt) + "vh",
-    marginTop: "2vh",
-    margin: "auto",
-    width: "50vh",
-    height: "100vh",
-    background: "grey",
-    border: "3px solid green",
-    padding: "10px",
-    float: "left",
-};
-
-const buttonContainerStyle = {
-    height: "20%", 
-    width: constants.EditorSideBarButtonWidth,
-    borderRadius: "16px",
-    margin: "5%",
-    
-}
-
-const sideBarIconStyle = {
-    height: "7vh",
-    width: "7vh",
-    
-}
-
-const sideBarTextStyle = {
-
 }
 
 

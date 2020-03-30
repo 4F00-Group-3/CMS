@@ -1,13 +1,13 @@
-import React from 'react';
-import EditorStart from './editor/components/EditorSidebar';
 
+import React, { Component } from "react";
+import "./App.css";
+import MasterTestMenu from './Testing Components/MasterTestMenu';
 
-function App() {
-  return (
-    <div>
-        <EditorStart/>
-    </div>
-  )
+class App extends Component {
+  render() {
+    return (
+       <MasterTestMenu/>
+    );
+  }
 }
-
-export default App
+export default App;

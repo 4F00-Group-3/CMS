@@ -1,0 +1,82 @@
+.Editor-SideBar-Icon {
+  height: 7vh;
+  width: 7vh;
+}
+
+.Editor-Sidebar-ButtonContainer {
+  height: 20%;
+  width: 40%;
+  border-radius: 16px;
+  margin: 5%;
+}
+
+.editor-buttons-container {
+  text-align: center; /*aligns all buttone*/
+  margin-left: 10vh;
+  margin-right: 10vh;
+  margin-top: 2vh;
+  margin: auto;
+  width: 50vh;
+  height: 100vh;
+  background: rgb(26, 26, 26);
+  /*border: 3px solid green;*/
+  float: left;
+  position: fixed;
+  
+  
+  justify-content:center;
+  align-items:center;
+
+}
+
+.Editor-SideBar-Container {
+  text-align: center; /*aligns all buttone*/
+  margin-left: 10vh;
+  margin-right: 10vh;
+  margin-top: 2vh;
+  margin: auto;
+  width: 50vh;
+  height: 100vh;
+  background: rgb(26, 26, 26);
+  /*border: 3px solid green;*/
+  float: left;
+  position: fixed;
+
+  display: block;
+  justify-content: center;
+  align-items: center;
+  /* height: 100%; */
+}
+
+.PageEditor-Container {
+  margin-left: 10vh;
+  margin-right: 10vh;
+  margin-top: 2vh;
+  margin: auto;
+  width: 90vh;
+  border: 3px solid green;
+  padding: 10px;
+}
+
+.PageListItem .LinkContainer {
+  float: right;
+}
+
+.PageListItem .LinkContainer .Link {
+  padding-left: 7vh;
+}
+
+.Components-Editor {
+  margin-top: 2vh;
+  margin: auto;
+  width: 60vh;
+  height: 100vh;
+  background: rgb(55, 1, 105);
+  padding: 10px;
+  text-decoration: white;
+  float: left;
+}
+
+.edit-menu-nav {
+  margin: 2%;
+}
