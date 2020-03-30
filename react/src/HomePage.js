@@ -1,14 +1,10 @@
 //import React from "react";
 import React, { Component, createRef } from "react";
 import "./App.css";
-import {
-  Layout,
-  Header,
-  Content
-} from "react-mdl";
+import { Layout, Header, Content } from "react-mdl";
 
-import PlansPricing from './Components/landingPage';
-import GetStarted from './Components/getStarted';
+import PlansPricing from "./Components/landingPage";
+import GetStarted from "./Components/getStarted";
 import LoginPage from "./Components/loginpage";
 import LandingPage from "./Components/landingPage";
 import CreateAccount from "./Components/createAccount";
@@ -17,14 +13,14 @@ class HomePage extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      page: <GetStarted signUp_click = {this.signUp_OnClick}/>,
-      activeButton: "get-started",
-    }
-    
+      page: <LandingPage />,
+      activeButton: ""
+    };
+
     this.scrollDiv = createRef();
   }
 
-  returnButtonCSS = (button) => {
+  returnButtonCSS = button => {
     if (button === this.state.activeButton) {
       return "btn btn-primary active";
     } else {
@@ -32,27 +28,33 @@ class HomePage extends Component {
     }
   };
 
+  logOn_OnClick = () => {
+    this.setState({
+      page: <LandingPage />,
+      activeButton: "landing"
+    });
+  };
+
   signUp_OnClick = () => {
     this.setState({
       page: <CreateAccount />,
       activeButton: ""
-    })
-  }
+    });
+  };
 
   getStarted_OnClick = () => {
     this.setState({
-      page: <GetStarted signUp_click = {this.signUp_OnClick}/>,
-      activeButton: "get-started",
-    })
-
-  }
+      page: <GetStarted signUp_click={this.signUp_OnClick} />,
+      activeButton: "get-started"
+    });
+  };
 
   plansPricing_OnClick = () => {
     this.setState({
       page: <PlansPricing />,
-      activeButton: "plans-pricing",
-    })
-  }
+      activeButton: "plans-pricing"
+    });
+  };
 
   login_OnClick = () => {
     this.setState({
@@ -74,29 +76,40 @@ class HomePage extends Component {
   render() {
     return (
       <div>
-        <Layout
-          style={{
-            background: "url(./imagesFolder/techbkgrd2.jpg)",
-            backgroundSize: "cover"
-          }}
-        >
-          <Header transparent title="NO." style={{ color: "white" }}> 
-            {/* <Navigation> */}
-            <button
-              onClick={this.login_OnClick}
-              className={this.returnButtonCSS("log-in")}
-            >
-              Log In
+        <Layout className="website-background">
+          <Header transparent>
+            <button onClick={this.logOn_OnClick} className="main-top-home-nav">
+              <h4 style={{ color: "transparent" }}>NO</h4>
             </button>
-            <button
-              onClick={this.getStarted_OnClick}
-              className={this.returnButtonCSS("get-started")}
-            >
-              Get Started
-
+            {/* <Navigation> */}
+            <div>
+              <button
+                onClick={this.login_OnClick}
+                className={this.returnButtonCSS("log-in")}
+              >
+                Log In
               </button>
-            <a href="#planspricing" onClick={this.plansPricing_OnClick} className={this.returnButtonCSS("plans-pricing")}>Plans & Pricing</a>
-            <a href="#faqsec" onClick={this.FAQ_OnClick} className={this.returnButtonCSS("faq")}>FAQ</a>
+              <button
+                onClick={this.getStarted_OnClick}
+                className={this.returnButtonCSS("get-started")}
+              >
+                Get Started
+              </button>
+              <a
+                href="#planspricing"
+                onClick={this.plansPricing_OnClick}
+                className={this.returnButtonCSS("plans-pricing")}
+              >
+                Plans & Pricing
+              </a>
+              <a
+                href="#faqsec"
+                onClick={this.FAQ_OnClick}
+                className={this.returnButtonCSS("faq")}
+              >
+                FAQ
+              </a>
+            </div>
             {/* </Navigation> */}
           </Header>
           <Content>

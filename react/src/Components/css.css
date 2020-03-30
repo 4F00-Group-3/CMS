@@ -72,3 +72,14 @@ img.center {
 .centreBoxOnPage {
   margin-top: 5%;
 }
+
+.logo-size {
+  width: 350px;
+  text-align: center;
+}
+
+.center-logo {
+  text-align: center;
+  padding-right: 3em;
+  padding-left: 3em;
+}
