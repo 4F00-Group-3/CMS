@@ -27,9 +27,10 @@ function login(){
         if (!empty($_POST['email']) && !empty($_POST['password'])) {
             $email = filter_var($_POST['email'], FILTER_VALIDATE_EMAIL);
             $account = Account::getAccountByEmail($email);
-            echo $account->password;
-            echo $_POST['email'];
-            echo $_POST['password'];
+
+            $response = array();
+            $response['email'] = $_POST['email'];
+
             if ($account !== false) {
                 if (password_verify($_POST['password'], $account->password)) {
                     $success = true;
@@ -38,7 +39,8 @@ function login(){
         }
     }
     if($success === true){
-        echo $account->accountId;
+        $response['accountId'] = $account->accountId;
+        echo json_encode($response);
     }else{
         echo "false";
     }
