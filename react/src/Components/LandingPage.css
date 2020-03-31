@@ -6,7 +6,9 @@ img {
 img.center {
   display: block;
   margin: auto;
-} /*Center image class*/
+}
+
+/*Center image class*/
 
 .submitnextbutton {
   background-color: dodgerblue;
@@ -15,16 +17,13 @@ img.center {
   color: white;
   font-size: 110%;
   border-style: solid;
-
   /*Elongate*/
   padding-bottom: 2%;
   padding-top: 2%;
-
   /*Center Horizontally*/
   width: 40%;
   margin-left: 30%;
   margin-right: 30%;
-
   height: 40%;
 }
 
@@ -32,7 +31,8 @@ img.center {
   background-color: rgb(240, 240, 240);
   padding-top: 1%;
   padding-bottom: 1%;
-  width: 100%; /*Widen*/
+  width: 100%;
+  /*Widen*/
 }
 
 .submitformdiv {
@@ -45,6 +45,7 @@ img.center {
 }
 
 /*For boxes*/
+
 .boxPadding {
   padding: 20px;
 }
@@ -82,4 +83,14 @@ img.center {
   text-align: center;
   padding-right: 3em;
   padding-left: 3em;
+}
+
+.LandingPage-Card {
+  width: "256px";
+  height: "256px";
+  margin: "auto"
+}
+
+.LandingPage-Grid-bg{
+  background: "white";
 }

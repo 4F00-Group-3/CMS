@@ -3,7 +3,6 @@ import React, { Component, createRef } from "react";
 import "./App.css";
 import { Layout, Header, Content } from "react-mdl";
 
-import PlansPricing from "./Components/landingPage";
 import GetStarted from "./Components/getStarted";
 import LoginPage from "./Components/loginpage";
 import LandingPage from "./Components/landingPage";
@@ -20,6 +19,10 @@ class HomePage extends Component {
     this.scrollDiv = createRef();
   }
 
+  /**
+   * This method changes the active button on the navigation menu
+   * based on what the user last clicked
+   */
   returnButtonCSS = button => {
     if (button === this.state.activeButton) {
       return "btn btn-primary active";
@@ -28,13 +31,22 @@ class HomePage extends Component {
     }
   };
 
+
+  /**
+   * This method is for the "NO" icon on the navigation menu
+   * this will redirect the user to the top of the landing page
+   */
   logOn_OnClick = () => {
     this.setState({
-      page: <LandingPage />,
+      page: <LandingPage getStartedOnClick={this.getStarted_OnClick} />,
       activeButton: "landing"
     });
   };
 
+  /**
+   * This method is for the 'sign up' button on the nav menu
+   * this will redirect the user to a craate account page
+   */
   signUp_OnClick = () => {
     this.setState({
       page: <CreateAccount />,
@@ -42,6 +54,10 @@ class HomePage extends Component {
     });
   };
 
+  /**
+   * This method is for the 'Get Started' button on the nav menu
+   * this will redirect the user to get started page
+   */
   getStarted_OnClick = () => {
     this.setState({
       page: <GetStarted signUp_click={this.signUp_OnClick} />,
@@ -49,13 +65,21 @@ class HomePage extends Component {
     });
   };
 
+  /**
+   * This method is for the 'Plans Pricing' button on the nav menu
+   * this will redirect to user to plan & pricing section to the landing page
+   */
   plansPricing_OnClick = () => {
     this.setState({
-      page: <PlansPricing />,
+      page: <LandingPage getStartedOnClick={this.getStarted_OnClick}/>,
       activeButton: "plans-pricing"
     });
   };
 
+  /**
+   * This method is for the 'login' button on the nav menu
+   * this will redirect the user to login
+   */
   login_OnClick = () => {
     this.setState({
       page: <LoginPage />,
@@ -63,9 +87,13 @@ class HomePage extends Component {
     });
   };
 
+  /**
+   * This method is for the 'FAQ' button on the nav menu
+   * this will redirect the user to the FAQ section of the landing page
+   */
   FAQ_OnClick = () => {
     this.setState({
-      page: <LandingPage scrollDiv={this.scrollDiv} />,
+      page: <LandingPage scrollDiv={this.scrollDiv} getStartedOnClick={this.getStarted_OnClick}/>,
       activeButton: "faq"
     });
     //this.scrollDiv.current.scrollIntoView({ behavior: 'smooth' })
@@ -112,8 +140,7 @@ class HomePage extends Component {
             </div>
             {/* </Navigation> */}
           </Header>
-          <Content>
-            {/*overflow: "hidden" Removes inner scrollbar */}
+          <Content style={{scrollbarWidth: "none"}}>
             {/* <div className="page-content" /> */}
             {/* <Main /> */}
             {this.state.page}
