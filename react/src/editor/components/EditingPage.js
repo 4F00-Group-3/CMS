@@ -49,6 +49,7 @@ class EditingPage extends Component {
             toggleClickClass={this.toggleClickClass}
             clicked={this.state.active === section.id ? true : false}
             key={index}
+            size={section.size}
           />);
       }
       return page;

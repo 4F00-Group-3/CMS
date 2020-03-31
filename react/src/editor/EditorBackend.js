@@ -299,11 +299,17 @@ class EditorBackend {
                     id: page.length + 1,
                     type: "video",
                     text: "heading 1",
+                    url: "https://youtu.be/X4Q7d0CtYyk",
                     style: [
                         {
                             color: "black",
                             fontSize: "10vh",
                             textAlign: "left",
+                            height: "200px",
+                            width: "300px",
+                            margin: "auto",
+                            autoplay: "0",
+                            loop: "0",
                         }
                     ],
                 }
@@ -315,6 +321,7 @@ class EditorBackend {
                     id: page.length + 1,
                     type: "icon",
                     faClassName: "faBell",
+                    size: "1x",
                     style: [
                         {
                             color: "black",
