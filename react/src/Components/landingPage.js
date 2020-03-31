@@ -26,7 +26,7 @@ class landingPage extends Component {
       <div>
         <div className="center-logo">
           <section ref={this.props.scrollHome} id="home">
-            <img src="/imagesFolder/logo.png" className="logo-size"></img>
+            <img src="./imagesFolder/logo.png" className="logo-size"></img>
           </section>
         </div>
         <Grid>
@@ -63,6 +63,9 @@ class landingPage extends Component {
                 {/* Card 1 */}
                 <Card className={"LandingPage-Card"}
                   style={{
+                    width: "256px",
+                    height: "256px",
+                    margin: "auto",
                     background: "url(./imagesFolder/FAQ1.jpg)",
                   }}
                   shadow={0}
@@ -73,6 +76,9 @@ class landingPage extends Component {
                 {/* Card 2 */}
                 <Card className={"LandingPage-Card"}
                   style={{
+                    width: "256px",
+                    height: "256px",
+                    margin: "auto",
                     background: "url(./imagesFolder/FAQ2b.jpg)",
                   }}
                   shadow={0}
@@ -83,6 +89,9 @@ class landingPage extends Component {
                 {/* Card 3 */}
                 <Card className={"LandingPage-Card"}
                   style={{
+                    width: "256px",
+                    height: "256px",
+                    margin: "auto",
                     background: "url(./imagesFolder/FAQ3.jpg)",
                   }}
                   shadow={0}
@@ -98,6 +107,9 @@ class landingPage extends Component {
                 {/* Card 1 */}
                 <Card className={"LandingPage-Card"}
                   style={{
+                    width: "256px",
+                    height: "256px",
+                    margin: "auto",
                     background: "url(./imagesFolder/FAQ4b.jpg)",
                   }}
                   shadow={0}
@@ -108,6 +120,9 @@ class landingPage extends Component {
                 {/* Card 2 */}
                 <Card className={"LandingPage-Card"}
                   style={{
+                    width: "256px",
+                    height: "256px",
+                    margin: "auto",
                     background: "url(./imagesFolder/FAQ5.jpg)",
                   }}
                   shadow={0}
@@ -118,6 +133,9 @@ class landingPage extends Component {
                 {/* Card 3 */}
                 <Card className={"LandingPage-Card"}
                   style={{
+                    width: "256px",
+                    height: "256px",
+                    margin: "auto",
                     background: "url(./imagesFolder/FAQ6b.jpg)",
                   }}
                   shadow={0}
@@ -143,6 +161,9 @@ class landingPage extends Component {
                 {/* Card 1 */}
                 <Card className={"LandingPage-Card"}
                   style={{
+                    width: "256px",
+                    height: "256px",
+                    margin: "auto",
                     background: "url(./imagesFolder/FirstPlanSquare.jpg)",
                   }}
                   shadow={2}
@@ -153,6 +174,9 @@ class landingPage extends Component {
                 {/* Card 2 */}
                 <Card className={"LandingPage-Card"}
                   style={{
+                    width: "256px",
+                    height: "256px",
+                    margin: "auto",
                     background: "url(./imagesFolder/SecondPlanSquare.jpg)",
                   }}
                   shadow={2}
@@ -163,8 +187,11 @@ class landingPage extends Component {
                 {/* Card 3 */}
                 <Card className={"LandingPage-Card"}
                   style={{
+                    width: "256px",
+                    height: "256px",
+                    margin: "auto",
                     background: "url(./imagesFolder/ThirdPlanSquare.jpg)",
-                 }}
+                  }}
                   shadow={2}
                 >
                   <CardTitle expand />
