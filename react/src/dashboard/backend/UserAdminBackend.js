@@ -2,10 +2,11 @@ class UserAdminBackend {
     constructor() {
       this.deleted = [];
       this.updates = [];
+      this.users = this.all();
     }
   
     all() {
-      return [
+      var arr = [
         {
           'id': 1,
           'title': 'User 1',
@@ -22,7 +23,13 @@ class UserAdminBackend {
           'id': 4,
           'title': 'User 4',
         },
-      ].filter((user) => this.deleted.indexOf(user.id) === -1)
+      ]
+      
+      if(arr.length <= this.users) {
+        arr = this.users
+      }
+      
+      return arr.filter((user) => this.deleted.indexOf(user.id) === -1)
       .map((user) => {
         this.updates.forEach((update) => {
           if(update[0] === user.id){
@@ -36,11 +43,19 @@ class UserAdminBackend {
     }
   
     delete(id) {
-      this.deleted.push(id);
+      for (const user in this.users) {
+        if (user == id-1) {
+          delete this.users[user];
+        }
+      }
     }
   
     update(id, field, value){
       this.updates.push([id, field, value]);
+    }
+
+    updateUsers(id, title){
+      this.users.push({id, title});
     }
   }
   
