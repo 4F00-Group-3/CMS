@@ -3,7 +3,7 @@ import Home from '../HomePage';
 import Editor from '../editor/Editor';
 import Dashboard from '../dashboard/Dashboard'
 import SitePage from '../Site Page/SitePage';
-import Login from '../Components/loginpage';
+import Login from '../Login/loginpage';
 import CreateAccount from '../Components/createAccount.js';
 
 class MasterTestMenu extends Component {
@@ -62,13 +62,13 @@ class MasterTestMenu extends Component {
         page = <Home />;
         break;
       case "Dash":
-        page = <Dashboard />;
+        page = <Dashboard handleHomeClick = {this.handleHomeClick}/>;
         break;
       case "Login":
         page = <Login handleDashClick = {this.handleDashClick}/>;
         break;
       case "Create Account":
-        page = <CreateAccount />;
+        page = <CreateAccount handleDashClick = {this.handleDashClick}/>;
         break;
       case "SitePage":
         page = <SitePage />

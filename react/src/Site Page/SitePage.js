@@ -3,7 +3,7 @@ import React, { Component } from "react";
 // import SiteIcon from './SiteIcon';
 import '../css/SitePage.css'
 import AjaxCall from '../ajax.js';
-import Login from '../Components/loginpage';
+import Login from '../Login/loginpage';
 
 export default class SitePage extends Component {
 

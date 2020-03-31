@@ -1,8 +1,10 @@
 import React, { Component } from "react";
 import Container from "@material-ui/core/Container";
 import Card from "@material-ui/core/Card";
-import "./css.css";
+import "../Components/css.css";
 import AjaxCall from "../ajax.js";
+import LoginBackend from "./backend/LoginBackend";
+let backend = new LoginBackend();
 
 class LoginPage extends Component {
   constructor(props) {
@@ -13,6 +15,10 @@ class LoginPage extends Component {
     };
     this.handleFormSubmit.bind(this);
     this.handleChange.bind(this);
+    backend.f = props.handleDashClick;
+    if (sessionStorage.getItem('id') !== null) {
+      props.handleDashClick();
+    }
   }
 
   handleFormSubmit = event => {
@@ -25,8 +31,7 @@ class LoginPage extends Component {
             console.log(responseArray);
             let accountId = responseArray.accountId;
             console.log(accountId);
-            sessionStorage.setItem("id", accountId);
-
+            backend.redirect(accountId);
             // REDIRECT TO ANOTHER PAGE AFTER THIS
           } else {
             // LOGIN FAILED DISPLAY ERROR MSG
@@ -34,10 +39,10 @@ class LoginPage extends Component {
           }
         }
     );
-
-    if (sessionStorage.length === 1) {
-      this.props.handleDashClick();
-    }
+    //
+    // if (sessionStorage.length === 1) {
+    //   this.props.handleDashClick();
+    // }
   };
 
   handleChange = event => {
