@@ -164,7 +164,7 @@ class landingPage extends Component {
                 <Card className={"LandingPage-Card"}
                   style={{
                     background: "url(./imagesFolder/ThirdPlanSquare.jpg)",
-c                  }}
+                 }}
                   shadow={2}
                 >
                   <CardTitle expand />
