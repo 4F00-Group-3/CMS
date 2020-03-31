@@ -111,7 +111,7 @@ class Account {
         $websites = array();
         if($stmt->rowCount()){
             while ($row = $stmt->fetch()){
-                $data = array("name"=>$row['site_name'], "image"=>['image'], "description"=>['description']);
+                $data = array("name"=>$row['site_name'], "image"=>$row['image'], "description"=>$row['description']);
                 $websites[] = $data;
             }
             return $websites;

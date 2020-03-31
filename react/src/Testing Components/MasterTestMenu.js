@@ -71,7 +71,7 @@ class MasterTestMenu extends Component {
         page = <CreateAccount handleSitePageClick = {this.handleSitePageClick}/>;
         break;
       case "SitePage":
-        page = <SitePage />
+        page = <SitePage handleHomeClick = {this.handleHomeClick}/>
         break;
       default:
         page = <Editor />;

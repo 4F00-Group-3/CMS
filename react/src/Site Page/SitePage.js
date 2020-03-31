@@ -57,7 +57,9 @@ export default class SitePage extends Component {
                 });
         } else {
             // Redirect to login
+            this.props.handleHomeClick();
             this.setState({ userLoggedIn: false });
+
 
             // The code below is for testing purposes 
             /*
@@ -79,9 +81,9 @@ export default class SitePage extends Component {
      */
     handleLogOut() {
         // For testing purposes
-        var id = sessionStorage.getItem('id');
-        alert(id + " Logged Out!");
-        sessionStorage.removeItem("id");
+        // var id = sessionStorage.getItem('id');
+        sessionStorage.clear();
+        this.props.handleHomeClick();
     }
 
     /**
