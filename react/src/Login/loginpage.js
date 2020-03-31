@@ -15,9 +15,9 @@ class LoginPage extends Component {
     };
     this.handleFormSubmit.bind(this);
     this.handleChange.bind(this);
-    backend.f = props.handleDashClick;
+    backend.f = props.handleSitePageClick;
     if (sessionStorage.getItem('id') !== null) {
-      props.handleDashClick();
+      props.handleSitePageClick();
     }
   }
 

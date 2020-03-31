@@ -14,7 +14,7 @@ class createAccount extends Component {
       ln: ""
     };
     if (sessionStorage.getItem('id') !== null) {
-      props.handleDashClick();
+      props.handleSitePageClick();
     }
   }
 
