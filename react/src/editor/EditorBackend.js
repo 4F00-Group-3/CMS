@@ -230,7 +230,7 @@ class EditorBackend {
                         {
                             borderTop: "8px solid #bbb",
                             borderRadius: "5px",
-                            width: "50%",
+                            width: "100%",
                         }
                     ],
                 }
@@ -294,16 +294,22 @@ class EditorBackend {
                 this.state.page.push(jsonObj)
                 break;
             }
-            case "video": {
+            case "Video": {
                 jsonObj = {
                     id: page.length + 1,
-                    type: "spacer",
+                    type: "video",
                     text: "heading 1",
+                    url: "https://youtu.be/X4Q7d0CtYyk",
                     style: [
                         {
                             color: "black",
                             fontSize: "10vh",
                             textAlign: "left",
+                            height: "200px",
+                            width: "300px",
+                            margin: "auto",
+                            autoplay: "0",
+                            loop: "0",
                         }
                     ],
                 }
@@ -314,7 +320,8 @@ class EditorBackend {
                 jsonObj = {
                     id: page.length + 1,
                     type: "icon",
-                    faClassName: "fab fa-accessible-icon",
+                    faClassName: "faBell",
+                    size: "1x",
                     style: [
                         {
                             color: "black",
@@ -331,7 +338,6 @@ class EditorBackend {
                 break;
             }
         }
-
     }
 }
 export default EditorBackend;
