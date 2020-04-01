@@ -1,6 +1,6 @@
 //import React from "react";
 import React, { Component, createRef } from "react";
-import "./App.css";
+import "./HomePage.css";
 import {
   Layout,
   Header,
