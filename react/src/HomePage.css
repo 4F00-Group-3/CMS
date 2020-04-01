@@ -68,18 +68,19 @@ h2 {
   margin: auto;
 } /*not used yet*/
 
-.btn.btn-primary {
+.button.button-primary {
   background-color: transparent;
   border-color: transparent;
+  color:#fff;
 }
 
-.btn.btn-primary.active {
+.button.button-primary.active {
   color: black;
   background-color: transparent;
   border-color: transparent;
 }
 
-.btn.btn-primary:hover {
+.button.button-primary:hover {
   color: blue;
   background-color: transparent;
   border-color: transparent;

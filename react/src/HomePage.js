@@ -30,9 +30,9 @@ class HomePage extends Component {
    */
   returnButtonCSS = button => {
     if (button === this.state.activeButton) {
-      return "btn btn-primary active";
+      return "button button-primary active";
     } else {
-      return "btn btn-primary";
+      return "button button-primary";
     }
   };
 
