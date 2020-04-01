@@ -4,6 +4,10 @@ class UserAdminBackend {
       this.updates = [];
       this.users = this.all();
     }
+
+    returnAllUsers(){
+      
+    }
   
     all() {
       var arr = [

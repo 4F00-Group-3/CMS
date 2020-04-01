@@ -1,25 +1,25 @@
 {
   "files": {
-    "main.css": "/~c4f00g03/react/build/static/css/main.cb9f684b.chunk.css",
-    "main.js": "/~c4f00g03/react/build/static/js/main.22a1c47d.chunk.js",
-    "main.js.map": "/~c4f00g03/react/build/static/js/main.22a1c47d.chunk.js.map",
+    "main.css": "/~c4f00g03/react/build/static/css/main.b134d851.chunk.css",
+    "main.js": "/~c4f00g03/react/build/static/js/main.38fa0427.chunk.js",
+    "main.js.map": "/~c4f00g03/react/build/static/js/main.38fa0427.chunk.js.map",
     "runtime-main.js": "/~c4f00g03/react/build/static/js/runtime-main.fac5de01.js",
     "runtime-main.js.map": "/~c4f00g03/react/build/static/js/runtime-main.fac5de01.js.map",
-    "static/css/2.2bd37e2f.chunk.css": "/~c4f00g03/react/build/static/css/2.2bd37e2f.chunk.css",
-    "static/js/2.61c34864.chunk.js": "/~c4f00g03/react/build/static/js/2.61c34864.chunk.js",
-    "static/js/2.61c34864.chunk.js.map": "/~c4f00g03/react/build/static/js/2.61c34864.chunk.js.map",
+    "static/css/2.a6bc1c31.chunk.css": "/~c4f00g03/react/build/static/css/2.a6bc1c31.chunk.css",
+    "static/js/2.fa20b515.chunk.js": "/~c4f00g03/react/build/static/js/2.fa20b515.chunk.js",
+    "static/js/2.fa20b515.chunk.js.map": "/~c4f00g03/react/build/static/js/2.fa20b515.chunk.js.map",
     "index.html": "/~c4f00g03/react/build/index.html",
-    "precache-manifest.1c864ad27339eeb84136dac7fd893e58.js": "/~c4f00g03/react/build/precache-manifest.1c864ad27339eeb84136dac7fd893e58.js",
+    "precache-manifest.a9ac39c5e324b51cf1a6a250056f50bf.js": "/~c4f00g03/react/build/precache-manifest.a9ac39c5e324b51cf1a6a250056f50bf.js",
     "service-worker.js": "/~c4f00g03/react/build/service-worker.js",
-    "static/css/2.2bd37e2f.chunk.css.map": "/~c4f00g03/react/build/static/css/2.2bd37e2f.chunk.css.map",
-    "static/css/main.cb9f684b.chunk.css.map": "/~c4f00g03/react/build/static/css/main.cb9f684b.chunk.css.map",
-    "static/js/2.61c34864.chunk.js.LICENSE.txt": "/~c4f00g03/react/build/static/js/2.61c34864.chunk.js.LICENSE.txt"
+    "static/css/2.a6bc1c31.chunk.css.map": "/~c4f00g03/react/build/static/css/2.a6bc1c31.chunk.css.map",
+    "static/css/main.b134d851.chunk.css.map": "/~c4f00g03/react/build/static/css/main.b134d851.chunk.css.map",
+    "static/js/2.fa20b515.chunk.js.LICENSE.txt": "/~c4f00g03/react/build/static/js/2.fa20b515.chunk.js.LICENSE.txt"
   },
   "entrypoints": [
     "static/js/runtime-main.fac5de01.js",
-    "static/css/2.2bd37e2f.chunk.css",
-    "static/js/2.61c34864.chunk.js",
-    "static/css/main.cb9f684b.chunk.css",
-    "static/js/main.22a1c47d.chunk.js"
+    "static/css/2.a6bc1c31.chunk.css",
+    "static/js/2.fa20b515.chunk.js",
+    "static/css/main.b134d851.chunk.css",
+    "static/js/main.38fa0427.chunk.js"
   ]
 }

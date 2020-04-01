@@ -1,9 +1,13 @@
+//import AjaxCall from "../../ajax" //change this
+
 class DashboardBackend {
   constructor() {
     this.deleted = [];
     this.updates = [];
     this.pages = this.all();
   }
+
+
 
   all() {
     var arr = [
@@ -62,7 +66,7 @@ class DashboardBackend {
     }
   }
 
-  update(id, field, value){
+  update(id, field, value) {
     this.updates.push([id, field, value]);
   }
 
