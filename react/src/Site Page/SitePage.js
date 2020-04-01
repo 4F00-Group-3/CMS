@@ -4,47 +4,25 @@ import React, { Component } from "react";
 import '../css/SitePage.css'
 import AjaxCall from '../ajax.js';
 import Login from '../Login/loginpage';
+import {withRouter} from "react-router";
 
-export default class SitePage extends Component {
+class SitePage extends Component {
 
     constructor(props) {
         super(props);
 
         this.state = {
             userLoggedIn: true
-        }
+        };
         this.handleLogOut = this.handleLogOut.bind(this);
         this.handleRedirectToAccoutingSettings = this.handleRedirectToAccoutingSettings.bind(this);
         this.handleUpgradePlan = this.handleUpgradePlan.bind(this);
     }
 
     componentDidMount() {
-        // var target = 'https://www.google.com';
         const self = this;
-        //
-        // // Just for testing purposes, When the database is filled with valid data, remove the axios code.
-        // axios({
-        //     method: 'post',
-        //     url: "http://api.linkpreview.net",
-        //     dataType: 'jsonp',
-        //     data: { q: target, key: '123456' } //
-        // }).then(response => {
-        //     self.setState({
-        //         siteInfo: [
-        //             {
-        //                 title: response.data.title,
-        //                 image: response.data.image,
-        //                 description: response.data.description
-        //             }
-        //         ]
-        //     });
-        //     console.log(this.state.siteInfo);
-        // });
-
-        //sessionStorage.setItem('id', "79"); // for testing purposes
         if (sessionStorage.getItem('id') !== null) {
             this.setState({ userLoggedIn: true });
-            console.log("ajaxcall"); // to see if it actually went thru
             AjaxCall({ function: 'getWebsiteData', accountId: sessionStorage.getItem('id') },
                 function (response) {
                     response = response.split("php-cgi")[1].trim();
@@ -59,20 +37,6 @@ export default class SitePage extends Component {
             // Redirect to login
             this.props.handleHomeClick();
             this.setState({ userLoggedIn: false });
-
-
-            // The code below is for testing purposes 
-            /*
-            sessionStorage.setItem('id', "79"); // for testing purposes
-            var json = [
-                { "name": "Website1", "image": "https:\/\/cdn.pixabay.com\/photo\/2013\/11\/28\/10\/36\/road-220058_1280.jpg", "description": "Web1" },
-                { "name": "Website2", "image": "https:\/\/cdn.pixabay.com\/photo\/2013\/10\/02\/23\/03\/dawn-190055_1280.jpg", "description": "Web2" },
-                { "name": "Website3", "image": "https:\/\/cdn.pixabay.com\/photo\/2014\/09\/10\/00\/59\/utah-440520_1280.jpg", "description": "Web3" }
-            ];
-            self.setState({
-                siteInfo: json
-            });
-            */
         }
     }
 
@@ -102,6 +66,14 @@ export default class SitePage extends Component {
         alert("Upgrading you to Supreme Overlord of the Universe!!");
     }
 
+    handleViewWebsite = (info) =>{
+        console.log(info);
+        this.props.history.push('../../'+info);
+        window.location.reload();
+        // this.props.history.reload();
+
+    };
+
     render() {
         var userLoggedIn = this.state.userLoggedIn;
         return (
@@ -128,7 +100,7 @@ export default class SitePage extends Component {
                                                             <button onClick={this.props.onClick} value="Edit">Edit</button>
                                                         </div>
                                                         <div className="column">
-                                                            <button value="View">View</button>
+                                                            <button onClick={() => this.handleViewWebsite(site.path)} value="View">View</button>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -147,3 +119,4 @@ export default class SitePage extends Component {
         );
     }
 }
+export default withRouter(SitePage);

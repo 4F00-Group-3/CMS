@@ -39,10 +39,6 @@ class LoginPage extends Component {
           }
         }
     );
-    //
-    // if (sessionStorage.length === 1) {
-    //   this.props.handleDashClick();
-    // }
   };
 
   handleChange = event => {
