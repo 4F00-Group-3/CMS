@@ -1,9 +1,14 @@
 //import React from "react";
 import React, { Component, createRef } from "react";
 import "./App.css";
-import { Layout, Header, Content } from "react-mdl";
+import {
+  Layout,
+  Header,
+  Content
+} from "react-mdl";
 
-import GetStarted from "./Components/getStarted";
+import PlansPricing from './Components/landingPage';
+import GetStarted from './Components/getStarted';
 import LoginPage from "./Components/loginpage";
 import LandingPage from "./Components/landingPage";
 import CreateAccount from "./Components/createAccount";
