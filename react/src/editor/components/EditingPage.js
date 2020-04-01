@@ -29,6 +29,7 @@ class EditingPage extends Component {
   /**
    * This method renders a page from JSON onto the actual page editor
    * Can be reused for actual page viewing as well
+   * Returns the sections added to the editor page
    */
   returnPage() {
     try {
@@ -48,13 +49,14 @@ class EditingPage extends Component {
             toggleClickClass={this.toggleClickClass}
             clicked={this.state.active === section.id ? true : false}
             key={index}
+            size={section.size}
           />);
       }
       return page;
     } catch (error) {
 
     }
-  }   //returns the sections added to the editor page
+  }   //
 
   render() {
 
@@ -150,8 +152,6 @@ class EditingPage extends Component {
     }
 
 
-    console.log("Page: " + this.returnPage());
-
     return (
       <DndProvider backend={Backend}>
         <Container />
@@ -159,16 +159,5 @@ class EditingPage extends Component {
     )
   }
 }
-
-
-const containerStyle = {
-  background: "white",
-  width: (100 - constants.EditorSideBarWidth) + "%",
-  height: "100vh",
-  //border: "3px solid red",
-  marginLeft: constants.EditorSideBarWidth,
-} //containerStyle --> styling for whole page not 1 component
-
-
 
 export default EditingPage;
