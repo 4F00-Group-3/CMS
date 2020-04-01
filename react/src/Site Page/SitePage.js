@@ -70,7 +70,6 @@ class SitePage extends Component {
         console.log(info);
         this.props.history.push('../../'+info);
         window.location.reload();
-        // this.props.history.reload();
 
     };
 
