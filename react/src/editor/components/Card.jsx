@@ -3,13 +3,13 @@ import { useDrag, useDrop } from 'react-dnd'
 import ItemTypes from './ItemTypes'
 import PageSection from "./PageSection"
 
-const style = { //styling of card
-  border: '1px solid green',
-  padding: '0.5rem 1rem',
-  marginBottom: '.5rem',
-  backgroundColor: 'white',
-  cursor: 'move',
-}
+// const style = { //styling of card
+//   border: '1px solid green',
+//   padding: '0.5rem 1rem',
+//   marginBottom: '.5rem',
+//   backgroundColor: 'white',
+//   cursor: 'move',
+// }
 
 const Card = ({ id, type, style, text, faClassName, onClick, url, onSectionPush, index, moveCard, href, toggleClickClass, clicked}) => { //section fields + index + moveCard
   const ref = useRef(null)
@@ -60,7 +60,7 @@ const Card = ({ id, type, style, text, faClassName, onClick, url, onSectionPush,
   */
 
     return (
-      <div ref={ref} style={{ ...style, opacity }}>
+      <div ref={ref}>
         {   //card returns a page section
            <PageSection
             index={id}
