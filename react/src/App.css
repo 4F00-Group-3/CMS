@@ -67,3 +67,33 @@ h2 {
   height: 256px;
   margin: auto;
 } /*not used yet*/
+
+.btn.btn-primary {
+  background-color: transparent;
+  border-color: transparent;
+}
+
+.btn.btn-primary.active {
+  color: black;
+  background-color: transparent;
+  border-color: transparent;
+}
+
+.btn.btn-primary:hover {
+  color: blue;
+  background-color: transparent;
+  border-color: transparent;
+}
+
+.website-background {
+  background-image: url("/imagesFolder/techbkgrd2.jpg");
+  background-size: cover;
+}
+
+.main-top-home-nav {
+  float: left;
+  background-image: url("/imagesFolder/logo.png");
+  background-size: 50px 50px;
+  background-color: transparent;
+  border-color: transparent;
+}
