@@ -30,7 +30,6 @@ class Media{
     public static function getMediaByAccount($accountId){
         $stmt = Dbh::connect() ->PREPARE("SELECT * FROM account_media WHERE account_id=?");
         $stmt->execute([$accountId]);
-
         $imageData = array();
         if($stmt->rowCount()){
             while ($row = $stmt->fetch()){
@@ -76,10 +75,14 @@ class Media{
         $stmt->execute();
 
         $imageData = array();
-        while ($row = $stmt->fetch()){
-            $imageData[] = $row;
+        if($stmt->rowCount()){
+            while ($row = $stmt->fetch()) {
+                $imageData[] = $row;
+            }
+            return $imageData;
+        }else{
+            return false;
         }
-        return $imageData;
     }
 
 }

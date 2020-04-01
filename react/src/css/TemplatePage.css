@@ -1,0 +1,49 @@
+.TemplatePage .Header {
+    height: 450px;
+    width: 100%;
+    position: fixed;
+    background-image: url("../Components/mountain.jpg"); 
+    overflow-x: hidden;
+    padding-top: 20px;
+}
+
+.TemplatePage .TemplatePageTitle {
+    padding-top: 4em;
+    padding-right: 3em;
+    padding-left: 6em;
+    text-align: left;
+    color: white;
+    font-weight: 900;
+}
+
+.TemplatePage .TemplatePageSubtitle {
+    padding-left: 10em;
+    text-align: left;
+    color: white;
+    font-weight: 600;
+}
+
+.TemplatePage .Content {
+    margin-top: 450px;
+    height: 200px;
+    width: 100%;
+    position: absolute;
+    font-size: 28px;   
+}
+
+.TemplatePage .ContentGrid {
+    display: flex;
+    padding-top: 50px;  
+}
+
+.TemplatePage .CardText {
+    text-align: center;
+    font-size: 28px;
+}
+
+.TemplatePage .CardStyle {
+    width: 256px;
+    height: 256px;
+    background-color: white;
+    margin: auto;
+}

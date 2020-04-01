@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import Form from 'react-bootstrap/Form';
 import Col from 'react-bootstrap/Col';
 import Button from 'react-bootstrap/Button';
-import ColourPicker from './EditorMenuComponents';
+import ColourPicker from './ColourPicker'
 
 class EditDivider extends Component {
   constructor(props) {
@@ -33,7 +33,8 @@ class EditDivider extends Component {
   }
 
   render() {
-    return (<>
+    return (
+        <div className="Editor-SideBar-Container">
           <div className=""></div>
           {<Form className="border bg-light rounded p-1" onSubmit={this.handleSubmit}>
             <Form.Group>
@@ -131,7 +132,9 @@ class EditDivider extends Component {
             </Form.Row>
 
             <Button variant="primary" type="submit">Save</Button>
-          </Form>}</>
+          </Form>}
+        </div>
+        
         /* <Container maxWidth="sm">
           <Card>
             <div className="boxPadding">

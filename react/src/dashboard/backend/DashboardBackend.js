@@ -1,9 +1,13 @@
+//import AjaxCall from "../../ajax" //change this
+
 class DashboardBackend {
   constructor() {
     this.deleted = [];
     this.updates = [];
     this.pages = this.all();
   }
+
+
 
   all() {
     var arr = [
@@ -31,12 +35,10 @@ class DashboardBackend {
         'segment': 'contact',
         'body': [],
       },
-    ]
 
     if(arr.length <= this.pages) {
       arr = this.pages
     }
-
     return arr.filter((page) => this.deleted.indexOf(page.id) === -1)
       .map((page) => {
         this.updates.forEach((update) => {
@@ -62,7 +64,7 @@ class DashboardBackend {
     }
   }
 
-  update(id, field, value){
+  update(id, field, value) {
     this.updates.push([id, field, value]);
   }
 

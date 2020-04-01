@@ -10,9 +10,8 @@
 .faq-page {
   padding-top: 800;
   text-align: center;
-  color: grey;
+  color: rgb(83, 83, 197);
   font-weight: 600;
-  text-decoration: underline;
   margin-top: "30px";
 }
 
@@ -57,4 +56,44 @@
 
 h2 {
   text-align: center;
+}
+
+.gridBkgd {
+  background: "/coworkers-discussing-business-ideas-PWAASLV.jpg";
+}
+
+.landing-page-card-style {
+  width: 256px;
+  height: 256px;
+  margin: auto;
+} /*not used yet*/
+
+.btn.btn-primary {
+  background-color: transparent;
+  border-color: transparent;
+}
+
+.btn.btn-primary.active {
+  color: black;
+  background-color: transparent;
+  border-color: transparent;
+}
+
+.btn.btn-primary:hover {
+  color: blue;
+  background-color: transparent;
+  border-color: transparent;
+}
+
+.website-background {
+  background-image: url("/imagesFolder/techbkgrd2.jpg");
+  background-size: cover;
+}
+
+.main-top-home-nav {
+  float: left;
+  background-image: url("/imagesFolder/logo.png");
+  background-size: 50px 50px;
+  background-color: transparent;
+  border-color: transparent;
 }

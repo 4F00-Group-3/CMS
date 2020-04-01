@@ -28,13 +28,13 @@ class Account {
 	}
 
 //	returns account data
-	public function get_account_data(){
+	public function get_account_data() {
         return array(
-            'accountId' => $accountId,
-            'email' => $email,
-            'firstName' => $firstName,
-            'lastName' => $lastName,
-            'type' => $type
+            'accountId' => $this->accountId,
+            'email' => $this->email,
+            'firstName' => $this->firstName,
+            'lastName' => $this->lastName,
+            'type' => $this->type
         );
     }
 	
@@ -58,16 +58,16 @@ class Account {
 
 	//returns a new Account object or false if invalid email was given
 	public static function getAccountByEmail($email){
-		$stmt = Dbh::connect() ->PREPARE("SELECT * FROM accounts WHERE email=?");
+        $stmt = Dbh::connect() ->PREPARE("SELECT * FROM accounts WHERE email=?");
         $stmt->execute([$email]);
 
         if($stmt->rowCount()){
-			$accountInfo = $stmt->fetch(PDO::FETCH_ASSOC);
+            $accountInfo = $stmt->fetch(PDO::FETCH_ASSOC);
             return new Account($accountInfo['account_id'], $accountInfo['email'], $accountInfo['first_name'], $accountInfo['last_name'], $accountInfo['account_type'], $accountInfo['password']);
         } else {
-			return false;
-		}
-	}
+            return false;
+        }
+    }
 
 	//add a new account to the database
 	public static function addAccount($email, $firstName, $lastName, $type,  $password){
@@ -94,6 +94,30 @@ class Account {
             $accounts[] = new Account($row['account_id'], $row['email'], $row['first_name'], $row['last_name'], $row['account_type'], $row['password']);
         }
         return $accounts;
+	}
+
+	public static function deleteAccount($accountId = 0){
+		$stmt = Dbh::connect()->PREPARE("DELETE FROM accounts WHERE account_id=?");
+		$stmt->execute([$accountId]);
+
+		return $stmt->rowCount();
+	}
+
+    // Retrieve websites associated with account
+    public static function getWebsiteData($account_id) {
+        $stmt = Dbh::connect()
+            ->PREPARE("SELECT * FROM websites WHERE account_id=?");
+        $stmt->execute([$account_id]);
+        $websites = array();
+        if($stmt->rowCount()){
+            while ($row = $stmt->fetch()){
+                $data = array("name"=>$row['site_name'], "image"=>['image'], "description"=>['description']);
+                $websites[] = $data;
+            }
+            return $websites;
+        }else{
+            return false;
+        }
     }
 
 }

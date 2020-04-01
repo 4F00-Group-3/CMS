@@ -99,8 +99,7 @@ class Pages extends Component {
                                     </li>
                                 );
                             })}
-                        </ol>
-                        
+                        </ol>                        
                         <button onClick={this.togglePopup.bind(this)}>Add Page</button>
                        {this.state.showPopup ? 
                             <Popup
@@ -111,6 +110,7 @@ class Pages extends Component {
                                 />
                             : null
                         } 
+
                     </div>
             </>
         );
