@@ -17,7 +17,7 @@ class HomePage extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      page: <LandingPage />,
+      page: <LandingPage getStartedOnClick={this.getStarted_OnClick}/>,
       activeButton: ""
     };
 
@@ -109,7 +109,7 @@ class HomePage extends Component {
   render() {
     return (
       <div>
-        <Layout className="website-background">
+        <Layout fixedHeader className="website-background">
           <Header transparent>
             <button onClick={this.logOn_OnClick} className="main-top-home-nav">
               <h4 style={{ color: "transparent" }}>NO</h4>
