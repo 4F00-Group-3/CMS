@@ -4,7 +4,7 @@ import React, { Component } from "react";
 import '../css/SitePage.css'
 import AjaxCall from '../ajax.js';
 import Login from '../Login/loginpage';
-import {withRouter} from "react-router";
+// import {withRouter} from "react-router";
 
 class SitePage extends Component {
 
@@ -68,9 +68,7 @@ class SitePage extends Component {
 
     handleViewWebsite = (info) =>{
         console.log(info);
-        this.props.history.push('../../'+info);
-        window.location.reload();
-
+        window.location.assign('../../'+info);
     };
 
     render() {
@@ -121,4 +119,4 @@ class SitePage extends Component {
         );
     }
 }
-export default withRouter(SitePage);
+export default SitePage;

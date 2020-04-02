@@ -1,8 +1,6 @@
 import React, { Component } from "react";
 import Container from "@material-ui/core/Container";
 import Card from "@material-ui/core/Card";
-import "../Components/css.css";
-import "./LandingPage.css";
 import AjaxCall from "../ajax.js";
 import LoginBackend from "./backend/LoginBackend";
 let backend = new LoginBackend();
