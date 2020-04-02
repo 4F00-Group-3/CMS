@@ -5,7 +5,6 @@ import Dashboard from '../dashboard/Dashboard'
 import SitePage from '../Site Page/SitePage';
 import Login from '../Login/loginpage';
 import CreateAccount from '../Components/createAccount.js';
-import {withRouter} from "react-router";
 
 class MasterTestMenu extends Component {
   constructor(props) {
@@ -96,4 +95,4 @@ class MasterTestMenu extends Component {
     );
   }
 }
-export default withRouter(MasterTestMenu);
+export default MasterTestMenu;

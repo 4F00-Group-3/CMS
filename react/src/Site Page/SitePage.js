@@ -106,6 +106,9 @@ class SitePage extends Component {
                                             </div>
                                         )
                                     }
+                                    <div className="column">
+                                        <button onClick={this.props.onClick} value="New">New</button>
+                                    </div>
                                 </div>
                             </div>
                         </div>
