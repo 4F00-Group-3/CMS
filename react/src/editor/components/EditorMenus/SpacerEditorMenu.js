@@ -12,7 +12,7 @@ import Col from 'react-bootstrap/Col';
 
 
 
-class SpacerEditorMenu extends Component {
+class SpacerEditor extends Component {
     render() {
         return (
             <Form className="border bg-light rounded p-1 editor-menu">
@@ -37,4 +37,4 @@ class SpacerEditorMenu extends Component {
 
 
 
-export default SpacerEditorMenu
+export default SpacerEditor

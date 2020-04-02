@@ -28,7 +28,7 @@ import $ from "jquery";
 
 
 export default function AjaxCall(args, callback) {
-	$.post("../../php/ajax.php", args, callback);
+	$.post("../../ajax.php", args, callback);
 }
 
 /** Note: 

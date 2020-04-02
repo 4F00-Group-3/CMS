@@ -31,14 +31,14 @@ class HeadingEditor extends Component {
         if (active) {
             return (
                 <>
-                    <Button className="mt-2" onClick={this.handleColorPicker}>Close Color Picker</Button>
+                    <Button onClick={this.handleColorPicker}>Close Color Picker</Button>
                     <ColourPicker
                         onChange={this.props.menuComponentOnClick}
                     />
                 </>);
         }
         else {
-            return (<Button className="mt-2" onClick={this.handleColorPicker}>Open Color Picker</Button>);
+            return (<Button onClick={this.handleColorPicker}>Open Color Picker</Button>);
         }
     }
 
@@ -67,7 +67,7 @@ class HeadingEditor extends Component {
                         </Col>
                     </Form.Row>
 
-                    <Form.Row  className="mt-2">
+                    <Form.Row>
                         <Col><Form.Label className="d-block left">Font Size:</Form.Label></Col>
                         <Col>
                             <NumericInput
