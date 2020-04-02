@@ -9,6 +9,7 @@ import { AlignmentImage } from './EditorMenuComponents';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faUpload } from "@fortawesome/free-solid-svg-icons";
 import AjaxCall from './../../../ajax'; 
+import AjaxFileUpload from './../../../ajaxFileUpload'; 
 
 class ImageEditorMenu extends Component {
     constructor(props) {
@@ -22,40 +23,13 @@ class ImageEditorMenu extends Component {
             imageElements: []
         }
 
-        AjaxCall(
-            { function: "getAccountMedia", accountId: sessionStorage.getItem('id') || 0 },
-            (response) => {
-                if (!response.toString().includes("false")) {
-                    let responseArray = JSON.parse(response.split('php-cgi')[1].trim());
-                    console.log(responseArray);
-                    this.state.images =responseArray;
-                    console.log(this.state.images);
+        this.getImages();
+    }
 
-                    var imageGallery = [];
-                    for(let i=0; i<Math.ceil(responseArray.length / 2); i++){
-                        var image1 = responseArray[i].path || "";
-                        var image2 = responseArray[i+1].path || "";
-
-                        imageGallery.push(<>
-                            <Row>
-                                <Col onClick={this.selectImageUpload}>
-                                    <img src={image1} ></img>
-                                </Col >
-                                <Col onClick={this.selectImageUpload}>
-                                    <img src={image2} ></img>
-                                </Col>
-                            </Row>
-                        </>);
-
-                        this.state.imageElements = imageGallery;
-                    }
-                  } else {
-                    console.log('no images');
-                  }
-                // console.log(response.toString());
-                return 'test';
-            }
-        );
+    componentDidMount() {
+        setTimeout(function () { //Start the timer
+            this.setState({ showImageGallery: this.showImageGallery }) //After 1 second, set render to true
+        }.bind(this), 1000)
     }
 
     onMarginUnitChange(value) {
@@ -70,33 +44,75 @@ class ImageEditorMenu extends Component {
         this.setState({ borderRadiusUnits: value })
     }
 
+    /* onclick for upload button */
     toggleShowImageGallery = () => {
-        // this.props.menuComponentOnClick("url|" + event.target.value + "|url")
         this.setState({ showImageGallery: !this.state.showImageGallery });
     }
 
-    uploadImage = () => {
-        console.log('CHanged!');
+
+    getImages = () => {
+        AjaxCall(
+            { function: "getAccountMedia", accountId: sessionStorage.getItem('id') || 0 },
+            (response) => {
+                if (!response.toString().includes("false")) {
+                    let responseArray = JSON.parse(response.split('php-cgi')[1].trim());
+                    this.setState({images:responseArray});
+
+                    var imageGallery = [];
+                    for(var i=0; i<responseArray.length; i += 2){
+                        var image1 = responseArray[i].path;
+                        var image2 = responseArray[i+1] !== undefined ? responseArray[i+1].path : "";
+                        console.log(image1, image2);
+                        imageGallery.push(<>
+                            <Row>
+                                <Col onClick={(event) => {this.props.menuComponentOnClick("url|" + event.target.src + "|url");}}>
+                                    <img src={image1} alt=""></img>
+                                </Col>
+                                {image2 === "" ? <Col></Col> :
+                                <Col onClick={(event) => {this.props.menuComponentOnClick("url|" + event.target.src + "|url");}}>
+                                    <img src={image2} alt=""></img>
+                                </Col>
+                                }
+                            </Row>
+                        </>);
+
+                        this.setState({imageElements:imageGallery});
+                    }
+                } else {
+                    console.log('no images');
+                }
+                // console.log(response.toString());
+                return 'test';
+            }
+        );
+    }
+    /* fires after a user picks a files from their computer and clicks OK */
+    uploadImage = (files) => {
+        console.log('upload');
+        console.log(files);
         // ajax call to upload image and rerender, update url
+        var file = files[0]
+        var fileType = file.type;
+        var match = ['image/jpeg', 'image/png', 'image/jpg'];
 
-                // AjaxCall(
-        //     { function: "getAccountMedia", accountId: sessionStorage.getItem('id') || 0 },
-        //     function(response) {
-        //         if (!response.toString().includes("false")) {
-        //             let responseArray = JSON.parse(response.split('php-cgi')[1].trim());
-        //             console.log(responseArray);
-        //           } else {
-
-        //           }
-        //         console.log(response.toString());
-        //     }
-        // );
+        if(match.includes(fileType)){
+            AjaxFileUpload("addMedia", sessionStorage.getItem('id') || 0, file,
+                (response) => {
+                    response = JSON.parse(response.split('php-cgi')[1].trim());
+                    console.log(response);
+                    if(response){
+                        //reload menu
+                        this.getImages();
+                    } else {
+                        alert('Something went wrong with your upload!');
+                    }
+                }
+            );
+        } else {
+            alert('Only JPG or PNG images may be uploaded.');
+        }
     }
 
-    selectImageUpload = () => {
-        console.log('image Clicked!');
-        //update url
-    }
 
     render() {
         return (<>
@@ -202,21 +218,21 @@ class ImageEditorMenu extends Component {
 
                 {this.state.showImageGallery ?
                     <Container className="border bg-light rounded p-1">
-                        <div style={{overflowY:"scroll", minHeight:"200px"}}>
+                        <div style={{overflowY:"scroll", maxHeight:"250px"}}>
                             {this.state.imageElements}   
                         </div>
   
                         <Row className="mt-4">
                             
                             <Col>  
-                                <Form.Control  className="float-left" type="file" onChange={this.uploadImage}/>
+                                <Form.Control  className="float-left" type="file" name="file" onChange={(e) => this.uploadImage(e.target.files)}/>
                             </Col>
 
                             <Col> <Button className="float-right" onClick={this.toggleShowImageGallery}>Close</Button> </Col>
                         </Row>
                     </Container>
-                    :
-                    null
+                    
+                    : null
                 }
 
                 <Form.Row>
