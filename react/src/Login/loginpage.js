@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import Container from "@material-ui/core/Container";
 import Card from "@material-ui/core/Card";
 import "../Components/css.css";
+import "./LandingPage.css";
 import AjaxCall from "../ajax.js";
 import LoginBackend from "./backend/LoginBackend";
 let backend = new LoginBackend();
@@ -60,7 +61,7 @@ class LoginPage extends Component {
               <h2 style={{ textalign: "center" }}>Login To Your Account</h2>
 
               <form className="centerBoxItems" onSubmit={this.handleFormSubmit}>
-                <label for="email">Username</label>
+                <label htmlFor="email">Username</label>
                 <br></br>
                 <input
                   type="email"
@@ -70,7 +71,7 @@ class LoginPage extends Component {
                   onChange={this.handleChange}
                 />
                 <br></br>
-                <label for="email">Password</label>
+                <label htmlFor="pw">Password</label>
                 <br></br>
                 <input
                   type="password"
@@ -82,7 +83,7 @@ class LoginPage extends Component {
                 <br />
                 <br />
                 <br />
-                <input type="submit" value="Login" class="submitnextbutton" />
+                <input type="submit" value="Login" className="submitnextbutton" />
               </form>
 
               <a

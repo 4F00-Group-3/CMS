@@ -33,6 +33,7 @@
     "react-scripts": "3.3.1",
     "react-sidebar": "^3.0.2",
     "react-sticky-footer": "0.1.0-rc3",
+    "react-youtube": "^7.9.0",
     "reactstrap": "^8.4.1",
     "semantic-ui-react": "^0.88.2",
     "semantic-ui-react-numberpicker": "0.0.1-b",
