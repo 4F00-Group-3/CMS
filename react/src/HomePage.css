@@ -59,7 +59,7 @@ h2 {
 }
 
 .gridBkgd {
-  background: "/coworkers-discussing-business-ideas-PWAASLV.jpg";
+  background: "./coworkers-discussing-business-ideas-PWAASLV.jpg";
 }
 
 .landing-page-card-style {
@@ -68,33 +68,33 @@ h2 {
   margin: auto;
 } /*not used yet*/
 
-.button.button-primary {
+/* .btn.btn-primary {
   background-color: transparent;
   border-color: transparent;
   color:#fff;
-}
+} */
 
-.button.button-primary.active {
+/* .btn.btn-primary.active {
   color: black;
   background-color: transparent;
   border-color: transparent;
-}
+} */
 
-.button.button-primary:hover {
+/* .btn.btn-primary:hover {
   color: blue;
   background-color: transparent;
   border-color: transparent;
-}
+} */
 
-.website-background {
-  background-image: url("/imagesFolder/techbkgrd2.jpg");
+/* .website-background {
+  background-image: url("./imagesFolder/techbkgrd2.jpg");
   background-size: cover;
-}
+} */
 
-.main-top-home-nav {
+/* .main-top-home-nav {
   float: left;
-  background-image: url("/imagesFolder/logo.png");
+  background-image: url("./imagesFolder/logo.png");
   background-size: 50px 50px;
   background-color: transparent;
   border-color: transparent;
-}
+} */

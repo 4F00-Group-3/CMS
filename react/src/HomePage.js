@@ -17,7 +17,7 @@ class HomePage extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      page: <LandingPage getStartedOnClick={this.getStarted_OnClick}/>,
+      page: <LandingPage getStartedOnClick={this.getStarted_OnClick} />,
       activeButton: ""
     };
 
@@ -30,9 +30,9 @@ class HomePage extends Component {
    */
   returnButtonCSS = button => {
     if (button === this.state.activeButton) {
-      return "button button-primary active";
+      return "btn btn-primary active";
     } else {
-      return "button button-primary";
+      return "btn btn-primary";
     }
   };
 
@@ -76,7 +76,7 @@ class HomePage extends Component {
    */
   plansPricing_OnClick = () => {
     this.setState({
-      page: <LandingPage getStartedOnClick={this.getStarted_OnClick}/>,
+      page: <LandingPage getStartedOnClick={this.getStarted_OnClick} />,
       activeButton: "plans-pricing"
     });
   };
@@ -98,7 +98,7 @@ class HomePage extends Component {
    */
   FAQ_OnClick = () => {
     this.setState({
-      page: <LandingPage scrollDiv={this.scrollDiv} getStartedOnClick={this.getStarted_OnClick}/>,
+      page: <LandingPage scrollDiv={this.scrollDiv} getStartedOnClick={this.getStarted_OnClick} />,
       activeButton: "faq"
     });
     //this.scrollDiv.current.scrollIntoView({ behavior: 'smooth' })
@@ -109,9 +109,19 @@ class HomePage extends Component {
   render() {
     return (
       <div>
-        <Layout fixedHeader className="website-background">
+        <Layout fixedHeader
+          style={{
+            backgroundImage: "url(./imagesFolder/techbkgrd2.jpg)",
+            backgroundSize: "cover"
+          }}>
           <Header transparent>
-            <button onClick={this.logOn_OnClick} className="main-top-home-nav">
+            <button onClick={this.logOn_OnClick} style={{
+              float: "left",
+              backgroundImage: "url(./imagesFolder/logo.png)",
+              backgroundSize: "50px 50px",
+              backgroundColor: "transparent",
+              borderColor: "transparent"
+            }}>
               <h4 style={{ color: "transparent" }}>NO</h4>
             </button>
             {/* <Navigation> */}
@@ -145,13 +155,13 @@ class HomePage extends Component {
             </div>
             {/* </Navigation> */}
           </Header>
-          <Content style={{scrollbarWidth: "none"}}>
+          <Content style={{ scrollbarWidth: "none" }}>
             {/* <div className="page-content" /> */}
             {/* <Main /> */}
             {this.state.page}
           </Content>
         </Layout>
-      </div>
+      </div >
     );
   }
 }
