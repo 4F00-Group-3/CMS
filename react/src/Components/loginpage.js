@@ -21,12 +21,19 @@ class LoginPage extends Component {
       { function: "login", email: this.state.email, password: this.state.pw },
       function(response) {
         if (!response.toString().includes("false")) {
-          let accountId = response.toString().indexOf(" ");
-          sessionStorage.setItem("id", response.toString().slice(accountId));
+          let responseArray = JSON.parse(response.split('php-cgi')[1].trim());
+          let accountId = responseArray.accountId;
+          console.log(accountId);
+          sessionStorage.setItem("id", accountId);
+
+          // REDIRECT TO ANOTHER PAGE AFTER THIS
+        } else {
+          // LOGIN FAILED DISPLAY ERROR MSG
+
         }
-        console.log(response.toString());
       }
     );
+    
     if (sessionStorage.length === 1) {
       this.props.handleDashClick();
     }

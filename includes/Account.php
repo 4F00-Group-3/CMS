@@ -4,7 +4,7 @@
  * older versions of PHP (ie on sandcastle) have vulnerabilities in their encryption methods
  * https://github.com/ircmaxell/password_compat
 */
-require_once (HOME_PATH.'includes/encrypt_functions.php');
+require_once ('encrypt_functions.php');
 
 /**
  * Account class 

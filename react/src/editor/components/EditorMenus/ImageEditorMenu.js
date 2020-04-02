@@ -2,8 +2,14 @@ import React, { Component } from 'react';
 import '../../../css/EditorMenuComponents.css';
 import Form from 'react-bootstrap/Form';
 import Col from 'react-bootstrap/Col';
+import Row from 'react-bootstrap/Row';
+import Button from 'react-bootstrap/Button';
+import Container from 'react-bootstrap/Container';
 import { AlignmentImage } from './EditorMenuComponents';
-
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faUpload } from "@fortawesome/free-solid-svg-icons";
+import AjaxCall from './../../../ajax'; 
+import AjaxFileUpload from './../../../ajaxFileUpload'; 
 
 class ImageEditorMenu extends Component {
     constructor(props) {
@@ -12,7 +18,18 @@ class ImageEditorMenu extends Component {
             marginUnits: "px",
             widthUnits: "px",
             borderRadiusUnits: "px",
+            showImageGallery: false,
+            images: [],
+            imageElements: []
         }
+
+        this.getImages();
+    }
+
+    componentDidMount() {
+        setTimeout(function () { //Start the timer
+            this.setState({ showImageGallery: this.showImageGallery }) //After 1 second, set render to true
+        }.bind(this), 1000)
     }
 
     onMarginUnitChange(value) {
@@ -26,6 +43,76 @@ class ImageEditorMenu extends Component {
     onBorderRadiusUnitChange(value) {
         this.setState({ borderRadiusUnits: value })
     }
+
+    /* onclick for upload button */
+    toggleShowImageGallery = () => {
+        this.setState({ showImageGallery: !this.state.showImageGallery });
+    }
+
+
+    getImages = () => {
+        AjaxCall(
+            { function: "getAccountMedia", accountId: sessionStorage.getItem('id') || 0 },
+            (response) => {
+                if (!response.toString().includes("false")) {
+                    let responseArray = JSON.parse(response.split('php-cgi')[1].trim());
+                    this.setState({images:responseArray});
+
+                    var imageGallery = [];
+                    for(var i=0; i<responseArray.length; i += 2){
+                        var image1 = responseArray[i].path;
+                        var image2 = responseArray[i+1] !== undefined ? responseArray[i+1].path : "";
+                        console.log(image1, image2);
+                        imageGallery.push(<>
+                            <Row>
+                                <Col onClick={(event) => {this.props.menuComponentOnClick("url|" + event.target.src + "|url");}}>
+                                    <img src={image1} alt=""></img>
+                                </Col>
+                                {image2 === "" ? <Col></Col> :
+                                <Col onClick={(event) => {this.props.menuComponentOnClick("url|" + event.target.src + "|url");}}>
+                                    <img src={image2} alt=""></img>
+                                </Col>
+                                }
+                            </Row>
+                        </>);
+
+                        this.setState({imageElements:imageGallery});
+                    }
+                } else {
+                    console.log('no images');
+                }
+                // console.log(response.toString());
+                return 'test';
+            }
+        );
+    }
+    /* fires after a user picks a files from their computer and clicks OK */
+    uploadImage = (files) => {
+        console.log('upload');
+        console.log(files);
+        // ajax call to upload image and rerender, update url
+        var file = files[0]
+        var fileType = file.type;
+        var match = ['image/jpeg', 'image/png', 'image/jpg'];
+
+        if(match.includes(fileType)){
+            AjaxFileUpload("addMedia", sessionStorage.getItem('id') || 0, file,
+                (response) => {
+                    response = JSON.parse(response.split('php-cgi')[1].trim());
+                    console.log(response);
+                    if(response){
+                        //reload menu
+                        this.getImages();
+                    } else {
+                        alert('Something went wrong with your upload!');
+                    }
+                }
+            );
+        } else {
+            alert('Only JPG or PNG images may be uploaded.');
+        }
+    }
+
 
     render() {
         return (<>
@@ -50,7 +137,7 @@ class ImageEditorMenu extends Component {
                     <Col >
                         <Form.Control
                             as="select"
-                            className="d-block"
+                            className="d-block w-50"
                             onChange={(event) => this.onMarginUnitChange(event.target.value)}>
                             <option>px</option>
                             <option>%</option>
@@ -60,6 +147,8 @@ class ImageEditorMenu extends Component {
                             <option>vh</option>
                         </Form.Control>
                     </Col>
+                    <Col></Col>
+                    <Col></Col>
                 </Form.Row>
 
                 <Form.Row className="mt-2 left">
@@ -115,18 +204,37 @@ class ImageEditorMenu extends Component {
                     </Col>
                 </Form.Row>
 
-                <Form.Row>
-                    <Col>
-                        <Form.Label className="d-block left">Upload Image from URL:</Form.Label>
-                    </Col>
-                    <Col>
+                <Form.Row>           
+                    <Col ><Form.Label className="float-left">Upload Image<br/>from URL:</Form.Label></Col>
+                    <Col xs={6}>
                         <Form.Control
-                            className="w-100 left"
-                            type="text"
-                            onChange={(event) => this.props.menuComponentOnClick("url|" + event.target.value + "|url")}
+                        className=""
+                        type="text"
+                        onChange={(event) => this.props.menuComponentOnClick("url|" + event.target.value + "|url")}
                         />
                     </Col>
+                    <Col><Button onClick={this.toggleShowImageGallery}><FontAwesomeIcon icon={faUpload} style={{fontSize:"18px"}} /></Button></Col>
                 </Form.Row>
+
+                {this.state.showImageGallery ?
+                    <Container className="border bg-light rounded p-1">
+                        <div style={{overflowY:"scroll", maxHeight:"250px"}}>
+                            {this.state.imageElements}   
+                        </div>
+  
+                        <Row className="mt-4">
+                            
+                            <Col>  
+                                <Form.Control  className="float-left" type="file" name="file" onChange={(e) => this.uploadImage(e.target.files)}/>
+                            </Col>
+
+                            <Col> <Button className="float-right" onClick={this.toggleShowImageGallery}>Close</Button> </Col>
+                        </Row>
+                    </Container>
+                    
+                    : null
+                }
+
                 <Form.Row>
                     <Col>
                         <Form.Label className="d-block left">Alignment:</Form.Label>
