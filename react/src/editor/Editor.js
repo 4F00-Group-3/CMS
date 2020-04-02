@@ -8,7 +8,7 @@ const backend = new EditorBackend();
 class Editor extends Component {
     constructor(props) {
         super(props);
-        this.onClick.bind(this.onClick);
+        this.addToPage_onClick.bind(this.addToPage_onClick);
         this.state = {
             page: props.page,
             menu: "main",
@@ -17,7 +17,10 @@ class Editor extends Component {
         }
     }
 
-    onClick = (name) => {
+    /**
+     * This method adds to the editing page.
+     */
+    addToPage_onClick = (name) => {
         console.log(name);
         switch (name) {
             case "Heading": {
@@ -66,7 +69,7 @@ class Editor extends Component {
 
     }
 
-    onSectionPush = (_id, _type, _style) => {
+    pageSection_onClick = (_id, _type, _style) => {
         console.log(_type)
         switch (_type) {
             case "heading": {
@@ -183,8 +186,8 @@ class Editor extends Component {
     render() {
         return (
             <>
-                <EditorSideBar onPush={this.onClick} menu={this.state.menu} selectedId={this.state.selectedId} menuComponentOnClick={this.menuComponentOnClick} handleBack={this.handleBack} handleDelete={this.handleDelete} />
-                <EditingPage page={this.state.page} onSectionPush={this.onSectionPush} setActive={this.setActive} />
+                <EditorSideBar onPush={this.addToPage_onClick} menu={this.state.menu} selectedId={this.state.selectedId} menuComponentOnClick={this.menuComponentOnClick} handleBack={this.handleBack} handleDelete={this.handleDelete} />
+                <EditingPage page={this.state.page} onSectionPush={this.pageSection_onClick} setActive={this.setActive} />
             </>
         );
     }
