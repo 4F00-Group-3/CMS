@@ -157,8 +157,8 @@ function addMedia(){
     if(!$dirExists){ 
         //create directory and insert upload
         mkdir(HOME_PATH.$dir);
-        $dest = $dir.$fileName.$fileExt;
-        move_uploaded_file($fileTmpName, HOME_PATH.$dest);
+        $dest = HOME_PATH.$dir.$fileName.$fileExt;
+        move_uploaded_file($fileTmpName, $dest);
     } else {
         //increment $suffix until a unique file name is created
         $suffix = 1;
