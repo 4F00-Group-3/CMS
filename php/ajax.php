@@ -3,7 +3,7 @@
 require_once ('header_functions.php');
 
 $functions = array('test', 'currentUser', 'currentUserId', 'addUser', 'getAllPages', 'getAllUsers', 'getMedia', 'getPage',
-    'addMedia', 'addPage', 'deletePage', 'deleteUser', 'login', 'createAccount','getWebsiteData','getAccountMedia');
+    'addMedia', 'addPage', 'deletePage', 'deleteUser', 'login', 'createAccount', 'createWebsite', 'getWebsiteData','getAccountMedia');
 
 if(isset($_POST['function']) && in_array($_POST['function'], $functions)){
     $_POST['function']();
@@ -16,6 +16,18 @@ function createAccount(){
             echo 'There was a problem creating your account!';
         } else {
             echo 'Account created!';
+        }
+    }
+    die;
+}
+
+function createWebsite(){
+    if (!empty($_POST)) {
+        $website = Website::createWebsite($_POST['accountId'], "sites/".$_POST['title']."/html/home.html", $_POST['title'], $_POST['description']);
+        if ($website) {
+            echo 'Website created!';
+        } else {
+            echo 'There was a problem creating your website!';
         }
     }
     die;

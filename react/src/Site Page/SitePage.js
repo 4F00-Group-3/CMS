@@ -1,10 +1,87 @@
 import React, { Component } from "react";
 // import axios from 'axios';
-// import SiteIcon from './SiteIcon';
 import '../css/SitePage.css'
 import AjaxCall from '../ajax.js';
 import Login from '../Login/loginpage';
-// import {withRouter} from "react-router";
+
+/*Popup class for the add page pop up, handles opening the popup and passing
+information from it back to the add Page part */
+class Popup extends Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            title: "",
+            description: ""
+        };
+    }
+
+    handleFormSubmit = event => {
+        event.preventDefault();
+        if (this.state.title !== ""){
+            AjaxCall(
+                {
+                    function: "createWebsite",
+                    title: this.state.title,
+                    accountId: sessionStorage.getItem("id"),
+                    description: this.state.description,
+                },
+                function(response) {
+                    console.clear();
+                    console.log(response);
+                }
+            );
+            this.props.closePopup();
+        }
+        else {
+            alert("Please enter a title for the website!")
+        }
+    };
+
+    handleChange = event => {
+        event.preventDefault();
+        console.log(event);
+        console.log(event.target.name);
+        console.log(event.target.value);
+        this.setState({
+            [event.target.name]: event.target.value
+        });
+    };
+
+    render() {
+        return (
+            <div className='popup'>
+                <div className='popup_inner'>
+                    <h3>Enter Website data</h3>
+                    <form className="centerBoxItems" onSubmit={this.handleFormSubmit}>
+                        <label>Enter Website Title</label>
+                        <br></br>
+                        <input
+                            type="text"
+                            id="title"
+                            name="title"
+                            onChange={this.handleChange}
+                        />
+
+                        <label>Enter Website Description</label>
+                        <br></br>
+                        <input
+                            type="text"
+                            id="description"
+                            name="description"
+                            onChange={this.handleChange}
+                        />
+                        <br></br>
+                        <br></br>
+                        <input type="submit" value="Create" className="submitnextbutton"/>
+                        <button className="submitnextbutton" onClick={this.props.closePopup}>Cancel</button>
+                    </form>
+                    <br></br>
+                    {/*<button onClick={this.getTitleOfPage}>Add</button>*/}
+                </div>
+            </div>
+        );
+    }
+}
 
 class SitePage extends Component {
 
@@ -12,7 +89,8 @@ class SitePage extends Component {
         super(props);
 
         this.state = {
-            userLoggedIn: true
+            userLoggedIn: true,
+            showPopup: false
         };
         this.handleLogOut = this.handleLogOut.bind(this);
         this.handleRedirectToAccoutingSettings = this.handleRedirectToAccoutingSettings.bind(this);
@@ -66,6 +144,12 @@ class SitePage extends Component {
         alert("Upgrading you to Supreme Overlord of the Universe!!");
     }
 
+    togglePopup() {
+        this.setState({
+            showPopup: !this.state.showPopup
+        });
+    }
+
     handleViewWebsite = (info) =>{
         console.log(info);
         window.location.assign('../../'+info);
@@ -105,8 +189,16 @@ class SitePage extends Component {
                                         )
                                     }
                                     <div className="column">
-                                        <button onClick={this.props.onClick} value="New">New</button>
+                                        <button onClick={this.togglePopup.bind(this)} value="New">New</button>
+                                        {this.state.showPopup ?
+                                            <Popup
+                                                text='Enter the title of the new page.'
+                                                closePopup={this.togglePopup.bind(this)}
+                                            />
+                                            : null
+                                        }
                                     </div>
+
                                 </div>
                             </div>
                         </div>
