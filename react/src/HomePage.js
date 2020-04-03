@@ -9,7 +9,7 @@ import {
 
 import PlansPricing from './Components/landingPage';
 import GetStarted from './Components/getStarted';
-import LoginPage from "./Components/loginpage";
+import LoginPage from "./Login/loginpage";
 import LandingPage from "./Components/landingPage";
 import CreateAccount from "./Components/createAccount";
 
