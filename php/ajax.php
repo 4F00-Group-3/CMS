@@ -3,7 +3,7 @@
 require_once ('header_functions.php');
 
 $functions = array('test', 'currentUser', 'currentUserId', 'addUser', 'getAllPages', 'getAllUsers', 'getMedia', 'getPage',
-    'addMedia', 'addPage', 'deletePage', 'deleteUser', 'login', 'createAccount','getWebsiteData','getAccountMedia');
+    'addMedia', 'addPage', 'deletePage', 'deleteUser', 'login', 'createAccount', 'createWebsite', 'getWebsiteData','getAccountMedia');
 
 if(isset($_POST['function']) && in_array($_POST['function'], $functions)){
     $_POST['function']();
@@ -21,15 +21,28 @@ function createAccount(){
     die;
 }
 
+function createWebsite(){
+    if (!empty($_POST)) {
+        $website = Website::createWebsite($_POST['accountId'], "sites/".$_POST['title']."/html/home.html", $_POST['title'], $_POST['description']);
+        if ($website === false) {
+            echo "false";
+        } else {
+            echo json_encode($website);
+        }
+    }
+    die;
+}
+
 function login(){
     $success = false;
     if (!empty($_POST)) {
         if (!empty($_POST['email']) && !empty($_POST['password'])) {
             $email = filter_var($_POST['email'], FILTER_VALIDATE_EMAIL);
             $account = Account::getAccountByEmail($email);
-            echo $account->password;
-            echo $_POST['email'];
-            echo $_POST['password'];
+
+            $response = array();
+            $response['email'] = $_POST['email'];
+
             if ($account !== false) {
                 if (password_verify($_POST['password'], $account->password)) {
                     $success = true;
@@ -38,7 +51,8 @@ function login(){
         }
     }
     if($success === true){
-        echo $account->accountId;
+        $response['accountId'] = $account->accountId;
+        echo json_encode($response);
     }else{
         echo "false";
     }

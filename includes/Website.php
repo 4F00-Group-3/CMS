@@ -18,27 +18,25 @@ class Website{
 
 
 
-    public static function createWebsite($accountId, $path, $siteName){
-//        $accountId = "1";
-//        $path = "testpath3";
-//        $siteName = "Test Name";
-
+    public static function createWebsite($accountId, $path, $siteName, $description){
         // Insert website data
         $stmt = Dbh::connect()
-            ->PREPARE('INSERT INTO websites(account_id, path, site_name) VALUES(:accountId, :path, :siteName)');
+            ->PREPARE('INSERT INTO websites(account_id, path, site_name, description) VALUES(:accountId, :path, :siteName, :description)');
         $stmt->bindValue(':accountId', $accountId);
         $stmt->bindValue(':path', $path);
         $stmt->bindValue(':siteName',$siteName);
+        $stmt->bindValue(':description',$description);
         $stmt->execute();
 
         // Gather Schema data from website data
         $stmt = Dbh::connect()
-            ->PREPARE("SELECT * FROM websites WHERE account_id=? AND path=?");
-        $stmt->execute([$accountId, $path]);
+            ->PREPARE("SELECT * FROM websites WHERE account_id=? AND site_name=?");
+        $stmt->execute([$accountId, $siteName]);
         if($stmt->rowCount()){
             $row = $stmt->fetch();
+            $websiteId = array("id"=>$row['website_id']);
         }else{
-            return "Incorrect Website Credentials!";
+            return false;
         }
 
         //Create Schema
@@ -68,7 +66,16 @@ class Website{
             name text NOT NULL,
             file text NOT NULL)');
         $schemaStmt->execute();
-        return "Success!";
+
+        mkdir("../sites/".$siteName);
+        mkdir("../sites/".$siteName."/html");
+        mkdir("../sites/".$siteName."/css");
+        mkdir("../sites/".$siteName."/js");
+        $file = fopen("../sites/".$siteName."/html/home.html","w");
+        $txt = "<!DOCTYPE html><html><head><title>Page Title</title></head><body><h1>This is a Heading</h1><p>This is a paragraph.</p></body></html>";
+        fwrite($file, $txt);
+        fclose($file);
+        return $websiteId;
     }
 
     // Retrieve all users from website

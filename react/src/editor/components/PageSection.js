@@ -127,16 +127,20 @@ class PageSection extends Component {
                 return (
                     <div key={this.props.index} style={this.props.style}>
                         {this.returnYouTube(
-                            this.props.url, 
-                            this.props.style["height"], 
-                            this.props.style["width"], 
-                            this.props.style["autoplay"], 
+                            this.props.url,
+                            this.props.style["height"],
+                            this.props.style["width"],
+                            this.props.style["autoplay"],
                             this.props.style["loop"])}
                     </div>
                 );
             }
             case "icon": {
-                return (this.returnIcon(this.props.faClassName))
+                return (
+                    <div key={this.props.index} style={this.props.style}>
+                        {this.returnIcon(this.props.faClassName)}
+                    </div>
+                )
             }
             default: {
                 console.log("Not a caught switch in pagesection.js!");
