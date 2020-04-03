@@ -56,7 +56,7 @@ class MasterTestMenu extends Component {
     let page;
     switch (view) {
       case "Editor":
-        page = <Editor />;
+        page = <Editor handleHomeClick={this.handleHomeClick}/>;
         break;
       case "Home":
         page = <Home />;
@@ -71,10 +71,11 @@ class MasterTestMenu extends Component {
         page = <CreateAccount handleSitePageClick = {this.handleSitePageClick}/>;
         break;
       case "SitePage":
-        page = <SitePage handleHomeClick = {this.handleHomeClick}/>
+        page = <SitePage handleHomeClick = {this.handleHomeClick}
+                         handleDashClick = {this.handleDashClick}/>;
         break;
       default:
-        page = <Editor />;
+        page = <Home />;
     }
     return (
       <div>

@@ -95,6 +95,9 @@ class SitePage extends Component {
         this.handleLogOut = this.handleLogOut.bind(this);
         this.handleRedirectToAccoutingSettings = this.handleRedirectToAccoutingSettings.bind(this);
         this.handleUpgradePlan = this.handleUpgradePlan.bind(this);
+        if (sessionStorage.getItem("siteId")!==null) {
+            sessionStorage.removeItem("siteId");
+        }
     }
 
     componentDidMount() {
@@ -155,6 +158,12 @@ class SitePage extends Component {
         window.location.assign('../../'+info);
     };
 
+    handleEditWebsite = (info) =>{
+        console.log(info);
+        sessionStorage.setItem("siteId",info);
+        this.props.handleDashClick();
+    };
+
     render() {
         var userLoggedIn = this.state.userLoggedIn;
         return (
@@ -178,7 +187,7 @@ class SitePage extends Component {
                                                     <p>description: {site.description}</p>
                                                     <div className="row">
                                                         <div className="column">
-                                                            <button onClick={this.props.onClick} value="Edit">Edit</button>
+                                                            <button onClick={() => this.handleEditWebsite(site.id)} value="Edit">Edit</button>
                                                         </div>
                                                         <div className="column">
                                                             <button onClick={() => this.handleViewWebsite(site.path)} value="View">View</button>
