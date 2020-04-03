@@ -3,6 +3,8 @@ import React, { Component } from "react";
 import '../css/SitePage.css'
 import AjaxCall from '../ajax.js';
 import Login from '../Login/loginpage';
+import SitePageBackend from "../Site Page/backend/SitePageBackend";
+let backend = new SitePageBackend();
 
 /*Popup class for the add page pop up, handles opening the popup and passing
 information from it back to the add Page part */
@@ -13,12 +15,13 @@ class Popup extends Component {
             title: "",
             description: ""
         };
+        backend.f = props.handleDashClick;
     }
 
     handleFormSubmit = event => {
         event.preventDefault();
         if (this.state.title !== ""){
-            AjaxCall(
+            let web = AjaxCall(
                 {
                     function: "createWebsite",
                     title: this.state.title,
@@ -26,8 +29,16 @@ class Popup extends Component {
                     description: this.state.description,
                 },
                 function(response) {
-                    console.clear();
-                    console.log(response);
+                    if (!response.toString().includes("false")) {
+                        console.log(response);
+                        let responseArray = JSON.parse(response.split('php-cgi')[1].trim());
+                        console.log(responseArray);
+                        let websiteId = responseArray.id;
+                        console.log(websiteId);
+                        backend.redirect(websiteId);
+                    }else{
+                        alert("Website failed to create");
+                    }
                 }
             );
             this.props.closePopup();
@@ -202,6 +213,7 @@ class SitePage extends Component {
                                         {this.state.showPopup ?
                                             <Popup
                                                 text='Enter the title of the new page.'
+                                                handleDashClick = {this.props.handleDashClick}
                                                 closePopup={this.togglePopup.bind(this)}
                                             />
                                             : null

@@ -24,10 +24,10 @@ function createAccount(){
 function createWebsite(){
     if (!empty($_POST)) {
         $website = Website::createWebsite($_POST['accountId'], "sites/".$_POST['title']."/html/home.html", $_POST['title'], $_POST['description']);
-        if ($website) {
-            echo 'Website created!';
+        if ($website === false) {
+            echo "false";
         } else {
-            echo 'There was a problem creating your website!';
+            echo json_encode($website);
         }
     }
     die;

@@ -34,6 +34,7 @@ class Website{
         $stmt->execute([$accountId, $siteName]);
         if($stmt->rowCount()){
             $row = $stmt->fetch();
+            $websiteId = array("id"=>$row['website_id']);
         }else{
             return false;
         }
@@ -74,7 +75,7 @@ class Website{
         $txt = "<!DOCTYPE html><html><head><title>Page Title</title></head><body><h1>This is a Heading</h1><p>This is a paragraph.</p></body></html>";
         fwrite($file, $txt);
         fclose($file);
-        return true;
+        return $websiteId;
     }
 
     // Retrieve all users from website
