@@ -7,17 +7,17 @@
  */
 class Dbh {
 	public static function connect(){
-//		$dbServername= "sandcastle.cosc.brocku.ca";
-//		$dbUsername= "c4f00g03";
-//		$dbPassword= "Brockus12!";
-//		$dbName= "c4f00g03";
-//		$charset= "utf8mb4";
+		$dbServername= "sandcastle.cosc.brocku.ca";
+		$dbUsername= "c4f00g03";
+		$dbPassword= "Brockus12!";
+		$dbName= "c4f00g03";
+		$charset= "utf8mb4";
 
-        $dbServername= "sandcastle.cosc.brocku.ca";
-        $dbUsername= "cm15sp";
-        $dbPassword= "6017974";
-        $dbName= "cm15sp";
-        $charset= "utf8mb4";
+//        $dbServername= "sandcastle.cosc.brocku.ca";
+//        $dbUsername= "cm15sp";
+//        $dbPassword= "6017974";
+//        $dbName= "cm15sp";
+//        $charset= "utf8mb4";
 
 
 		try{
