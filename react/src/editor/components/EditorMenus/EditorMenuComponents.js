@@ -91,16 +91,25 @@ export class AlignmentInput extends Component {
     render() {
         return (
             <div className="AlignmentInput" >
-                <Button onClick={() => this.props.onClick("textAlign|left")}>
+                <Button 
+                id='leftAlign'
+                onClick={() => this.props.onClick("textAlign|left")}>
                     <FontAwesomeIcon icon={faAlignLeft} />
                 </Button>
-                <Button onClick={() => this.props.onClick("textAlign|center")}>
+                <Button 
+                
+                id='centerAlign'
+                onClick={() => this.props.onClick("textAlign|center")}>
                     <FontAwesomeIcon icon={faAlignCenter} />
                 </Button>
-                <Button onClick={() => this.props.onClick("textAlign|right")}>
+                <Button 
+                id='rightAlign'
+                onClick={() => this.props.onClick("textAlign|right")}>
                     <FontAwesomeIcon icon={faAlignRight} />
                 </Button>
-                <Button onClick={() => this.props.onClick("textAlign|justify")}>
+                <Button  
+                id='justifyAlign'
+                onClick={() => this.props.onClick("textAlign|justify")}>
                     <FontAwesomeIcon icon={faAlignJustify} />
                 </Button>
             </div>
