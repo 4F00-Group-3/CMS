@@ -59,7 +59,7 @@ h2 {
 }
 
 .gridBkgd {
-  background: "/coworkers-discussing-business-ideas-PWAASLV.jpg";
+  background: "./coworkers-discussing-business-ideas-PWAASLV.jpg";
 }
 
 .landing-page-card-style {
@@ -87,13 +87,13 @@ h2 {
 }
 
 .website-background {
-  background-image: url("/imagesFolder/techbkgrd2.jpg");
+  background-image: url("https://www.cosc.brocku.ca/~c4f00g03/react/public/imagesFolder/techbkgrd2.jpg");
   background-size: cover;
 }
 
 .main-top-home-nav {
   float: left;
-  background-image: url("/imagesFolder/logo.png");
+  background-image: url("https://www.cosc.brocku.ca/~c4f00g03/react/public/imagesFolder/logo.png");
   background-size: 50px 50px;
   background-color: transparent;
   border-color: transparent;
