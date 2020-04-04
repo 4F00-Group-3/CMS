@@ -52,30 +52,31 @@ class MasterTestMenu extends Component {
 
 
   render() {
+    sessionStorage.setItem("id", 1); // testing
     const view = this.state.viewPage;
     let page;
     switch (view) {
       case "Editor":
-        page = <Editor handleHomeClick={this.handleHomeClick}/>;
+        page = <Editor handleHomeClick={this.handleHomeClick} />;
         break;
       case "Home":
         page = <Home />;
         break;
       case "Dash":
-        page = <Dashboard handleHomeClick = {this.handleHomeClick}/>;
+        page = <Dashboard handleHomeClick={this.handleHomeClick} />;
         break;
       case "Login":
-        page = <Login handleSitePageClick = {this.handleSitePageClick}/>;
+        page = <Login handleSitePageClick={this.handleSitePageClick} />;
         break;
       case "Create Account":
-        page = <CreateAccount handleSitePageClick = {this.handleSitePageClick}/>;
+        page = <CreateAccount handleSitePageClick={this.handleSitePageClick} />;
         break;
       case "SitePage":
-        page = <SitePage handleHomeClick = {this.handleHomeClick}
-                         handleDashClick = {this.handleDashClick}/>;
+        page = <SitePage handleHomeClick={this.handleHomeClick}
+          handleDashClick={this.handleDashClick} />;
         break;
       default:
-        page = <Home />;
+        page = <Editor handleHomeClick={this.handleHomeClick} />;
     }
     return (
       <div>
