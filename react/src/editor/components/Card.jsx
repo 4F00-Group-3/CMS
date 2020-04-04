@@ -11,7 +11,8 @@ import PageSection from "./PageSection"
 //   cursor: 'move',
 // }
 
-const Card = ({ id, type, style, text, faClassName, onClick, url, onSectionPush, index, moveCard, href, toggleClickClass, clicked}) => { //section fields + index + moveCard
+// const Card = ({ id, type, style, text, faClassName, onClick, url, onSectionPush, index, moveCard, href, toggleClickClass, clicked, col}) => { //section fields + index + moveCard
+const Card = ({ page, id, style, onClick, onSectionPush, index, moveCard, toggleClickClass, clicked }) => { //section fields + index + moveCard
   const ref = useRef(null)
   const [, drop] = useDrop({
     accept: ItemTypes.CARD,
@@ -36,8 +37,8 @@ const Card = ({ id, type, style, text, faClassName, onClick, url, onSectionPush,
       }
       moveCard(dragIndex, hoverIndex) //move card
       item.index = hoverIndex
-      console.log("ITEM INDEX: "+item.index)
-      console.log("HOVER INDEX: "+hoverIndex);
+      console.log("ITEM INDEX: " + item.index)
+      console.log("HOVER INDEX: " + hoverIndex);
     },
   })
   const [{ isDragging }, drag] = useDrag({
@@ -59,23 +60,25 @@ const Card = ({ id, type, style, text, faClassName, onClick, url, onSectionPush,
   console.log("ON SEC PUSH "+onSectionPush);
   */
 
-    return (
-      <div ref={ref}>
-        {   //card returns a page section
-           <PageSection
-            index={id}
-            type={type}
-            style={style}
-            text={text}
-            faClassName={faClassName}
-            href={href}
-            url={url}
-            onSectionPush={onSectionPush}
-            toggleClickClass={toggleClickClass}
-            clicked={clicked}
-          />
-        }
-      </div>
-    )
+  return (
+    <div ref={ref}>
+      {   //card returns a page section
+        <PageSection
+          page={page}
+          // index={id}
+          // type={type}
+          // style={style}
+          // text={text}
+          // faClassName={faClassName}
+          // href={href}
+          // url={url}
+          // col={col}
+          onSectionPush={onSectionPush}
+          toggleClickClass={toggleClickClass}
+          clicked={clicked}
+        />
+      }
+    </div>
+  )
 }
 export default Card

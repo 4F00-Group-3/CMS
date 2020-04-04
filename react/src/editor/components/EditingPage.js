@@ -7,7 +7,8 @@ import Card from "./Card.jsx";
 import update from 'immutability-helper'
 
 const style = {
-  marginLeft: "50vh",
+  // this is commented out because I mean to use an EditingPage withing a column component, which must take up the entire column
+  // marginLeft: "50vh"
 }
 
 
@@ -32,65 +33,48 @@ class EditingPage extends Component {
    * Returns the sections added to the editor page
    */
   returnPage() {
+    let x = []; //empty array
     try {
-      let page = [];
-      for (let index = 0; index < this.props.page.length; index++) {
-        let section = this.props.page[index];
-        page.push(
-          <PageSection
-            index={section.id}
-            type={section.type}
-            style={section.style[0]}
-            text={section.text}
-            faClassName={section.faClassName}
-            href={section.href}
-            url={section.url}
-            onSectionPush={this.props.onSectionPush}
-            toggleClickClass={this.toggleClickClass}
-            clicked={this.state.active === section.id ? true : false}
-            key={index}
-            size={section.size}
-          />);
+      for (let i = 0; i < this.props.page.length; i++) {  //for each section
+        var y = {   //get section values
+          page: this.props.page[i],
+          // key: this.props.page[i].id,
+          // id: this.props.page[i].id,
+          // type: this.props.page[i].type,
+          // style: this.props.page[i].style[0],
+          // text: this.props.page[i].text,
+          // faClassName: this.props.page[i].faClassName,
+          // url: this.props.page[i].url,
+          // href: this.props.page[i].href,
+          // col: this.props.page[i].col,
+          onSectionPush: this.props.onSectionPush,
+          toggleClickClass: this.toggleClickClass,
+          clicked: (this.state.active === this.props.page[i].id ? true : false),
+          onClick: this.props.page.onClick
+        }
+        console.log("style in returnpage", y.page.style[0])
+        x.push(y) //push to array
       }
-      return page;
-    } catch (error) {
-
-    }
-  }   //
+      console.log(x);
+    } catch (e) { }
+    return x;
+  }
 
   render() {
 
     const Container = () => {
-      // {
-      try {
-        console.log("!!!" + this.returnPage());
-      }
-      catch (error) { console.log("!!! no page"); }
+      let x = this.returnPage();
 
-      let x = []; //empty array
-      try {
-        for (let i = 0; i < this.props.page.length; i++) {  //for each section
-          var y = {   //get section values
-            key: this.props.page[i].id,
-            id: this.props.page[i].id,
-            type: this.props.page[i].type,
-            style: this.props.page[i].style[0],
-            text: this.props.page[i].text,
-            faClassName: this.props.page[i].faClassName,
-            onClick: this.props.page.onClick,
-            url: this.props.page[i].url,
-            onSectionPush: this.props.onSectionPush,
-            toggleClickClass: this.toggleClickClass,
-            clicked: (this.state.active === this.props.page[i].id? true : false),
-            href: this.props.page[i].href,
-          }
-          x.push(y) //push to array
-        }
-        console.log(x);
-      } catch (e) { }
+      /**
+       * This sets up a setState handler called setCards
+       * and inializes the state of the cards object with x
+       */
+      const [cards, setCards] = useState(x)
 
-      const [cards, setCards] = useState(x) //set cards as section vals
-
+      /**
+       * This is a call back method used to update the index of a moved card
+       * which then updates the state.cards with the new arrangement.
+       */
       const moveCard = useCallback(
         (dragIndex, hoverIndex) => {
           const dragCard = cards[dragIndex]
@@ -104,41 +88,50 @@ class EditingPage extends Component {
           )
         },
         [cards],
-      )
+      );
 
-      const renderCard = (card, index) => {   //Renders a card (a component) i.e. an image or a header
+      /**
+       * This method creates a PageSection component i.e. Header, Image etc
+       * and wraps it inside a Card Component to allow verticle dragging
+       * @param {*} card 
+       * @param {*} index 
+       */
+      const renderCard = (card, index) => {
 
+        console.log("style in rendercard", card.page.style[0])
         /*Update the page with the card's new order so that rearrangements reflect on page permanently.*/
-        this.props.page[index].id = card.id;
-        this.props.page[index].type = card.type;
-        this.props.page[index].style[0] = card.style;
-        this.props.page[index].text = card.text;
-        this.props.page[index].faClassName = card.faClassName;
+        this.props.page[index].id = card.page.id;
+        this.props.page[index].type = card.page.type;
+        this.props.page[index].style[0] = card.page.style[0];
+        this.props.page[index].text = card.page.text;
+        this.props.page[index].faClassName = card.page.faClassName;
         this.props.page[index].onClick = card.onClick;
-        this.props.page[index].url = card.url;
+        this.props.page[index].url = card.page.url;
         this.props.page[index].onSectionPush = card.onSectionPush;
         this.props.page[index].toggleClickClass = card.toggleClickClass;
         this.props.page[index].clicked = card.clicked;
-        this.props.page[index].href = card.href;
+        this.props.page[index].href = card.page.href;
+        this.props.page[index].col = card.page.col;
 
 
         return (      //returns a card which returns a page section with these vals
           <Card
-            key={card.id}
-            id={card.id}
-            type={card.type}
-            style={card.style}
-            text={card.text}
-            faClassName={card.faClassName}
+            page={card.page}
+            key={card.page.id}
+            // id={card.page.id}
+            // type={card.type}
+            // style={card.style}
+            // text={card.text}
+            // faClassName={card.faClassName}
             onClick={card.onClick}
-            url={card.url}
+            // url={card.url}
             onSectionPush={card.onSectionPush}
             toggleClickClass={card.toggleClickClass}
             clicked={card.clicked}
             index={index}
             moveCard={moveCard}
-            href={card.href}
-
+            // href={card.href}
+            // col={card.col}
           />
         )
       }
