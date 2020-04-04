@@ -2,7 +2,7 @@
 <?php
 require_once ('header_functions.php');
 
-$functions = array('test', 'currentUser', 'currentUserId', 'addUser', 'getAllPages', 'getAllUsers', 'getMedia', 'getPage',
+$functions = array('test', 'currentUser', 'updateUser', 'currentUserId', 'addUser', 'getAllPages', 'getAllUsers', 'getMedia', 'getPage',
     'addMedia', 'addPage', 'deletePage', 'deleteUser', 'login', 'createAccount','getWebsiteData','getAccountMedia');
 
 if(isset($_POST['function']) && in_array($_POST['function'], $functions)){
@@ -94,9 +94,27 @@ function test(){
 }
 
 function currentUser(){
-    $currentUser = getCurrentUser();
-    echo (!$currentUser ? '0' : json_encode($currentUser));
+    $currentUser = Account::getAccountById($_POST['accountId']);
+    if($currentUser != false){
+        echo json_encode($currentUser);
+    } else {
+        echo 'false';
+    }
+    
     die;
+}
+
+function updateUser(){
+    $accountId = $_POST['accountId'];
+    unset($_POST['accountId']);
+    unset($_POST['function']);
+    $success = Account::updateAccount($accountId, $_POST);
+
+    if($success){
+        echo 'true';
+    } else {
+        echo 'false';
+    }
 }
 
 function currentUserId(){

@@ -76,7 +76,7 @@ class IconEditorMenu extends Component {
     render() {
         return (<>
             <div className=""></div>
-            {<Form className="border bg-light rounded p-1" onSubmit={this.handleSubmit}>
+            {<Form className="border bg-light rounded p-1 editor-menu" onSubmit={this.handleSubmit}>
                 <Form.Group>
                     <Form.Label className="d-block font-weight-bold">Edit Icon</Form.Label>
 
@@ -84,7 +84,7 @@ class IconEditorMenu extends Component {
 
                 {/* select icon */}
                 <Form.Row>
-                    <Form.Label>Select Icon:</Form.Label>
+                    <Col><Form.Label>Select Icon:</Form.Label></Col>
                 </Form.Row>
                 <Form.Row>
                     <Col>
@@ -133,7 +133,7 @@ class IconEditorMenu extends Component {
                         </Button>
                     </Col>
                 </Form.Row>
-                <Form.Row>
+                <Form.Row className="mt-2">
                     <Col>
                         <Button onClick={
                                 () =>
@@ -222,7 +222,7 @@ class IconEditorMenu extends Component {
 
                 <Form.Row className="mt-2">
                     <Col>
-                        <Form.Label>Alignment:</Form.Label>
+                        <Form.Label className="d-block left">Alignment:</Form.Label>
                     </Col>
                     <Col>
                         <AlignmentInput

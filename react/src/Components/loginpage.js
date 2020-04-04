@@ -23,7 +23,7 @@ class LoginPage extends Component {
         if (!response.toString().includes("false")) {
           let responseArray = JSON.parse(response.split('php-cgi')[1].trim());
           let accountId = responseArray.accountId;
-          console.log(accountId);
+          
           sessionStorage.setItem("id", accountId);
 
           // REDIRECT TO ANOTHER PAGE AFTER THIS
@@ -31,11 +31,12 @@ class LoginPage extends Component {
           // LOGIN FAILED DISPLAY ERROR MSG
 
         }
+        // console.log(response);
       }
     );
     
     if (sessionStorage.length === 1) {
-      this.props.handleDashClick();
+      // this.props.handleDashClick();
     }
   };
 
