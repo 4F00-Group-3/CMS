@@ -3,7 +3,7 @@ import { BrowserRouter, Switch, Route } from "react-router-dom";
 import landingPage from "./landingPage";
 import getStarted from "./getStarted";
 import tempPage from "../tempPage";
-import LoginPage from "./LoginPage";
+import LoginPage from "../Login/loginpage";
 import passwordsubmit from "./passwordsubmit";
 import submitemail from "./submitemail";
 import securityCode from "./securityCode";

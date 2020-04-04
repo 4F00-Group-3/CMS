@@ -28,11 +28,11 @@ class Media{
 
     //returns a new Media object or false on failure
     public static function getMediaByAccount($accountId){
-        $stmt = Dbh::connect() ->PREPARE("SELECT * FROM ".DB_SCHEMA.".account_media WHERE account_id=?");
+        $stmt = Dbh::connect() ->PREPARE("SELECT * FROM account_media WHERE account_id=?");
         $stmt->execute([$accountId]);
         $imageData = array();
         if($stmt->rowCount()){
-            while ($row = $stmt->fetch(PDO::FETCH_ASSOC)){
+            while ($row = $stmt->fetch()){
                 $imageData[] = $row;
             }
             return $imageData;
@@ -57,11 +57,11 @@ class Media{
     }
 
     //add a new file to the database
-    public static function addImage($fileType, $path, $accountId, $caption = '', $date = 1){
+    public static function addImage($fileType, $path, $accountId, $caption =''){
 //        $date = time();
-        $data = array($fileType, $path, $caption, $accountId, $date);
+        $data = array($fileType, $path, $caption, $accountId);
 
-		$stmt = Dbh::connect() ->PREPARE('INSERT INTO '.DB_SCHEMA.'.account_media (file_type, path, caption, account_id, date) VALUES (?, ?, ?, ?, ?) ON CONFLICT DO NOTHING RETURNING media_id');
+		$stmt = Dbh::connect() ->PREPARE('INSERT INTO account_media (file_type, path, caption, account_id) VALUES (?, ?, ?, ?) ON CONFLICT DO NOTHING RETURNING media_id');
 		$stmt->execute($data);
 		
 		$mediaId = $stmt->fetch(PDO::FETCH_ASSOC)['media_id'];

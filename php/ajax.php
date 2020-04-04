@@ -3,7 +3,7 @@
 require_once ('header_functions.php');
 
 $functions = array('test', 'currentUser', 'currentUserId', 'addUser', 'getAllPages', 'getAllUsers', 'getMedia', 'getPage',
-    'addMedia', 'addPage', 'deletePage', 'deleteUser', 'login', 'createAccount','getWebsiteData','getAccountMedia');
+    'addMedia', 'addPage', 'deletePage', 'deleteUser', 'login', 'createAccount', 'createWebsite', 'getWebsiteData','getAccountMedia');
 
 if(isset($_POST['function']) && in_array($_POST['function'], $functions)){
     $_POST['function']();
@@ -16,6 +16,18 @@ function createAccount(){
             echo 'There was a problem creating your account!';
         } else {
             echo 'Account created!';
+        }
+    }
+    die;
+}
+
+function createWebsite(){
+    if (!empty($_POST)) {
+        $website = Website::createWebsite($_POST['accountId'], "sites/".$_POST['title']."/html/home.html", $_POST['title'], $_POST['description']);
+        if ($website === false) {
+            echo "false";
+        } else {
+            echo json_encode($website);
         }
     }
     die;
@@ -135,56 +147,9 @@ function getPage(){
 }
 
 function addMedia(){
-    $file = $_FILES['file'];
 
-    $fileName = $file['name']; //"example.jpg"
-    $fileTmpName = $file['tmp_name']; //browser temp name
-    $fileSize = $file['size']; //in bytes
-    $fileError = $file['error']; //0 means no errors
-    $fileType = $file['type']; //"image/png"
-
-    $extStartPos = strrpos($fileName, '.'); //last "." in file name
-    $splitFileName = str_split($fileName, $extStartPos); //filename split at last "."
-    $fileExt = $splitFileName[1]; // file extension with "." (.png)
-    $fileName = $splitFileName[0]; //filename without extension
-
-    $accountId = $_POST['accountId'];
-    $fileName = filter_var($fileName, FILTER_SANITIZE_URL);
-
-    $dir = 'uploads/'.$accountId.'/';
-    $dirExists = file_exists(HOME_PATH.$dir);
-    
-    if(!$dirExists){ 
-        //create directory and insert upload
-        mkdir(HOME_PATH.$dir);
-        $dest = $dir.$fileName.$fileExt;
-        move_uploaded_file($fileTmpName, HOME_PATH.$dest);
-    } else {
-        //increment $suffix until a unique file name is created
-        $suffix = 1;
-        $dest = HOME_PATH.$dir.$fileName.$fileExt;
-        while(file_exists($dest)){
-            $dest = HOME_PATH.$dir.$fileName.$suffix.$fileExt;
-            $suffix++;
-        }
-        //insert upload
-        move_uploaded_file($fileTmpName, $dest);
-    }
-
-    //data to insert into database
-    $url = str_replace(HOME_PATH, HOME_URL, $dest);
-    $fileExt = str_replace('.', '', $fileExt);
-
-    $mediaFile = Media::addImage($fileExt, $url, $accountId, time());
-    if(!$mediaFile){
-        echo 'false';
-    } else {
-        echo 'true';
-    }
-    die;
 }
 
 function addPage(){
 
 }
-
