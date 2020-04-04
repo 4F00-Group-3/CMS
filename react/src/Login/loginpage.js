@@ -1,8 +1,9 @@
 import React, { Component } from "react";
 import Container from "@material-ui/core/Container";
 import Card from "@material-ui/core/Card";
-import "./LandingPage.css";
 import AjaxCall from "../ajax.js";
+import LoginBackend from "./backend/LoginBackend";
+let backend = new LoginBackend();
 
 class LoginPage extends Component {
   constructor(props) {
@@ -13,31 +14,30 @@ class LoginPage extends Component {
     };
     this.handleFormSubmit.bind(this);
     this.handleChange.bind(this);
+    backend.f = props.handleSitePageClick;
+    if (sessionStorage.getItem('id') !== null) {
+      props.handleSitePageClick();
+    }
   }
 
   handleFormSubmit = event => {
     event.preventDefault();
     AjaxCall(
-      { function: "login", email: this.state.email, password: this.state.pw },
-      function(response) {
-        if (!response.toString().includes("false")) {
-          let responseArray = JSON.parse(response.split('php-cgi')[1].trim());
-          let accountId = responseArray.accountId;
-          
-          sessionStorage.setItem("id", accountId);
+        { function: "login", email: this.state.email, password: this.state.pw },
+        function(response) {
+          if (!response.toString().includes("false")) {
+            let responseArray = JSON.parse(response.split('php-cgi')[1].trim());
+            console.log(responseArray);
+            let accountId = responseArray.accountId;
+            console.log(accountId);
+            backend.redirect(accountId);
+            // REDIRECT TO ANOTHER PAGE AFTER THIS
+          } else {
+            // LOGIN FAILED DISPLAY ERROR MSG
 
-          // REDIRECT TO ANOTHER PAGE AFTER THIS
-        } else {
-          // LOGIN FAILED DISPLAY ERROR MSG
-
+          }
         }
-        // console.log(response);
-      }
     );
-    
-    if (sessionStorage.length === 1) {
-      // this.props.handleDashClick();
-    }
   };
 
   handleChange = event => {

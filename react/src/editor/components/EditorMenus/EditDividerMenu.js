@@ -96,7 +96,7 @@ class EditDividerMenu extends Component {
   render() {
     return (
       <>
-        {<Form className="border bg-light rounded p-1 editor-menu" onSubmit={this.handleSubmit}>
+        {<Form className="border bg-light rounded p-1" onSubmit={this.handleSubmit}>
           {/* title */}
           <Form.Group>
             <Form.Label className="d-block font-weight-bold">Edit Divider</Form.Label>

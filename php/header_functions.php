@@ -19,11 +19,11 @@
 //}
 
 //constants GROUP
-// define('DB_NAME', 'c4f00g03');
-// define('DB_PASS', 'Brockus12!');
-// define('DB_SCHEMA', 'c4f00g03'); //website specific, e.g. SELECT * FROM DB_SCHEMA.pages WHERE...
-// define('HOME_URL', 'https://www.cosc.brocku.ca/~c4f00g03/');
-// define('HOME_PATH', '/home/student/c4f00g03/public_html/');
+define('DB_NAME', 'c4f00g03');
+define('DB_PASS', 'Brockus12!');
+define('DB_SCHEMA', 'c4f00g03'); //website specific, e.g. SELECT * FROM DB_SCHEMA.pages WHERE...
+define('HOME_URL', 'https://www.cosc.brocku.ca/~c4f00g03/');
+define('HOME_PATH', '/home/student/c4f00g03/public_html/');
 
 // constants PERSONAL
 // define('DB_NAME', 'cm15sp');
@@ -33,11 +33,11 @@
 // define('HOME_PATH', '/home/student/cm15sp/public_html/');
 
 // constants PERSONAL Matt P
-define('DB_NAME', 'mp16vd');
-define('DB_PASS', '6053664');
-define('DB_SCHEMA', 'mp16vd'); //website specific, e.g. SELECT * FROM DB_SCHEMA.pages WHERE...
-define('HOME_URL', 'https://www.cosc.brocku.ca/~mp16vd/');
-define('HOME_PATH', '/home/student/mp16vd/public_html/');
+// define('DB_NAME', 'mp16vd');
+// define('DB_PASS', '6053664');
+// define('DB_SCHEMA', 'mp16vd'); //website specific, e.g. SELECT * FROM DB_SCHEMA.pages WHERE...
+// define('HOME_URL', 'https://www.cosc.brocku.ca/~mp16vd/');
+// define('HOME_PATH', '/home/student/mp16vd/public_html/');
 
 //LOCAL CONSTANTS
 //define('DB_NAME', 'localhost');
@@ -48,10 +48,10 @@ define('HOME_PATH', '/home/student/mp16vd/public_html/');
 
 //includes
 //HOME_PATH is used so there is no uncertainty in the file path
-require_once ('../includes/Dbh.php'); 
-require_once ('../includes/Account.php');
-require_once ('../includes/Media.php');
-require_once ('../includes/Website.php');
+require_once (HOME_PATH.'includes/Dbh.php'); 
+require_once(HOME_PATH . 'includes/Account.php');
+require_once (HOME_PATH.'includes/Media.php');
+require_once (HOME_PATH.'includes/Website.php');
 
 function getCurrentAccountId(){
     return $_SESSION['account_id'];

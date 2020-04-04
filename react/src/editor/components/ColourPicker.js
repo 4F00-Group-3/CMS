@@ -13,7 +13,6 @@ class ColourPicker extends React.Component {
   render() {
     return (
       <ChromePicker
-        className="mt-2 mb-2"
         color={ this.state.background }
         onChange ={ this.handleOnChange  }
       />

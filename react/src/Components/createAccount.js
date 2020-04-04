@@ -14,30 +14,34 @@ class createAccount extends Component {
       ln: ""
     };
 
-    AjaxCall(
-      { function: "currentUser", accountId:sessionStorage.getItem('id') || 0 },
-      function(response) {
-        if (!response.toString().includes("false")) {
-          let user = JSON.parse(response.split('php-cgi')[1].trim());
-          let account = user.accountId; 
-          console.log('user data returned:', user);
-        } else {
-          console.log('no user logged in');
-        }
-      }
-    );
+    if (sessionStorage.getItem('id') !== null) {
+      props.handleSitePageClick();
+    }
 
-    AjaxCall(
-      { function: "updateUser", subscription: 3 /* Set the sub level here */, accountId:sessionStorage.getItem('id') || 0 },
-      function(response) {
-        //whether update was successful or not
-        if (!response.toString().includes("false")) {
-          console.log('user data updated');
-        } else {
-          console.log('user data update failed');
-        }
-      }
-    );
+    // AjaxCall(
+    //   { function: "currentUser", accountId:sessionStorage.getItem('id') || 0 },
+    //   function(response) {
+    //     if (!response.toString().includes("false")) {
+    //       let user = JSON.parse(response.split('php-cgi')[1].trim());
+    //       let account = user.accountId; 
+    //       console.log('user data returned:', user);
+    //     } else {
+    //       console.log('no user logged in');
+    //     }
+    //   }
+    // );
+
+    // AjaxCall(
+    //   { function: "updateUser", subscription: 3 /* Set the sub level here */, accountId:sessionStorage.getItem('id') || 0 },
+    //   function(response) {
+    //     //whether update was successful or not
+    //     if (!response.toString().includes("false")) {
+    //       console.log('user data updated');
+    //     } else {
+    //       console.log('user data update failed');
+    //     }
+    //   }
+    // );
   }
 
   handleFormSubmit = event => {

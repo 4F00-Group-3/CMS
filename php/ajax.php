@@ -3,7 +3,7 @@
 require_once ('header_functions.php');
 
 $functions = array('test', 'currentUser', 'updateUser', 'currentUserId', 'addUser', 'getAllPages', 'getAllUsers', 'getMedia', 'getPage',
-    'addMedia', 'addPage', 'deletePage', 'deleteUser', 'login', 'createAccount','getWebsiteData','getAccountMedia');
+    'addMedia', 'addPage', 'deletePage', 'deleteUser', 'login', 'createAccount', 'createWebsite','getWebsiteData','getAccountMedia');
 
 if(isset($_POST['function']) && in_array($_POST['function'], $functions)){
     $_POST['function']();
@@ -16,6 +16,18 @@ function createAccount(){
             echo 'There was a problem creating your account!';
         } else {
             echo 'Account created!';
+        }
+    }
+    die;
+}
+
+function createWebsite(){
+    if (!empty($_POST)) {
+        $website = Website::createWebsite($_POST['accountId'], "sites/".$_POST['title']."/html/home.html", $_POST['title'], $_POST['description']);
+        if ($website === false) {
+            echo "false";
+        } else {
+            echo json_encode($website);
         }
     }
     die;
@@ -189,20 +201,8 @@ function addMedia(){
         move_uploaded_file($fileTmpName, $dest);
     }
 
-    //data to insert into database
-    $url = str_replace(HOME_PATH, HOME_URL, $dest);
-    $fileExt = str_replace('.', '', $fileExt);
-
-    $mediaFile = Media::addImage($fileExt, $url, $accountId, time());
-    if(!$mediaFile){
-        echo 'false';
-    } else {
-        echo 'true';
-    }
-    die;
 }
 
 function addPage(){
 
 }
-
