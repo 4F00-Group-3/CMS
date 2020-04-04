@@ -21,7 +21,10 @@ class Editor extends Component {
     }
 
     /**
-     * This method adds to the editing page.
+     * This method adds appends a PageSection component in to the EditingPage
+     * It does this by appending it to the page json (handled in the EditorBackend)
+     * This new page object is re-rendered on to the EditingPage when setState is called
+     * @param the name of the component which is recieved from the the button clicked on EditorSidebar
      */
     addToPage_onClick = (name) => {
         console.log(name);
@@ -51,9 +54,10 @@ class Editor extends Component {
                 this.setState({ page: backend.getPage() })
                 break;
             }
-            case "Size": {
-                backend.add("Size");
+            case "Row": {
+                backend.add("Row");
                 this.setState({ page: backend.getPage() })
+                console.log(backend.getPage());
                 break;
             }
             case "Icon": {
@@ -72,6 +76,13 @@ class Editor extends Component {
 
     }
 
+    /**
+     * This method handles what menu to display in the EditorSidebar
+     * based on which PageSection component the user clicked in the EditingPage
+     * @param _id this is the idea of the specific component
+     * @param _type this is the type of the specific component
+     * @param _style the css for the specific component
+     */
     pageSection_onClick = (_id, _type, _style) => {
         console.log(_type)
         switch (_type) {
@@ -124,6 +135,13 @@ class Editor extends Component {
                 })
                 break;
             }
+            case "row": {
+                this.setState({
+                    menu: "row",
+                    selectedId: _id,
+                })
+                break;
+            }
             default: {
                 this.setState({
                     menu: "main",
@@ -133,6 +151,11 @@ class Editor extends Component {
         }
     }
 
+    /**
+     * This method re-renders the css on a PageSection component in the 
+     * EditingPage based on what the user inputted into the specific component's menu
+     * @param css the new css to apply to the PageSection component on the EditingPage
+     */
     menuComponentOnClick = (css) => {
         console.log(css.split("|").length, css)
 
@@ -141,7 +164,11 @@ class Editor extends Component {
             case 2: {
                 var cssKey = css.split("|")[0]
                 var cssValue = css.split("|")[1]
-                backend.editSectionStyle(this.state.selectedId, cssKey, cssValue);
+                if (cssKey === "Col") {
+                    backend.editSectionRow(this.state.selectedId, cssValue);
+                } else {
+                    backend.editSectionStyle(this.state.selectedId, cssKey, cssValue);
+                }
                 break;
             }
             case 3: {
@@ -160,7 +187,7 @@ class Editor extends Component {
     }
 
     handleBack = () => {
-        this.setState({menu:'main'});
+        this.setState({ menu: 'main' });
     }
 
     handleDelete = () => {
@@ -170,19 +197,19 @@ class Editor extends Component {
         console.log(page);
 
         for (let i = 0; i < page.length; i++) {
-            if(page[i].id == activeSection){
+            if (page[i].id === activeSection) {
                 page.splice(i, 1);
 
             }
         }
         console.log(this.state.activeSection);
 
-        this.state.activeSection.setState({active:0});
+        this.state.activeSection.setState({ active: 0 });
         this.handleBack();
     }
 
     setActive = (i, activeSec) => {
-        this.setState({activeSection: activeSec})
+        this.setState({ activeSection: activeSec })
     }
 
 
@@ -190,7 +217,9 @@ class Editor extends Component {
         return (
             <>
                 <EditorSideBar onPush={this.addToPage_onClick} menu={this.state.menu} selectedId={this.state.selectedId} menuComponentOnClick={this.menuComponentOnClick} handleBack={this.handleBack} handleDelete={this.handleDelete} />
-                <EditingPage page={this.state.page} onSectionPush={this.pageSection_onClick} setActive={this.setActive} />
+                <div style={{ marginLeft: "50vh" }}>
+                    <EditingPage page={this.state.page} onSectionPush={this.pageSection_onClick} setActive={this.setActive} />
+                </div>
             </>
         );
     }

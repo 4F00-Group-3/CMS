@@ -53,6 +53,42 @@ class EditorBackend {
         this.state.page = result;
     }
 
+    editSectionRow(id, value) {
+        var page = this.getPage()
+        var result = [];
+        for (let index = 0; index < page.length; index++) {
+            var pageSection = page[index];
+            if (pageSection.id === id) {
+                pageSection.col = value;
+                console.log(pageSection);
+                result.push(pageSection);
+            }
+        }
+    }
+
+    returnBasicColumnObj(id){
+        var jsonObj = {
+            id: id + "|" + 1,
+            type: "column",
+            style: [],
+            page: [
+                {
+                    id: 0,
+                    type: "heading",
+                    text: "heading 1",
+                    style: [
+                        {
+                            color: "black",
+                            fontSize: "10vh",
+                            textAlign: "left",
+                        }
+                    ],
+                }
+            ]
+        };
+        return jsonObj;
+    }
+
     /**
      * This method edits a text field in the json file
      * It can be used in replacing any text value from any json field
@@ -331,6 +367,41 @@ class EditorBackend {
                     ],
                 }
                 this.state.page.push(jsonObj)
+                break;
+            }
+            case "Row": {
+                var colObj = this.returnBasicColumnObj(page.length+1);
+                jsonObj = {
+                    id: page.length + 1,
+                    type: "row",
+                    style: [],
+                    col: 1,
+                    cols: colObj
+                };
+                this.state.page.push(jsonObj);
+                break;
+            }
+            case "Column": {
+                jsonObj = {
+                    id: page.length + 1,
+                    type: "column",
+                    style: [],
+                    page: [
+                        {
+                            id: 0,
+                            type: "heading",
+                            text: "heading 1",
+                            style: [
+                                {
+                                    color: "black",
+                                    fontSize: "10vh",
+                                    textAlign: "left",
+                                }
+                            ],
+                        }
+                    ]
+                };
+                this.state.page.push(jsonObj);
                 break;
             }
             default: {
