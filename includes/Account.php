@@ -86,6 +86,19 @@ class Account {
 		return Account::getAccountById($accountId);
 	}
 
+    //add a new account to the database
+    public static function updatePassword($email, $password){
+        $pw = password_hash($password, PASSWORD_BCRYPT);
+
+        $stmt = Dbh::connect() ->PREPARE('UPDATE accounts SET password=? WHERE email = ?;');
+        $stmt->execute([$pw, $email]);
+        if($stmt->rowCount()){
+            return true;
+        }else {
+            return false;
+        }
+    }
+
 	//queries the entire accounts table
 	public static function getAllAccounts(){
 		$stmt = Dbh::connect()->query("SELECT * FROM accounts");
