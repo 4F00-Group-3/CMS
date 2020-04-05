@@ -73,7 +73,6 @@ class Editor extends Component {
             default:
                 break;
         }
-
     }
 
     /**
@@ -91,6 +90,8 @@ class Editor extends Component {
                     menu: "heading",
                     selectedId: _id,
                 })
+                console.log(this.state.menu);
+                console.log(this.state.selectedId);
                 break;
             }
             case "divider": {
@@ -143,6 +144,7 @@ class Editor extends Component {
                 break;
             }
             default: {
+                console.log("hi");
                 this.setState({
                     menu: "main",
                     selectedId: undefined,
@@ -157,6 +159,7 @@ class Editor extends Component {
      * @param css the new css to apply to the PageSection component on the EditingPage
      */
     menuComponentOnClick = (css) => {
+        console.log("Editor Selected Id", this.state.selectedId);
         console.log(css.split("|").length, css)
 
 
@@ -167,7 +170,8 @@ class Editor extends Component {
                 if (cssKey === "Col") {
                     backend.editSectionRow(this.state.selectedId, cssValue);
                 } else {
-                    backend.editSectionStyle(this.state.selectedId, cssKey, cssValue);
+                    // backend.editSectionStyle(this.state.selectedId, cssKey, cssValue);
+                    backend.editSectionStyle_Param(this.state.selectedId, cssKey, cssValue);
                 }
                 break;
             }
@@ -192,7 +196,7 @@ class Editor extends Component {
 
     handleDelete = () => {
         var page = this.state.page;
-        var activeSection = this.state.activeSection.state.active;
+        var activeSection = this.state.activeSection;
 
         console.log(page);
 
@@ -204,12 +208,13 @@ class Editor extends Component {
         }
         console.log(this.state.activeSection);
 
-        this.state.activeSection.setState({ active: 0 });
+        // this.state.activeSection.setState({ active: 0 });
         this.handleBack();
     }
 
-    setActive = (i, activeSec) => {
-        this.setState({ activeSection: activeSec })
+    setActive = (i) => {
+        // console.log("activeSec", activeSec);
+        this.setState({ activeSection: i })
     }
 
 

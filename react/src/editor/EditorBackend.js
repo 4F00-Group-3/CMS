@@ -9,11 +9,36 @@ class EditorBackend {
         return this.state.page;
     }
 
+    getSubMenuItem(subMenuItems, id, style_key, style_value) {
+        console.log("item", subMenuItems)
+        if (subMenuItems) {
+            for (var i = 0; i < subMenuItems.length; i++) {
+                if (subMenuItems[i].id === id) {
+                    //  return subMenuItems[i];
+                    var style = JSON.parse(JSON.stringify(subMenuItems[i]['style'][0]));
+                    style[""+style_key] = style_value;
+                    subMenuItems[i]['style'][0] = style;
+                    return;
+                } else {
+                    // var found = this.getSubMenuItem(subMenuItems[i].page, id);
+                    // if (found) return found;
+                    this.getSubMenuItem(subMenuItems[i].page, id, style_key, style_value);
+                    // if (found) return found;
+                }
+            }
+        }
+    };
+
+    findElementWithInRow(row, pageSectionid) {
+        var myColumns;
+    }
+
     editSectionStyle(_id, style_key, style_value) {
         var page = this.getPage()
         var result = [];
         for (let index = 0; index < page.length; index++) {
             var pageSection = page[index];
+            console.log(pageSection);
             if (pageSection.id === _id) {
 
                 //repopulate new css
@@ -53,6 +78,54 @@ class EditorBackend {
         this.state.page = result;
     }
 
+    editSectionStyle_Param(_id, style_key, style_value) {
+        var page = this.getPage()
+        console.log("length", page);
+        var result = page;
+        var pageSection = this.getSubMenuItem(page, _id, style_key, style_value); // this what I need to edit
+        /*
+        for (let index = 0; index < page.length; index++) {
+            console.log("backend pagesection:", pageSection);
+            if (pageSection.id === _id) {
+
+                //repopulate new css
+                var css = pageSection.style[0];
+                var newCSS = {};
+                for (var attribute in css) {
+                    if (attribute === style_key) {
+                        newCSS[attribute] = style_value;
+                    }
+                    else {
+                        newCSS[attribute] = css[attribute];
+                    }
+                }
+
+                console.log(newCSS);
+
+                //repopulate new page section
+                var newPageSection = {};
+                for (const key in pageSection) {
+                    if (key === "style") {
+                        newPageSection[key] = [newCSS];
+                    }
+                    else {
+                        newPageSection[key] = pageSection[key];
+                    }
+                }
+
+                result.push(newPageSection);
+
+                console.log("section style changed", newPageSection)
+            }
+            else {
+                result.push(pageSection)
+            }
+
+        }
+        */
+        this.state.page = result;
+    }
+
     editSectionRow(id, value) {
         var page = this.getPage()
         var result = [];
@@ -66,16 +139,17 @@ class EditorBackend {
         }
     }
 
-    returnBasicColumnObj(id){
-        var jsonObj = {
+    returnBasicColumnObj(id) {
+        var jsonObj = [{
             id: id + "|" + 1,
             type: "column",
             style: [],
             page: [
                 {
-                    id: 0,
+                    id: 99,
                     type: "heading",
                     text: "heading 1",
+                    parent: "column",
                     style: [
                         {
                             color: "black",
@@ -85,7 +159,7 @@ class EditorBackend {
                     ],
                 }
             ]
-        };
+        }];
         return jsonObj;
     }
 
@@ -370,13 +444,13 @@ class EditorBackend {
                 break;
             }
             case "Row": {
-                var colObj = this.returnBasicColumnObj(page.length+1);
+                var colObj = this.returnBasicColumnObj(page.length + 1);
                 jsonObj = {
                     id: page.length + 1,
                     type: "row",
                     style: [],
                     col: 1,
-                    cols: colObj
+                    page: colObj
                 };
                 this.state.page.push(jsonObj);
                 break;
@@ -388,7 +462,7 @@ class EditorBackend {
                     style: [],
                     page: [
                         {
-                            id: 0,
+                            id: 99,
                             type: "heading",
                             text: "heading 1",
                             style: [

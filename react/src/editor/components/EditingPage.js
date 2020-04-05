@@ -23,8 +23,10 @@ class EditingPage extends Component {
 
 
   toggleClickClass = (i) => {
+    // console.log("Editing Page props: ", this.props);
+    // console.log(i);
     this.setState({ active: i });
-    this.props.setActive(i, this);
+    this.props.setActive(i);
   }
 
   /**
@@ -33,8 +35,10 @@ class EditingPage extends Component {
    * Returns the sections added to the editor page
    */
   returnPage() {
+    console.log("props page EditingPage", this.props.page)
     let x = []; //empty array
     try {
+      // console.log(this.props.page)
       for (let i = 0; i < this.props.page.length; i++) {  //for each section
         var y = {   //get section values
           page: this.props.page[i],
@@ -49,13 +53,13 @@ class EditingPage extends Component {
           // col: this.props.page[i].col,
           onSectionPush: this.props.onSectionPush,
           toggleClickClass: this.toggleClickClass,
+          // clicked is used later inside the PageSection to highlight a selected PageSection Component
           clicked: (this.state.active === this.props.page[i].id ? true : false),
           onClick: this.props.page.onClick
         }
-        console.log("style in returnpage", y.page.style[0])
         x.push(y) //push to array
       }
-      console.log(x);
+      console.log("EditingPage x ", x);
     } catch (e) { }
     return x;
   }
@@ -78,6 +82,7 @@ class EditingPage extends Component {
       const moveCard = useCallback(
         (dragIndex, hoverIndex) => {
           const dragCard = cards[dragIndex]
+          console.log("moveCard", dragCard);
           setCards(
             update(cards, {
               $splice: [
@@ -98,7 +103,7 @@ class EditingPage extends Component {
        */
       const renderCard = (card, index) => {
 
-        console.log("style in rendercard", card.page.style[0])
+        console.log("card", index, card);
         /*Update the page with the card's new order so that rearrangements reflect on page permanently.*/
         this.props.page[index].id = card.page.id;
         this.props.page[index].type = card.page.type;
@@ -117,7 +122,7 @@ class EditingPage extends Component {
         return (      //returns a card which returns a page section with these vals
           <Card
             page={card.page}
-            key={card.page.id}
+            key={index}
             // id={card.page.id}
             // type={card.type}
             // style={card.style}
@@ -130,8 +135,8 @@ class EditingPage extends Component {
             clicked={card.clicked}
             index={index}
             moveCard={moveCard}
-            // href={card.href}
-            // col={card.col}
+          // href={card.href}
+          // col={card.col}
           />
         )
       }
