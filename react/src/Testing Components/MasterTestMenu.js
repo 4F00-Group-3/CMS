@@ -5,7 +5,7 @@ import EditAccountInfo from '../Site Page/EditAccountInfo';
 import Editor from '../editor/Editor';
 import Dashboard from '../dashboard/Dashboard'
 import SitePage from '../Site Page/SitePage';
-import Login from '../Components/loginpage';
+import Login from '../Login/loginpage';
 import CreateAccount from '../Components/createAccount.js';
 
 class MasterTestMenu extends Component {
@@ -71,22 +71,27 @@ class MasterTestMenu extends Component {
     let page;
     switch (view) {
       case "Editor":
-        page = <Editor />;
+        page = <Editor handleHomeClick={this.handleHomeClick}/>;
         break;
       case "Home":
         page = <Home />;
         break;
       case "Dash":
-        page = <Dashboard NavToAccountSettings={this.NavToAccountSettings}/>;
+        page = <Dashboard handleHomeClick = {this.handleHomeClick}
+                          NavToAccountSettings={this.NavToAccountSettings}/>;
         break;
       case "Login":
-        page = <Login />;
+        page = <Login handleSitePageClick = {this.handleSitePageClick}
+                      handleCreateAccountClick={this.handleCreateAccountClick}
+                      handleHomeClick={this.handleHomeClick}/>;
         break;
       case "Create Account":
-        page = <CreateAccount />;
+        page = <CreateAccount handleSitePageClick = {this.handleSitePageClick}/>;
         break;
       case "SitePage":
-        page = <SitePage NavToAccountSettings={this.NavToAccountSettings}/>;
+        page = <SitePage handleHomeClick = {this.handleHomeClick}
+                         handleDashClick = {this.handleDashClick}/>;
+                         NavToAccountSettings={this.NavToAccountSettings}/>;
         break;
       case "AccountSettings":
         page = <AccountSettings handleEditAccountInfo={this.handleEditAccountInfo} />
@@ -95,7 +100,7 @@ class MasterTestMenu extends Component {
         page = <EditAccountInfo NavToAccountSettings={this.NavToAccountSettings}/>
         break;
       default:
-        page = <Editor />;
+        page = <Home />;
     }
     return (
       <div>

@@ -13,6 +13,9 @@ class createAccount extends Component {
       fn: "",
       ln: ""
     };
+    if (sessionStorage.getItem('id') !== null) {
+      props.handleSitePageClick();
+    }
   }
 
   handleFormSubmit = event => {

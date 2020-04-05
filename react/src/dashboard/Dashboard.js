@@ -8,7 +8,8 @@ import Settings from "./components/Settings";
 import { Redirect, Router } from "react-router-dom";
 import DashboardBackend from "./backend/DashboardBackend";
 import UserAdminBackend from "./backend/UserAdminBackend";
-import HomePage from "../HomePage";
+import Home from '../HomePage';
+
 
 let backend = new DashboardBackend();
 let userAdminBackend = new UserAdminBackend();
@@ -18,7 +19,10 @@ class Dashboard extends Component {
         super(props);
         this.state = {
             page: <Pages backend={backend}/>,
-        }
+        };
+      if (sessionStorage.getItem('id') === null || sessionStorage.getItem('siteId') === null) {
+        props.handleHomeClick();
+      }
         //backend.returnAllPages();
     }
  
@@ -38,13 +42,8 @@ class Dashboard extends Component {
         break;
       }
       case "Log Out": {
-        this.setState({
-          page: (
-            <Router>
-              <Redirect to="/" />
-            </Router>
-          )
-        });
+        sessionStorage.clear();
+        this.props.handleHomeClick();
         break;
       }
       default: {

@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import Page from './Page';
 import '../../css/PageAdmin.css';
+import AjaxCall from "../../ajax";
 
 /*Popup class for the add page pop up, handles opening the popup and passing
 information from it back to the add Page part */
@@ -52,6 +53,20 @@ class Pages extends Component {
 
     }
 
+    componentDidMount() {
+        //THIS IS A BACKEND CALL TO RETRIEVE ALL PAGES ASSOCIATED TO WEBSITEID
+        //All console logs are for testing purposes
+        var arr = [];
+        AjaxCall({function: 'getPagesData', websiteId: sessionStorage.getItem('siteId')},
+            function (response) {
+            console.log(response);
+            let responseArray = JSON.parse(response.split('php-cgi')[1].trim());
+            console.log(responseArray);
+            arr = responseArray;
+        });
+        console.log(arr);
+    }
+
     togglePopup() {
         this.setState({
           showPopup: !this.state.showPopup
@@ -68,6 +83,19 @@ class Pages extends Component {
 
     handlePageDelete(id) {
         console.log("handle page delete clicked");
+        //THIS IS A BACKEND CALL TO DELETE PAGE ASSOCIATED TO WEBSITEID BY A PAGEID
+        //All console logs are for testing purposes
+        var arr = [];
+        AjaxCall({function: 'deleteUser', websiteId: sessionStorage.getItem('siteId'), pageId: id},
+            function (response) {
+                console.log(response);
+                let responseArray = JSON.parse(response.split('php-cgi')[1].trim());
+                console.log(responseArray);
+                arr = responseArray;
+            });
+        console.log(arr);
+        //END OF BACKEND CALL
+
         this.props.backend.delete(id);
         this.setState({
             'pages': this.props.backend.pages,
