@@ -25,7 +25,7 @@ class Dashboard extends Component {
       }
         //backend.returnAllPages();
     }
- 
+
   onPush = buttonName => {
     console.log(buttonName);
     switch (buttonName) {
@@ -52,16 +52,11 @@ class Dashboard extends Component {
     }
   };
 
-  NavToAccountSettings =optionName=>{
-    console.log("Testing");
-    this.props.NavToAccountSettings("optionName");
-  }
-
   render() {
     return (
       <>
         <div>
-          <TopBar NavToAccountSettings={this.NavToAccountSettings}/>
+          <TopBar />
           <div className="SideBySide">
             <SideBar onPush={this.onPush} />
             {this.state.page}

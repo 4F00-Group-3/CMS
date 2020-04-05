@@ -1,10 +1,6 @@
 import React, { Component } from "react";
 import "../../css/PageAdmin.css";
-import { Navbar, NavbarBrand} from "reactstrap";
-import Dropdown from 'react-bootstrap/Dropdown';
-import Settings from "./Settings";
-import GetStarted from '../../Components/getStarted';
-import AccountSettings from '../../Site Page/AccountSettings';
+import { Navbar, NavbarBrand } from "reactstrap";
 
 class TopBar extends Component {
   constructor(props) {
@@ -22,11 +18,6 @@ class TopBar extends Component {
       isOpen: !this.state.isOpen
     });
   }
-
-  loadAccountSettings=()=> {
-    // this.setState({this.props.testing});
-    console.log(this.props.state);
-  }
   render() {
     return (
       <div>
@@ -40,29 +31,9 @@ class TopBar extends Component {
           <NavbarBrand href="#">
             {/**this has to be here so icon is right aligned**/}
           </NavbarBrand>
-
-          {/* <NavbarBrand href="#"> */} 
-          <Dropdown>
-            <Dropdown.Toggle variant="success" id="dropdown-basic">
-              {/* testing */}
-              <i className="fa fa-address-book TopBar-Icon" ></i>
-            </Dropdown.Toggle>
-
-            <Dropdown.Menu alignRight="true">
-              <Dropdown.Item href="#" onClick={() => this.props.NavToAccountSettings("Users")}>
-                My Profile
-              </Dropdown.Item>
-              <Dropdown.Item href="#">
-                Help
-              </Dropdown.Item>
-              {/* put in log out functionality below */}
-              <Dropdown.Item href="#">
-                Log Out
-              </Dropdown.Item>
-            </Dropdown.Menu>
-          </Dropdown>
-            
-          {/* </NavbarBrand> */}
+          <NavbarBrand href="#">
+            <i className="fa fa-address-book TopBar-Icon"></i>
+          </NavbarBrand>
         </Navbar>
       </div>
     );
