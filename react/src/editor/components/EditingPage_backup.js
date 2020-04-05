@@ -6,20 +6,28 @@ import PageSection from "./PageSection";
 import Card from "./Card.jsx";
 import update from 'immutability-helper'
 
-export default class ColEditingPage extends Component {
+const style = {
+  // this is commented out because I mean to use an EditingPage withing a column component, which must take up the entire column
+  // marginLeft: "50vh"
+}
+
+
+/**
+ * The purpose of this class is to have a column with a Row-PageSection Component act as a EditingPage
+ */
+class EditingPage extends Component {
   constructor(props) {
     super(props);
     this.state = {
+      page: props.page,
       active: 0
     }
   }
 
 
   toggleClickClass = (i) => {
-    console.log("Editing Page props: ", this.props);
-    console.log(i);
     this.setState({ active: i });
-    this.props.setActive(i);
+    this.props.setActive(i, this);
   }
 
   /**
@@ -30,19 +38,25 @@ export default class ColEditingPage extends Component {
   returnPage() {
     let x = []; //empty array
     try {
-      // console.log(this.props.page)
       for (let i = 0; i < this.props.page.length; i++) {  //for each section
         var y = {   //get section values
-          page: this.props.page[i],
+          key: this.props.page[i].id,
+          id: this.props.page[i].id,
+          type: this.props.page[i].type,
+          style: this.props.page[i].style[0],
+          text: this.props.page[i].text,
+          faClassName: this.props.page[i].faClassName,
+          onClick: this.props.page.onClick,
+          url: this.props.page[i].url,
           onSectionPush: this.props.onSectionPush,
           toggleClickClass: this.toggleClickClass,
-          // clicked is used later inside the PageSection to highlight a selected PageSection Component
           clicked: (this.state.active === this.props.page[i].id ? true : false),
-          onClick: this.props.page.onClick
+          href: this.props.page[i].href,
+          col: this.props.page[i].col,
         }
         x.push(y) //push to array
       }
-      // console.log("EditingPage x ", x);
+      console.log(x);
     } catch (e) { }
     return x;
   }
@@ -86,36 +100,44 @@ export default class ColEditingPage extends Component {
       const renderCard = (card, index) => {
 
         /*Update the page with the card's new order so that rearrangements reflect on page permanently.*/
-        this.props.page[index].id = card.page.id;
-        this.props.page[index].type = card.page.type;
-        this.props.page[index].style[0] = card.page.style[0];
-        this.props.page[index].text = card.page.text;
-        this.props.page[index].faClassName = card.page.faClassName;
+        this.props.page[index].id = card.id;
+        this.props.page[index].type = card.type;
+        this.props.page[index].style[0] = card.style;
+        this.props.page[index].text = card.text;
+        this.props.page[index].faClassName = card.faClassName;
         this.props.page[index].onClick = card.onClick;
-        this.props.page[index].url = card.page.url;
+        this.props.page[index].url = card.url;
         this.props.page[index].onSectionPush = card.onSectionPush;
         this.props.page[index].toggleClickClass = card.toggleClickClass;
         this.props.page[index].clicked = card.clicked;
-        this.props.page[index].href = card.page.href;
-        this.props.page[index].col = card.page.col;
+        this.props.page[index].href = card.href;
+        this.props.page[index].col = card.col;
 
 
         return (      //returns a card which returns a page section with these vals
           <Card
-            page={card.page}
-            key={index}
+            key={card.id}
+            id={card.id}
+            type={card.type}
+            style={card.style}
+            text={card.text}
+            faClassName={card.faClassName}
+            onClick={card.onClick}
+            url={card.url}
             onSectionPush={card.onSectionPush}
             toggleClickClass={card.toggleClickClass}
             clicked={card.clicked}
             index={index}
             moveCard={moveCard}
+            href={card.href}
+            col={card.col}
           />
         )
       }
 
       return (
         <>
-          {cards.map((card, i) => renderCard(card, i))}
+          <div style={style}>{cards.map((card, i) => renderCard(card, i))}</div>
         </>
       )
       // }
@@ -123,11 +145,11 @@ export default class ColEditingPage extends Component {
 
 
     return (
-      <PageSection
-        page={this.props.page}
-        onSectionPush={this.props.onSectionPush}
-        toggleClickClass={this.props.toggleClickClass}
-      />
+      <DndProvider backend={Backend}>
+        <Container />
+      </DndProvider>
     )
   }
 }
+
+export default EditingPage;
