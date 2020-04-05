@@ -1,0 +1,7 @@
+.pageSection:hover  {
+    border: 3px solid green;
+}
+
+.pageSectionClick  {
+    border: 3px solid blue;
+}
