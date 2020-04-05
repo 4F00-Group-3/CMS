@@ -6,6 +6,7 @@ import Login from '../Login/loginpage';
 import SitePageBackend from "../Site Page/backend/SitePageBackend";
 let backend = new SitePageBackend();
 
+
 /*Popup class for the add page pop up, handles opening the popup and passing
 information from it back to the add Page part */
 class Popup extends Component {
@@ -125,6 +126,7 @@ class SitePage extends Component {
                         siteInfo: json
                     });
                 });
+
         } else {
             // Redirect to login
             this.props.handleHomeClick();
@@ -146,8 +148,12 @@ class SitePage extends Component {
      * This method handles redirect to account settings
      */
     handleRedirectToAccoutingSettings() {
+        this.setState({
+            page: <AccountSettings/>
+        });
+        console.log(this.state);
         // For testing purposes
-        alert("Redirecting to Account Settings...oops we don't have an account settings page");
+        // alert("Redirecting to Account Settings...oops we don't have an account settings page");
     }
 
     /**
@@ -182,12 +188,15 @@ class SitePage extends Component {
                 {userLoggedIn ?
                     <div className="SitePage">
                         <div className="Menu">
-                            <p onClick={this.handleRedirectToAccoutingSettings}>Account Settings</p>
+                            <p onClick={() => this.props.NavToAccountSettings("Testing")}>Account Settings</p>
                             <p onClick={this.handleLogOut}>Log Out</p>
                             <p onClick={this.handleUpgradePlan}>Upgrade</p>
                         </div>
                         <div className="Content">
-                            <div className="SiteList">
+
+                            <h1>Site Page</h1>
+                            
+                            {/* <div className="SiteList">
                                 <div>
                                     {this.state && this.state.siteInfo &&
                                         this.state.siteInfo.map((site, index) =>
@@ -221,7 +230,7 @@ class SitePage extends Component {
                                     </div>
 
                                 </div>
-                            </div>
+                            </div> */}
                         </div>
                     </div>
                     :
