@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import User from './User';
 import '../../css/PageAdmin.css';
+import AjaxCall from "../../ajax";
 
 /*Popup class for the add page pop up, handles opening the popup and passing
 information from it back to the add Page part */
@@ -48,6 +49,20 @@ class Users extends Component {
         }
     }
 
+    componentDidMount() {
+        //THIS IS A BACKEND CALL TO RETRIEVE ALL USERS ASSOCIATED TO WEBSITEID
+        console.log("response");
+        var arr = [];
+        AjaxCall({function: 'getUsersData', websiteId: sessionStorage.getItem('siteId')},
+            function (response) {
+            console.log(response);
+            let responseArray = JSON.parse(response.split('php-cgi')[1].trim());
+            console.log(responseArray);
+            arr = responseArray;
+        });
+        console.log(arr);
+    }
+
     togglePopup() {
         this.setState({
           showPopup: !this.state.showPopup
@@ -60,6 +75,19 @@ class Users extends Component {
 
     handleDelete(id) {
         console.log("user delete clicked");
+        //THIS IS A BACKEND CALL TO DELETE USER ASSOCIATED TO WEBSITEID BY A USERID
+        //All console logs are for testing purposes
+        var arr = [];
+        AjaxCall({function: 'deletePage', websiteId: sessionStorage.getItem('siteId'), userId: id},
+            function (response) {
+                console.log(response);
+                let responseArray = JSON.parse(response.split('php-cgi')[1].trim());
+                console.log(responseArray);
+                arr = responseArray;
+            });
+        console.log(arr);
+        //END OF BACKEND CALL
+
         this.props.backend.delete(id);
         this.setState({
             'users': this.props.backend.users,
