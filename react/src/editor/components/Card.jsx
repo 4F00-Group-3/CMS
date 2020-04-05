@@ -65,14 +65,6 @@ const Card = ({ page, id, style, onClick, onSectionPush, index, moveCard, toggle
       {   //card returns a page section
         <PageSection
           page={page}
-          // index={id}
-          // type={type}
-          // style={style}
-          // text={text}
-          // faClassName={faClassName}
-          // href={href}
-          // url={url}
-          // col={col}
           onSectionPush={onSectionPush}
           toggleClickClass={toggleClickClass}
           clicked={clicked}

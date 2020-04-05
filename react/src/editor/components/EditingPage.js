@@ -42,15 +42,6 @@ class EditingPage extends Component {
       for (let i = 0; i < this.props.page.length; i++) {  //for each section
         var y = {   //get section values
           page: this.props.page[i],
-          // key: this.props.page[i].id,
-          // id: this.props.page[i].id,
-          // type: this.props.page[i].type,
-          // style: this.props.page[i].style[0],
-          // text: this.props.page[i].text,
-          // faClassName: this.props.page[i].faClassName,
-          // url: this.props.page[i].url,
-          // href: this.props.page[i].href,
-          // col: this.props.page[i].col,
           onSectionPush: this.props.onSectionPush,
           toggleClickClass: this.toggleClickClass,
           // clicked is used later inside the PageSection to highlight a selected PageSection Component
@@ -82,7 +73,7 @@ class EditingPage extends Component {
       const moveCard = useCallback(
         (dragIndex, hoverIndex) => {
           const dragCard = cards[dragIndex]
-          console.log("moveCard", dragCard);
+          console.log("moveCard", dragCard);// to understand
           setCards(
             update(cards, {
               $splice: [
@@ -123,20 +114,12 @@ class EditingPage extends Component {
           <Card
             page={card.page}
             key={index}
-            // id={card.page.id}
-            // type={card.type}
-            // style={card.style}
-            // text={card.text}
-            // faClassName={card.faClassName}
             onClick={card.onClick}
-            // url={card.url}
             onSectionPush={card.onSectionPush}
             toggleClickClass={card.toggleClickClass}
             clicked={card.clicked}
             index={index}
             moveCard={moveCard}
-          // href={card.href}
-          // col={card.col}
           />
         )
       }
@@ -146,7 +129,6 @@ class EditingPage extends Component {
           <div style={style}>{cards.map((card, i) => renderCard(card, i))}</div>
         </>
       )
-      // }
     }
 
 
