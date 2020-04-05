@@ -1,9 +1,10 @@
 #!/usr/bin/php-cgi
 <?php
 require_once ('header_functions.php');
+require_once ('payment.php');
 
 $functions = array('test', 'currentUser', 'currentUserId', 'addUser', 'getAllPages', 'getAllUsers', 'getMedia', 'getPage',
-    'addMedia', 'addPage', 'deletePage', 'deleteUser', 'login', 'createAccount','getWebsiteData','getAccountMedia');
+    'addMedia', 'addPage', 'deletePage', 'deleteUser', 'login', 'createAccount','getWebsiteData','getAccountMedia', 'display10payment');
 
 if(isset($_POST['function']) && in_array($_POST['function'], $functions)){
     $_POST['function']();
@@ -45,6 +46,9 @@ function login(){
     die;
 }
 
+
+
+
 function getWebsiteData(){
     $success = false;
     if (!empty($_POST['accountId'])) {
@@ -62,6 +66,12 @@ function getWebsiteData(){
         echo "false";
     }
     die;
+}
+
+
+
+function display10payment(){
+    include 'payments.php';
 }
 
 function getAccountMedia(){
