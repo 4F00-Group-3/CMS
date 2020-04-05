@@ -23,4 +23,4 @@ Main repository for the group project CMS
     - Jon (Front-end/Back-end Developer)
     - Steve B (Front-end/Back-end Developer)
     - Greg (Front-end/Administrative)
-    - Ahmed (Who?)
+    - Ahmed M (Front End Developer)

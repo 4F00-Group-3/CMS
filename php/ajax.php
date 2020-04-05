@@ -2,8 +2,8 @@
 <?php
 require_once ('header_functions.php');
 
-$functions = array('test', 'currentUser', 'currentUserId', 'addUser', 'getAllPages', 'getAllUsers', 'getMedia', 'getPage',
-    'addMedia', 'addPage', 'deletePage', 'deleteUser', 'login', 'createAccount', 'createWebsite', 'getWebsiteData','getAccountMedia');
+$functions = array('test', 'currentUser', 'updateUser', 'currentUserId', 'addUser', 'getAllPages', 'getAllUsers', 'getMedia', 'getPage',
+    'addMedia', 'addPage', 'deletePage', 'deleteUser', 'login', 'createAccount', 'createWebsite','getWebsiteData','getAccountMedia');
 
 if(isset($_POST['function']) && in_array($_POST['function'], $functions)){
     $_POST['function']();
@@ -106,9 +106,27 @@ function test(){
 }
 
 function currentUser(){
-    $currentUser = getCurrentUser();
-    echo (!$currentUser ? '0' : json_encode($currentUser));
+    $currentUser = Account::getAccountById($_POST['accountId']);
+    if($currentUser != false){
+        echo json_encode($currentUser);
+    } else {
+        echo 'false';
+    }
+    
     die;
+}
+
+function updateUser(){
+    $accountId = $_POST['accountId'];
+    unset($_POST['accountId']);
+    unset($_POST['function']);
+    $success = Account::updateAccount($accountId, $_POST);
+
+    if($success){
+        echo 'true';
+    } else {
+        echo 'false';
+    }
 }
 
 function currentUserId(){
@@ -147,6 +165,41 @@ function getPage(){
 }
 
 function addMedia(){
+    $file = $_FILES['file'];
+
+    $fileName = $file['name']; //"example.jpg"
+    $fileTmpName = $file['tmp_name']; //browser temp name
+    $fileSize = $file['size']; //in bytes
+    $fileError = $file['error']; //0 means no errors
+    $fileType = $file['type']; //"image/png"
+
+    $extStartPos = strrpos($fileName, '.'); //last "." in file name
+    $splitFileName = str_split($fileName, $extStartPos); //filename split at last "."
+    $fileExt = $splitFileName[1]; // file extension with "." (.png)
+    $fileName = $splitFileName[0]; //filename without extension
+
+    $accountId = $_POST['accountId'];
+    $fileName = filter_var($fileName, FILTER_SANITIZE_URL);
+
+    $dir = 'uploads/'.$accountId.'/';
+    $dirExists = file_exists(HOME_PATH.$dir);
+    
+    if(!$dirExists){ 
+        //create directory and insert upload
+        mkdir(HOME_PATH.$dir);
+        $dest = HOME_PATH.$dir.$fileName.$fileExt;
+        move_uploaded_file($fileTmpName, $dest);
+    } else {
+        //increment $suffix until a unique file name is created
+        $suffix = 1;
+        $dest = HOME_PATH.$dir.$fileName.$fileExt;
+        while(file_exists($dest)){
+            $dest = HOME_PATH.$dir.$fileName.$suffix.$fileExt;
+            $suffix++;
+        }
+        //insert upload
+        move_uploaded_file($fileTmpName, $dest);
+    }
 
 }
 
