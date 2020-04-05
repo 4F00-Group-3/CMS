@@ -1,5 +1,7 @@
 import React, { Component } from "react";
 import Home from '../HomePage';
+import AccountSettings from '../Site Page/AccountSettings';
+import EditAccountInfo from '../Site Page/EditAccountInfo';
 import Editor from '../editor/Editor';
 import Dashboard from '../dashboard/Dashboard'
 import SitePage from '../Site Page/SitePage';
@@ -21,6 +23,8 @@ class MasterTestMenu extends Component {
     this.handleLoginClick = this.handleLoginClick.bind(this);
     this.handleCreateAccountClick = this.handleCreateAccountClick.bind(this);
   }
+
+
 
   handler() {
     this.setState({ viewPage: "Dash" });
@@ -50,6 +54,17 @@ class MasterTestMenu extends Component {
     this.setState({ viewPage: "SitePage" });
   }
 
+  NavToAccountSettings =optionName=>{
+    console.log("Test complete");
+    this.setState({ viewPage: "AccountSettings" });
+  }
+  // handleChangePassword() {
+  //   this.setState({ viewPage: "Home"});
+  // }
+
+  handleEditAccountInfo=()=>{
+    this.setState({viewPage: "EditAccountInfo"})
+  }
 
   render() {
     const view = this.state.viewPage;
@@ -62,7 +77,7 @@ class MasterTestMenu extends Component {
         page = <Home />;
         break;
       case "Dash":
-        page = <Dashboard />;
+        page = <Dashboard NavToAccountSettings={this.NavToAccountSettings}/>;
         break;
       case "Login":
         page = <Login />;
@@ -71,7 +86,13 @@ class MasterTestMenu extends Component {
         page = <CreateAccount />;
         break;
       case "SitePage":
-        page = <SitePage />
+        page = <SitePage NavToAccountSettings={this.NavToAccountSettings}/>;
+        break;
+      case "AccountSettings":
+        page = <AccountSettings handleEditAccountInfo={this.handleEditAccountInfo} />
+        break;
+      case "EditAccountInfo":
+        page = <EditAccountInfo NavToAccountSettings={this.NavToAccountSettings}/>
         break;
       default:
         page = <Editor />;

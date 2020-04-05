@@ -4,6 +4,7 @@ import React, { Component } from "react";
 import '../css/SitePage.css'
 import AjaxCall from '../ajax.js';
 import Login from '../Components/loginpage';
+import AccountSettings from './AccountSettings';
 
 export default class SitePage extends Component {
 
@@ -11,7 +12,8 @@ export default class SitePage extends Component {
         super(props);
 
         this.state = {
-            userLoggedIn: true
+            userLoggedIn: true,
+            
         }
         this.handleLogOut = this.handleLogOut.bind(this);
         this.handleRedirectToAccoutingSettings = this.handleRedirectToAccoutingSettings.bind(this);
@@ -41,20 +43,20 @@ export default class SitePage extends Component {
         //     console.log(this.state.siteInfo);
         // });
 
-        //sessionStorage.setItem('id', "79"); // for testing purposes
+        sessionStorage.setItem('id', "79"); // for testing purposes
         if (sessionStorage.getItem('id') !== null) {
             this.setState({ userLoggedIn: true });
-            console.log("ajaxcall"); // to see if it actually went thru
-            AjaxCall({ function: 'getWebsiteData', accountId: sessionStorage.getItem('id') },
-                function (response) {
-                    response = response.split("php-cgi")[1].trim();
-                    var json = JSON.parse(response);
-                    console.log(json);
-                    // console.log("Wassup");
-                    self.setState({
-                        siteInfo: json
-                    });
-                });
+            // console.log("ajaxcall"); // to see if it actually went thru
+            // AjaxCall({ function: 'getWebsiteData', accountId: sessionStorage.getItem('id') },
+            //     function (response) {
+            //         response = response.split("php-cgi")[1].trim();
+            //         var json = JSON.parse(response);
+            //         console.log(json);
+            //         // console.log("Wassup");
+            //         self.setState({
+            //             siteInfo: json
+            //         });
+            //     });
         } else {
             // Redirect to login
             this.setState({ userLoggedIn: false });
@@ -88,8 +90,12 @@ export default class SitePage extends Component {
      * This method handles redirect to account settings
      */
     handleRedirectToAccoutingSettings() {
+        this.setState({
+            page: <AccountSettings/>
+        });
+        console.log(this.state);
         // For testing purposes
-        alert("Redirecting to Account Settings...oops we don't have an account settings page");
+        // alert("Redirecting to Account Settings...oops we don't have an account settings page");
     }
 
     /**
@@ -107,12 +113,15 @@ export default class SitePage extends Component {
                 {userLoggedIn ?
                     <div className="SitePage">
                         <div className="Menu">
-                            <p onClick={this.handleRedirectToAccoutingSettings}>Account Settings</p>
+                            <p onClick={() => this.props.NavToAccountSettings("Testing")}>Account Settings</p>
                             <p onClick={this.handleLogOut}>Log Out</p>
                             <p onClick={this.handleUpgradePlan}>Upgrade</p>
                         </div>
                         <div className="Content">
-                            <div className="SiteList">
+
+                            <h1>Site Page</h1>
+                            
+                            {/* <div className="SiteList">
                                 <div>
                                     {this.state && this.state.siteInfo &&
                                         this.state.siteInfo.map((site, index) =>
@@ -134,7 +143,7 @@ export default class SitePage extends Component {
                                         )
                                     }
                                 </div>
-                            </div>
+                            </div> */}
                         </div>
                     </div>
                     :

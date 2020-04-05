@@ -21,7 +21,7 @@ class Popup extends Component {
     render() {
       return (
         <div className='popup'>
-          <div className='popup_inner'>
+          <div className='popup_inner' style={{textAlign: "center"}}>
               <h3>{this.props.text}</h3>
               <label for="pagetitle">Enter Title:</label>
               <input type="text" id="ptit" placeholder="" name="pagetitle" required></input>
