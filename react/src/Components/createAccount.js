@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import Container from "@material-ui/core/Container";
 import Card from "@material-ui/core/Card";
-import "./LandingPage.css";
+import "../css/LandingPage.css";
 import AjaxCall from "../ajax.js";
 
 class createAccount extends Component {
