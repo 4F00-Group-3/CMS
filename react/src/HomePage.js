@@ -6,17 +6,12 @@ import {
   Header,
   Content
 } from "react-mdl";
-import GetStarted from './Components/GetStarted';
+import GetStarted from './Components/getStarted';
 import LoginPage from "./Login/LoginPage";
 import LandingPage from "./Components/LandingPage";
-import CreateAccount from "./Components/createAccount";
-import Col from 'react-bootstrap/Col'
-import Row from 'react-bootstrap/Row'
-import {
-  FooterSection,
-  Footer,
-  FooterLinkList
-} from "react-mdl";
+import CreateAccount from "./Components/CreateAccount";
+import Col from 'react-bootstrap/Col';
+import Row from 'react-bootstrap/Row';
 
 class HomePage extends Component {
   constructor(props) {
@@ -169,21 +164,7 @@ class HomePage extends Component {
       </Header>);
   }
 
-  Footer() {
-    return (
-      <div style={{ paddingbottom: "60px" }}>
 
-        <Footer className='footer' size="mini">
-          <FooterSection type="left" logo="NO.">
-            <FooterLinkList>
-              <a href="#">Help</a>
-              <a href="#">Privacy & Terms</a>
-            </FooterLinkList>
-          </FooterSection>
-        </Footer>
-      </div>);
-  }
-  
 
   render() {
     return (
@@ -193,7 +174,6 @@ class HomePage extends Component {
           <Content style={{ scrollbarWidth: "none" }}>
             {this.state.page}
 
-            {this.Footer()}
           </Content>
 
         </Layout>

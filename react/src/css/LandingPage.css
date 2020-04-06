@@ -91,7 +91,7 @@ img.center {
 .landing-page-title {
   padding-top: 0.125em;
   text-align: right;
-  color: white;
+  color: white!important  ;
   font-family: inherit;
   font-weight: inherit;
 }

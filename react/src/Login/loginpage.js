@@ -11,6 +11,12 @@ import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import { Jumbotron } from "react-bootstrap";
 
+import {
+  FooterSection,
+  Footer,
+  FooterLinkList
+} from "react-mdl";
+
 let backend = new LoginBackend();
 
 class LoginPage extends Component {
@@ -84,15 +90,36 @@ class LoginPage extends Component {
   };
 
   createAccountOnclick() {
-    this.setState({page: "create-account"})
+    this.setState({ page: "create-account" })
   }
 
   forgotPasswordOnclick() {
     this.setState({ page: "forgot" });
   }
 
+  back_OnClick = () => {
+    this.setState({page: "login"})
+  }
+
+  Footer() {
+    return (
+      <div style={{ paddingbottom: "60px" }}>
+
+        <Footer className='login-footer' size="mini">
+          <FooterSection type="left" logo="NO.">
+            <FooterLinkList>
+              <a href="#">Help</a>
+              <a href="#">Privacy & Terms</a>
+            </FooterLinkList>
+          </FooterSection>
+        </Footer>
+      </div>);
+  }
+
+
   render() {
     const loginpg = (
+      <>
       <Jumbotron className='login-container'>
         <Container className='card-container' maxWidth="sm">
           <Card className='login-card'>
@@ -150,6 +177,8 @@ class LoginPage extends Component {
           </Card>
         </Container>
       </Jumbotron>
+      {this.Footer()}
+      </>
     );
     const forgotpasswordpg = (
       <div>
@@ -215,7 +244,12 @@ class LoginPage extends Component {
       return (forgotpasswordpg)
     }
     else if (this.state.page === "create-account") {
-      return(<><CreateAccount/></>);
+      return (
+        <>
+          <CreateAccount back_onClick={this.back_OnClick} />
+          {this.Footer()}
+        </>
+      );
     }
     else {
       return (loginpg)

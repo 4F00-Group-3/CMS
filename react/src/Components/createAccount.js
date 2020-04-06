@@ -79,71 +79,110 @@ class CreateAccount extends Component {
   render() {
     return (
       <Jumbotron className='login-container'>
-        <Container className='card-container' maxWidth="sm">
-          <Card>
-                <h2>Create An Account</h2>
-                <Form
-                  className="centerBoxItems"
-                  onSubmit={this.handleFormSubmit}
-                >
-                  <label htmlFor="fn">First Name</label>
-                  <br></br>
+        <Container maxWidth="sm">
+          <Card className='create-account-card'>
+            <h2>Create An Account</h2>
+            <Form
+              className="centerBoxItems"
+              onSubmit={this.handleFormSubmit}
+            >
+              <Row>
+                <Col>
+                  <Form.Label htmlFor="fn">First Name</Form.Label>
+                </Col>
+                <Col>
+
                   <input
                     type="text"
                     id="email"
                     emailaddr="email"
-                    className="emailaddressbar"
+                    className="create-account-form-input"
                     name="fn"
                     onChange={this.handleChange}
                   />
+                </Col>
+              </Row>
 
-                  <label htmlFor="ln">Last Name</label>
-                  <br></br>
+              <Row>
+                <Col>
+                  <Form.Label htmlFor="ln">Last Name</Form.Label>
+                </Col>
+                <Col>
                   <input
                     type="text"
                     id="email"
                     emailaddr="email"
-                    className="emailaddressbar"
+                    className="create-account-form-input"
                     name="ln"
                     onChange={this.handleChange}
                   />
+                </Col>
+              </Row>
 
-                  <label for="email">Email</label>
-                  <br></br>
+              <Row>
+                <Col>
+                  <Form.Label for="email">Email</Form.Label></Col>
+                <Col>
                   <input
                     type="text"
                     id="email"
                     emailaddr="email"
-                    class="emailaddressbar"
+                    className="create-account-form-input"
                     name="email"
                     onChange={this.handleChange}
                   />
-                  <br></br>
+                </Col>
+              </Row>
 
-                  <label for="pw">Password</label>
-                  <br></br>
+              <Row>
+                <Col>
+                  <Form.Label for="pw">Password</Form.Label>
+                </Col>
+                <Col>
+
                   <input
                     type="password"
                     id="pw"
                     pass="pw"
-                    class="emailaddressbar"
+                    className="create-account-form-input"
                     name="pw"
                     onChange={this.handleChange}
                   />
-                  <br></br>
+                </Col>
+              </Row>
 
+              <Row>
+                <Col>
                   <label for="pw2">Re-Enter Password</label>
-                  <br></br>
+                </Col>
+                <Col>
                   <input
                     type="password"
                     id="pw"
                     pass2="pw2"
-                    class="emailaddressbar"
+                    className="create-account-form-input"
                   />
-                  <br></br>
-                  <br></br>
-                  <input type="submit" value="Next" class="submitnextbutton" />
-                </Form>
+                </Col>
+              </Row>
+              <Row className='center'>
+                <input type="submit" value="Next" class="submitnextbutton" />
+              </Row>
+            </Form>
+
+            <Row>
+              <Col>
+                <input
+                  className='input-as-anchor'
+                  type="button"
+                  value="Back"
+                  onClick={this.props.back_onClick} />
+              </Col>
+              <Col>
+              
+              </Col>
+
+            </Row>
+
           </Card>
         </Container>
       </Jumbotron>

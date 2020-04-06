@@ -1,12 +1,17 @@
 import React, { Component } from "react";
 import '../css/LandingPage.css';
-import GetStarted from "./GetStarted";
+import GetStarted from "./getStarted";
 import Jumbotron from 'react-bootstrap/Jumbotron';
 import Col from 'react-bootstrap/Col';
 import Row from 'react-bootstrap/Row';
 import Container from 'react-bootstrap/Container';
 import Card from 'react-bootstrap/Card';
 import Button from 'react-bootstrap/Button';
+import {
+  FooterSection,
+  Footer,
+  FooterLinkList
+} from "react-mdl";
 
 class LandingPage extends Component {
   getStarted_OnClick = () => {
@@ -15,6 +20,22 @@ class LandingPage extends Component {
       activeButton: "get-started"
     });
   };
+
+  Footer() {
+    return (
+      <div style={{ paddingbottom: "60px" }}>
+
+        <Footer className='footer' size="mini">
+          <FooterSection type="left" logo="NO.">
+            <FooterLinkList>
+              <a href="#">Help</a>
+              <a href="#">Privacy & Terms</a>
+            </FooterLinkList>
+          </FooterSection>
+        </Footer>
+      </div>);
+  }
+
 
   render() {
     return (
@@ -191,7 +212,7 @@ class LandingPage extends Component {
               <Card.Img variant="top" src="https://images.unsplash.com/photo-1513506003901-1e6a229e2d15?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1050&q=80" />
               <Card.Body>
                 <Card.Title>Essentials</Card.Title>
-                <Card.Text style={{color:"#000"}}>
+                <Card.Text style={{ color: "#000" }}>
                   Begin building a new web experience with a great package of starter tools!
             </Card.Text>
                 <Button variant="primary" onClick={this.props.getStartedOnClick}>Get Started</Button>
@@ -202,7 +223,7 @@ class LandingPage extends Component {
               <Card.Img variant="top" src="https://images.unsplash.com/photo-1558402529-d2638a7023e9?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1050&q=80" />
               <Card.Body>
                 <Card.Title>Business</Card.Title>
-                <Card.Text style={{color:"#000"}}>
+                <Card.Text style={{ color: "#000" }}>
                   Upgrade and get access to more advanced features that will help you increase your firms efficiency!
             </Card.Text>
                 <Button variant="primary" onClick={this.props.getStartedOnClick}>Get Started</Button>
@@ -213,14 +234,18 @@ class LandingPage extends Component {
               <Card.Img variant="top" src="https://images.unsplash.com/photo-1462899006636-339e08d1844e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1050&q=80" />
               <Card.Body>
                 <Card.Title>Enterprise</Card.Title>
-                <Card.Text style={{color:"#000"}}>
+                <Card.Text style={{ color: "#000" }}>
                   Get full access to all the tools your business needs to be at the top of its game!
             </Card.Text>
                 <Button variant="primary" onClick={this.props.getStartedOnClick}>Get Started</Button>
               </Card.Body>
             </Card>
           </Row>
+
         </Container>
+
+
+        {this.Footer()}
       </>
     );
   }
