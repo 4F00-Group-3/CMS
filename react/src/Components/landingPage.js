@@ -29,7 +29,7 @@ class LandingPage extends Component {
           <Row>
             <Col>
               <div className="left-logo">
-                <section ref={this.props.scrollHome} id="home">
+                <section ref={this.props.scrollHome} id="landing">
                   <img src="./imagesFolder/logo.png" className="logo-size" alt='logo' />
                 </section>
               </div>

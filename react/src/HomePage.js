@@ -6,8 +6,6 @@ import {
   Header,
   Content
 } from "react-mdl";
-
-import PlansPricing from './Components/LandingPage';
 import GetStarted from './Components/getStarted';
 import LoginPage from "./Login/loginpage";
 import LandingPage from "./Components/LandingPage";
@@ -20,7 +18,7 @@ class HomePage extends Component {
     super(props);
     this.state = {
       page: <LandingPage getStartedOnClick={this.getStarted_OnClick} />,
-      activeButton: ""
+      activeButton: "landing"
     };
 
     this.scrollDiv = createRef();
@@ -31,8 +29,7 @@ class HomePage extends Component {
    * based on what the user last clicked
    */
   returnButtonCSS = button => {
-    console.log(button)
-    if (button === 'faq' || button === 'plans-pricing') {
+    if (button === 'faq' || button === 'plans-pricing' || button === 'landing') {
       if (button === this.state.activeButton) {
         return "a-btn button-primary active";
       } else {
@@ -53,7 +50,7 @@ class HomePage extends Component {
    * This method is for the "NO" icon on the navigation menu
    * this will redirect the user to the top of the landing page
    */
-  logOn_OnClick = () => {
+  homeButton_OnClick = () => {
     this.setState({
       page: <LandingPage getStartedOnClick={this.getStarted_OnClick} />,
       activeButton: "landing"
@@ -123,11 +120,18 @@ class HomePage extends Component {
       <Header transparent>
         <Row className='topnav-row'>
           <Col>
-            <button onClick={this.logOn_OnClick} className="main-top-home-nav">
-              {/* <h4 style={{ color: "transparent" }}>NO</h4> */}
-            </button>
+            <a href='#landing' onClick={this.homeButton_OnClick} className="main-top-home-nav"/>
           </Col>
           <Col style={{ textAlign: 'right' }}>
+            <a
+              href="#landing"
+              onClick={this.plansPricing_OnClick}
+              className={this.returnButtonCSS("landing")}
+            >
+              Home
+            </a>
+
+
             <button
               onClick={this.login_OnClick}
               className={this.returnButtonCSS("log-in")}
