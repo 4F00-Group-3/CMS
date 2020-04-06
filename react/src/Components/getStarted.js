@@ -87,7 +87,10 @@ class getStarted extends Component {
             </div>
           </Cell>
         </Grid>
-        <Footer style={{bottom: '0', position: 'fixed', width: '100%'}} size="mini">
+        <Footer
+          style={{ bottom: "0", position: "fixed", width: "100%" }}
+          size="mini"
+        >
           <FooterSection type="left" logo="No">
             <FooterLinkList>
               <a href="#">Help</a>
