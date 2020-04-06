@@ -2,8 +2,9 @@
 <?php
 require_once ('header_functions.php');
 
-$functions = array('test', 'currentUser', 'updateUser', 'currentUserId', 'addUser', 'getAllPages', 'getAllUsers', 'getMedia', 'getPage',
-    'addMedia', 'addPage', 'deletePage', 'deleteUser', 'login', 'createAccount', 'createWebsite','getWebsiteData','getAccountMedia');
+$functions = array('test', 'currentUser', 'updateUser','currentUserId', 'addUser', 'getAllPages', 'getAllUsers', 'getMedia', 'getPage',
+    'addMedia', 'addPage', 'deletePage', 'deleteUser', 'login', 'createAccount', 'createWebsite', 'getWebsiteData',
+    'getPagesData','getUsersData','getAccountMedia', 'deleteUser', 'deletePage', 'addUser','addPage', 'updateAccountPassword');
 
 if(isset($_POST['function']) && in_array($_POST['function'], $functions)){
     $_POST['function']();
@@ -59,6 +60,20 @@ function login(){
     die;
 }
 
+function updateAccountPassword(){
+    $success = false;
+    if (!empty($_POST['email']) && !empty($_POST['password'])) {
+        $email = filter_var($_POST['email'], FILTER_VALIDATE_EMAIL);
+        $success = Account::updatePassword($email, $_POST['password']);
+    }
+    if($success === true){
+        echo "true";
+    }else{
+        echo "false";
+    }
+    die;
+}
+
 function getWebsiteData(){
     $success = false;
     if (!empty($_POST['accountId'])) {
@@ -77,6 +92,112 @@ function getWebsiteData(){
     }
     die;
 }
+
+function getPagesData(){
+    $success = false;
+    if (!empty($_POST['websiteId'])) {
+        $schema = "website".$_POST['websiteId'];
+        $data = Website::getAllPages($schema);
+        if ($data !== false) {
+            $json = json_encode($data);
+            $success = true;
+        }
+    }
+    if($success === true){
+        echo $json;
+    }else{
+        echo "false";
+    }
+    die;
+}
+
+function getUsersData(){
+    $success = false;
+    if (!empty($_POST['websiteId'])) {
+        $schema = "website".$_POST['websiteId'];
+        $data = Website::getAllUsers($schema);
+        if ($data !== false) {
+            $json = json_encode($data);
+            $success = true;
+        }
+    }
+    if($success === true){
+        echo $json;
+    }else{
+        echo "false";
+    }
+    die;
+}
+
+function addPage(){
+    $success = false;
+    if (!empty($_POST['websiteId']) && !empty($_POST['pageName']) && !empty($_POST['file']) ) {
+        $schema = "website".$_POST['websiteId'];
+        $data = Website::addPage($schema, $_POST['pageName'], $_POST['file']);
+        if ($data !== false) {
+            $success = true;
+        }
+    }
+    if($success === true){
+        echo "true";
+    }else{
+        echo "false";
+    }
+    die;
+}
+
+function addUser(){
+    $success = false;
+    if (!empty($_POST['websiteId']) && !empty($_POST['firstName'])&& !empty($_POST['lastName'])
+        && !empty($_POST['password'])&& !empty($_POST['email'])&& !empty($_POST['type']) ) {
+        $schema = "website".$_POST['websiteId'];
+        $data = Website::addUser($schema, $_POST['firstName'], $_POST['lastName'], $_POST['password'], $_POST['email'], $_POST['type']);
+        if ($data !== false) {
+            $success = true;
+        }
+    }
+    if($success === true){
+        echo "true";
+    }else{
+        echo "false";
+    }
+    die;
+}
+
+function deletePage(){
+    $success = false;
+    if (!empty($_POST['websiteId']) && !empty($_POST['pageId'])) {
+        $schema = "website".$_POST['websiteId'];
+        $data = Website::deletePageById($schema, $_POST['pageId']);
+        if ($data !== false) {
+            $success = true;
+        }
+    }
+    if($success === true){
+        echo "true";
+    }else{
+        echo "false";
+    }
+    die;
+}
+
+function deleteUser(){
+    $success = false;
+    if (!empty($_POST['websiteId']) && !empty($_POST['userId'])) {
+        $schema = "website".$_POST['websiteId'];
+        $data = Website::deleteUserById($_POST['userId'],$schema);
+        if ($data !== false) {
+            $success = true;
+        }
+    }
+    if($success === true){
+        echo "true";
+    }else{
+        echo "false";
+    }
+    die;
+}
+
 
 function getAccountMedia(){
     $success = false;
@@ -112,7 +233,7 @@ function currentUser(){
     } else {
         echo 'false';
     }
-    
+
     die;
 }
 
@@ -131,17 +252,6 @@ function updateUser(){
 
 function currentUserId(){
 
-}
-
-function addUser(){
-    $newUserId = Account::addAccount($_POST['email'], $_POST['firstName'], $_POST['lastName'], $_POST['type'], $_POST['password']);
-    if($newUserId){
-        echo '1';
-    } else {
-        echo '0';
-    }
-
-    die;
 }
 
 function getAllPages(){
@@ -183,8 +293,8 @@ function addMedia(){
 
     $dir = 'uploads/'.$accountId.'/';
     $dirExists = file_exists(HOME_PATH.$dir);
-    
-    if(!$dirExists){ 
+
+    if(!$dirExists){
         //create directory and insert upload
         mkdir(HOME_PATH.$dir);
         $dest = HOME_PATH.$dir.$fileName.$fileExt;
@@ -200,9 +310,5 @@ function addMedia(){
         //insert upload
         move_uploaded_file($fileTmpName, $dest);
     }
-
-}
-
-function addPage(){
 
 }
