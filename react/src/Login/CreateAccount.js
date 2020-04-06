@@ -84,7 +84,7 @@ class CreateAccount extends Component {
             <h2>Create An Account</h2>
             <Form
               className="centerBoxItems"
-              onSubmit={this.handleFormSubmit}
+              onSubmit={this.props.handleFormSubmit}
             >
               <Row>
                 <Col>
@@ -98,7 +98,7 @@ class CreateAccount extends Component {
                     emailaddr="email"
                     className="create-account-form-input"
                     name="fn"
-                    onChange={this.handleChange}
+                    onChange={this.props.handleChange}
                   />
                 </Col>
               </Row>
@@ -114,7 +114,7 @@ class CreateAccount extends Component {
                     emailaddr="email"
                     className="create-account-form-input"
                     name="ln"
-                    onChange={this.handleChange}
+                    onChange={this.props.handleChange}
                   />
                 </Col>
               </Row>
@@ -129,7 +129,7 @@ class CreateAccount extends Component {
                     emailaddr="email"
                     className="create-account-form-input"
                     name="email"
-                    onChange={this.handleChange}
+                    onChange={this.props.handleChange}
                   />
                 </Col>
               </Row>
@@ -146,7 +146,7 @@ class CreateAccount extends Component {
                     pass="pw"
                     className="create-account-form-input"
                     name="pw"
-                    onChange={this.handleChange}
+                    onChange={this.props.handleChange}
                   />
                 </Col>
               </Row>
@@ -178,7 +178,7 @@ class CreateAccount extends Component {
                   onClick={this.props.back_onClick} />
               </Col>
               <Col>
-              
+              {/* empty to align left */}
               </Col>
 
             </Row>

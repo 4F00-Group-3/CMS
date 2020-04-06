@@ -4,12 +4,13 @@ import Container from "@material-ui/core/Container";
 import Card from "@material-ui/core/Card";
 import AjaxCall from "../ajax.js";
 import LoginBackend from "./backend/LoginBackend";
-import CreateAccount from '../Components/CreateAccount.js';
+import CreateAccount from './CreateAccount.js';
 import '../css/LoginPage.css';
 import Form from 'react-bootstrap/Form';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import { Jumbotron } from "react-bootstrap";
+import ForgotPassword from './ForgotPassword';
 
 import {
   FooterSection,
@@ -98,7 +99,7 @@ class LoginPage extends Component {
   }
 
   back_OnClick = () => {
-    this.setState({page: "login"})
+    this.setState({ page: "login" })
   }
 
   Footer() {
@@ -118,141 +119,94 @@ class LoginPage extends Component {
 
 
   render() {
-    const loginpg = (
-      <>
-      <Jumbotron className='login-container'>
-        <Container className='card-container' maxWidth="sm">
-          <Card className='login-card'>
-            <h2 className='login-page-heading'>Login To Your Account</h2>
-
-            <Form className="centerBoxItems" onSubmit={this.handleFormSubmit}>
-              <Row className='center'>
-                <label htmlFor="email">Username</label>
-              </Row>
-              <Row className='center'>
-                <input
-                  className='form-input'
-                  type="email"
-                  id="email"
-                  name="email"
-                  value={this.state.email}
-                  onChange={this.handleChange}
-                />
-              </Row>
-              <Row className='center'>
-                <label htmlFor="pw">Password</label>
-              </Row>
-              <Row className='center'>
-                <input
-                  className='form-input'
-                  type="password"
-                  id="pw"
-                  name="pw"
-                  value={this.state.pw}
-                  onChange={this.handleChange}
-                />
-              </Row>
-              <Row className='center'>
-                <input type="submit" value="Login" className="submitnextbutton" />
-              </Row>
-            </Form>
-            <Row>
-              <Col>
-                <input
-                  className='input-as-anchor'
-                  type="button"
-                  value="Create Account"
-                  onClick={this.createAccountOnclick} />
-              </Col>
-              <Col>
-                <input
-                  className='input-as-anchor'
-                  type="button"
-                  style={{ float: "right" }}
-                  value="Forgot Password"
-                  onClick={this.forgotPasswordOnclick} />
-              </Col>
-
-            </Row>
-          </Card>
-        </Container>
-      </Jumbotron>
-      {this.Footer()}
-      </>
-    );
-    const forgotpasswordpg = (
-      <div>
-        <div className="centreBoxOnPage">
-          <Container maxWidth="sm">
-            <Card>
-              <div>
-                <div class="submitformdiv">
-                  <h2>Forgot Password</h2>
-                  <p>
-                    Please enter a new password that is secure.
-                    </p>
-                  <form className="centerBoxItems" onSubmit={this.handlePasswordChangeSubmit}>
-                    <label htmlFor="email">Email</label>
-                    <br></br>
-                    <input
-                      type="text"
-                      id="email"
-                      emailaddr="email"
-                      className="emailaddressbar"
-                      name="email"
-                      onChange={this.handleChange}
-                    />
-                    <br></br>
-
-                    <label htmlFor="pw">Password</label>
-                    <br></br>
-                    <input
-                      type="password"
-                      id="pw"
-                      pass="pw"
-                      className="emailaddressbar"
-                      name="pw"
-                      onChange={this.handleChange}
-                    />
-                    <br></br>
-
-                    <label htmlFor="pw2">Re-Enter Password</label>
-                    <br></br>
-                    <input
-                      type="password"
-                      id="pw"
-                      pass2="pw2"
-                      className="emailaddressbar"
-                    />
-                    <br></br>
-                    <br></br>
-                    <input
-                      type="submit"
-                      value="Next"
-                      className="submitnextbutton"
-                    />
-                  </form>
-                </div>
-              </div>
-            </Card>
-          </Container>
-        </div>
-      </div>
-    );
-
     if (this.state.page === "forgot") {
-      return (forgotpasswordpg)
+      return (
+        <>
+        <ForgotPassword
+          handlePasswordChangeSubmit={this.handlePasswordChangeSubmit}
+          handleChange={this.handleChange}
+          back_onClick={this.back_OnClick}
+        />
+        {this.Footer()}
+        </>
+      );
     }
     else if (this.state.page === "create-account") {
       return (
         <>
-          <CreateAccount back_onClick={this.back_OnClick} />
+          <CreateAccount 
+          back_onClick={this.back_OnClick} 
+          handleFormSubmit={this.handleFormSubmit} 
+          handleChange={this.handleChange} 
+          />
           {this.Footer()}
         </>
       );
     }
     else {
-      return (loginpg)
+      // login page below 
+      return (
+      <>
+        <Jumbotron className='login-container'>
+          <Container className='card-container' maxWidth="sm">
+            <Card className='login-card'>
+              <h2 className='login-page-heading'>Login To Your Account</h2>
+
+              <Form className="centerBoxItems" onSubmit={this.handleFormSubmit}>
+                <Row className='center'>
+                  <label htmlFor="email">Username</label>
+                </Row>
+                <Row className='center'>
+                  <input
+                    className='form-input'
+                    type="email"
+                    id="email"
+                    name="email"
+                    value={this.state.email}
+                    onChange={this.handleChange}
+                  />
+                </Row>
+                <Row className='center'>
+                  <label htmlFor="pw">Password</label>
+                </Row>
+                <Row className='center'>
+                  <input
+                    className='form-input'
+                    type="password"
+                    id="pw"
+                    name="pw"
+                    value={this.state.pw}
+                    onChange={this.handleChange}
+                  />
+                </Row>
+                <Row className='center'>
+                  <input type="submit" value="Login" className="submitnextbutton" />
+                </Row>
+              </Form>
+              <Row>
+                <Col>
+                  <input
+                    className='input-as-anchor'
+                    type="button"
+                    value="Create Account"
+                    onClick={this.createAccountOnclick} />
+                </Col>
+                <Col>
+                  <input
+                    className='input-as-anchor'
+                    type="button"
+                    style={{ float: "right" }}
+                    value="Forgot Password"
+                    onClick={this.forgotPasswordOnclick} />
+                </Col>
+
+              </Row>
+            </Card>
+          </Container>
+        </Jumbotron>
+        {this.Footer()}
+      </>
+      )
     }
   }
 }

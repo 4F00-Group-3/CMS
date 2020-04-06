@@ -4,7 +4,7 @@ import Editor from '../editor/Editor';
 import Dashboard from '../dashboard/Dashboard'
 import SitePage from '../Site Page/SitePage';
 import Login from '../Login/LoginPage';
-import CreateAccount from '../Components/CreateAccount.js';
+import CreateAccount from '../Login/CreateAccount';
 
 class MasterTestMenu extends Component {
   constructor(props) {
