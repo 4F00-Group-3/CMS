@@ -1,0 +1,14 @@
+.login-card {
+    padding: 10%;
+}
+
+.login-page-heading {
+    color: black!important;
+}
+
+.center {
+    text-align: center!important;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+}

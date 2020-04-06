@@ -3,7 +3,7 @@ import Home from '../HomePage';
 import Editor from '../editor/Editor';
 import Dashboard from '../dashboard/Dashboard'
 import SitePage from '../Site Page/SitePage';
-import Login from '../Login/loginpage';
+import Login from '../Login/LoginPage';
 import CreateAccount from '../Components/createAccount.js';
 
 class MasterTestMenu extends Component {

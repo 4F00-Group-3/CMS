@@ -7,7 +7,7 @@ import {
   Content
 } from "react-mdl";
 import GetStarted from './Components/getStarted';
-import LoginPage from "./Login/loginpage";
+import LoginPage from "./Login/LoginPage";
 import LandingPage from "./Components/LandingPage";
 import CreateAccount from "./Components/createAccount";
 import Col from 'react-bootstrap/Col'
