@@ -74,6 +74,9 @@ function updateAccountPassword(){
     die;
 }
 
+
+
+
 function getWebsiteData(){
     $success = false;
     if (!empty($_POST['accountId'])) {
