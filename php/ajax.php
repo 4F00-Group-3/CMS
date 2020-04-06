@@ -1,13 +1,18 @@
 #!/usr/bin/php-cgi
 <?php
 require_once ('header_functions.php');
+require_once ('payment.php');
 
 $functions = array('test', 'currentUser', 'updateUser','currentUserId', 'addUser', 'getAllPages', 'getAllUsers', 'getMedia', 'getPage',
     'addMedia', 'addPage', 'deletePage', 'deleteUser', 'login', 'createAccount', 'createWebsite', 'getWebsiteData',
-    'getPagesData','getUsersData','getAccountMedia', 'deleteUser', 'deletePage', 'addUser','addPage', 'updateAccountPassword');
+    'getPagesData','getUsersData','getAccountMedia', 'deleteUser', 'deletePage', 'addUser','addPage', 'updateAccountPassword', 'display10payment');
 
 if(isset($_POST['function']) && in_array($_POST['function'], $functions)){
     $_POST['function']();
+}
+
+function display10payment(){
+    include 'payments.php';
 }
 
 function createAccount(){
