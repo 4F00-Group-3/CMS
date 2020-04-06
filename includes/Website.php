@@ -78,18 +78,11 @@ class Website{
         return $websiteId;
     }
 
-    // Retrieve all users from website
-    public static function getAllUsers($schema){
-        $stmt = Dbh::connect()
-            ->query("SELECT * FROM $schema.users");
-        while ($row = $stmt->fetch()){
-            $firstName[] = $row['first_name'];
-        }
-        return $firstName;
-    }
+    //********************* FUNCTIONS FOR WEBSITE USERS *****************************
+
 
     // Retrieve user from website by arguments
-    public static function getUsersWithCountCheck($schema, $email, $psword){
+    public static function getUsersByLogin($schema, $email, $psword){
         $stmt = Dbh::connect()
             ->PREPARE("SELECT * FROM $schema.users WHERE email=? AND password=?");
         $stmt->execute([$email, $psword]);
@@ -103,13 +96,29 @@ class Website{
         }
     }
 
+    // Retrieve all users from website
+    public static function getAllUsers($schema){
+        $stmt = Dbh::connect()
+            ->query("SELECT * FROM  $schema.users");
+        $users = array();
+        if($stmt->rowCount()){
+            while ($row = $stmt->fetch()){
+                $data = array("firstName"=>$row['first_name'],"lastName"=>$row['last_Name'],"email"=>$row['email'],"type"=>$row['user_type'], "id"=>$row['user_id']);
+                $users[] = $data;
+            }
+            return $users;
+        }else{
+            return false;
+        }
+    }
+
     // Add user to website
-    public static function addUser($schema){
-        $firstName = "Casey";
-        $lastName = "Morgado";
-        $password = "test321";
-        $email = "casey981@live.com";
-        $userType = "ADMIN";
+    public static function addUser($schema, $firstName, $lastName, $password, $email, $userType){
+//        $firstName = "Casey";
+//        $lastName = "Morgado";
+//        $password = "test321";
+//        $email = "casey981@live.com";
+//        $userType = "ADMIN";
 
         $stmt = Dbh::connect()
             ->PREPARE('INSERT INTO $schema.users(first_name, last_name, password, email, user_type) VALUES(:firstName, :lastName, :password, :email, :userType)');
@@ -120,28 +129,62 @@ class Website{
         $stmt->bindValue(':userType', $userType);
 
         $stmt->execute();
+
+        //Check to see if user is in DB
+        $stmt = Dbh::connect()
+            ->PREPARE("SELECT * FROM $schema.users WHERE email=? AND password=?");
+        $stmt->execute([$email, $password]);
+        if($stmt->rowCount()){
+            return true;
+        }else{
+            return false;
+        }
     }
+
+    public static function deleteUserById($userId, $schema){
+        $stmt = Dbh::connect()->PREPARE("DELETE FROM $schema.users WHERE user_id=?");
+        $stmt->execute([$userId]);
+
+        //Check to see if user is in DB
+        $stmt = Dbh::connect()
+            ->PREPARE("SELECT * FROM $schema.users WHERE user_id=?");
+        $stmt->execute([$userId]);
+        if($stmt->rowCount()){
+            return false;
+        }else{
+            return true;
+        }
+    }
+
+    //********************* FUNCTIONS FOR WEBSITE PAGES *****************************
 
     public static function getAllPages($schema){
         $stmt = Dbh::connect()
             ->query("SELECT * FROM  $schema.pages");
-        while ($row = $stmt->fetch()){
-            $name[] = $row['page_name'];
-        }
-        return $name;
-    }
-
-    public static function getAllPagesJSON($schema){
-        $stmt = Dbh::connect()
-            ->query("SELECT * FROM  $schema.pages");
         $pages = array();
-        while ($row = $stmt->fetch(PDO::FETCH_ASSOC)){
-            $pages[] = $row;
+        if($stmt->rowCount()){
+            while ($row = $stmt->fetch()){
+                $data = array("title"=>$row['page_name'], "id"=>$row['pages_id']);
+                $pages[] = $data;
+            }
+            return $pages;
+        }else{
+            return false;
         }
-        return $pages;
     }
 
-    public static function getPagesWithCountCheck($schema, $page_id){
+
+//    public static function getAllPagesJSON($schema){
+//        $stmt = Dbh::connect()
+//            ->query("SELECT * FROM  $schema.pages");
+//        $pages = array();
+//        while ($row = $stmt->fetch(PDO::FETCH_ASSOC)){
+//            $pages[] = $row;
+//        }
+//        return $pages;
+//    }
+
+    public static function getPagesByPageId($schema, $page_id){
         $stmt = Dbh::connect()
             ->PREPARE("SELECT * FROM $schema.pages WHERE pages_id=?");
         $stmt->execute([$page_id]);
@@ -155,16 +198,25 @@ class Website{
         }
     }
 
-    public static function addPage($schema){
-        $pageName = "TestName";
-        $file = "index.php";
-
+    public static function addPage($schema, $pageName, $file){
+//        $pageName = "TestName";
+//        $file = "index.php";
         $stmt = Dbh::connect()
-            ->PREPARE('INSERT INTO $schema.pages(page_name, file) VALUES(:pageName, :file)');
+            ->PREPARE("INSERT INTO $schema.pages(page_name, file) VALUES(:pageName, :file)");
         $stmt->bindValue(':name', $pageName);
         $stmt->bindValue(':file', $file);
 
         $stmt->execute();
+
+        //Check to see if page is in DB
+        $stmt = Dbh::connect()
+            ->PREPARE("SELECT * FROM $schema.pages WHERE page_name=?");
+        $stmt->execute([$pageName]);
+        if($stmt->rowCount()){
+            return true;
+        }else{
+            return false;
+        }
     }
 
     public static function addPageJSON($schema, $content, $pageName){
@@ -176,11 +228,19 @@ class Website{
 		return $stmt->fetch(PDO::FETCH_ASSOC)['page_id'];
     }
 
-    public static function deletePage($schema, $pageId=0){
+    public static function deletePageById($schema, $pageId){
         $stmt = Dbh::connect()->PREPARE("DELETE FROM $schema.pages WHERE page_id=?");
 		$stmt->execute([$pageId]);
 
-		return $stmt->rowCount();
+        //Check to see if user is in DB
+        $stmt = Dbh::connect()
+            ->PREPARE("SELECT * FROM $schema.pages WHERE page_id=?");
+        $stmt->execute([$pageId]);
+        if($stmt->rowCount()){
+            return false;
+        }else{
+            return true;
+        }
     }
 
 }
