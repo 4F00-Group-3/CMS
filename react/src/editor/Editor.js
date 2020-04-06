@@ -14,6 +14,9 @@ class Editor extends Component {
             menu: "main",
             selectedId: undefined,
             activeSection: undefined
+        };
+        if (sessionStorage.getItem('id') === null) {
+            props.handleHomeClick();
         }
     }
 

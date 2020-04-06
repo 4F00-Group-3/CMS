@@ -4,7 +4,7 @@
  * older versions of PHP (ie on sandcastle) have vulnerabilities in their encryption methods
  * https://github.com/ircmaxell/password_compat
 */
-require_once (HOME_PATH.'includes/encrypt_functions.php');
+require_once ('encrypt_functions.php');
 
 /**
  * Account class 
@@ -18,13 +18,14 @@ class Account {
 	public $password;
 
 	//initalize new account
-	function __construct($accountId, $email, $firstName, $lastName, $type,  $password) {
+	function __construct($accountId, $email, $firstName, $lastName, $type,  $password, $sub) {
         $this->accountId = $accountId;
         $this->email = $email;
         $this->firstName = $firstName;
         $this->lastName = $lastName;
         $this->type = $type;
         $this->password = $password;
+        $this->subscription = $sub;
 	}
 
 //	returns account data
@@ -34,7 +35,8 @@ class Account {
             'email' => $this->email,
             'firstName' => $this->firstName,
             'lastName' => $this->lastName,
-            'type' => $this->type
+            'type' => $this->type,
+            'subscription' => $this->subscription
         );
     }
 	
@@ -50,7 +52,7 @@ class Account {
 
         if($stmt->rowCount()){
 			$accountInfo = $stmt->fetch(PDO::FETCH_ASSOC);
-            return new Account($accountInfo['account_id'], $accountInfo['email'], $accountInfo['first_name'], $accountInfo['last_name'], $accountInfo['account_type'], $accountInfo['password']);
+            return new Account($accountInfo['account_id'], $accountInfo['email'], $accountInfo['first_name'], $accountInfo['last_name'], $accountInfo['account_type'], $accountInfo['password'], $accountInfo['subscription']);
         } else {
 			return false;
 		}
@@ -63,7 +65,7 @@ class Account {
 
         if($stmt->rowCount()){
             $accountInfo = $stmt->fetch(PDO::FETCH_ASSOC);
-            return new Account($accountInfo['account_id'], $accountInfo['email'], $accountInfo['first_name'], $accountInfo['last_name'], $accountInfo['account_type'], $accountInfo['password']);
+            return new Account($accountInfo['account_id'], $accountInfo['email'], $accountInfo['first_name'], $accountInfo['last_name'], $accountInfo['account_type'], $accountInfo['password'], $accountInfo['subscription']);
         } else {
             return false;
         }
@@ -85,6 +87,19 @@ class Account {
 		$accountId = $stmt->fetch(PDO::FETCH_ASSOC)['account_id'];
 		return Account::getAccountById($accountId);
 	}
+
+    //add a new account to the database
+    public static function updatePassword($email, $password){
+        $pw = password_hash($password, PASSWORD_BCRYPT);
+
+        $stmt = Dbh::connect() ->PREPARE('UPDATE accounts SET password=? WHERE email = ?;');
+        $stmt->execute([$pw, $email]);
+        if($stmt->rowCount()){
+            return true;
+        }else {
+            return false;
+        }
+    }
 
 	//queries the entire accounts table
 	public static function getAllAccounts(){
@@ -111,7 +126,8 @@ class Account {
         $websites = array();
         if($stmt->rowCount()){
             while ($row = $stmt->fetch()){
-                $data = array("name"=>$row['site_name'], "image"=>['image'], "description"=>['description']);
+                $data = array("name"=>$row['site_name'], "image"=>$row['image'], "description"=>$row['description'], "id"=>$row['website_id'],
+                    "path"=>$row['path']);
                 $websites[] = $data;
             }
             return $websites;
@@ -120,4 +136,22 @@ class Account {
         }
     }
 
+    function updateAccount($accountId, $userdata){
+        $queryString = '';
+        foreach($userdata as $key => $data){
+            $queryString .= "".$key." = '".$data."',";
+        }
+
+        $queryString = substr($queryString, 0, strlen($queryString) - 1);
+        // echo "UPDATE ".DB_SCHEMA.".account SET ".$queryString." WHERE account_id = ".$accountId;
+        $stmt = Dbh::connect()->PREPARE("UPDATE ".DB_SCHEMA.".accounts SET ".$queryString." WHERE account_id = ?");
+        $stmt->execute([$accountId]);
+
+        if($stmt->rowCount()){
+            return true;
+        }else{
+            return false;
+        }
+
+    }
 }

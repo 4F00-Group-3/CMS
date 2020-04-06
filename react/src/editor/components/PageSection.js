@@ -10,16 +10,16 @@ import {
   faGift,
   faHeart,
   faLaptop,
-  faLock
+  faLock,
 } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-///import YouTube from "react-youtube";
+import YouTube from "react-youtube";
 
 class PageSection extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      page: this.props.page
+      page: this.props.page,
     };
   }
 
@@ -32,7 +32,7 @@ class PageSection extends Component {
     this.props.toggleClickClass(this.props.index);
   };
 
-  /* returnYouTube(url, height, width, autoplay, loop) {
+  returnYouTube(url, height, width, autoplay, loop) {
     var splitURL = url.split("/");
     console.log(splitURL);
     let result =
@@ -45,14 +45,14 @@ class PageSection extends Component {
       playerVars: {
         // https://developers.google.com/youtube/player_parameters
         autoplay: autoplay,
-        loop: loop
-      }
+        loop: loop,
+      },
     };
 
     return (
       <YouTube videoId={splitURL[3]} opts={opts} onReady={this._onReady} />
     );
-  } */
+  }
 
   returnIcon(icon) {
     switch (icon) {
@@ -153,7 +153,11 @@ class PageSection extends Component {
         );
       }
       case "icon": {
-        return this.returnIcon(this.props.faClassName);
+        return (
+          <div key={this.props.index} style={this.props.style}>
+            {this.returnIcon(this.props.faClassName)}
+          </div>
+        );
       }
       default: {
         console.log("Not a caught switch in pagesection.js!");
