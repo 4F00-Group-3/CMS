@@ -6,12 +6,17 @@ import {
   Header,
   Content
 } from "react-mdl";
-import GetStarted from './Components/getStarted';
+import GetStarted from './Components/GetStarted';
 import LoginPage from "./Login/LoginPage";
 import LandingPage from "./Components/LandingPage";
 import CreateAccount from "./Components/createAccount";
 import Col from 'react-bootstrap/Col'
 import Row from 'react-bootstrap/Row'
+import {
+  FooterSection,
+  Footer,
+  FooterLinkList
+} from "react-mdl";
 
 class HomePage extends Component {
   constructor(props) {
@@ -120,7 +125,7 @@ class HomePage extends Component {
       <Header transparent>
         <Row className='topnav-row'>
           <Col>
-            <a href='#landing' onClick={this.homeButton_OnClick} className="main-top-home-nav"/>
+            <a href='#landing' onClick={this.homeButton_OnClick} className="main-top-home-nav" />
           </Col>
           <Col style={{ textAlign: 'right' }}>
             <a
@@ -164,6 +169,22 @@ class HomePage extends Component {
       </Header>);
   }
 
+  Footer() {
+    return (
+      <div style={{ paddingbottom: "60px" }}>
+
+        <Footer className='footer' size="mini">
+          <FooterSection type="left" logo="NO.">
+            <FooterLinkList>
+              <a href="#">Help</a>
+              <a href="#">Privacy & Terms</a>
+            </FooterLinkList>
+          </FooterSection>
+        </Footer>
+      </div>);
+  }
+  
+
   render() {
     return (
       <>
@@ -171,7 +192,10 @@ class HomePage extends Component {
           {this.TopNav()}
           <Content style={{ scrollbarWidth: "none" }}>
             {this.state.page}
+
+            {this.Footer()}
           </Content>
+
         </Layout>
       </>
     );

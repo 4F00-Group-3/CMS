@@ -1,11 +1,6 @@
 import React, { Component } from "react";
 import '../css/LandingPage.css';
-import {
-  FooterSection,
-  Footer,
-  FooterLinkList
-} from "react-mdl";
-import GetStarted from "./getStarted";
+import GetStarted from "./GetStarted";
 import Jumbotron from 'react-bootstrap/Jumbotron';
 import Col from 'react-bootstrap/Col';
 import Row from 'react-bootstrap/Row';
@@ -226,19 +221,6 @@ class LandingPage extends Component {
             </Card>
           </Row>
         </Container>
-
-        <div style={{ paddingbottom: "60px" }}>
-
-          <Footer size="mini">
-            <FooterSection type="left" logo="NO.">
-              <FooterLinkList>
-                <a href="#">Help</a>
-                <a href="#">Privacy & Terms</a>
-              </FooterLinkList>
-            </FooterSection>
-          </Footer>
-        </div>
-        {/* </div> */}
       </>
     );
   }

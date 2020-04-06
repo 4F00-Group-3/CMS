@@ -1,15 +1,18 @@
+
 import React, { Component } from "react";
 import Container from "@material-ui/core/Container";
 import Card from "@material-ui/core/Card";
 import AjaxCall from "../ajax.js";
 import LoginBackend from "./backend/LoginBackend";
-import '../css/LoginPage.css'
+import CreateAccount from '../Components/CreateAccount.js';
+import '../css/LoginPage.css';
 import Form from 'react-bootstrap/Form';
+import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
-import Row from 'react-bootstrap/Row'
-import { Button } from 'react-bootstrap';
+import { Jumbotron } from "react-bootstrap";
 
 let backend = new LoginBackend();
+
 class LoginPage extends Component {
   constructor(props) {
     super(props);
@@ -81,7 +84,7 @@ class LoginPage extends Component {
   };
 
   createAccountOnclick() {
-    this.props.handleCreateAccountClick();
+    this.setState({page: "create-account"})
   }
 
   forgotPasswordOnclick() {
@@ -90,43 +93,63 @@ class LoginPage extends Component {
 
   render() {
     const loginpg = (
-      <div>
-        <Container maxWidth="sm" style={{ backgroundcolor: "black" }}>
-          <Card>
-            <div style={{ padding: "20px" }}>
-              <h2 style={{ textalign: "center" }}>Login To Your Account</h2>
+      <Jumbotron className='login-container'>
+        <Container className='card-container' maxWidth="sm">
+          <Card className='login-card'>
+            <h2 className='login-page-heading'>Login To Your Account</h2>
 
-              <form className="centerBoxItems" onSubmit={this.handleFormSubmit}>
+            <Form className="centerBoxItems" onSubmit={this.handleFormSubmit}>
+              <Row className='center'>
                 <label htmlFor="email">Username</label>
-                <br></br>
+              </Row>
+              <Row className='center'>
                 <input
+                  className='form-input'
                   type="email"
                   id="email"
                   name="email"
                   value={this.state.email}
                   onChange={this.handleChange}
                 />
-                <br></br>
+              </Row>
+              <Row className='center'>
                 <label htmlFor="pw">Password</label>
-                <br></br>
+              </Row>
+              <Row className='center'>
                 <input
+                  className='form-input'
                   type="password"
                   id="pw"
                   name="pw"
                   value={this.state.pw}
                   onChange={this.handleChange}
                 />
-                <br />
-                <br />
-                <br />
+              </Row>
+              <Row className='center'>
                 <input type="submit" value="Login" className="submitnextbutton" />
-              </form>
-              <input type="button" value="Create Account" onClick={this.createAccountOnclick} />
-              <input type="button" style={{ float: "right" }} value="Forgot Password" onClick={this.forgotPasswordOnclick} />
-            </div>
+              </Row>
+            </Form>
+            <Row>
+              <Col>
+                <input
+                  className='input-as-anchor'
+                  type="button"
+                  value="Create Account"
+                  onClick={this.createAccountOnclick} />
+              </Col>
+              <Col>
+                <input
+                  className='input-as-anchor'
+                  type="button"
+                  style={{ float: "right" }}
+                  value="Forgot Password"
+                  onClick={this.forgotPasswordOnclick} />
+              </Col>
+
+            </Row>
           </Card>
         </Container>
-      </div>
+      </Jumbotron>
     );
     const forgotpasswordpg = (
       <div>
@@ -190,6 +213,9 @@ class LoginPage extends Component {
 
     if (this.state.page === "forgot") {
       return (forgotpasswordpg)
+    }
+    else if (this.state.page === "create-account") {
+      return(<><CreateAccount/></>);
     }
     else {
       return (loginpg)

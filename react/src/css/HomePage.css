@@ -120,3 +120,9 @@ h2 {
   border-color: transparent;
   text-decoration: none;
 }
+
+.footer {
+  bottom: 0;
+  /* position: absolute; */
+  width: 100%;
+}

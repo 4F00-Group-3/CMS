@@ -1,10 +1,14 @@
 import React, { Component } from "react";
 import Container from "@material-ui/core/Container";
 import Card from "@material-ui/core/Card";
-import "../css/LandingPage.css";
 import AjaxCall from "../ajax.js";
+import Form from 'react-bootstrap/Form';
+import Row from 'react-bootstrap/Row';
+import Col from 'react-bootstrap/Col';
+import { Jumbotron } from "react-bootstrap";
+import '../css/LoginPage.css';
 
-class createAccount extends Component {
+class CreateAccount extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -55,7 +59,7 @@ class createAccount extends Component {
         first_name: this.state.fn,
         last_name: this.state.ln
       },
-      function(response) {
+      function (response) {
         console.clear();
         console.log(response);
       }
@@ -74,14 +78,11 @@ class createAccount extends Component {
 
   render() {
     return (
-      <div>
-        <Container maxWidth="sm">
+      <Jumbotron className='login-container'>
+        <Container className='card-container' maxWidth="sm">
           <Card>
-            <div>
-              <div className="submitformdiv">
                 <h2>Create An Account</h2>
-                <p>Please enter the security code we emailed you.</p>
-                <form
+                <Form
                   className="centerBoxItems"
                   onSubmit={this.handleFormSubmit}
                 >
@@ -142,16 +143,12 @@ class createAccount extends Component {
                   <br></br>
                   <br></br>
                   <input type="submit" value="Next" class="submitnextbutton" />
-                </form>
-
-                <br></br>
-              </div>
-            </div>
+                </Form>
           </Card>
         </Container>
-      </div>
+      </Jumbotron>
     );
   }
 }
 
-export default createAccount;
+export default CreateAccount;
