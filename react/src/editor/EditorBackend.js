@@ -64,6 +64,21 @@ class EditorBackend {
         }
     };
 
+    getSubMenuItem_Delete(subMenuItems, id) {
+        console.log("item", subMenuItems)
+        if (subMenuItems) {
+            for (var i = 0; i < subMenuItems.length; i++) {
+                if (subMenuItems[i].id === id) {
+                    subMenuItems.splice(i,1);
+                    return; 
+                } else {
+                    var found = this.getSubMenuItem_Delete(subMenuItems[i].page, id);
+                    if (found) return found;
+                }
+            }
+        }
+    };
+
     editSectionStyle(_id, style_key, style_value) {
         var page = this.getPage()
         var result = [];

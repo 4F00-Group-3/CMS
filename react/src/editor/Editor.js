@@ -216,7 +216,7 @@ class Editor extends Component {
         var activeSection = this.state.selectedId;
 
         console.log("in handleDelete", page);
-        console.log(this.state.activeSection);
+        console.log(activeSection);
 
         try{
             if(activeSection.split("|").length === 3){
@@ -224,15 +224,17 @@ class Editor extends Component {
                 var rowId = sectionId[0];
                 var columnId = sectionId[1];
                 var colSectionId = sectionId[2];
-                delete backend.getRowPage(this.state.page, activeSection);
+                backend.getSubMenuItem_Delete(this.state.page, activeSection);
             }
         }catch(Exception){
-            for (let i = 0; i < page.length; i++) {
-                if (page[i].id === activeSection) {
-                    page.splice(i, 1);
+            backend.getSubMenuItem_Delete(this.state.page, activeSection);
+            // console.log("to delete", pageSectionToDelete);
+            // for (let i = 0; i < page.length; i++) {
+            //     if (page[i].id === activeSection) {
+            //         page.splice(i, 1);
     
-                }
-            }
+            //     }
+            // }
         }
        
 
