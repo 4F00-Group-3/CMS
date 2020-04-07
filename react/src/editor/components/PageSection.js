@@ -10,41 +10,26 @@ import {
     faGift,
     faHeart,
     faLaptop,
-    faLock,
-
-
+    faLock
 } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import YouTube from 'react-youtube';
-import Row from 'react-bootstrap/Row'
-import Col from 'react-bootstrap/Col'
-import { colors } from '@material-ui/core';
-import EditingPage from './EditingPage';
-import Editor from '../Editor';
-import ColEditingPage from './ColEditingPage';
-
-
+import Row from 'react-bootstrap/Row';
+import Col from 'react-bootstrap/Col';
 
 class PageSection extends Component {
-    // constructor(props) {
-    //     super(props);
-    //     this.state = {
-    //         page: this.props.page,
-    //     }
-    // }
 
-    toggleClickClass = () => {
-        // console.log("toggleClass", this);
-        this.props.onSectionPush(this.props.page.id, this.props.page.type, this.props.page.style[0]);
-        // this.props.toggleClickClass(this.props.page.id);
-        // e.nativeEvent.stopImmediatePropagation();
-    }
-
+    /**
+     * This method creates am embedded react youtube video component
+     * @param {*} url The url of the Youtube video
+     * @param {*} height the height of the Youtube Video
+     * @param {*} width the width of the Youtube Video
+     * @param {*} autoplay autoplay boolean
+     * @param {*} loop loop boolean
+     */
     returnYouTube(url, height, width, autoplay, loop) {
         var splitURL = url.split("/");
-        console.log(splitURL)
-        let result = splitURL[0] + "//" + splitURL[2] + "/embed/" + splitURL[3] + "/"
-        console.log(result);
+        let result = splitURL[0] + "//" + splitURL[2] + "/embed/" + splitURL[3] + "/";
 
         const opts = {
             height: height,
@@ -61,9 +46,12 @@ class PageSection extends Component {
                 opts={opts}
                 onReady={this._onReady}
             />)
-
     }
 
+    /**
+     * This method renders a FontAwesomeIcon based on the name of the icon provided 
+     * @param {*} icon the name of icon to render
+     */
     returnIcon(icon) {
         switch (icon) {
             case "faLock": {
@@ -103,72 +91,48 @@ class PageSection extends Component {
     }
 
     /**
-     * This method returns the a user specified number of cols.
-     */
-    // returnColumns() {
-    //     var numCols = this.props.page.col;
-    //     // ensures max number of columns is 12
-    //     if (numCols > 12) {
-    //         numCols = 12;
-    //     };
-    //     console.log("page", this.props.page)
-    //     var cols = [];
-    //     for (var i = 0; i < numCols; i++) {
-    //         cols.push(
-    //             <Col key={i}>
-    //                 {/* <div style={{ height: "100px", backgroundColor: "red" }}>
-    //                     <EditingPage page={this.props} onSectionPush={this.props.onSectionPush} setActive={this.props.setActive} />
-    //                 </div> */}
-    //             </Col>
-    //         );
-    //     }
-    //     return cols;
-    // }
-
-    /**
-     * This method creates a number of columns beased on the passed cols value
-     * @param cols //columns inside row
+     * This method renders the columns within a row
+     * @param {*} numColumns the number of columns to render
+     * @param {*} listOfColumns list of column elements
      */
     renderRowColumns(numColumns, listOfColumns) {
-        console.log("num cols", numColumns);
-        console.log("list of columns", listOfColumns)
-        // var numCols = cols.length;
         var rowColumns = [];
+
+        // create columns(which is basically an editing page) based on the user specified numColumns
         for (var i = 0; i < numColumns; i++) {
             rowColumns.push(
                 <Col key={i}>
-                    <ColEditingPage page={listOfColumns[i]} onSectionPush={this.props.onSectionPush} toggleClickClass={this.props.toggleClickClass} />
+                    <PageSection page={listOfColumns[i]} onSectionPush={this.props.onSectionPush} />
                 </Col>
             );
         }
-        // //might need to pass a onSelectionPush and stuff into the backend.. not sure..TODO
         return rowColumns;
     }
 
+    /**
+     * This method renders the components within a column
+     */
     renderColumnPages() {
-        // console.log("inside render column", this.props.page.page)
-
         var numPages = this.props.page.page.length;
         var pages = [];
         for (var i = 0; i < numPages; i++) {
-
-            pages.push(<PageSection key={i} page={this.props.page.page[i]} onSectionPush={this.props.onSectionPush} toggleClickClass={this.props.toggleClickClass} />);
+            pages.push(<PageSection key={i} page={this.props.page.page[i]} onSectionPush={this.props.onSectionPush} />);
         }
         return pages;
     }
 
+    /**
+     * This method returns a component based on props.page.type
+     */
     returnElement() {
         switch (this.props.page.type) {
             case "heading": {
-                // console.log(this.props.page)
                 return (
-                    <div>
-                        <h1
-                            key={this.props.page.id}
-                            style={this.props.page.style[0]}>
-                            {this.props.page.text}
-                        </h1>
-                    </div>
+                    <h1
+                        key={this.props.page.id}
+                        style={this.props.page.style[0]}>
+                        {this.props.page.text}
+                    </h1>
                 )
             }
             case "divider": {
@@ -188,7 +152,6 @@ class PageSection extends Component {
                 );
             }
             case "video": {
-                console.log();
                 return (
                     <div key={this.props.page.id} style={this.props.page.style[0]}>
                         {this.returnYouTube(
@@ -208,17 +171,9 @@ class PageSection extends Component {
                 )
             }
             case "row": {
-                console.log("PageSection cols: ", this.props.page);
                 return (
                     <div key={this.props.page.id}>
                         <Row>
-                            {/* {this.returnColumns()} */}
-                            {/* <Col>
-                                <div style={{ height: "100px", backgroundColor: "red" }}>
-                                    <EditingPage page={this.props} onSectionPush={this.props.page.onSectionPush} setActive={this.props.page.setActive} />
-                                </div>
-                            </Col> */}
-                            {/* used to be cols */}
                             {this.renderRowColumns(this.props.page.col, this.props.page.page)}
                         </Row>
                     </div>
@@ -228,14 +183,7 @@ class PageSection extends Component {
                 console.log('PageSection column', this.props.page);
                 return (
                     <div key={this.props.page.id}>
-                        {
-                            <div
-                            // style={{ height: "100px", backgroundColor: "green" }}
-                            >
-                                {this.renderColumnPages()}
-                                {/* <PageSection page={this.props.page.page[0]} onSectionPush={this.props.onSectionPush} toggleClickClass={this.props.toggleClickClass} /> */}
-                            </div>
-                        }
+                        {this.renderColumnPages()}
                     </div>
                 );
             }
@@ -252,7 +200,6 @@ class PageSection extends Component {
         var classList = isClicked ? "pageSectionClick" : "pageSection";
         return (
             <div className={classList} onClick={e => {
-                // this.toggleClickClass()
                 this.props.onSectionPush(this.props.page.id, this.props.page.type, this.props.page.style[0]);
                 e.stopPropagation();
             }}>
