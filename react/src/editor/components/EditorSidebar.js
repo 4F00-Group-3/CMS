@@ -29,8 +29,20 @@ class EditorSideBar extends Component {
         };
     }
 
+    /**
+    * This method adds appends a PageSection component in to the EditingPage
+    * It does this by appending it to the page json (handled in the EditorBackend)
+    * This new page object is re-rendered on to the EditingPage when setState is called
+    * @param the name of the component which is recieved from the the button clicked on EditorSidebar
+    */
+    AddElementToColumn = (name) => {
+        console.log("Editor sidebar column", this.props.selectedId)
+        this.props.onPush("Column", name, this.props.selectedId);
+    }
+
     returnMenu() {
         let menu = this.props.menu;
+        console.log("EditorSidebar menu", menu)
         switch (menu) {
             case "heading": {
                 return <> <HeadingEditorMenu selectedId={this.props.selectedId} menuComponentOnClick={this.props.menuComponentOnClick} /> <EditMenuNav handleBack={this.props.handleBack} handleDelete={this.props.handleDelete} /> </>
@@ -54,7 +66,23 @@ class EditorSideBar extends Component {
                 return <> <SpacerEditorMenu selectedId={this.props.selectedId} menuComponentOnClick={this.props.menuComponentOnClick} /> <EditMenuNav handleBack={this.props.handleBack} handleDelete={this.props.handleDelete} /> </>
             }
             case "row": {
-                return <><RowEditorMenu selectedId={this.props.selectedId} menuComponentOnClick={this.props.menuComponentOnClick} /> <EditMenuNav handleBack={this.props.handleBack} handleDelete={this.props.handleDelete} /></>;
+                return <RowEditorMenu selectedId={this.props.selectedId} selectedRowNumberOfColumns={this.props.selectedRowNumberOfColumns} menuComponentOnClick={this.props.menuComponentOnClick} handleBack={this.props.handleBack} handleDelete={this.props.handleDelete} onPush={this.props.onPush} />;
+            }
+            case "column": {
+                return (
+                    <>
+                        <div className="editor-buttons-container">
+                            <EditorButton text="Heading" faIcon={faFont} onClick={this.AddElementToColumn} />
+                            <EditorButton text="Image" faIcon={faFileImage} onClick={this.AddElementToColumn} />
+                            <EditorButton text="Button" faIcon={faAsterisk} onClick={this.AddElementToColumn} />
+                            <EditorButton text="Dividers" faIcon={faBars} onClick={this.AddElementToColumn} />
+                            <EditorButton text="Spacer" faIcon={faAlignRight} onClick={this.AddElementToColumn} />
+                            <EditorButton text="Icon" faIcon={faArrowDown} onClick={this.AddElementToColumn} />
+                            <EditorButton text="Video" faIcon={faCircle} onClick={this.AddElementToColumn} />
+                            <EditMenuNav handleBack={this.props.handleBack} handleDelete={this.props.handleDelete} />
+                        </div>
+                    </>
+                );
             }
             default: {
                 return <>
