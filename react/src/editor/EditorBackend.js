@@ -5,53 +5,43 @@ class EditorBackend {
         }
     }
 
+    /**
+     * This method returns the backend page
+     */
     getPage() {
         return this.state.page;
     }
 
-    getRowPage(id) {
-        console.log("backend, getrowpage", this.state.page)
-        // var row;
-
-        // for (var i = 0; i < this.state.page.length; i++) {
-        //     if (this.state.page[i].id === id) {
-        //         row = this.state.page[i].page;
-        //     }
-        // }
-        // return row;
-    }
-
+    /**
+     * This method recursively traverses the page to find the page section with the matching id, and modified its style according to the provided style key and value
+     * @param {*} id id of the page section to modify
+     * @param {*} style_key the style key to modify
+     * @param {*} style_value the value of the style key to change to
+     */
     getSubMenuItem_Style(id, style_key, style_value) {
-        // console.log("item", subMenuItems)
-        // if (subMenuItems) {
-        //     for (var i = 0; i < subMenuItems.length; i++) {
-        //         if (subMenuItems[i].id === id) {
-        //             //  return subMenuItems[i];
-        //             var style = JSON.parse(JSON.stringify(subMenuItems[i]['style'][0]));
-        //             style["" + style_key] = style_value;
-        //             subMenuItems[i]['style'][0] = style;
-        //             return;
-        //         } else {
-        //             // var found = this.getSubMenuItem(subMenuItems[i].page, id);
-        //             // if (found) return found;
-        //             this.getSubMenuItem_Style(subMenuItems[i].page, id, style_key, style_value);
-        //             // if (found) return found;
-        //         }
-        //     }
-        // }
         var pageSection = this.getSubMenuItem(this.state.page, id);
         var style = JSON.parse(JSON.stringify(pageSection['style'][0]));
         style["" + style_key] = style_value;
         pageSection['style'][0] = style;
     };
 
+    /**
+     * This method recursively finds the page section within a page and modified the desired json field with the provided json value
+     * @param {*} id id of page section to modify 
+     * @param {*} jsonField the json field within the page section to modify
+     * @param {*} jsonValue the json value to set the modified json field to
+     */
     getSubMenuItem_Text(id, jsonField, jsonValue) {
         var pageSection = this.getSubMenuItem(this.state.page, id);
         pageSection["" + jsonField] = jsonValue;
     }
 
+    /**
+    * This method recursively finds the pagesection with the matching id within the provides page
+    * @param {*} subMenuItems The array (page) to recursively traverse
+    * @param {*} id id to be found within array
+    */
     getSubMenuItem(subMenuItems, id) {
-        console.log("item", subMenuItems)
         if (subMenuItems) {
             for (var i = 0; i < subMenuItems.length; i++) {
                 if (subMenuItems[i].id === id) {
@@ -64,13 +54,17 @@ class EditorBackend {
         }
     };
 
+    /**
+     * This method recursively finds the pagesection with the matching id within the provides page and deletes it
+     * @param {*} subMenuItems The array (page) to recursively traverse
+     * @param {*} id id to be found within array
+     */
     getSubMenuItem_Delete(subMenuItems, id) {
-        console.log("item", subMenuItems)
         if (subMenuItems) {
             for (var i = 0; i < subMenuItems.length; i++) {
                 if (subMenuItems[i].id === id) {
-                    subMenuItems.splice(i,1);
-                    return; 
+                    subMenuItems.splice(i, 1);
+                    return;
                 } else {
                     var found = this.getSubMenuItem_Delete(subMenuItems[i].page, id);
                     if (found) return found;
@@ -79,67 +73,22 @@ class EditorBackend {
         }
     };
 
-    editSectionStyle(_id, style_key, style_value) {
-        var page = this.getPage()
-        var result = [];
-        for (let index = 0; index < page.length; index++) {
-            var pageSection = page[index];
-            console.log(pageSection);
-            if (pageSection.id === _id) {
-
-                //repopulate new css
-                var css = pageSection.style[0];
-                var newCSS = {};
-                for (var attribute in css) {
-                    if (attribute === style_key) {
-                        newCSS[attribute] = style_value;
-                    }
-                    else {
-                        newCSS[attribute] = css[attribute];
-                    }
-                }
-
-                console.log(newCSS);
-
-                //repopulate new page section
-                var newPageSection = {};
-                for (const key in pageSection) {
-                    if (key === "style") {
-                        newPageSection[key] = [newCSS];
-                    }
-                    else {
-                        newPageSection[key] = pageSection[key];
-                    }
-                }
-
-                result.push(newPageSection);
-
-                console.log("section style changed", newPageSection)
-            }
-            else {
-                result.push(pageSection)
-            }
-
-        }
-        this.state.page = result;
-    }
-
     /**
      * This method will add or remove columns from a row component
      * @param {*} rowId the id of the row to edit
      * @param {*} numColumns the new number of columns with in the row
      */
-    editSectionRow(rowId, numColumns) {
-        console.log("in edit sec row", rowId, numColumns)
-        var page = this.getPage()
-        var result = [];
+    editSectionRow(rowId, numColumns) { 
+        var page = this.getPage(); // get the current page
+
+        // Find the row element to edit based on rowId
         for (let index = 0; index < page.length; index++) {
             var pageSection = page[index];
             var exitingRowColumns = parseInt(pageSection.col)
-            console.log("edit row", pageSection)
-            console.log(pageSection.col + "<" + numColumns);
-            console.log(pageSection.col < numColumns)
+           
+            // Row is found
             if (pageSection.id === rowId) {
+
                 if (exitingRowColumns < numColumns) {         // add a column
                     for (var i = exitingRowColumns; i < numColumns; i++) {
                         pageSection.page.push(this.returnBasicColumnObj(rowId, (i + 1)))
@@ -150,10 +99,11 @@ class EditorBackend {
                         pageSection.page.pop();
                     }
                 }
-                console.log("new pagesection in row edit", pageSection);
+                
                 // update number of column values
                 pageSection.col = numColumns;
-                result.push(pageSection);
+                
+                // return num columns, this is used in editor to pass to RowEditorMenu to show current column count
                 return numColumns;
             }
         }
@@ -189,45 +139,11 @@ class EditorBackend {
     }
 
     /**
-     * This method edits a text field in the json file
-     * It can be used in replacing any text value from any json field
-     * Including id, text, url
-     * 
-     * @param {id of page section to be edited} id 
-     * @param {json field (key) to have value replaced} jsonField 
-     * @param {new value} text 
-     */
-    editTextField(id, jsonField, text) {
-        console.log(id, jsonField, text)
-        var page = this.getPage()
-        var result = [];
-        for (let index = 0; index < page.length; index++) {
-            var pageSection = page[index];
-            if (pageSection.id === id) {
-                //replace text here
-                var newPageSection = {}
-                for (const key in pageSection) {
-                    if (key === jsonField) {
-                        newPageSection[key] = text;
-                    }
-                    else {
-                        newPageSection[key] = pageSection[key];
-                    }
-                }
-                result.push(newPageSection);
-            }
-            else {
-                result.push(pageSection)
-            }
-
-        }
-        this.state.page = result;
-    }
-
-    /**
      * This is where we would request JSON page from backend
      */
     all() {
+        //TODO: the following code will change to a ajax function to return a saved user page from database
+        // This is for testing purposes
         return [
             // {
             //     id: 0,
@@ -335,6 +251,12 @@ class EditorBackend {
         ];
     }
 
+    /**
+     * This method add a page section element to the page
+     * @param {*} pageSection The page section to add to page
+     * @param {*} subPageSection mainly to add a pagesection within a column
+     * @param {*} elementId id of the page section, mainly used for column, to set a unique id to the subPageSection
+     */
     add(pageSection, subPageSection, elementId) {
         var page = this.state.page;
         var jsonObj;
@@ -481,42 +403,24 @@ class EditorBackend {
                 break;
             }
             case "Column": {
-                var rowId = elementId.split("|")[0];
-                var columnId = elementId.split("|")[1];
-                var column = this.getSubMenuItem(this.getPage(), rowId + "|" + columnId)
-                console.log("backend column", column);
+                var rowId = elementId.split("|")[0]; // row id
+                var columnId = elementId.split("|")[1]; // column id
 
+                // find column element to add SubPageSection to
+                var column = this.getSubMenuItem(this.getPage(), rowId + "|" + columnId)
+
+                // Create a SubPageSection element with unique id
                 var backend = new EditorBackend();
                 backend.add(subPageSection);
                 var pageSectionToAdd = backend.getPage()[0];
                 pageSectionToAdd.id = rowId + "|" + columnId + "|" + (column.page.length + 1);
 
+                // Add SubPageSection to Column
                 column.page.push(pageSectionToAdd);
-
-                // jsonObj = {
-                //     id: page.length + 1,
-                //     type: "column",
-                //     style: [],
-                //     page: [
-                //         {
-                //             id: 99,
-                //             type: "heading",
-                //             text: "heading 1",
-                //             style: [
-                //                 {
-                //                     color: "black",
-                //                     fontSize: "10vh",
-                //                     textAlign: "left",
-                //                 }
-                //             ],
-                //         }
-                //     ]
-                // };
-                // this.state.page.push(jsonObj);
                 break;
             }
             default: {
-                console.log("Not a heading!");
+                console.log("Not a valid page section!");
                 break;
             }
         }
