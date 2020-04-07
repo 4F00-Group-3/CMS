@@ -9,13 +9,30 @@ import {
   FooterSection,
   Footer,
   FooterLinkList,
+  Layout,
 } from "react-mdl";
 import Payments from "./payments";
+import NewWindow from "react-new-window";
 
 class getStarted extends Component {
   render() {
     return (
       <div>
+        <NewWindow title="First Month Free!">
+          <Layout fixedHeader className="website-background">
+            <font color="white">
+              <h2>
+                Use our service for free for the first month! Leave this window
+                open for payment and use the following PayPal credentials:
+              </h2>
+              <br></br>
+              <h3>
+                Username: sb-odp9i1081433@personal.example.com Password:
+                dJQhG+S9
+              </h3>
+            </font>
+          </Layout>
+        </NewWindow>
         <Grid>
           <Cell col={12}>
             {/* Row 1 */}
