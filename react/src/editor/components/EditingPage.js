@@ -43,7 +43,7 @@ class EditingPage extends Component {
         var y = {   //get section values
           page: this.props.page[i],
           onSectionPush: this.props.onSectionPush,
-          toggleClickClass: this.toggleClickClass,
+          // toggleClickClass: this.toggleClickClass,
           // clicked is used later inside the PageSection to highlight a selected PageSection Component
           clicked: (this.state.active === this.props.page[i].id ? true : false),
           onClick: this.props.page.onClick
@@ -103,7 +103,7 @@ class EditingPage extends Component {
             key={index}
             onClick={card.onClick}
             onSectionPush={card.onSectionPush}
-            toggleClickClass={card.toggleClickClass}
+            // toggleClickClass={card.toggleClickClass}
             clicked={card.clicked}
             index={index}
             moveCard={moveCard}

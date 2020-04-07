@@ -13,7 +13,7 @@ class Editor extends Component {
             page: props.page,
             menu: "main",
             selectedId: undefined,
-            activeSection: undefined,
+            // activeSection: undefined,
             selectedRowNumberOfColumns: undefined
         };
         if (sessionStorage.getItem('id') === null) {
@@ -244,10 +244,10 @@ class Editor extends Component {
      * This method sets the activeSection to the id of the element the user Selected on the EditingPage
      * @param id id of the element selected on the editing Page
      */
-    setActive = (id) => {
-        // console.log("activeSec", activeSec);
-        this.setState({ activeSection: id })
-    }
+    // setActive = (id) => {
+    //     // console.log("activeSec", activeSec);
+    //     this.setState({ activeSection: id })
+    // }
 
 
     render() {

@@ -36,7 +36,7 @@ class PageSection extends Component {
     toggleClickClass = () => {
         // console.log("toggleClass", this);
         this.props.onSectionPush(this.props.page.id, this.props.page.type, this.props.page.style[0]);
-        this.props.toggleClickClass(this.props.page.id);
+        // this.props.toggleClickClass(this.props.page.id);
         // e.nativeEvent.stopImmediatePropagation();
     }
 
@@ -252,7 +252,8 @@ class PageSection extends Component {
         var classList = isClicked ? "pageSectionClick" : "pageSection";
         return (
             <div className={classList} onClick={e => {
-                this.toggleClickClass()
+                // this.toggleClickClass()
+                this.props.onSectionPush(this.props.page.id, this.props.page.type, this.props.page.style[0]);
                 e.stopPropagation();
             }}>
                 {this.returnElement()}

@@ -61,7 +61,7 @@ const Card = ({ page, onClick, onSectionPush, index, moveCard, toggleClickClass,
         <PageSection
           page={page}
           onSectionPush={onSectionPush}
-          toggleClickClass={toggleClickClass}
+          // toggleClickClass={toggleClickClass}
           clicked={clicked}
         />
       }
