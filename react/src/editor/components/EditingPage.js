@@ -1,16 +1,8 @@
 import React, { Component, useCallback, useState } from "react";
 import { DndProvider } from "react-dnd";
 import Backend from "react-dnd-html5-backend";
-import * as constants from "../../constants";
-import PageSection from "./PageSection";
 import Card from "./Card.jsx";
 import update from 'immutability-helper'
-
-const style = {
-  // this is commented out because I mean to use an EditingPage withing a column component, which must take up the entire column
-  // marginLeft: "50vh"
-}
-
 
 class EditingPage extends Component {
   constructor(props) {
@@ -21,36 +13,24 @@ class EditingPage extends Component {
     }
   }
 
-
-  toggleClickClass = (i) => {
-    // console.log("Editing Page props: ", this.props);
-    // console.log(i);
-    this.setState({ active: i });
-    this.props.setActive(i);
-  }
-
   /**
    * This method renders a page from JSON onto the actual page editor
    * Can be reused for actual page viewing as well
    * Returns the sections added to the editor page
    */
   returnPage() {
-    console.log("props page EditingPage", this.props.page)
     let x = []; //empty array
     try {
-      // console.log(this.props.page)
       for (let i = 0; i < this.props.page.length; i++) {  //for each section
         var y = {   //get section values
           page: this.props.page[i],
           onSectionPush: this.props.onSectionPush,
-          // toggleClickClass: this.toggleClickClass,
           // clicked is used later inside the PageSection to highlight a selected PageSection Component
           clicked: (this.state.active === this.props.page[i].id ? true : false),
           onClick: this.props.page.onClick
         }
         x.push(y) //push to array
       }
-      console.log("EditingPage x ", x);
     } catch (e) { }
     return x;
   }
@@ -95,15 +75,14 @@ class EditingPage extends Component {
       const renderCard = (card, index) => {
 
         // Updates page with new arrangement
-        this.props.page[index]=card.page;
+        this.props.page[index] = card.page;
 
-        return (      //returns a card which returns a page section with these vals
+        return (
           <Card
             page={card.page}
             key={index}
             onClick={card.onClick}
             onSectionPush={card.onSectionPush}
-            // toggleClickClass={card.toggleClickClass}
             clicked={card.clicked}
             index={index}
             moveCard={moveCard}
@@ -112,9 +91,9 @@ class EditingPage extends Component {
       }
 
       return (
-        <>
-          <div style={style}>{cards.map((card, i) => renderCard(card, i))}</div>
-        </>
+        <div>
+          {cards.map((card, i) => renderCard(card, i))}
+        </div>
       )
     }
 
