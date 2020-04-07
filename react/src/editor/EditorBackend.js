@@ -123,7 +123,7 @@ class EditorBackend {
                 {
                     id: rowId + "|" + colId + "|" + 1,
                     type: "heading",
-                    text: "heading 1",
+                    text: "Column " + colId,
                     parent: "column",
                     style: [
                         {
