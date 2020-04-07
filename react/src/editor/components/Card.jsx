@@ -12,8 +12,10 @@ import PageSection from "./PageSection"
 // }
 
 // const Card = ({ id, type, style, text, faClassName, onClick, url, onSectionPush, index, moveCard, href, toggleClickClass, clicked, col}) => { //section fields + index + moveCard
-const Card = ({ page, id, style, onClick, onSectionPush, index, moveCard, toggleClickClass, clicked }) => { //section fields + index + moveCard
-  const ref = useRef(null)
+const Card = ({ page, onClick, onSectionPush, index, moveCard, toggleClickClass, clicked }) => { //section fields + index + moveCard
+  
+  const ref = useRef(null);
+
   const [, drop] = useDrop({
     accept: ItemTypes.CARD,
     hover(item, monitor) {
@@ -40,25 +42,18 @@ const Card = ({ page, id, style, onClick, onSectionPush, index, moveCard, toggle
       console.log("ITEM INDEX: " + item.index)
       console.log("HOVER INDEX: " + hoverIndex);
     },
-  })
+  });
+
   const [{ isDragging }, drag] = useDrag({
-    item: { type: ItemTypes.CARD, id, index },
+    item: { type: ItemTypes.CARD, index},
     collect: (monitor) => ({
       isDragging: monitor.isDragging(),
     }),
-  })
-  const opacity = isDragging ? 0 : 1
-  drag(drop(ref))
-  /*
-  console.log("ID "+id);
-  console.log("TYPE "+type);
-  console.log("STYLE "+style);
-  console.log("TEXT "+text);
-  console.log("CLASSNAME "+faClassName);
-  console.log("ONCLICK "+onClick);
-  console.log("URL "+url);
-  console.log("ON SEC PUSH "+onSectionPush);
-  */
+  });
+
+  const opacity = isDragging ? 0 : 1;
+
+  drag(drop(ref));
 
   return (
     <div ref={ref}>
@@ -73,4 +68,5 @@ const Card = ({ page, id, style, onClick, onSectionPush, index, moveCard, toggle
     </div>
   )
 }
-export default Card
+
+export default Card;

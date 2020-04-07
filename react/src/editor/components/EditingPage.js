@@ -73,7 +73,7 @@ class EditingPage extends Component {
       const moveCard = useCallback(
         (dragIndex, hoverIndex) => {
           const dragCard = cards[dragIndex]
-          console.log("moveCard", dragCard);// to understand
+          // This code simulates the movement of the dragged card by inserting it into the hover index
           setCards(
             update(cards, {
               $splice: [
@@ -94,21 +94,8 @@ class EditingPage extends Component {
        */
       const renderCard = (card, index) => {
 
-        console.log("card", index, card);
-        /*Update the page with the card's new order so that rearrangements reflect on page permanently.*/
-        this.props.page[index].id = card.page.id;
-        this.props.page[index].type = card.page.type;
-        this.props.page[index].style[0] = card.page.style[0];
-        this.props.page[index].text = card.page.text;
-        this.props.page[index].faClassName = card.page.faClassName;
-        this.props.page[index].onClick = card.onClick;
-        this.props.page[index].url = card.page.url;
-        this.props.page[index].onSectionPush = card.onSectionPush;
-        this.props.page[index].toggleClickClass = card.toggleClickClass;
-        this.props.page[index].clicked = card.clicked;
-        this.props.page[index].href = card.page.href;
-        this.props.page[index].col = card.page.col;
-
+        // Updates page with new arrangement
+        this.props.page[index]=card.page;
 
         return (      //returns a card which returns a page section with these vals
           <Card
