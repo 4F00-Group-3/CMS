@@ -13,9 +13,10 @@ class Editor extends Component {
             page: props.page,
             menu: "main",
             selectedId: undefined,
-            // activeSection: undefined,
             selectedRowNumberOfColumns: undefined
         };
+        
+        // redirect user to home page if the user has not signed in
         if (sessionStorage.getItem('id') === null) {
             props.handleHomeClick();
         }
@@ -25,10 +26,11 @@ class Editor extends Component {
      * This method adds appends a PageSection component in to the EditingPage
      * It does this by appending it to the page json (handled in the EditorBackend)
      * This new page object is re-rendered on to the EditingPage when setState is called
-     * @param the name of the component which is recieved from the the button clicked on EditorSidebar
+     * @param name the name of the component which is recieved from the the button clicked on EditorSidebar
+     * @param subName the name of the component to add into a column
+     * @param columnId the id of the column to ass the subName component into
      */
     addToPage_onClick = (name, subName, columnId) => {
-        console.log(name);
         switch (name) {
             case "Heading": {
                 backend.add("Heading");
@@ -97,8 +99,6 @@ class Editor extends Component {
                     menu: "heading",
                     selectedId: _id,
                 })
-                console.log(this.state.menu);
-                console.log(this.state.selectedId);
                 break;
             }
             case "divider": {
@@ -172,10 +172,6 @@ class Editor extends Component {
      * @param css the new css to apply to the PageSection component on the EditingPage
      */
     menuComponentOnClick = (css) => {
-        console.log("Editor Selected Id", this.state.selectedId);
-        console.log(css.split("|").length, css)
-
-
         switch (css.split("|").length) {
             case 2: {
                 var cssKey = css.split("|")[0]
@@ -187,7 +183,6 @@ class Editor extends Component {
                     });
 
                 } else {
-                    // backend.editSectionStyle(this.state.selectedId, cssKey, cssValue);
                     backend.getSubMenuItem_Style(this.state.selectedId, cssKey, cssValue);
                 }
                 break;
@@ -203,7 +198,7 @@ class Editor extends Component {
         }
 
         this.setState(
-            { page: backend.getPage(), }
+            { page: backend.getPage()}
         )
     }
 
@@ -211,12 +206,12 @@ class Editor extends Component {
         this.setState({ menu: 'main' });
     }
 
-    handleDelete = () => {
-        var page = this.state.page;
-        var activeSection = this.state.selectedId;
 
-        console.log("in handleDelete", page);
-        console.log(activeSection);
+    /**
+     * This method handles deleting an element from the page
+     */
+    handleDelete = () => {
+        var activeSection = this.state.selectedId;
 
         try{
             if(activeSection.split("|").length === 3){
@@ -228,29 +223,11 @@ class Editor extends Component {
             }
         }catch(Exception){
             backend.getSubMenuItem_Delete(this.state.page, activeSection);
-            // console.log("to delete", pageSectionToDelete);
-            // for (let i = 0; i < page.length; i++) {
-            //     if (page[i].id === activeSection) {
-            //         page.splice(i, 1);
-    
-            //     }
-            // }
         }
        
-
-        // this.state.activeSection.setState({ active: 0 });
+        // go back to main menu
         this.handleBack();
     }
-
-    /**
-     * This method sets the activeSection to the id of the element the user Selected on the EditingPage
-     * @param id id of the element selected on the editing Page
-     */
-    // setActive = (id) => {
-    //     // console.log("activeSec", activeSec);
-    //     this.setState({ activeSection: id })
-    // }
-
 
     render() {
         return (
