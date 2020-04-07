@@ -21,7 +21,7 @@ import EditMenuNav from './EditorMenus/EditorMenuNav';
 import SpacerEditorMenu from './EditorMenus/SpacerEditorMenu';
 import RowEditorMenu from './EditorMenus/RowEditorMenu';
 
-class EditorSideBar extends Component {
+export default class EditorSideBar extends Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -33,16 +33,18 @@ class EditorSideBar extends Component {
     * This method adds appends a PageSection component in to the EditingPage
     * It does this by appending it to the page json (handled in the EditorBackend)
     * This new page object is re-rendered on to the EditingPage when setState is called
-    * @param the name of the component which is recieved from the the button clicked on EditorSidebar
+    * @param name the name of the component which is recieved from the the button clicked on EditorSidebar
     */
     AddElementToColumn = (name) => {
-        console.log("Editor sidebar column", this.props.selectedId)
         this.props.onPush("Column", name, this.props.selectedId);
     }
 
+    /**
+     * This method returns the menus based on the menu properly 
+     * it is used to dynamically render a menu to match the Page Section component which the user has clicked on.
+     */
     returnMenu() {
         let menu = this.props.menu;
-        console.log("EditorSidebar menu", menu)
         switch (menu) {
             case "heading": {
                 return <> <HeadingEditorMenu selectedId={this.props.selectedId} menuComponentOnClick={this.props.menuComponentOnClick} /> <EditMenuNav handleBack={this.props.handleBack} handleDelete={this.props.handleDelete} /> </>
@@ -104,14 +106,9 @@ class EditorSideBar extends Component {
 
     render() {
         return (
-
             <div className="Editor-SideBar-Container">
-                {/* editor menus to be tested here */}
                 {this.returnMenu()}
             </div>
         );
     };
 }
-
-
-export default EditorSideBar
