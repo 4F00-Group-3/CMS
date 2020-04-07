@@ -213,25 +213,40 @@ class Editor extends Component {
 
     handleDelete = () => {
         var page = this.state.page;
-        var activeSection = this.state.activeSection;
+        var activeSection = this.state.selectedId;
 
-        console.log(page);
+        console.log("in handleDelete", page);
+        console.log(this.state.activeSection);
 
-        for (let i = 0; i < page.length; i++) {
-            if (page[i].id === activeSection) {
-                page.splice(i, 1);
-
+        try{
+            if(activeSection.split("|").length === 3){
+                var sectionId = activeSection.split("|");
+                var rowId = sectionId[0];
+                var columnId = sectionId[1];
+                var colSectionId = sectionId[2];
+                delete backend.getRowPage(this.state.page, activeSection);
+            }
+        }catch(Exception){
+            for (let i = 0; i < page.length; i++) {
+                if (page[i].id === activeSection) {
+                    page.splice(i, 1);
+    
+                }
             }
         }
-        console.log(this.state.activeSection);
+       
 
         // this.state.activeSection.setState({ active: 0 });
         this.handleBack();
     }
 
-    setActive = (i) => {
+    /**
+     * This method sets the activeSection to the id of the element the user Selected on the EditingPage
+     * @param id id of the element selected on the editing Page
+     */
+    setActive = (id) => {
         // console.log("activeSec", activeSec);
-        this.setState({ activeSection: i })
+        this.setState({ activeSection: id })
     }
 
 
