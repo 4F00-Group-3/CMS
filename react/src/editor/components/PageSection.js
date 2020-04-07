@@ -125,18 +125,36 @@ class PageSection extends Component {
     //     return cols;
     // }
 
-    renderColumnPage(cols) {
-        console.log("cols", this.props);
+    /**
+     * This method creates a number of columns beased on the passed cols value
+     * @param cols //columns inside row
+     */
+    renderRowColumns(numColumns, listOfColumns) {
+        console.log("num cols", numColumns);
+        console.log("list of columns", listOfColumns)
         // var numCols = cols.length;
-        // for (var i = 0; i < numCols; i++){
-
-        // }
+        var rowColumns = [];
+        for (var i = 0; i < numColumns; i++) {
+            rowColumns.push(
+                <Col key={i}>
+                    <ColEditingPage page={listOfColumns[i]} onSectionPush={this.props.onSectionPush} toggleClickClass={this.props.toggleClickClass} />
+                </Col>
+            );
+        }
         // //might need to pass a onSelectionPush and stuff into the backend.. not sure..TODO
-        return (
-            <Col>
-                <ColEditingPage page={cols} onSectionPush={this.props.onSectionPush} toggleClickClass={this.props.toggleClickClass} />
-            </Col>
-        );
+        return rowColumns;
+    }
+
+    renderColumnPages() {
+        // console.log("inside render column", this.props.page.page)
+
+        var numPages = this.props.page.page.length;
+        var pages = [];
+        for (var i = 0; i < numPages; i++) {
+
+            pages.push(<PageSection key={i} page={this.props.page.page[i]} onSectionPush={this.props.onSectionPush} toggleClickClass={this.props.toggleClickClass} />);
+        }
+        return pages;
     }
 
     returnElement() {
@@ -144,11 +162,13 @@ class PageSection extends Component {
             case "heading": {
                 // console.log(this.props.page)
                 return (
-                    <h1
-                        key={this.props.page.id}
-                        style={this.props.page.style[0]}>
-                        {this.props.page.text}
-                    </h1>
+                    <div>
+                        <h1
+                            key={this.props.page.id}
+                            style={this.props.page.style[0]}>
+                            {this.props.page.text}
+                        </h1>
+                    </div>
                 )
             }
             case "divider": {
@@ -188,7 +208,7 @@ class PageSection extends Component {
                 )
             }
             case "row": {
-                console.log("PageSection cols: ", this.props.page.page[0]);
+                console.log("PageSection cols: ", this.props.page);
                 return (
                     <div key={this.props.page.id}>
                         <Row>
@@ -199,7 +219,7 @@ class PageSection extends Component {
                                 </div>
                             </Col> */}
                             {/* used to be cols */}
-                            {this.renderColumnPage(this.props.page.page[0])} 
+                            {this.renderRowColumns(this.props.page.col, this.props.page.page)}
                         </Row>
                     </div>
                 );
@@ -209,8 +229,11 @@ class PageSection extends Component {
                 return (
                     <div key={this.props.page.id}>
                         {
-                            <div style={{ height: "100px", backgroundColor: "green" }}>
-                                <PageSection page={this.props.page.page[0]} onSectionPush={this.props.onSectionPush} toggleClickClass={this.props.toggleClickClass} />
+                            <div
+                            // style={{ height: "100px", backgroundColor: "green" }}
+                            >
+                                {this.renderColumnPages()}
+                                {/* <PageSection page={this.props.page.page[0]} onSectionPush={this.props.onSectionPush} toggleClickClass={this.props.toggleClickClass} /> */}
                             </div>
                         }
                     </div>
