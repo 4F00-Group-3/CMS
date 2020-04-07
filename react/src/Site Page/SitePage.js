@@ -105,7 +105,7 @@ class SitePage extends Component {
             showPopup: false
         };
         this.handleLogOut = this.handleLogOut.bind(this);
-        this.handleRedirectToAccoutingSettings = this.handleRedirectToAccoutingSettings.bind(this);
+        // this.handleRedirectToAccoutingSettings = this.handleRedirectToAccoutingSettings.bind(this);
         this.handleUpgradePlan = this.handleUpgradePlan.bind(this);
         if (sessionStorage.getItem("siteId")!==null) {
             sessionStorage.removeItem("siteId");
@@ -147,14 +147,14 @@ class SitePage extends Component {
     /**
      * This method handles redirect to account settings
      */
-    handleRedirectToAccoutingSettings() {
-        this.setState({
-            page: <AccountSettings/>
-        });
-        console.log(this.state);
-        // For testing purposes
-        // alert("Redirecting to Account Settings...oops we don't have an account settings page");
-    }
+    // handleRedirectToAccoutingSettings() {
+    //     this.setState({
+    //         page: <AccountSettings/>
+    //     });
+    //     console.log(this.state);
+    //     // For testing purposes
+    //     // alert("Redirecting to Account Settings...oops we don't have an account settings page");
+    // }
 
     /**
     * This method handles redirect to account settings

@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import '../css/SitePage.css'
 import AjaxCall from '../ajax.js';
-import Login from '../Components/loginpage';
+// import Login from '../Components/loginpage';
 
 export default class AccountSettings extends Component {
 constructor(props) {

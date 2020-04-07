@@ -19,18 +19,18 @@
 //}
 
 //constants GROUP
-//define('DB_NAME', 'c4f00g03');
-//define('DB_PASS', 'Brockus12!');
+define('DB_NAME', 'c4f00g03');
+define('DB_PASS', 'Brockus12!');
 //// define('DB_SCHEMA', 'c4f00g03'); //website specific, e.g. SELECT * FROM DB_SCHEMA.pages WHERE...
-//define('HOME_URL', 'https://www.cosc.brocku.ca/~c4f00g03/');
-//define('HOME_PATH', '/home/student/c4f00g03/public_html/');
+define('HOME_URL', 'https://www.cosc.brocku.ca/~jk16qd/');
+define('HOME_PATH', '/home/student/jk16qd/public_html/CMS/');
 
 // constants PERSONAL
- define('DB_NAME', 'cm15sp');
- define('DB_PASS', '6017974');
+ //define('DB_NAME', 'cm15sp');
+//  define('DB_PASS', '6017974');
  //define('DB_SCHEMA', 'public'); //website specific, e.g. SELECT * FROM DB_SCHEMA.pages WHERE...
- define('HOME_URL', 'https://www.cosc.brocku.ca/~cm15sp/');
- define('HOME_PATH', '/home/student/cm15sp/public_html/');
+//  define('HOME_URL', 'https://www.cosc.brocku.ca/~cm15sp/');
+//  define('HOME_PATH', '/home/student/cm15sp/public_html/');
 
 //LOCAL CONSTANTS
 //define('DB_NAME', 'localhost');
@@ -42,7 +42,7 @@
 //includes
 //HOME_PATH is used so there is no uncertainty in the file path
 require_once (HOME_PATH.'includes/Dbh.php'); 
-require_once(HOME_PATH . 'includes/Account.php');
+require_once (HOME_PATH. 'includes/Account.php');
 require_once (HOME_PATH.'includes/Media.php');
 require_once (HOME_PATH.'includes/Website.php');
 

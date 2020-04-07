@@ -28,7 +28,7 @@ import $ from "jquery";
 
 
 export default function AjaxCall(args, callback) {
-	$.post("../../php/ajax.php", args, callback);
+    $.post("https://www.cosc.brocku.ca/~jk16qd/CMS/php/ajax.php", args, callback);
 }
 
 /** Note: 
