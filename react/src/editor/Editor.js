@@ -202,6 +202,9 @@ class Editor extends Component {
         )
     }
 
+    /**
+     * TODO: This method handles going back to the last menu 
+     */
     handleBack = () => {
         this.setState({ menu: 'main' });
     }
@@ -214,18 +217,22 @@ class Editor extends Component {
         var activeSection = this.state.selectedId;
 
         try{
+            // Try and see if we are trying to delete an element within a column
             if(activeSection.split("|").length === 3){
                 var sectionId = activeSection.split("|");
                 var rowId = sectionId[0];
                 var columnId = sectionId[1];
                 var colSectionId = sectionId[2];
                 backend.getSubMenuItem_Delete(this.state.page, activeSection);
+                // TODO: handle deleting a column if the column is empty
+                // TODO: haandle deleting a row if the row is empty
             }
         }catch(Exception){
+
             backend.getSubMenuItem_Delete(this.state.page, activeSection);
         }
        
-        // go back to main menu
+        // go back to last menu, currently returns to main menu
         this.handleBack();
     }
 
