@@ -9,29 +9,60 @@ class EditorBackend {
         return this.state.page;
     }
 
-    getSubMenuItem(subMenuItems, id, style_key, style_value) {
+    getRowPage(id) {
+        console.log("backend, getrowpage", this.state.page)
+        // var row;
+
+        // for (var i = 0; i < this.state.page.length; i++) {
+        //     if (this.state.page[i].id === id) {
+        //         row = this.state.page[i].page;
+        //     }
+        // }
+        // return row;
+    }
+
+    getSubMenuItem_Style(id, style_key, style_value) {
+        // console.log("item", subMenuItems)
+        // if (subMenuItems) {
+        //     for (var i = 0; i < subMenuItems.length; i++) {
+        //         if (subMenuItems[i].id === id) {
+        //             //  return subMenuItems[i];
+        //             var style = JSON.parse(JSON.stringify(subMenuItems[i]['style'][0]));
+        //             style["" + style_key] = style_value;
+        //             subMenuItems[i]['style'][0] = style;
+        //             return;
+        //         } else {
+        //             // var found = this.getSubMenuItem(subMenuItems[i].page, id);
+        //             // if (found) return found;
+        //             this.getSubMenuItem_Style(subMenuItems[i].page, id, style_key, style_value);
+        //             // if (found) return found;
+        //         }
+        //     }
+        // }
+        var pageSection = this.getSubMenuItem(this.state.page, id);
+        var style = JSON.parse(JSON.stringify(pageSection['style'][0]));
+        style["" + style_key] = style_value;
+        pageSection['style'][0] = style;
+    };
+
+    getSubMenuItem_Text(id, jsonField, jsonValue) {
+        var pageSection = this.getSubMenuItem(this.state.page, id);
+        pageSection["" + jsonField] = jsonValue;
+    }
+
+    getSubMenuItem(subMenuItems, id) {
         console.log("item", subMenuItems)
         if (subMenuItems) {
             for (var i = 0; i < subMenuItems.length; i++) {
                 if (subMenuItems[i].id === id) {
-                    //  return subMenuItems[i];
-                    var style = JSON.parse(JSON.stringify(subMenuItems[i]['style'][0]));
-                    style[""+style_key] = style_value;
-                    subMenuItems[i]['style'][0] = style;
-                    return;
+                    return subMenuItems[i];
                 } else {
-                    // var found = this.getSubMenuItem(subMenuItems[i].page, id);
-                    // if (found) return found;
-                    this.getSubMenuItem(subMenuItems[i].page, id, style_key, style_value);
-                    // if (found) return found;
+                    var found = this.getSubMenuItem(subMenuItems[i].page, id);
+                    if (found) return found;
                 }
             }
         }
     };
-
-    findElementWithInRow(row, pageSectionid) {
-        var myColumns;
-    }
 
     editSectionStyle(_id, style_key, style_value) {
         var page = this.getPage()
@@ -78,75 +109,54 @@ class EditorBackend {
         this.state.page = result;
     }
 
-    editSectionStyle_Param(_id, style_key, style_value) {
-        var page = this.getPage()
-        console.log("length", page);
-        var result = page;
-        var pageSection = this.getSubMenuItem(page, _id, style_key, style_value); // this what I need to edit
-        /*
-        for (let index = 0; index < page.length; index++) {
-            console.log("backend pagesection:", pageSection);
-            if (pageSection.id === _id) {
-
-                //repopulate new css
-                var css = pageSection.style[0];
-                var newCSS = {};
-                for (var attribute in css) {
-                    if (attribute === style_key) {
-                        newCSS[attribute] = style_value;
-                    }
-                    else {
-                        newCSS[attribute] = css[attribute];
-                    }
-                }
-
-                console.log(newCSS);
-
-                //repopulate new page section
-                var newPageSection = {};
-                for (const key in pageSection) {
-                    if (key === "style") {
-                        newPageSection[key] = [newCSS];
-                    }
-                    else {
-                        newPageSection[key] = pageSection[key];
-                    }
-                }
-
-                result.push(newPageSection);
-
-                console.log("section style changed", newPageSection)
-            }
-            else {
-                result.push(pageSection)
-            }
-
-        }
-        */
-        this.state.page = result;
-    }
-
-    editSectionRow(id, value) {
+    /**
+     * This method will add or remove columns from a row component
+     * @param {*} rowId the id of the row to edit
+     * @param {*} numColumns the new number of columns with in the row
+     */
+    editSectionRow(rowId, numColumns) {
+        console.log("in edit sec row", rowId, numColumns)
         var page = this.getPage()
         var result = [];
         for (let index = 0; index < page.length; index++) {
             var pageSection = page[index];
-            if (pageSection.id === id) {
-                pageSection.col = value;
-                console.log(pageSection);
+            var exitingRowColumns = parseInt(pageSection.col)
+            console.log("edit row", pageSection)
+            console.log(pageSection.col + "<" + numColumns);
+            console.log(pageSection.col < numColumns)
+            if (pageSection.id === rowId) {
+                if (exitingRowColumns < numColumns) {         // add a column
+                    for (var i = exitingRowColumns; i < numColumns; i++) {
+                        pageSection.page.push(this.returnBasicColumnObj(rowId, (i + 1)))
+                    }
+                }
+                else if (exitingRowColumns > numColumns) {    // remove a column
+                    for (var i = numColumns; i < exitingRowColumns; i++) {
+                        pageSection.page.pop();
+                    }
+                }
+                console.log("new pagesection in row edit", pageSection);
+                // update number of column values
+                pageSection.col = numColumns;
                 result.push(pageSection);
+                return numColumns;
             }
         }
     }
 
-    returnBasicColumnObj(id) {
-        var jsonObj = [{
-            id: id + "|" + 1,
+    /**
+     * This method returns a basic column object to add to a row
+     * @param {*} rowId row id to associate this column with
+     * @param {*} colId the column id of this column object within the row
+     */
+    returnBasicColumnObj(rowId, colId) {
+        var jsonObj = {
+            id: rowId + "|" + colId,
             type: "column",
             style: [],
             page: [
                 {
-                    id: 99,
+                    id: rowId + "|" + colId + "|" + 1,
                     type: "heading",
                     text: "heading 1",
                     parent: "column",
@@ -159,7 +169,7 @@ class EditorBackend {
                     ],
                 }
             ]
-        }];
+        };
         return jsonObj;
     }
 
@@ -310,7 +320,7 @@ class EditorBackend {
         ];
     }
 
-    add(pageSection) {
+    add(pageSection, subPageSection, elementId) {
         var page = this.state.page;
         var jsonObj;
         switch (pageSection) {
@@ -444,38 +454,50 @@ class EditorBackend {
                 break;
             }
             case "Row": {
-                var colObj = this.returnBasicColumnObj(page.length + 1);
+                var colObj = this.returnBasicColumnObj(page.length + 1, 1);
                 jsonObj = {
                     id: page.length + 1,
                     type: "row",
                     style: [],
                     col: 1,
-                    page: colObj
+                    page: [colObj]
                 };
                 this.state.page.push(jsonObj);
                 break;
             }
             case "Column": {
-                jsonObj = {
-                    id: page.length + 1,
-                    type: "column",
-                    style: [],
-                    page: [
-                        {
-                            id: 99,
-                            type: "heading",
-                            text: "heading 1",
-                            style: [
-                                {
-                                    color: "black",
-                                    fontSize: "10vh",
-                                    textAlign: "left",
-                                }
-                            ],
-                        }
-                    ]
-                };
-                this.state.page.push(jsonObj);
+                var rowId = elementId.split("|")[0];
+                var columnId = elementId.split("|")[1];
+                var column = this.getSubMenuItem(this.getPage(), rowId + "|" + columnId)
+                console.log("backend column", column);
+
+                var backend = new EditorBackend();
+                backend.add(subPageSection);
+                var pageSectionToAdd = backend.getPage()[0];
+                pageSectionToAdd.id = rowId + "|" + columnId + "|" + (column.page.length + 1);
+
+                column.page.push(pageSectionToAdd);
+
+                // jsonObj = {
+                //     id: page.length + 1,
+                //     type: "column",
+                //     style: [],
+                //     page: [
+                //         {
+                //             id: 99,
+                //             type: "heading",
+                //             text: "heading 1",
+                //             style: [
+                //                 {
+                //                     color: "black",
+                //                     fontSize: "10vh",
+                //                     textAlign: "left",
+                //                 }
+                //             ],
+                //         }
+                //     ]
+                // };
+                // this.state.page.push(jsonObj);
                 break;
             }
             default: {
