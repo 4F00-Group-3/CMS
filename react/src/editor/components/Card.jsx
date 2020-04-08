@@ -3,7 +3,7 @@ import { useDrag, useDrop } from 'react-dnd'
 import ItemTypes from './ItemTypes'
 import PageSection from "./PageSection"
 
-const Card = ({ page, onSectionPush, index, moveCard, clicked }) => {
+const Card = ({ page, onClick, onSectionPush, index, moveCard, clicked }) => {
 
   const ref = useRef(null);
 
@@ -48,6 +48,7 @@ const Card = ({ page, onSectionPush, index, moveCard, clicked }) => {
         page={page}
         onSectionPush={onSectionPush}
         clicked={clicked}
+        onClick={onClick}
       />
     </div>
   )

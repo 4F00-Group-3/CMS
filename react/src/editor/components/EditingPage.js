@@ -14,6 +14,14 @@ class EditingPage extends Component {
   }
 
   /**
+   * This element sets highlights the current element the user is editing
+   * @param {*} id id of the active element
+   */
+  handleActiveElement = (id) => {
+    this.setState({ active: id });
+  }
+
+  /**
    * This method renders a page from JSON onto the actual page editor
    * Can be reused for actual page viewing as well
    * Returns the sections added to the editor page
@@ -27,7 +35,7 @@ class EditingPage extends Component {
           onSectionPush: this.props.onSectionPush,
           // clicked is used later inside the PageSection to highlight a selected PageSection Component
           clicked: (this.state.active === this.props.page[i].id ? true : false),
-          onClick: this.props.page.onClick
+          onClick: this.handleActiveElement
         }
         x.push(y) //push to array
       }

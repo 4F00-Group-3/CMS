@@ -196,11 +196,12 @@ class PageSection extends Component {
 
     render() {
         // this clicked methid here is used to height the selected page section
-        const isClicked = this.props.page.clicked;
+        const isClicked = this.props.clicked;
         var classList = isClicked ? "pageSectionClick" : "pageSection";
         return (
             <div className={classList} onClick={e => {
                 this.props.onSectionPush(this.props.page.id, this.props.page.type, this.props.page.style[0]);
+                this.props.onClick(this.props.page.id)
                 e.stopPropagation();
             }}>
                 {this.returnElement()}
