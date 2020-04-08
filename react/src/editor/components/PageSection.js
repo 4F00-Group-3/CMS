@@ -102,7 +102,7 @@ class PageSection extends Component {
         for (var i = 0; i < numColumns; i++) {
             rowColumns.push(
                 <Col key={i}>
-                    <PageSection page={listOfColumns[i]} onSectionPush={this.props.onSectionPush} />
+                    <PageSection page={listOfColumns[i]} onSectionPush={this.props.onSectionPush} clicked={this.props.click} onClick={this.props.onClick} />
                 </Col>
             );
         }
@@ -116,7 +116,9 @@ class PageSection extends Component {
         var numPages = this.props.page.page.length;
         var pages = [];
         for (var i = 0; i < numPages; i++) {
-            pages.push(<PageSection key={i} page={this.props.page.page[i]} onSectionPush={this.props.onSectionPush} />);
+            pages.push(
+                <PageSection key={i} page={this.props.page.page[i]} onSectionPush={this.props.onSectionPush} clicked={this.props.click} onClick={this.props.onClick} />
+            );
         }
         return pages;
     }
@@ -180,7 +182,6 @@ class PageSection extends Component {
                 );
             }
             case "column": {
-                console.log('PageSection column', this.props.page);
                 return (
                     <div key={this.props.page.id}>
                         {this.renderColumnPages()}
@@ -200,8 +201,8 @@ class PageSection extends Component {
         var classList = isClicked ? "pageSectionClick" : "pageSection";
         return (
             <div className={classList} onClick={e => {
-                this.props.onSectionPush(this.props.page.id, this.props.page.type, this.props.page.style[0]);
                 this.props.onClick(this.props.page.id)
+                this.props.onSectionPush(this.props.page.id, this.props.page.type, this.props.page.style[0]);
                 e.stopPropagation();
             }}>
                 {this.returnElement()}
