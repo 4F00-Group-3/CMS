@@ -34,7 +34,7 @@ class EditingPage extends Component {
           page: this.props.page[i],
           onSectionPush: this.props.onSectionPush,
           // clicked is used later inside the PageSection to highlight a selected PageSection Component
-          clicked: (this.state.active === this.props.page[i].id ? true : false),
+          clicked: this.state.active === this.props.page[i].id,
           onClick: this.handleActiveElement
         }
         x.push(y) //push to array
