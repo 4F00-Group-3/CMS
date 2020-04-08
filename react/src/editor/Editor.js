@@ -88,11 +88,8 @@ class Editor extends Component {
      * based on which PageSection component the user clicked in the EditingPage
      * @param _id this is the idea of the specific component
      * @param _type this is the type of the specific component
-     * @param _style the css for the specific component
      */
-    pageSection_onClick = (_id, _type, _style) => {
-        console.log(_type)
-        console.log("editor pagesection clicked", _id)
+    pageSection_onClick = (_id, _type) => {
         switch (_type) {
             case "heading": {
                 this.setState({
