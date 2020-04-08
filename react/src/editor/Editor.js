@@ -241,7 +241,7 @@ class Editor extends Component {
             <>
                 <EditorSideBar onPush={this.addToPage_onClick} menu={this.state.menu} selectedId={this.state.selectedId} selectedRowNumberOfColumns={this.state.selectedRowNumberOfColumns} menuComponentOnClick={this.menuComponentOnClick} handleBack={this.handleBack} handleDelete={this.handleDelete} />
                 <div style={{ marginLeft: "50vh" }}>
-                    <EditingPage page={this.state.page} onSectionPush={this.pageSection_onClick} setActive={this.setActive} />
+                    <EditingPage page={this.state.page} onSectionPush={this.pageSection_onClick} />
                 </div>
             </>
         );
