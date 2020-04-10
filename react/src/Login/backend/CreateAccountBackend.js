@@ -2,17 +2,12 @@
 class LoginBackend {
     constructor() {
         this.f = null;
-        this.l = null;
     }
 
-    redirect(id, subcscription) {
+    redirect(id, subscription) {
         sessionStorage.setItem("id", id);
-        sessionStorage.setItem("tier", subcscription);
+        sessionStorage.setItem("tier", subscription);
         this.f();
-    }
-
-    redirectNewPass() {
-        this.l();
     }
 }
 

@@ -4,7 +4,8 @@ import Editor from '../editor/Editor';
 import Dashboard from '../dashboard/Dashboard'
 import SitePage from '../Site Page/SitePage';
 import Login from '../Login/loginpage';
-import CreateAccount from '../Components/createAccount.js';
+import CreateAccount from '../Login/createAccount.js';
+import GetStarted from '../Components/getStarted';
 
 class MasterTestMenu extends Component {
   constructor(props) {
@@ -20,6 +21,7 @@ class MasterTestMenu extends Component {
     this.handleSitePageClick = this.handleSitePageClick.bind(this);
     this.handleLoginClick = this.handleLoginClick.bind(this);
     this.handleCreateAccountClick = this.handleCreateAccountClick.bind(this);
+    this.handleGetStartedClick = this.handleGetStartedClick.bind(this);
   }
 
   handler() {
@@ -50,6 +52,10 @@ class MasterTestMenu extends Component {
     this.setState({ viewPage: "SitePage" });
   }
 
+  handleGetStartedClick() {
+    this.setState({ viewPage: "GetStarted" });
+  }
+
 
   render() {
     const view = this.state.viewPage;
@@ -70,11 +76,15 @@ class MasterTestMenu extends Component {
                       handleHomeClick={this.handleHomeClick}/>;
         break;
       case "Create Account":
-        page = <CreateAccount handleSitePageClick = {this.handleSitePageClick}/>;
+        page = <CreateAccount handleSitePageClick = {this.handleSitePageClick}
+                              handleGetStartedClick = {this.handleGetStartedClick}/>;
         break;
       case "SitePage":
         page = <SitePage handleHomeClick = {this.handleHomeClick}
                          handleDashClick = {this.handleDashClick}/>;
+        break;
+      case "GetStarted":
+        page = <GetStarted handleSitePageClick = {this.handleSitePageClick}/>;
         break;
       default:
         page = <Home />;
@@ -88,6 +98,7 @@ class MasterTestMenu extends Component {
           <button onClick={this.handleLoginClick}>Login</button>
           <button onClick={this.handleCreateAccountClick}>Create Account</button>
           <button onClick={this.handleSitePageClick}>Site Page</button>
+          <button onClick={this.handleGetStartedClick}>GetStart</button>
         </div>
         <div id="testingCanvas">
           {page}

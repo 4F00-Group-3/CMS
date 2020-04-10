@@ -33,8 +33,9 @@ class LoginPage extends Component {
             let responseArray = JSON.parse(response.split('php-cgi')[1].trim());
             console.log(responseArray);
             let accountId = responseArray.accountId;
+            let subscription = responseArray.subscription;
             console.log(accountId);
-            backend.redirect(accountId);
+            backend.redirect(accountId, subscription);
             // REDIRECT TO ANOTHER PAGE AFTER THIS
           } else {
             //TODO::LOGIN FAILED DISPLAY ERROR MSG
@@ -51,12 +52,7 @@ class LoginPage extends Component {
         function(response) {
           console.log(response);
           if (!response.toString().includes("false")) {
-            // let responseArray = JSON.parse(response.split('php-cgi')[1].trim());
-            // console.log(responseArray);
-            // let accountId = responseArray.accountId;
-            console.log("WOWZA");
             backend.redirectNewPass();
-            // REDIRECT TO ANOTHER PAGE AFTER THIS
           } else {
             //TODO::LOGIN FAILED DISPLAY ERROR MSG
             alert("Incorrect email. Please try again.")

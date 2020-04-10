@@ -16,6 +16,7 @@ class Account {
 	public $lastName;  
 	public $type;
 	public $password;
+	public $subscription;
 
 	//initalize new account
 	function __construct($accountId, $email, $firstName, $lastName, $type,  $password, $sub) {
@@ -49,10 +50,13 @@ class Account {
     public static function getAccountById($account_id){
         $stmt = Dbh::connect() ->PREPARE("SELECT * FROM accounts WHERE account_id=?");
         $stmt->execute([$account_id]);
-
+        $account = array();
         if($stmt->rowCount()){
-			$accountInfo = $stmt->fetch(PDO::FETCH_ASSOC);
-            return new Account($accountInfo['account_id'], $accountInfo['email'], $accountInfo['first_name'], $accountInfo['last_name'], $accountInfo['account_type'], $accountInfo['password'], $accountInfo['subscription']);
+            while ($row = $stmt->fetch()){
+                $account = array("id"=>$row['account_id'], "email"=>$row['email'], "firstName"=>$row['first_name'], "lastName"=>$row['last_name'],
+                    "type"=>$row['account_type'],"password"=>$row['password'],"subscription"=>$row['subscription']);
+            }
+            return $account;
         } else {
 			return false;
 		}
@@ -94,6 +98,17 @@ class Account {
 
         $stmt = Dbh::connect() ->PREPARE('UPDATE accounts SET password=? WHERE email = ?;');
         $stmt->execute([$pw, $email]);
+        if($stmt->rowCount()){
+            return true;
+        }else {
+            return false;
+        }
+    }
+
+    //add a new account to the database
+    public static function confirmSubscription($accountId, $subscription){
+        $stmt = Dbh::connect() ->PREPARE('UPDATE accounts SET subscription=? WHERE account_id = ?;');
+        $stmt->execute([$subscription, $accountId]);
         if($stmt->rowCount()){
             return true;
         }else {

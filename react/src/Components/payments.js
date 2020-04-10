@@ -2,6 +2,7 @@ import React from "react";
 import PaypalExpressBtn from "react-paypal-express-checkout";
 import Dashboard from "../dashboard/Dashboard";
 import { CardActions } from "@material-ui/core";
+import AjaxCall from "../ajax";
 
 export default class Payments extends React.Component {
   constructor(props) {
@@ -17,15 +18,43 @@ export default class Payments extends React.Component {
 
   render() {
     var amount = this.props.amount;
+
+
     const onSuccess = (payment) => {
       // Congratulation, it came here means everything's fine!
       console.log("The payment has succeeded!", payment);
+      var subscription;
+      if (amount === 10){
+        subscription = 1;
+      }else if(amount === 20)
+        subscription = 2;
+      else
+        subscription = 3;
+
+      const redirect = this.props.handleSitePageClick;
+      AjaxCall(
+          { function: "confirmSubscription", accountId: sessionStorage.getItem("id"), subscription: subscription},
+          function(response) {
+            console.log(response);
+            if (!response.toString().includes("false")) {
+              let responseArray = JSON.parse(response.split('php-cgi')[1].trim());
+              console.log(responseArray);
+              let accountId = responseArray.accountId;
+              console.log(accountId);
+              sessionStorage.setItem('tier',amount);
+              redirect();
+              // REDIRECT TO ANOTHER PAGE AFTER THIS
+            } else {
+              alert("Payment failed to process. Please try again.")
+            }
+          }
+      );
       //window.location.pathname = "../dashboard/Dashboard";
       /*  this.setState({
         page: <Dashboard getStartedOnClick={this.getStarted_OnClick} />,
         activeButton: "",
       }); */
-      this.props.history.push("/../dashboard/Dashboard");
+      // this.props.history.push("/../dashboard/Dashboard");
       // You can bind the "payment" object's value to your state or props or whatever here, please see below for sample returned data
     };
 

@@ -1,27 +1,26 @@
 #!/usr/bin/php-cgi
 <?php
 require_once ('header_functions.php');
-require_once ('payment.php');
+//require_once ('payment.php');
 
 $functions = array('test', 'currentUser', 'updateUser','currentUserId', 'addUser', 'getAllPages', 'getAllUsers', 'getMedia', 'getPage',
     'addMedia', 'addPage', 'deletePage', 'deleteUser', 'login', 'createAccount', 'createWebsite', 'getWebsiteData',
-    'getPagesData','getUsersData','getAccountMedia', 'deleteUser', 'deletePage', 'addUser','addPage', 'updateAccountPassword', 'display10payment');
+    'getPagesData','getUsersData','getAccountMedia', 'deleteUser', 'deletePage', 'addUser','addPage', 'updateAccountPassword', 'confirmSubscription');
 
 if(isset($_POST['function']) && in_array($_POST['function'], $functions)){
     $_POST['function']();
 }
 
 function display10payment(){
-    include 'payments.php';
 }
 
 function createAccount(){
     if (!empty($_POST)) {
         $account = Account::addAccount($_POST['email'], $_POST['first_name'], $_POST['last_name'], 'ADMIN', $_POST['password']);
-        if (!$account) {
-            echo 'There was a problem creating your account!';
+        if ($account === false) {
+            echo "false";
         } else {
-            echo 'Account created!';
+            echo json_encode($account);
         }
     }
     die;
@@ -58,6 +57,7 @@ function login(){
     }
     if($success === true){
         $response['accountId'] = $account->accountId;
+        $response['subscription'] = $account->subscription;
         echo json_encode($response);
     }else{
         echo "false";
@@ -70,6 +70,19 @@ function updateAccountPassword(){
     if (!empty($_POST['email']) && !empty($_POST['password'])) {
         $email = filter_var($_POST['email'], FILTER_VALIDATE_EMAIL);
         $success = Account::updatePassword($email, $_POST['password']);
+    }
+    if($success === true){
+        echo "true";
+    }else{
+        echo "false";
+    }
+    die;
+}
+
+function confirmSubscription(){
+    $success = false;
+    if (!empty($_POST['accountId']) && !empty($_POST['subscription'])) {
+        $success = Account::confirmSubscription($_POST['accountId'], $_POST['subscription']);
     }
     if($success === true){
         echo "true";
