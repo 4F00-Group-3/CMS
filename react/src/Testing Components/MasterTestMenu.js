@@ -52,7 +52,7 @@ class MasterTestMenu extends Component {
 
 
   render() {
-    sessionStorage.setItem("id", 1); // testing
+    // sessionStorage.setItem("id", 1); // testing
     const view = this.state.viewPage;
     let page;
     switch (view) {
