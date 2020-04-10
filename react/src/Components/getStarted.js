@@ -10,6 +10,7 @@ import {
   Footer,
   FooterLinkList,
 } from "react-mdl";
+import Payments from "./payments";
 
 class getStarted extends Component {
   render() {
@@ -27,12 +28,15 @@ class getStarted extends Component {
                   expand
                   style={{
                     color: "#fff",
-                    background: "url(./imagesFolder/FirstPlan.jpg)"
+                    background: "url(./imagesFolder/FirstPlan.jpg)",
                   }}
                 ></CardTitle>
                 <CardText>Get started with building web applications!</CardText>
                 <CardActions border>
-                  <a href="#" onClick={this.props.signUp_click}>Sign up</a>
+                  <Payments amount={10}>Pay</Payments>
+                  <a href="#" onClick={this.props.signUp_click}>
+                    Sign up
+                  </a>
                 </CardActions>
               </Card>
 
@@ -44,14 +48,17 @@ class getStarted extends Component {
                   expand
                   style={{
                     color: "#fff",
-                    background: "url(./imagesFolder/SecondPlan.jpg)"
+                    background: "url(./imagesFolder/SecondPlan.jpg)",
                   }}
                 ></CardTitle>
                 <CardText>
                   Take your business to the next level with premium features!
                 </CardText>
                 <CardActions border>
-                  <a href="#" onClick={this.props.signUp_click}>Sign up</a>
+                  <Payments amount={20}>Pay</Payments>
+                  <a href="#" onClick={this.props.signUp_click}>
+                    Sign up
+                  </a>
                 </CardActions>
               </Card>
 
@@ -63,7 +70,7 @@ class getStarted extends Component {
                   expand
                   style={{
                     color: "#fff",
-                    background: "url(./imagesFolder/ThirdPlan.jpg)"
+                    background: "url(./imagesFolder/ThirdPlan.jpg)",
                   }}
                 ></CardTitle>
                 <CardText>
@@ -71,13 +78,19 @@ class getStarted extends Component {
                   your customers!
                 </CardText>
                 <CardActions border>
-                  <a href="#" onClick={this.props.signUp_click}>Sign up</a>
+                  <Payments amount={30}>Pay</Payments>
+                  <a href="#" onClick={this.props.signUp_click}>
+                    Sign up
+                  </a>
                 </CardActions>
               </Card>
             </div>
           </Cell>
         </Grid>
-        <Footer size="mini">
+        <Footer
+          style={{ bottom: "0", position: "fixed", width: "100%" }}
+          size="mini"
+        >
           <FooterSection type="left" logo="No">
             <FooterLinkList>
               <a href="#">Help</a>
@@ -86,7 +99,6 @@ class getStarted extends Component {
           </FooterSection>
         </Footer>
       </div>
-
     );
   }
 }

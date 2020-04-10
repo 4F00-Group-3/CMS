@@ -202,7 +202,7 @@ class landingPage extends Component {
             </Cell>
           </Grid>
         </div>
-        <div style={{ paddingbottom: "60px" }}>
+        <div className="sticky-bottom">
           <Footer size="mini">
             <FooterSection type="left" logo="NO.">
               <FooterLinkList>
