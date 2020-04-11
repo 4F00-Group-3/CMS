@@ -58,13 +58,7 @@
   padding: 10px;
 }
 
-.PageListItem .LinkContainer {
-  float: right;
-}
 
-.PageListItem .LinkContainer .Link {
-  padding-left: 7vh;
-}
 
 .Components-Editor {
   margin-top: 2vh;

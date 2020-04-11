@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import User from './User';
-import '../../css/PageAdmin.css';
+import '../../css/Dashboard.css';
 import AjaxCall from "../../ajax";
 
 /*Popup class for the add page pop up, handles opening the popup and passing
@@ -112,7 +112,7 @@ class Users extends Component {
                             })}
                         </ol>
                         
-                        <button onClick={this.togglePopup.bind(this)}>Add User</button>
+                        <button className='add-page-button btn btn-primary ' onClick={this.togglePopup.bind(this)}>Add User</button>
                        {this.state.showPopup ? 
                             <Popup
                                 text='Enter the name of the new user.'

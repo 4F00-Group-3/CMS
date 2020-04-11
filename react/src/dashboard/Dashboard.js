@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import Pages from "./components/Pages";
 import TopBar from "./components/TopBar";
 import SideBar from "./components/SideBar";
-import "../css/PageAdmin.css";
+import "../css/Dashboard.css";
 import Users from "./components/Users";
 import Settings from "./components/Settings";
 import { Redirect, Router } from "react-router-dom";

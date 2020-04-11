@@ -1,5 +1,9 @@
 import React, { Component } from "react";
-import "../../css/PageAdmin.css";
+import "../../css/Dashboard.css";
+import Row from 'react-bootstrap/Row';
+import Col from 'react-bootstrap/Col';
+import Container from 'react-bootstrap/Container';
+import Button from 'react-bootstrap/Button';
 
 class ListItem extends Component {
   constructor(props) {
@@ -14,42 +18,51 @@ class ListItem extends Component {
   render() {
     if (this.props.type === "page") {
       return (
-        <div className="PageListItem">
-          {this.props.title}
-          <div className="LinkContainer">
-            <button
-              className="inner-edit-dashButtons"
-              onClick={this.props.onPageEdit}
-            >
-              {" "}
+        <Container className="PageListItem">
+          <Row>
+            <Col className='dash-text'>{this.props.title}</Col>
+            <Col xs lg={2} style={{ padding: 0 }}>
+              <Button
+                className="inner-edit-dashButtons right"
+                onClick={this.props.onPageEdit}
+              >
+                {" "}
               Edit
-            </button>
-            <button
-              href="#"
-              className="inner-delete-dashButtons"
-              onClick={this.props.onPageDelete}
-            >
-              {" "}
+            </Button>
+            </Col>
+            <Col xs lg={2} style={{ padding: 0 }}>
+              <Button
+                href="#"
+                className="inner-delete-dashButtons right"
+                onClick={this.props.onPageDelete}
+                variant='danger'
+              >
+                {" "}
               Delete
-            </button>
-          </div>
-        </div>
+            </Button>
+            </Col>
+          </Row>
+        </Container>
       );
     } else {
       return (
-        <div className="UserListItem">
-          {this.props.title}
-          <div className="LinkContainer">
-            <button
-              href="#"
-              className="inner-delete-dashButtons"
-              onClick={this.props.onDelete}
-            >
-              {" "}
+        <Container className="UserListItem">
+          <Row>
+            <Col className='dash-text'>
+              {this.props.title}
+            </Col>
+            <Col xs lg={2} style={{ padding: 0 }}>
+                <Button
+                  href="#"
+                  className="inner-delete-dashButtons right"
+                  onClick={this.props.onDelete}
+                >
+                  {" "}
               Delete
-            </button>
-          </div>
-        </div>
+            </Button>
+            </Col>
+          </Row>
+        </Container>
       );
     }
   }
