@@ -1,8 +1,10 @@
 import React, { Component } from "react";
 import Container from "@material-ui/core/Container";
 import Card from "@material-ui/core/Card";
-import "./LandingPage.css";
+import "../Components/LandingPage.css";
 import AjaxCall from "../ajax.js";
+import CreateAccountBackend from "./backend/CreateAccountBackend";
+let backend = new CreateAccountBackend();
 
 class createAccount extends Component {
   constructor(props) {
@@ -13,7 +15,7 @@ class createAccount extends Component {
       fn: "",
       ln: ""
     };
-
+    backend.f = props.handleGetStartedClick;
     if (sessionStorage.getItem('id') !== null) {
       props.handleSitePageClick();
     }
@@ -56,8 +58,16 @@ class createAccount extends Component {
         last_name: this.state.ln
       },
       function(response) {
-        console.clear();
         console.log(response);
+        if (!response.toString().includes("false")) {
+          let responseArray = JSON.parse(response.split('php-cgi')[1].trim());
+          console.log(responseArray);
+          let accountId = responseArray.id;
+          console.log(accountId);
+          backend.redirect(accountId);
+        }else{
+          alert("Unable to create account. Email already in use.")
+        }
       }
     );
   };
