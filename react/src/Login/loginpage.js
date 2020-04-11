@@ -19,6 +19,7 @@ class LoginPage extends Component {
     this.forgotPasswordOnclick = this.forgotPasswordOnclick.bind(this);
     backend.f = props.handleSitePageClick;
     backend.l = props.handleHomeClick;
+    backend.g = props.handleGetStartedClick;
     if (sessionStorage.getItem('id') !== null) {
       props.handleSitePageClick();
     }
