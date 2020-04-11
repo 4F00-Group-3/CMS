@@ -17,8 +17,8 @@
   margin-top: 2vh;
   margin: auto;
   width: 50vh;
-  height: 100vh;
-  background: rgb(26, 26, 26);
+  height: auto;
+  background:  #2d3436;
   /*border: 3px solid green;*/
   float: left;
   position: fixed;
@@ -37,12 +37,12 @@
   margin: auto;
   width: 50vh;
   height: 100vh;
-  background: rgb(26, 26, 26);
+  background:  #2d3436;
   /*border: 3px solid green;*/
   float: left;
   position: fixed;
 
-  display: block;
+  display: flex;
   justify-content: center;
   align-items: center;
   /* height: 100%; */
@@ -79,4 +79,24 @@
 
 .edit-menu-nav {
   margin: 2%;
+}
+
+.sidebar-button {
+  height: 20%;
+  border-radius: 20px;
+  margin: 5%;
+  border: 0px hidden;
+  background-color: #FFF;
+  padding: 4%;
+}
+
+.sidebar-icon {
+  height: 8vh!important;
+  width: 8vh!important;
+  color: #2d3436;
+}
+
+p {
+  color: #2d3436!important;
+  margin-bottom: 0!important;
 }

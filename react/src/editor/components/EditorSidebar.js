@@ -6,7 +6,7 @@ import {
     faBars,
     faAlignRight,
     faAsterisk,
-    faArrowDown,
+    faInfo,
     faCircle,
     faColumns
 } from "@fortawesome/free-solid-svg-icons";
@@ -79,7 +79,7 @@ export default class EditorSideBar extends Component {
                             <EditorButton text="Button" faIcon={faAsterisk} onClick={this.AddElementToColumn} />
                             <EditorButton text="Dividers" faIcon={faBars} onClick={this.AddElementToColumn} />
                             <EditorButton text="Spacer" faIcon={faAlignRight} onClick={this.AddElementToColumn} />
-                            <EditorButton text="Icon" faIcon={faArrowDown} onClick={this.AddElementToColumn} />
+                            <EditorButton text="Icon" faIcon={faInfo} onClick={this.AddElementToColumn} />
                             <EditorButton text="Video" faIcon={faCircle} onClick={this.AddElementToColumn} />
                             <EditMenuNav handleBack={this.props.handleBack} handleDelete={this.props.handleDelete} />
                         </div>
@@ -95,7 +95,7 @@ export default class EditorSideBar extends Component {
                         <EditorButton text="Dividers" faIcon={faBars} onClick={this.props.onPush} />
                         <EditorButton text="Spacer" faIcon={faAlignRight} onClick={this.props.onPush} />
                         <EditorButton text="Row" faIcon={faColumns} onClick={this.props.onPush} />
-                        <EditorButton text="Icon" faIcon={faArrowDown} onClick={this.props.onPush} />
+                        <EditorButton text="Icon" faIcon={faInfo} onClick={this.props.onPush} />
                         <EditorButton text="Video" faIcon={faCircle} onClick={this.props.onPush} />
                     </div>
                 </>
