@@ -50,7 +50,8 @@ class getStarted extends Component {
                 ></CardTitle>
                 <CardText>Get started with building web applications!</CardText>
                 <CardActions border>
-                  <Payments amount={10}>Pay</Payments>
+                  <Payments amount={10}
+                            handleSitePageClick = {this.props.handleSitePageClick}>Pay</Payments>
                   <a href="#" onClick={this.props.signUp_click}>
                     Sign up
                   </a>
@@ -72,7 +73,8 @@ class getStarted extends Component {
                   Take your business to the next level with premium features!
                 </CardText>
                 <CardActions border>
-                  <Payments amount={20}>Pay</Payments>
+                  <Payments amount={20}
+                            handleSitePageClick = {this.props.handleSitePageClick}>Pay</Payments>
                   <a href="#" onClick={this.props.signUp_click}>
                     Sign up
                   </a>
@@ -95,7 +97,8 @@ class getStarted extends Component {
                   your customers!
                 </CardText>
                 <CardActions border>
-                  <Payments amount={30}>Pay</Payments>
+                  <Payments amount={30}
+                            handleSitePageClick = {this.props.handleSitePageClick}>Pay</Payments>
                   <a href="#" onClick={this.props.signUp_click}>
                     Sign up
                   </a>

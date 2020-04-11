@@ -7,7 +7,7 @@ import LoginPage from "../Login/loginpage";
 import passwordsubmit from "./passwordsubmit";
 import submitemail from "./submitemail";
 import securityCode from "./securityCode";
-import createAccount from "./createAccount";
+import createAccount from "../Login/createAccount";
 import ImageEditor from "./ImageEditor";
 
 const Main = () => (
