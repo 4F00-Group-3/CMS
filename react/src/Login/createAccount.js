@@ -7,6 +7,9 @@ import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import { Jumbotron } from "react-bootstrap";
 import '../css/LoginPage.css';
+import "../css/LandingPage.css";
+import CreateAccountBackend from "./backend/CreateAccountBackend";
+let backend = new CreateAccountBackend();
 
 class CreateAccount extends Component {
   constructor(props) {
@@ -17,7 +20,7 @@ class CreateAccount extends Component {
       fn: "",
       ln: ""
     };
-
+    backend.f = props.handleGetStartedClick;
     if (sessionStorage.getItem('id') !== null) {
       props.handleSitePageClick();
     }
@@ -59,9 +62,17 @@ class CreateAccount extends Component {
         first_name: this.state.fn,
         last_name: this.state.ln
       },
-      function (response) {
-        console.clear();
+      function(response) {
         console.log(response);
+        if (!response.toString().includes("false")) {
+          let responseArray = JSON.parse(response.split('php-cgi')[1].trim());
+          console.log(responseArray);
+          let accountId = responseArray.id;
+          console.log(accountId);
+          backend.redirect(accountId);
+        }else{
+          alert("Unable to create account. Email already in use.")
+        }
       }
     );
   };

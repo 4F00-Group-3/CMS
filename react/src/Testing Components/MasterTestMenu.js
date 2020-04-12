@@ -5,6 +5,7 @@ import Dashboard from '../dashboard/Dashboard'
 import SitePage from '../Site Page/SitePage';
 import Login from '../Login/LoginPage';
 import CreateAccount from '../Login/CreateAccount';
+import GetStarted from '../Components/getStarted';
 
 class MasterTestMenu extends Component {
   constructor(props) {
@@ -20,6 +21,7 @@ class MasterTestMenu extends Component {
     this.handleSitePageClick = this.handleSitePageClick.bind(this);
     this.handleLoginClick = this.handleLoginClick.bind(this);
     this.handleCreateAccountClick = this.handleCreateAccountClick.bind(this);
+    this.handleGetStartedClick = this.handleGetStartedClick.bind(this);
   }
 
   handler() {
@@ -50,35 +52,44 @@ class MasterTestMenu extends Component {
     this.setState({ viewPage: "SitePage" });
   }
 
+  handleGetStartedClick() {
+    this.setState({ viewPage: "GetStarted" });
+  }
+
 
   render() {
-    // sessionStorage.setItem("id", 1); // testing
     const view = this.state.viewPage;
     let page;
     switch (view) {
       case "Editor":
-        page = <Editor handleHomeClick={this.handleHomeClick} />;
+        page = <Editor handleHomeClick={this.handleHomeClick}/>;
         break;
       case "Home":
         page = <Home />;
         break;
       case "Dash":
-        page = <Dashboard handleHomeClick={this.handleHomeClick} />;
+        page = <Dashboard handleHomeClick = {this.handleHomeClick}/>;
         break;
       case "Login":
         page = <Login handleSitePageClick = {this.handleSitePageClick}
                       handleCreateAccountClick={this.handleCreateAccountClick}
+                      handleGetStartedClick = {this.handleGetStartedClick}
                       handleHomeClick={this.handleHomeClick}/>;
         break;
       case "Create Account":
-        page = <CreateAccount handleSitePageClick={this.handleSitePageClick} />;
+        page = <CreateAccount handleSitePageClick = {this.handleSitePageClick}
+                              handleGetStartedClick = {this.handleGetStartedClick}/>;
         break;
       case "SitePage":
-        page = <SitePage handleHomeClick={this.handleHomeClick}
-          handleDashClick={this.handleDashClick} />;
+        page = <SitePage handleHomeClick = {this.handleHomeClick}
+                         handleDashClick = {this.handleDashClick}
+                         handleGetStartedClick = {this.handleGetStartedClick}/>;
+        break;
+      case "GetStarted":
+        page = <GetStarted handleSitePageClick = {this.handleSitePageClick}/>;
         break;
       default:
-        page = <Editor handleHomeClick={this.handleHomeClick} />;
+        page = <Home />;
     }
     return (
       <div>
@@ -89,6 +100,7 @@ class MasterTestMenu extends Component {
           <button onClick={this.handleLoginClick}>Login</button>
           <button onClick={this.handleCreateAccountClick}>Create Account</button>
           <button onClick={this.handleSitePageClick}>Site Page</button>
+          <button onClick={this.handleGetStartedClick}>GetStart</button>
         </div>
         <div id="testingCanvas">
           {page}

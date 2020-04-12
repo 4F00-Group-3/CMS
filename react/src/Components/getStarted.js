@@ -10,8 +10,10 @@ import {
   FooterSection,
   Footer,
   FooterLinkList,
+  Layout,
 } from "react-mdl";
 import Payments from "./payments";
+import NewWindow from "react-new-window";
 
 class GetStarted extends Component {
 
