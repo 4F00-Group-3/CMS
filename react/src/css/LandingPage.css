@@ -3,9 +3,8 @@ h2,
 h3,
 h4,
 h5,
-h6,
-p {
-  color: #fff;
+h6 {
+  color: #fff!important;
 }
 
 img {
@@ -172,4 +171,8 @@ img.center {
 .plans-pricing-card {
   margin: 2%;
   text-align: center;
+}
+
+.white {
+  color: #fff!important;
 }

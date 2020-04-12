@@ -96,7 +96,7 @@ class LandingPage extends Component {
               </h1>
             </Col>
             <Col className='center-center-text' style={{ backgroundColor: "#2d3436" }}>
-              <p>
+              <p  className='white'>
                 A content management system or CMS as it’s usually called is a web platform which allows
                 users to create websites (complete with their domain names and full control over design and
                 content). Think of it as opening an online gateway for your customers to interact with your
@@ -110,7 +110,7 @@ class LandingPage extends Component {
         <Container fluid className="full-screen">
           <Row className="full-screen-row">
             <Col className='center-center-text' style={{ backgroundColor: "#2d3436" }}>
-              <p>
+              <p className='white'>
                 A content management system or CMS as it’s usually called is a web platform which allows
                 users to create websites (complete with their domain names and full control over design and
                 content). Think of it as opening an online gateway for your customers to interact with your
@@ -134,7 +134,7 @@ class LandingPage extends Component {
               </h1>
             </Col>
             <Col className='center-center-text' style={{ backgroundColor: "#2d3436" }}>
-              <p>
+              <p className='white'>
                 A content management system or CMS as it’s usually called is a web platform which allows
                 users to create websites (complete with their domain names and full control over design and
                 content). Think of it as opening an online gateway for your customers to interact with your
@@ -148,7 +148,7 @@ class LandingPage extends Component {
         <Container fluid className="full-screen">
           <Row className="full-screen-row">
             <Col className='center-center-text' style={{ backgroundColor: "#2d3436" }}>
-              <p>
+              <p className='white'>
                 A content management system or CMS as it’s usually called is a web platform which allows
                 users to create websites (complete with their domain names and full control over design and
                 content). Think of it as opening an online gateway for your customers to interact with your
@@ -172,7 +172,7 @@ class LandingPage extends Component {
               </h1>
             </Col>
             <Col className='center-center-text' style={{ backgroundColor: "#2d3436" }}>
-              <p>
+              <p className='white'>
                 A content management system or CMS as it’s usually called is a web platform which allows
                 users to create websites (complete with their domain names and full control over design and
                 content). Think of it as opening an online gateway for your customers to interact with your
@@ -186,7 +186,7 @@ class LandingPage extends Component {
         <Container fluid className="full-screen">
           <Row className="full-screen-row">
             <Col className='center-center-text' style={{ backgroundColor: "#2d3436" }}>
-              <p>
+              <p className='white'>
                 A content management system or CMS as it’s usually called is a web platform which allows
                 users to create websites (complete with their domain names and full control over design and
                 content). Think of it as opening an online gateway for your customers to interact with your
