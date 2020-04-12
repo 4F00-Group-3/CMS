@@ -4,9 +4,8 @@ class LoginBackend {
         this.f = null;
     }
 
-    redirect(id, subscription) {
+    redirect(id) {
         sessionStorage.setItem("id", id);
-        sessionStorage.setItem("tier", subscription);
         this.f();
     }
 }
