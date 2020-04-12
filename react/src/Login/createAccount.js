@@ -48,7 +48,6 @@ class createAccount extends Component {
 
   handleFormSubmit = event => {
     event.preventDefault();
-
     AjaxCall(
       {
         function: "createAccount",
