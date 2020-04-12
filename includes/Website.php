@@ -217,20 +217,38 @@ class Website{
         }
     }
 
-    public static function addPage($schema, $pageName, $file){
-//        $pageName = "TestName";
-//        $file = "index.php";
+    public static function addPage($schema, $pageName, $siteId){
+        //Get website name
         $stmt = Dbh::connect()
-            ->PREPARE("INSERT INTO $schema.pages(page_name, file) VALUES(:pageName, :file)");
-        $stmt->bindValue(':name', $pageName);
-        $stmt->bindValue(':file', $file);
+            ->PREPARE("SELECT * FROM websites WHERE website_id=?");
+        $stmt->execute([$siteId]);
+        if($stmt->rowCount()){
+            $row = $stmt->fetch();
+            $websiteId = array("name"=>$row['site_name']);
+        }else{
+            return false;
+        }
+        $siteName = $websiteId["name"];
 
+        // ADD PAGE to new schema page table
+        $file[] = array("source" =>"<!DOCTYPE html><html><head><title>Page Title</title></head><body><h1>This is a Heading</h1><p>This is a paragraph.</p></body></html>");
+        $path = "sites/".$siteName."/html/".$pageName.".html";
+        $stmt = Dbh::connect()
+            ->PREPARE("INSERT INTO $schema.pages(name, file, path) VALUES(:name, :file, :path)");
+        $stmt->bindValue(':name', $pageName.".html");
+        $stmt->bindValue(':file', json_encode($file));
+        $stmt->bindValue(':path', $path);
         $stmt->execute();
+
+        //Add page in server under /sites/"websiteName"/html/"pageName"
+        $file = fopen("../".$path,"w");
+        fwrite($file, $file["source"]);
+        fclose($file);
 
         //Check to see if page is in DB
         $stmt = Dbh::connect()
-            ->PREPARE("SELECT * FROM $schema.pages WHERE page_name=?");
-        $stmt->execute([$pageName]);
+            ->PREPARE("SELECT * FROM $schema.pages WHERE path=?");
+        $stmt->execute([$path]);
         if($stmt->rowCount()){
             return true;
         }else{
