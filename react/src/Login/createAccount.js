@@ -191,14 +191,11 @@ class CreateAccount extends Component {
               <Col>
               {/* empty to align left */}
               </Col>
-
             </Row>
-
           </Card>
         </Container>
       </Jumbotron>
     );
-  }
+  } 
 }
-
 export default CreateAccount;
