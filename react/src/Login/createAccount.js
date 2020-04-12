@@ -1,8 +1,10 @@
 import React, { Component } from "react";
 import Container from "@material-ui/core/Container";
 import Card from "@material-ui/core/Card";
-import "./LandingPage.css";
+import "../Components/LandingPage.css";
 import AjaxCall from "../ajax.js";
+import CreateAccountBackend from "./backend/CreateAccountBackend";
+let backend = new CreateAccountBackend();
 
 class createAccount extends Component {
   constructor(props) {
@@ -13,9 +15,35 @@ class createAccount extends Component {
       fn: "",
       ln: ""
     };
+    backend.f = props.handleGetStartedClick;
     if (sessionStorage.getItem('id') !== null) {
       props.handleSitePageClick();
     }
+
+    // AjaxCall(
+    //   { function: "currentUser", accountId:sessionStorage.getItem('id') || 0 },
+    //   function(response) {
+    //     if (!response.toString().includes("false")) {
+    //       let user = JSON.parse(response.split('php-cgi')[1].trim());
+    //       let account = user.accountId; 
+    //       console.log('user data returned:', user);
+    //     } else {
+    //       console.log('no user logged in');
+    //     }
+    //   }
+    // );
+
+    // AjaxCall(
+    //   { function: "updateUser", subscription: 3 /* Set the sub level here */, accountId:sessionStorage.getItem('id') || 0 },
+    //   function(response) {
+    //     //whether update was successful or not
+    //     if (!response.toString().includes("false")) {
+    //       console.log('user data updated');
+    //     } else {
+    //       console.log('user data update failed');
+    //     }
+    //   }
+    // );
   }
 
   handleFormSubmit = event => {
@@ -30,8 +58,16 @@ class createAccount extends Component {
         last_name: this.state.ln
       },
       function(response) {
-        console.clear();
         console.log(response);
+        if (!response.toString().includes("false")) {
+          let responseArray = JSON.parse(response.split('php-cgi')[1].trim());
+          console.log(responseArray);
+          let accountId = responseArray.id;
+          console.log(accountId);
+          backend.redirect(accountId);
+        }else{
+          alert("Unable to create account. Email already in use.")
+        }
       }
     );
   };

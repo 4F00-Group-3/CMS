@@ -11,7 +11,7 @@ import PlansPricing from './Components/landingPage';
 import GetStarted from './Components/getStarted';
 import LoginPage from "./Login/loginpage";
 import LandingPage from "./Components/landingPage";
-import CreateAccount from "./Components/createAccount";
+import CreateAccount from "./Login/createAccount";
 
 class HomePage extends Component {
   constructor(props) {

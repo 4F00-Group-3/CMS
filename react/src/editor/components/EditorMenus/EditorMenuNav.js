@@ -8,7 +8,7 @@ class EditMenuNav extends Component {
         return (<>
             {<Form className="border bg-light rounded p-1 edit-menu-nav" onSubmit={this.handleSubmit}>
             <Form.Row>
-              <Col> <Button onClick={this.props.handleBack} variant="primary">Back</Button> </Col>
+              <Col> <Button onClick={this.props.handleBack} className="float-left" variant="primary">Back</Button> </Col>
               <Col> <Button onClick={this.props.handleDelete} className="float-right bg-danger border-danger">Delete</Button> </Col>
             </Form.Row>
             </Form>}

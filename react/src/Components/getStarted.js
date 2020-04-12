@@ -9,12 +9,30 @@ import {
   FooterSection,
   Footer,
   FooterLinkList,
+  Layout,
 } from "react-mdl";
+import Payments from "./payments";
+import NewWindow from "react-new-window";
 
 class getStarted extends Component {
   render() {
     return (
       <div>
+        <NewWindow title="First Month Free!">
+          <Layout fixedHeader className="website-background">
+            <font color="white">
+              <h2>
+                Use our service for free for the first month! Leave this window
+                open for payment and use the following PayPal credentials:
+              </h2>
+              <br></br>
+              <h3>
+                Username: sb-odp9i1081433@personal.example.com Password:
+                dJQhG+S9
+              </h3>
+            </font>
+          </Layout>
+        </NewWindow>
         <Grid>
           <Cell col={12}>
             {/* Row 1 */}
@@ -27,12 +45,16 @@ class getStarted extends Component {
                   expand
                   style={{
                     color: "#fff",
-                    background: "url(./imagesFolder/FirstPlan.jpg)"
+                    background: "url(./imagesFolder/FirstPlan.jpg)",
                   }}
                 ></CardTitle>
                 <CardText>Get started with building web applications!</CardText>
                 <CardActions border>
-                  <a href="#" onClick={this.props.signUp_click}>Sign up</a>
+                  <Payments amount={10}
+                            handleSitePageClick = {this.props.handleSitePageClick}>Pay</Payments>
+                  <a href="#" onClick={this.props.signUp_click}>
+                    Sign up
+                  </a>
                 </CardActions>
               </Card>
 
@@ -44,14 +66,18 @@ class getStarted extends Component {
                   expand
                   style={{
                     color: "#fff",
-                    background: "url(./imagesFolder/SecondPlan.jpg)"
+                    background: "url(./imagesFolder/SecondPlan.jpg)",
                   }}
                 ></CardTitle>
                 <CardText>
                   Take your business to the next level with premium features!
                 </CardText>
                 <CardActions border>
-                  <a href="#" onClick={this.props.signUp_click}>Sign up</a>
+                  <Payments amount={20}
+                            handleSitePageClick = {this.props.handleSitePageClick}>Pay</Payments>
+                  <a href="#" onClick={this.props.signUp_click}>
+                    Sign up
+                  </a>
                 </CardActions>
               </Card>
 
@@ -63,7 +89,7 @@ class getStarted extends Component {
                   expand
                   style={{
                     color: "#fff",
-                    background: "url(./imagesFolder/ThirdPlan.jpg)"
+                    background: "url(./imagesFolder/ThirdPlan.jpg)",
                   }}
                 ></CardTitle>
                 <CardText>
@@ -71,13 +97,20 @@ class getStarted extends Component {
                   your customers!
                 </CardText>
                 <CardActions border>
-                  <a href="#" onClick={this.props.signUp_click}>Sign up</a>
+                  <Payments amount={30}
+                            handleSitePageClick = {this.props.handleSitePageClick}>Pay</Payments>
+                  <a href="#" onClick={this.props.signUp_click}>
+                    Sign up
+                  </a>
                 </CardActions>
               </Card>
             </div>
           </Cell>
         </Grid>
-        <Footer size="mini">
+        <Footer
+          style={{ bottom: "0", position: "fixed", width: "100%" }}
+          size="mini"
+        >
           <FooterSection type="left" logo="No">
             <FooterLinkList>
               <a href="#">Help</a>
@@ -86,7 +119,6 @@ class getStarted extends Component {
           </FooterSection>
         </Footer>
       </div>
-
     );
   }
 }
