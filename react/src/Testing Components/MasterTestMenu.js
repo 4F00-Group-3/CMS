@@ -62,7 +62,7 @@ class MasterTestMenu extends Component {
         page = <Home />;
         break;
       case "Dash":
-        page = <Dashboard handleHomeClick = {this.handleHomeClick}/>;
+        page = <Dashboard handleDashClick = {this.handleDashClick}/>;
         break;
       case "Login":
         page = <Login handleSitePageClick = {this.handleSitePageClick}

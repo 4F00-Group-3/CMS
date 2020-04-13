@@ -19,11 +19,31 @@ class Dashboard extends Component {
         super(props);
         this.state = {
             page: <Pages backend={backend}/>,
+            usersLoaded: false,
+            pagesLoaded: false,
         };
       if (sessionStorage.getItem('id') === null || sessionStorage.getItem('siteId') === null) {
         props.handleHomeClick();
       }
+      this.userLoaded = this.userLoaded.bind(this);
+      this.isUserLoaded = this.isUserLoaded.bind(this);
         //backend.returnAllPages();
+    }
+
+    isPageLoaded() {
+      return this.state.pagesLoaded;
+    }
+
+    isUserLoaded() {
+      return this.state.usersLoaded;
+    }
+
+    
+
+    userLoaded () {
+      this.setState({
+        usersLoaded: true,
+      })
     }
 
   onPush = buttonName => {
@@ -34,7 +54,9 @@ class Dashboard extends Component {
         break;
       }
       case "Users": {
-        this.setState({ page: <Users backend={userAdminBackend} /> });
+        this.setState({ page: <Users backend={userAdminBackend} 
+                                     userLoaded = {this.userLoaded}
+                                     isUserLoaded = {this.state.usersLoaded}/> });
         break;
       }
       case "Settings": {

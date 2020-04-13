@@ -46,7 +46,7 @@ class ListItem extends Component {
               onClick={this.props.onDelete}
             >
               {" "}
-              Delete
+              Delete 
             </button>
           </div>
         </div>

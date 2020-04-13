@@ -48,7 +48,6 @@ class Pages extends Component {
         this.state = {
             'pages': this.props.backend.pages,
             showPopup: false,
-            pageID : this.props.backend.pages.length + 1,
         }
 
     }
@@ -64,7 +63,52 @@ class Pages extends Component {
             console.log(responseArray);
             arr = responseArray;
         });
-        console.log(arr);
+        setTimeout(()=> this.initPages(arr), 2000);
+        
+    }
+
+    initPages(pages) {
+
+        if (pages !== "false"){
+            for (var i = 0; i<pages.length; i++) {
+                this.props.backend.loadPages(pages[i].id, pages[i].pageName, "test", []);
+            }
+            this.setState({
+                pages: this.props.backend.pages, 
+                
+            });
+        }
+        else {
+            console.log("Nothing to load");
+            
+        }
+    }
+
+    getPages(){
+        var arr = [];
+        AjaxCall({function: 'getPagesData', websiteId: sessionStorage.getItem('siteId')},
+            function (response) {
+            console.log(response);
+            let responseArray = JSON.parse(response.split('php-cgi')[1].trim());
+            arr = responseArray;
+            console.log(arr);
+             
+        });
+        this.props.backend.clearPages();
+        console.log(this.props.backend.pages);
+        setTimeout(()=> this.updatePages(arr), 2000);
+    }
+
+    updatePages(users){
+        console.log(users);
+        for (var i = 0; i<users.length; i++) {
+            this.props.backend.loadUsers(users[i].id, users[i].pageName);
+        }
+        this.setState({
+            pages: this.props.backend.pages,             
+        });
+
+        console.log(this.props.backend.pages);
     }
 
     togglePopup() {
@@ -86,7 +130,7 @@ class Pages extends Component {
         //THIS IS A BACKEND CALL TO DELETE PAGE ASSOCIATED TO WEBSITEID BY A PAGEID
         //All console logs are for testing purposes
         var arr = [];
-        AjaxCall({function: 'deleteUser', websiteId: sessionStorage.getItem('siteId'), pageId: id},
+        AjaxCall({function: 'deletePage', websiteId: sessionStorage.getItem('siteId'), pageId: id},
             function (response) {
                 console.log(response);
                 let responseArray = JSON.parse(response.split('php-cgi')[1].trim());
@@ -96,10 +140,7 @@ class Pages extends Component {
         console.log(arr);
         //END OF BACKEND CALL
 
-        this.props.backend.delete(id);
-        this.setState({
-            'pages': this.props.backend.pages,
-        })
+        setTimeout(()=> this.getPages(), 1000);
     }
 
     handlePageUpdate(id, field, value) {
@@ -145,10 +186,22 @@ class Pages extends Component {
     }
 
     createPage=(ptitle)=> {
-        this.props.backend.updatePages(this.state.pageID, ptitle, ptitle, []);
-        console.log(this.state.pageID);
-        this.setState({pages: this.props.backend.pages, pageID: this.state.pageID+1});
+
+        //THIS IS A BACKEND CALL TO DELETE PAGE ASSOCIATED TO WEBSITEID BY A PAGEID
+        //All console logs are for testing purposes
+        var arr = [];
+        AjaxCall({function: 'addPage', websiteId: sessionStorage.getItem('siteId'), pageName: ptitle},
+            function (response) {
+                console.log(response);
+                let responseArray = JSON.parse(response.split('php-cgi')[1].trim());
+                console.log(responseArray);
+                arr = responseArray;
+            });
+        console.log(arr);
+        //END OF BACKEND CALL
+
+        setTimeout(()=> this.getPages(), 1000);
     }
 }
-
+ 
 export default Pages;
