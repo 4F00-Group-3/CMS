@@ -128,6 +128,17 @@ class SitePage extends Component {
                         siteInfo: json
                     });
                 });
+            var check = false;
+            AjaxCall({ function: 'checkWebsites', subscription: sessionStorage.getItem("tier"), accountId: sessionStorage.getItem("id")},
+                function (response) {
+                    if (!response.toString().includes("false")) {
+                        console.log("Response:", response);
+                        check = true;
+                        self.setState({
+                            tier: check
+                        });
+                    }
+                });
         } else {
             // Redirect to login
             this.props.handleHomeClick();
@@ -166,7 +177,6 @@ class SitePage extends Component {
             showPopup: !this.state.showPopup
         });
     }
-
     handleViewWebsite = (info) =>{
         console.log(info);
         window.location.assign('../../'+info);
@@ -211,18 +221,20 @@ class SitePage extends Component {
                                             </div>
                                         )
                                     }
-                                    <div className="column">
-                                        <button onClick={this.togglePopup.bind(this)} value="New">New</button>
-                                        {this.state.showPopup ?
-                                            <Popup
-                                                text='Enter the title of the new page.'
-                                                handleDashClick = {this.props.handleDashClick}
-                                                closePopup={this.togglePopup.bind(this)}
-                                            />
-                                            : null
-                                        }
-                                    </div>
-
+                                    {this.state.tier?
+                                        <div className="column">
+                                            <button onClick={this.togglePopup.bind(this)} value="New">New</button>
+                                            {this.state.showPopup ?
+                                                <Popup
+                                                    text='Enter the title of the new page.'
+                                                    handleDashClick={this.props.handleDashClick}
+                                                    closePopup={this.togglePopup.bind(this)}
+                                                />
+                                                : null
+                                            }
+                                        </div>
+                                        :null
+                                    }
                                 </div>
                             </div>
                         </div>
