@@ -88,11 +88,8 @@ class Editor extends Component {
      * based on which PageSection component the user clicked in the EditingPage
      * @param _id this is the idea of the specific component
      * @param _type this is the type of the specific component
-     * @param _style the css for the specific component
      */
-    pageSection_onClick = (_id, _type, _style) => {
-        console.log(_type)
-        console.log("editor pagesection clicked", _id)
+    pageSection_onClick = (_id, _type) => {
         switch (_type) {
             case "heading": {
                 this.setState({
@@ -241,7 +238,7 @@ class Editor extends Component {
             <>
                 <EditorSideBar onPush={this.addToPage_onClick} menu={this.state.menu} selectedId={this.state.selectedId} selectedRowNumberOfColumns={this.state.selectedRowNumberOfColumns} menuComponentOnClick={this.menuComponentOnClick} handleBack={this.handleBack} handleDelete={this.handleDelete} />
                 <div style={{ marginLeft: "50vh" }}>
-                    <EditingPage page={this.state.page} onSectionPush={this.pageSection_onClick} setActive={this.setActive} />
+                    <EditingPage page={this.state.page} onSectionPush={this.pageSection_onClick} />
                 </div>
             </>
         );

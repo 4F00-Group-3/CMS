@@ -1,5 +1,5 @@
 
-class LoginBackend {
+class CreateAccountBackend {
     constructor() {
         this.f = null;
     }
@@ -10,4 +10,4 @@ class LoginBackend {
     }
 }
 
-export default LoginBackend;
+export default CreateAccountBackend;
