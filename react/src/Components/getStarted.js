@@ -18,21 +18,6 @@ class getStarted extends Component {
   render() {
     return (
       <div>
-        <NewWindow title="First Month Free!">
-          <Layout fixedHeader className="website-background">
-            <font color="white">
-              <h2>
-                Use our service for free for the first month! Leave this window
-                open for payment and use the following PayPal credentials:
-              </h2>
-              <br></br>
-              <h3>
-                Username: sb-odp9i1081433@personal.example.com Password:
-                dJQhG+S9
-              </h3>
-            </font>
-          </Layout>
-        </NewWindow>
         <Grid>
           <Cell col={12}>
             {/* Row 1 */}
@@ -107,6 +92,13 @@ class getStarted extends Component {
             </div>
           </Cell>
         </Grid>
+        <p className="creds">
+          Use our service for free for the first month! Use the following PayPal credentials:
+        </p>
+        <p className="creds">
+          Username: sb-odp9i1081433@personal.example.com Password:
+          dJQhG+S9
+        </p>
         <Footer
           style={{ bottom: "0", position: "fixed", width: "100%" }}
           size="mini"
