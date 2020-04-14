@@ -30,15 +30,15 @@ class PageSection extends Component {
     returnYouTube(url, height, width, autoplay, loop) {
         var splitURL = url.split("/");
         let result = splitURL[0] + "//" + splitURL[2] + "/embed/" + splitURL[3] + "/";
-    const opts = {
-      height: height,
-      width: width,
-      playerVars: {
-        // https://developers.google.com/youtube/player_parameters
-        autoplay: autoplay,
-        loop: loop,
-      },
-    };
+        const opts = {
+            height: height,
+            width: width,
+            playerVars: {
+                // https://developers.google.com/youtube/player_parameters
+                autoplay: autoplay,
+                loop: loop,
+            },
+        };
 
         return (
             <YouTube
@@ -89,7 +89,7 @@ class PageSection extends Component {
             }
         }
     }
-  }
+
 
     /**
      * This method renders the columns within a row
@@ -209,44 +209,7 @@ class PageSection extends Component {
                 {this.returnElement()}
             </div>
         );
-      }
-      case "video": {
-        console.log();
-        return (
-          <div key={this.props.index} style={this.props.style}>
-            {this.returnYouTube(
-              this.props.url,
-              this.props.style["height"],
-              this.props.style["width"],
-              this.props.style["autoplay"],
-              this.props.style["loop"]
-            )}
-          </div>
-        );
-      }
-      case "icon": {
-        return (
-          <div key={this.props.index} style={this.props.style}>
-            {this.returnIcon(this.props.faClassName)}
-          </div>
-        );
-      }
-      default: {
-        console.log("Not a caught switch in pagesection.js!");
-        break;
-      }
     }
-  }
-
-  render() {
-    const isClicked = this.props.clicked;
-    var classList = isClicked ? "pageSectionClick" : "pageSection";
-    return (
-      <div className={classList} onClick={this.toggleClickClass}>
-        {this.returnElement()}
-      </div>
-    );
-  }
 }
 
 export default PageSection;
