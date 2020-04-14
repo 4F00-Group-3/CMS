@@ -9,8 +9,10 @@ import {
   FooterSection,
   Footer,
   FooterLinkList,
+  Layout,
 } from "react-mdl";
 import Payments from "./payments";
+import NewWindow from "react-new-window";
 
 class getStarted extends Component {
   render() {
@@ -33,7 +35,8 @@ class getStarted extends Component {
                 ></CardTitle>
                 <CardText>Get started with building web applications!</CardText>
                 <CardActions border>
-                  <Payments amount={10}>Pay</Payments>
+                  <Payments amount={10}
+                            handleSitePageClick = {this.props.handleSitePageClick}>Pay</Payments>
                   <a href="#" onClick={this.props.signUp_click}>
                     Sign up
                   </a>
@@ -55,7 +58,8 @@ class getStarted extends Component {
                   Take your business to the next level with premium features!
                 </CardText>
                 <CardActions border>
-                  <Payments amount={20}>Pay</Payments>
+                  <Payments amount={20}
+                            handleSitePageClick = {this.props.handleSitePageClick}>Pay</Payments>
                   <a href="#" onClick={this.props.signUp_click}>
                     Sign up
                   </a>
@@ -78,7 +82,8 @@ class getStarted extends Component {
                   your customers!
                 </CardText>
                 <CardActions border>
-                  <Payments amount={30}>Pay</Payments>
+                  <Payments amount={30}
+                            handleSitePageClick = {this.props.handleSitePageClick}>Pay</Payments>
                   <a href="#" onClick={this.props.signUp_click}>
                     Sign up
                   </a>
@@ -87,6 +92,13 @@ class getStarted extends Component {
             </div>
           </Cell>
         </Grid>
+        <p className="creds">
+          Use our service for free for the first month! Use the following PayPal credentials:
+        </p>
+        <p className="creds">
+          Username: sb-odp9i1081433@personal.example.com Password:
+          dJQhG+S9
+        </p>
         <Footer
           style={{ bottom: "0", position: "fixed", width: "100%" }}
           size="mini"

@@ -17,7 +17,7 @@ import YouTube from 'react-youtube';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 
-class PageSection extends Component {
+export default class PageSection extends Component {
 
     /**
      * This method creates am embedded react youtube video component
@@ -89,7 +89,6 @@ class PageSection extends Component {
             }
         }
     }
-
 
     /**
      * This method renders the columns within a row
@@ -211,5 +210,3 @@ class PageSection extends Component {
         );
     }
 }
-
-export default PageSection;
