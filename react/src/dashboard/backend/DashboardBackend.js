@@ -1,13 +1,37 @@
-//import AjaxCall from "../../ajax" //change this
+import AjaxCall from "./../../ajax" //change this
 
 class DashboardBackend {
   constructor() {
     this.deleted = [];
     this.updates = [];
-    this.pages = this.all();
+    this.pages = undefined;
+
+    this.getPages();
   }
 
 
+
+  getPages = () => {
+    AjaxCall(
+      { function: "getAllPages", websiteId: sessionStorage.getItem('siteId') || 0 },
+      (response) => {
+        // console.log(response);
+        if (!response.toString().includes("false")) {
+
+          let pagesList = JSON.parse(response.split('php-cgi')[1].trim());
+
+          for (let i = 0; i < pagesList.length; i++) {
+            pagesList[i].file = JSON.parse(pagesList[i].file);
+          }
+          console.log(pagesList);
+          // this.setState({pages:pagesList});
+          this.pages = pagesList;
+        } else {
+
+        }
+      }
+    );
+  }
 
   all() {
     var arr = [
@@ -37,7 +61,7 @@ class DashboardBackend {
       },
     ]
 
-    if(arr.length <= this.pages) {
+    if (arr.length <= this.pages) {
       arr = this.pages
     }
 
@@ -60,7 +84,7 @@ class DashboardBackend {
   */
   delete(id) {
     for (const page in this.pages) {
-      if (page == id-1) {
+      if (page == id - 1) {
         delete this.pages[page];
       }
     }
@@ -70,8 +94,30 @@ class DashboardBackend {
     this.updates.push([id, field, value]);
   }
 
-  updatePages(id, title, segment, body){
-    this.pages.push({id, title, segment, body});
+  updatePages = (id, name, segment, body) => {
+    AjaxCall(
+      { function: "addPage", websiteId: sessionStorage.getItem('siteId') || 0, pageName: name },
+      (response) => {
+        console.log(response);
+        if (!response.toString().includes("false")) {
+          console.log('page added');
+          //this.getPages();
+        } else {
+          console.log('failed to add page');
+        }
+
+        
+      }
+      /**
+       * hook up edit button for page to editor
+       * save page changes made in editor
+       * bug: addPage, might not have correct pageId (refresh dash, or get next page id from db SQL)
+       * 
+       */
+    );
+
+    this.pages.push({ id, name, segment, body });
+    console.log(this.pages);
   }
 }
 

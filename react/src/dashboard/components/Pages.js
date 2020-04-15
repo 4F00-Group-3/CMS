@@ -56,15 +56,15 @@ class Pages extends Component {
     componentDidMount() {
         //THIS IS A BACKEND CALL TO RETRIEVE ALL PAGES ASSOCIATED TO WEBSITEID
         //All console logs are for testing purposes
-        var arr = [];
-        AjaxCall({function: 'getPagesData', websiteId: sessionStorage.getItem('siteId')},
-            function (response) {
-            console.log(response);
-            let responseArray = JSON.parse(response.split('php-cgi')[1].trim());
-            console.log(responseArray);
-            arr = responseArray;
-        });
-        console.log(arr);
+        // var arr = [];
+        // AjaxCall({function: 'getPagesData', websiteId: sessionStorage.getItem('siteId')},
+        //     function (response) {
+        //     console.log(response);
+        //     let responseArray = JSON.parse(response.split('php-cgi')[1].trim());
+        //     console.log(responseArray);
+        //     arr = responseArray;
+        // });
+        // console.log(arr);
     }
 
     togglePopup() {

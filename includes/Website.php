@@ -173,16 +173,16 @@ class Website{
         }
     }
 
-
-//    public static function getAllPagesJSON($schema){
-//        $stmt = Dbh::connect()
-//            ->query("SELECT * FROM  $schema.pages");
-//        $pages = array();
-//        while ($row = $stmt->fetch(PDO::FETCH_ASSOC)){
-//            $pages[] = $row;
-//        }
-//        return $pages;
-//    }
+    //hey dont comment this out again it is actually useful unlike the above
+    public static function getAllPagesJSON($schema){
+        $stmt = Dbh::connect()
+            ->query("SELECT * FROM  $schema.pages");
+        $pages = array();
+        while ($row = $stmt->fetch(PDO::FETCH_ASSOC)){
+            $pages[] = $row;
+        }
+        return $pages;
+    }
 
     public static function getPagesByPageId($schema, $page_id){
         $stmt = Dbh::connect()
@@ -202,15 +202,15 @@ class Website{
 //        $pageName = "TestName";
 //        $file = "index.php";
         $stmt = Dbh::connect()
-            ->PREPARE("INSERT INTO $schema.pages(page_name, file) VALUES(:pageName, :file)");
-        $stmt->bindValue(':name', $pageName);
+            ->PREPARE("INSERT INTO $schema.pages(name, file) VALUES(:pageName, :file)");
+        $stmt->bindValue(':pageName', $pageName);
         $stmt->bindValue(':file', $file);
 
         $stmt->execute();
 
         //Check to see if page is in DB
         $stmt = Dbh::connect()
-            ->PREPARE("SELECT * FROM $schema.pages WHERE page_name=?");
+            ->PREPARE("SELECT * FROM $schema.pages WHERE name=?");
         $stmt->execute([$pageName]);
         if($stmt->rowCount()){
             return true;

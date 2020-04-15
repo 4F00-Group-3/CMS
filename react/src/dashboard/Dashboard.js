@@ -26,6 +26,12 @@ class Dashboard extends Component {
         //backend.returnAllPages();
     }
 
+  componentDidMount() {    
+    setTimeout(function () { //Start the timer
+      this.setState({ page:  <Pages backend={backend}/> });
+    }.bind(this), 1000)
+  }
+
   onPush = buttonName => {
     console.log(buttonName);
     switch (buttonName) {

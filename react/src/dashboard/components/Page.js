@@ -11,7 +11,7 @@ class Page extends Component {
         this.handlePageEdit = this.handlePageEdit.bind(this);
         this.handlePageDelete = this.handlePageDelete.bind(this);
         this.handleOnPageCancel = this.handleOnPageCancel.bind(this);
-
+        console.log(props);
         this.state = {
             'isEditing': false,
 
@@ -45,6 +45,7 @@ class Page extends Component {
 
     render() {
         var result = null;
+        console.log(this.props);
         if (this.state.isEditing) {
             result =
                 <>
@@ -63,6 +64,7 @@ class Page extends Component {
                         isEditing={this.props.isEditing}
                         onPageEdit={this.handlePageEdit}
                         onPageDelete={this.handlePageDelete}
+                        title={this.props.name}
 
                     />
                 </>;
@@ -75,6 +77,7 @@ class Page extends Component {
                 isEditing={this.props.isEditing}
                 onPageEdit={this.handlePageEdit}
                 onPageDelete={this.handlePageDelete}
+                title={this.props.name}    
 
             />;
         }

@@ -134,9 +134,9 @@ function getUsersData(){
 
 function addPage(){
     $success = false;
-    if (!empty($_POST['websiteId']) && !empty($_POST['pageName']) && !empty($_POST['file']) ) {
+    if (!empty($_POST['websiteId']) && !empty($_POST['pageName'])) {
         $schema = "website".$_POST['websiteId'];
-        $data = Website::addPage($schema, $_POST['pageName'], $_POST['file']);
+        $data = Website::addPage($schema, $_POST['pageName'], json_encode([]));
         if ($data !== false) {
             $success = true;
         }
@@ -258,8 +258,20 @@ function currentUserId(){
 }
 
 function getAllPages(){
-    $all_pages = Website::getAllPagesJSON(DB_SCHEMA);
-    echo json_encode($all_pages);
+    $success = false;
+    if (!empty($_POST['websiteId'])) {
+        $schema = "website".$_POST['websiteId'];
+        $data = Website::getAllPagesJSON($schema);
+        if ($data !== false) {
+            $json = json_encode($data);
+            $success = true;
+        }
+    }
+    if($success === true){
+        echo $json;
+    }else{
+        echo "false";
+    }
     die;
 }
 
