@@ -21,11 +21,12 @@ class Website{
     public static function createWebsite($accountId, $path, $siteName, $description){
         // Insert website data
         $stmt = Dbh::connect()
-            ->PREPARE('INSERT INTO websites(account_id, path, site_name, description) VALUES(:accountId, :path, :siteName, :description)');
+            ->PREPARE('INSERT INTO websites(account_id, path, site_name, description, image) VALUES(:accountId, :path, :siteName, :description, :image)');
         $stmt->bindValue(':accountId', $accountId);
         $stmt->bindValue(':path', $path);
         $stmt->bindValue(':siteName',$siteName);
         $stmt->bindValue(':description',$description);
+        $stmt->bindValue(':image',"https://images.unsplash.com/photo-1483651646696-c1b5fe39fc0e?ixlib=rb-1.2.1&auto=format&fit=crop&w=675&q=80");
         $stmt->execute();
 
         // Gather Schema data from website data
@@ -79,7 +80,9 @@ class Website{
                     "fontSize"=>"81px",
                     "textAlign"=>"center",
                     "fontFamily"=>"Lucida Sans Unicode", "Lucida Grande", "sans-serif")),
-            array("id"=>12,"type"=>"spacer","text"=>"heading 1",
+            array("id"=>12,
+                "type"=>"spacer",
+                "text"=>"heading 1",
                 "style"=>array(
                     "color"=>"black",
                     "fontSize"=>"13px",
@@ -191,18 +194,10 @@ class Website{
                     "width"=>"100%")),
             array("id"=>9,
                 "type"=>"heading",
-                "text"=>"Get started by clicking an element to edit it!",
+                "text"=>"Get started by using our editor!",
                 "style"=>array(
                     "color"=>"black",
                     "fontSize"=>"40px",
-                    "textAlign"=>"center",
-                    "fontFamily"=>"Lucida Sans Unicode", "Lucida Grande", "sans-serif")),
-            array("id"=>15,
-                "type"=>"heading",
-                "text"=>"Or, try adding other elements to the site by choosing one to the left in the editor!",
-                "style"=>array(
-                    "color"=>"black",
-                    "fontSize"=>"22px",
                     "textAlign"=>"center",
                     "fontFamily"=>"Lucida Sans Unicode", "Lucida Grande", "sans-serif")));
 
@@ -227,7 +222,51 @@ class Website{
         mkdir("../sites/".$siteName."/css");
         mkdir("../sites/".$siteName."/js");
         $file = fopen("../sites/".$siteName."/html/home.html","w");
-        $txt = "<!DOCTYPE html><html><head><title>Page Title</title></head><body><h1>This is a Heading</h1><p>This is a paragraph.</p></body></html>";
+        $txt = "<!DOCTYPE html>
+<html>
+<head>
+<title>Home</title>
+</head>
+<body>
+<h1 style=\"color:black;font-size:81px;text-align:center;font-family:Lucida Sans Unicode,Lucida Grande,sans-serif;\">Your Homepage</h1>
+
+<div style=\"color:black;font-size:13px;text-align:left;\" ></div>
+
+
+<div style=\"text-align:center\">
+<img style=\"width:px;border-radius:5px;margin-left:0;margin-right:0;margin-top:0;margin-bottom:0;text-align:center\" src=\"https://images.unsplash.com/photo-1528557692780-8e7be39eafab?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1350&q=80\" alt=\"alt text here\" />
+</div>
+
+<div style=\"color:black;font-size:12px;text-align:left;\" ></div>
+
+<h1 style=\"color:black;font-size:38px;text-align:center;font-family:Lucida Sans Unicode,Lucida Grande,sans-serif;\">Add videos and pictures to express your company's unique culture</h1>
+
+<div style=\"color:black;font-size:12px;text-align:left;\" ></div>
+
+<div style=\"color:black;font-size:10vh;text-align:center;height:500px;width:750px;margin:auto;\">
+
+<iframe width=\"750px\" height=\"500px\" src=\"https://www.youtube.com/embed/X4Q7d0CtYyk\" frameborder=\"0\" allow=\"accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture\" allowfullscreen></iframe>
+
+</div>
+
+<hr style=\"border-top:8px solid #000000;border-radius:0px;width:100%\" />
+
+<h1 style=\"color:black;font-size:43px;text-align:center;font-family:Lucida Sans Unicode,Lucida Grande,sans-serif;\">Create custom buttons</h1>
+
+<div style=\"text-align:center;\">
+<a className=\"btn btn-primary\"
+href=\"#\"
+style=\"color:#000000;background-color:#696969;text-align:center;border:0px;border-radius:12px\">
+Your Button</a>
+</div>
+
+<hr style=\"border-top:8px solid #0a0606;border-radius:0px;width:100%\" />
+
+
+<h1 style=\"color:black;font-size:40px;text-align:center;font-family:Lucida Sans Unicode,Lucida Grande,sans-serif;\">Get started by using our editor!</h1>
+</body>
+</html>
+";
         fwrite($file, $txt);
         fclose($file);
         return $websiteId;
