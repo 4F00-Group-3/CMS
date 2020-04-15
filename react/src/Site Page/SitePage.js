@@ -188,6 +188,25 @@ class SitePage extends Component {
         this.props.handleDashClick();
     };
 
+    handleDeleteWebsite = (info) =>{
+        console.log(info);
+        AjaxCall({
+                function: "deleteWebsite",
+                accountId: sessionStorage.getItem("id"),
+                websiteId: info,
+            },
+            function(response) {
+                console.log(response);
+                if (!response.toString().includes("false")) {
+                    alert("Website successfully deleted");
+                }else{
+                    alert("Website failed to delete");
+                }
+                window.location.reload(false);
+            }
+        );
+    };
+
     render() {
         var userLoggedIn = this.state.userLoggedIn;
         return (
@@ -215,6 +234,9 @@ class SitePage extends Component {
                                                         </div>
                                                         <div className="column">
                                                             <button onClick={() => this.handleViewWebsite(site.path)} value="View">View</button>
+                                                        </div>
+                                                        <div className="column">
+                                                            <button onClick={() => this.handleDeleteWebsite(site.id)} value="Delete">Delete</button>
                                                         </div>
                                                     </div>
                                                 </div>

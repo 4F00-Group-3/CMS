@@ -5,8 +5,8 @@ require_once ('header_functions.php');
 
 $functions = array('test', 'currentUser', 'updateUser','currentUserId', 'addUser', 'getAllPages', 'getAllUsers', 'getMedia', 'getPage',
     'addMedia', 'addPage', 'deletePage', 'deleteUser', 'login', 'createAccount', 'createWebsite', 'getWebsiteData',
-    'getPagesData','getUsersData','getAccountMedia', 'deleteUser', 'deletePage', 'addUser','addPage', 'updateAccountPassword', 'confirmSubscription',
-    'checkWebsites');
+    'getPagesData','getUsersData','getAccountMedia', 'deleteUser', 'deletePage', 'deleteWebsite', 'addUser','addPage',
+    'updateAccountPassword', 'confirmSubscription', 'checkWebsites');
 
 if(isset($_POST['function']) && in_array($_POST['function'], $functions)){
     $_POST['function']();
@@ -35,6 +35,16 @@ function createWebsite(){
         } else {
             echo json_encode($website);
         }
+    }
+    die;
+}
+
+function deleteWebsite(){
+    $success = Website::deleteWebsite($_POST['accountId'], $_POST['websiteId']);
+    if ($success) {
+        echo "true";
+    } else {
+        echo "false";
     }
     die;
 }
