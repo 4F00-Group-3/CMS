@@ -70,7 +70,143 @@ class Website{
 
 
         // ADD PAGE to new schema page table
-        $file[] = array("source" =>"<!DOCTYPE html><html><head><title>Page Title</title></head><body><h1>This is a Heading</h1><p>This is a paragraph.</p></body></html>");
+        $file[] = array(
+            array("id"=>1,
+                "type"=>"heading",
+                "text"=>"Your Homepage",
+                "style"=>array(
+                    "color"=>"black",
+                    "fontSize"=>"81px",
+                    "textAlign"=>"center",
+                    "fontFamily"=>"Lucida Sans Unicode", "Lucida Grande", "sans-serif")),
+            array("id"=>12,"type"=>"spacer","text"=>"heading 1",
+                "style"=>array(
+                    "color"=>"black",
+                    "fontSize"=>"13px",
+                    "textAlign"=>"left"
+                )),
+
+            array("id"=>2,
+                "type"=>"image",
+                "text"=>"alt text here",
+                "url"=>"https://images.unsplash.com/photo-1528557692780-8e7be39eafab?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1350&q=80",
+                "style"=>array(
+                    "width"=>"px",
+                    "borderRadius"=>"5px",
+                    "marginLeft"=>"0",
+                    "marginRight"=>"0",
+                    "marginTop"=>"0",
+                    "marginBottom"=>"0",
+                    "textAlign"=>"center")),
+
+            array("id"=>3,
+                "type"=>"row",
+                "style"=>array(),
+                "col"=>1,
+                "page"=>array(
+                    "id"=>"3|1",
+                    "type"=>"column",
+                    "style"=>array(),
+                    "page"=>array())),
+
+            array("id"=>4,
+                "type"=>"row",
+                "style"=>array(),
+                "col"=>1,
+                "page"=>array(
+                    "id"=>"4|1",
+                    "type"=>"column",
+                    "style"=>array(),
+                    "page"=>array())),
+
+            array("id"=>13,
+                "type"=>"spacer",
+                "text"=>"heading 1",
+                "style"=>array(
+                    "color"=>"black",
+                    "fontSize"=>"12px",
+                    "textAlign"=>"left")),
+
+            array("id"=>6,
+                "type"=>"heading",
+                "text"=>"Add videos and pictures to express your company's unique culture",
+                "style"=>array(
+                    "color"=>"black",
+                    "fontSize"=>"38px",
+                    "textAlign"=>"center",
+                    "fontFamily"=>"Lucida Sans Unicode", "Lucida Grande", "sans-serif")),
+
+            array("id"=>14,
+                "type"=>"spacer",
+                "text"=>"heading 1",
+                "style"=>array(
+                    "color"=>"black",
+                    "fontSize"=>"12px",
+                    "textAlign"=>"left")),
+
+            array("id"=>5,
+                "type"=>"video",
+                "text"=>"heading 1",
+                "url"=>"https://youtu.be/X4Q7d0CtYyk",
+                "style"=>array(
+                    "color"=>"black",
+                    "fontSize"=>"10vh",
+                    "textAlign"=>"center",
+                    "height"=>"500px",
+                    "width"=>"750px",
+                    "margin"=>"auto",
+                    "autoplay"=>"0",
+                    "loop"=>"0")),
+            array("id"=>11,
+                "type"=>"divider",
+                "text"=>"rounded divider",
+                "style"=>array(
+                    "borderTop"=>"8px solid #000000",
+                    "borderRadius"=>"0px",
+                    "width"=>"100%")),
+            array("id"=>7,
+                "type"=>"heading",
+                "text"=>"Create custom buttons",
+                "style"=>array(
+                    "color"=>"black",
+                    "fontSize"=>"43px",
+                    "textAlign"=>"center",
+                    "fontFamily"=>"Lucida Sans Unicode", "Lucida Grande", "sans-serif")),
+            array("id"=>8,
+                "type"=>"button",
+                "text"=>"Your Button",
+                "href"=>"#",
+                "style"=>array(
+                    "color"=>"#000000",
+                    "backgroundColor"=>"#696969",
+                    "textAlign"=>"center",
+                    "border"=>"0px",
+                    "borderRadius"=>"12px")),
+            array("id"=>10,
+                "type"=>"divider",
+                "text"=>"rounded divider",
+                "style"=>array(
+                    "borderTop"=>"8px solid #0a0606",
+                    "borderRadius"=>"0px",
+                    "width"=>"100%")),
+            array("id"=>9,
+                "type"=>"heading",
+                "text"=>"Get started by clicking an element to edit it!",
+                "style"=>array(
+                    "color"=>"black",
+                    "fontSize"=>"40px",
+                    "textAlign"=>"center",
+                    "fontFamily"=>"Lucida Sans Unicode", "Lucida Grande", "sans-serif")),
+            array("id"=>15,
+                "type"=>"heading",
+                "text"=>"Or, try adding other elements to the site by choosing one to the left in the editor!",
+                "style"=>array(
+                    "color"=>"black",
+                    "fontSize"=>"22px",
+                    "textAlign"=>"center",
+                    "fontFamily"=>"Lucida Sans Unicode", "Lucida Grande", "sans-serif")));
+
+
         $stmt = Dbh::connect()
             ->PREPARE("INSERT INTO $schemaPages(name, file, path) VALUES(:name, :file, :path)");
         $stmt->bindValue(':name', "home.html");

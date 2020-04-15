@@ -204,6 +204,7 @@ export default class PageSection extends Component {
                 e.stopPropagation();
             }}>
                 {this.returnElement()}
+                {console.log(this.returnElement())}
             </div>
         );
     }
