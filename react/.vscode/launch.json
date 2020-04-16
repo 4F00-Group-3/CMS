@@ -6,7 +6,7 @@
     "configurations": [
 
         {
-            "type": "firefox",
+            "type": "Chrome",
             "request": "launch",
             "reAttach": true,
             "name": "Launch index.html",

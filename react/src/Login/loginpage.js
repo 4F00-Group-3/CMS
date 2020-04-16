@@ -1,9 +1,25 @@
+
 import React, { Component } from "react";
 import Container from "@material-ui/core/Container";
 import Card from "@material-ui/core/Card";
 import AjaxCall from "../ajax.js";
 import LoginBackend from "./backend/LoginBackend";
+import CreateAccount from './CreateAccount.js';
+import '../css/LoginPage.css';
+import Form from 'react-bootstrap/Form';
+import Row from 'react-bootstrap/Row';
+import Col from 'react-bootstrap/Col';
+import { Jumbotron } from "react-bootstrap";
+import ForgotPassword from './ForgotPassword';
+
+import {
+  FooterSection,
+  Footer,
+  FooterLinkList
+} from "react-mdl";
+
 let backend = new LoginBackend();
+
 
 class LoginPage extends Component {
   constructor(props) {
@@ -28,37 +44,38 @@ class LoginPage extends Component {
   handleFormSubmit = event => {
     event.preventDefault();
     AjaxCall(
-        { function: "login", email: this.state.email, password: this.state.pw },
-        function(response) {
-          if (!response.toString().includes("false")) {
-            let responseArray = JSON.parse(response.split('php-cgi')[1].trim());
-            console.log(responseArray);
-            let accountId = responseArray.accountId;
-            let subscription = responseArray.subscription;
-            console.log(accountId);
-            backend.redirect(accountId, subscription);
-            // REDIRECT TO ANOTHER PAGE AFTER THIS
-          } else {
-            //TODO::LOGIN FAILED DISPLAY ERROR MSG
-            alert("Incorrect login credentials. Please try again.")
-          }
+      { function: "login", email: this.state.email, password: this.state.pw },
+      function (response) {
+        if (!response.toString().includes("false")) {
+          let responseArray = JSON.parse(response.split('php-cgi')[1].trim());
+          console.log(responseArray);
+          let accountId = responseArray.accountId;
+          let subscription = responseArray.subscription;
+          console.log(accountId);
+          backend.redirect(accountId, subscription);
+          // REDIRECT TO ANOTHER PAGE AFTER THIS
+        } else {
+          //TODO::LOGIN FAILED DISPLAY ERROR MSG
+          alert("Incorrect login credentials. Please try again.")
         }
+      }
+
     );
   };
 
   handlePasswordChangeSubmit = event => {
     event.preventDefault();
     AjaxCall(
-        { function: "updateAccountPassword", email: this.state.email, password: this.state.pw},
-        function(response) {
-          console.log(response);
-          if (!response.toString().includes("false")) {
-            backend.redirectNewPass();
-          } else {
-            //TODO::LOGIN FAILED DISPLAY ERROR MSG
-            alert("Incorrect email. Please try again.")
-          }
+      { function: "updateAccountPassword", email: this.state.email, password: this.state.pw },
+      function (response) {
+        console.log(response);
+        if (!response.toString().includes("false")) {
+          backend.redirectNewPass();
+        } else {
+          //TODO::LOGIN FAILED DISPLAY ERROR MSG
+          alert("Incorrect email. Please try again.")
         }
+      }
     );
   };
 
@@ -72,119 +89,123 @@ class LoginPage extends Component {
     });
   };
 
-  createAccountOnclick(){
-    this.props.handleCreateAccountClick();
+  createAccountOnclick() {
+    this.setState({ page: "create-account" })
   }
 
-  forgotPasswordOnclick(){
+  forgotPasswordOnclick() {
     this.setState({ page: "forgot" });
   }
 
-  render() {
-    const loginpg = (
-        <div>
-          <Container maxWidth="sm" style={{backgroundcolor: "black"}}>
-            <Card>
-              <div style={{padding: "20px"}}>
-                <h2 style={{textalign: "center"}}>Login To Your Account</h2>
+  back_OnClick = () => {
+    this.setState({ page: "login" })
+  }
 
-                <form className="centerBoxItems" onSubmit={this.handleFormSubmit}>
-                  <label htmlFor="email">Username</label>
-                  <br></br>
-                  <input
+  Footer() {
+    return (
+      <div style={{ paddingbottom: "60px" }}>
+
+        <Footer className='login-footer' size="mini">
+          <FooterSection type="left" logo="NO.">
+            <FooterLinkList>
+              <a href="#">Help</a>
+              <a href="#">Privacy & Terms</a>
+            </FooterLinkList>
+          </FooterSection>
+        </Footer>
+      </div>);
+  }
+
+
+  render() {
+    if (this.state.page === "forgot") {
+      return (
+        <>
+          <ForgotPassword
+            handlePasswordChangeSubmit={this.handlePasswordChangeSubmit}
+            handleChange={this.handleChange}
+            back_onClick={this.back_OnClick}
+          />
+          {this.Footer()}
+        </>
+      );
+    }
+    else if (this.state.page === "create-account") {
+      return (
+        <>
+          <CreateAccount
+            back_onClick={this.back_OnClick}
+            handleFormSubmit={this.handleFormSubmit}
+            handleChange={this.handleChange}
+          />
+          {this.Footer()}
+        </>
+      );
+    }
+    else {
+      // login page below 
+      return (
+        <>
+          <Jumbotron className='login-container'>
+            <Container className='card-container' maxWidth="sm">
+              <Card className='login-card'>
+                <h2 className='login-page-heading'>Login To Your Account</h2>
+
+                <Form className="centerBoxItems" onSubmit={this.handleFormSubmit}>
+                  <Row className='center'>
+                    <label htmlFor="email">Username</label>
+                  </Row>
+                  <Row className='center'>
+                    <input
+                      className='form-input'
                       type="email"
                       id="email"
                       name="email"
                       value={this.state.email}
                       onChange={this.handleChange}
-                  />
-                  <br></br>
-                  <label htmlFor="pw">Password</label>
-                  <br></br>
-                  <input
+                    />
+                  </Row>
+                  <Row className='center'>
+                    <label htmlFor="pw">Password</label>
+                  </Row>
+                  <Row className='center'>
+                    <input
+                      className='form-input'
                       type="password"
                       id="pw"
                       name="pw"
                       value={this.state.pw}
                       onChange={this.handleChange}
-                  />
-                  <br/>
-                  <br/>
-                  <br/>
-                  <input type="submit" value="Login" className="submitnextbutton"/>
-                </form>
-                <input type="button" value="Create Account" onClick={this.createAccountOnclick} />
-                <input type="button" style={{float:"right"}} value="Forgot Password" onClick={this.forgotPasswordOnclick} />
-              </div>
-            </Card>
-          </Container>
-        </div>
-    );
-    const forgotpasswordpg = (
-        <div>
-          <div className="centreBoxOnPage">
-            <Container maxWidth="sm">
-              <Card>
-                <div>
-                  <div class="submitformdiv">
-                    <h2>Forgot Password</h2>
-                    <p>
-                      Please enter a new password that is secure.
-                    </p>
-                    <form className="centerBoxItems" onSubmit={this.handlePasswordChangeSubmit}>
-                      <label htmlFor="email">Email</label>
-                      <br></br>
-                      <input
-                          type="text"
-                          id="email"
-                          emailaddr="email"
-                          className="emailaddressbar"
-                          name="email"
-                          onChange={this.handleChange}
-                      />
-                      <br></br>
+                    />
+                  </Row>
+                  <Row className='center'>
+                    <input type="submit" value="Login" className="submitnextbutton" />
+                  </Row>
+                </Form>
+                <Row>
+                  <Col>
+                    <input
+                      className='input-as-anchor'
+                      type="button"
+                      value="Create Account"
+                      onClick={this.createAccountOnclick} />
+                  </Col>
+                  <Col>
+                    <input
+                      className='input-as-anchor'
+                      type="button"
+                      style={{ float: "right" }}
+                      value="Forgot Password"
+                      onClick={this.forgotPasswordOnclick} />
+                  </Col>
 
-                      <label htmlFor="pw">Password</label>
-                      <br></br>
-                      <input
-                          type="password"
-                          id="pw"
-                          pass="pw"
-                          className="emailaddressbar"
-                          name="pw"
-                          onChange={this.handleChange}
-                      />
-                      <br></br>
-
-                      <label htmlFor="pw2">Re-Enter Password</label>
-                      <br></br>
-                      <input
-                          type="password"
-                          id="pw"
-                          pass2="pw2"
-                          className="emailaddressbar"
-                      />
-                      <br></br>
-                      <br></br>
-                      <input
-                          type="submit"
-                          value="Next"
-                          className="submitnextbutton"
-                      />
-                    </form>
-                  </div>
-                </div>
+                </Row>
               </Card>
             </Container>
-          </div>
-        </div>
-    );
-
-    if ( this.state.page === "forgot" ){
-      return(forgotpasswordpg)
-    }
-    else{
-      return(loginpg)
+          </Jumbotron>
+          {this.Footer()}
+        </>
+      )
     }
   }
 }

@@ -2,13 +2,20 @@ import React, { Component } from "react";
 // import axios from 'axios';
 import '../css/SitePage.css'
 import AjaxCall from '../ajax.js';
-import Login from '../Login/loginpage';
+import Login from '../Login/LoginPage';
 import SitePageBackend from "../Site Page/backend/SitePageBackend";
+import Row from 'react-bootstrap/Row';
+import Col from 'react-bootstrap/Col';
+import Container from 'react-bootstrap/Container';
+import { Form } from "react-bootstrap";
+import Button from 'react-bootstrap/Button';
+
+
 let backend = new SitePageBackend();
 
 /*Popup class for the add page pop up, handles opening the popup and passing
 information from it back to the add Page part */
-class Popup extends Component {
+class Popup extends Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -20,7 +27,7 @@ class Popup extends Component {
 
     handleFormSubmit = event => {
         event.preventDefault();
-        if (this.state.title !== ""){
+        if (this.state.title !== "") {
             let web = AjaxCall(
                 {
                     function: "createWebsite",
@@ -28,7 +35,7 @@ class Popup extends Component {
                     accountId: sessionStorage.getItem("id"),
                     description: this.state.description,
                 },
-                function(response) {
+                function (response) {
                     if (!response.toString().includes("false")) {
                         console.log(response);
                         let responseArray = JSON.parse(response.split('php-cgi')[1].trim());
@@ -36,7 +43,7 @@ class Popup extends Component {
                         let websiteId = responseArray.id;
                         console.log(websiteId);
                         backend.redirect(websiteId);
-                    }else{
+                    } else {
                         alert("Website failed to create");
                     }
                 }
@@ -61,34 +68,51 @@ class Popup extends Component {
     render() {
         return (
             <div className='popup'>
-                <div className='popup_inner'>
-                    <h3>Enter Website data</h3>
-                    <form className="centerBoxItems" onSubmit={this.handleFormSubmit}>
-                        <label>Enter Website Title</label>
-                        <br></br>
-                        <input
-                            type="text"
-                            id="title"
-                            name="title"
-                            onChange={this.handleChange}
-                        />
+                <Container className='popup_inner' fluid="sm">
+                    <Row className='center'><h3>Enter Website data</h3></Row>
 
-                        <label>Enter Website Description</label>
-                        <br></br>
-                        <input
-                            type="text"
-                            id="description"
-                            name="description"
-                            onChange={this.handleChange}
-                        />
-                        <br></br>
-                        <br></br>
-                        <input type="submit" value="Create" className="submitnextbutton"/>
-                        <button className="submitnextbutton" onClick={this.props.closePopup}>Cancel</button>
-                    </form>
-                    <br></br>
+                    <Form className="centerBoxItems" onSubmit={this.handleFormSubmit}>
+                        <Row>
+                            <Col>
+                                <Form.Label>Enter Website Title</Form.Label>
+                            </Col>
+                            <Col>
+                                <Form.Control
+                                    className='site-page-form-input'
+                                    type="text"
+                                    id="title"
+                                    name="title"
+                                    onChange={this.handleChange}
+                                />
+                            </Col>
+                        </Row>
+
+                        <Row>
+                            <Col>
+                                <Form.Label>Enter Website Description</Form.Label>
+                            </Col>
+                            <Col>
+                                <Form.Control
+                                    className='site-page-form-input'
+                                    type="text"
+                                    id="description"
+                                    name="description"
+                                    onChange={this.handleChange}
+                                />
+                            </Col>
+                        </Row>
+
+                        <Row>
+                            <Col>
+                                <Form.Control className='site-page-button' type="submit" value="Create" />
+                            </Col>
+                            <Col>
+                                <Form.Control className="site-page-button cancel-btn" type='button' value="Cancel" onClick={this.props.closePopup}/>
+                            </Col>
+                        </Row>
+                    </Form>
                     {/*<button onClick={this.getTitleOfPage}>Add</button>*/}
-                </div>
+                </Container>
             </div>
         );
     }
@@ -106,6 +130,7 @@ class SitePage extends Component {
         this.handleLogOut = this.handleLogOut.bind(this);
         this.handleRedirectToAccoutingSettings = this.handleRedirectToAccoutingSettings.bind(this);
         this.handleUpgradePlan = this.handleUpgradePlan.bind(this);
+
         if (sessionStorage.getItem("siteId")!==null) {
             sessionStorage.removeItem("siteId");
         }
@@ -167,14 +192,14 @@ class SitePage extends Component {
         });
     }
 
-    handleViewWebsite = (info) =>{
+    handleViewWebsite = (info) => {
         console.log(info);
-        window.location.assign('../../'+info);
+        window.location.assign('../../' + info);
     };
 
-    handleEditWebsite = (info) =>{
+    handleEditWebsite = (info) => {
         console.log(info);
-        sessionStorage.setItem("siteId",info);
+        sessionStorage.setItem("siteId", info);
         this.props.handleDashClick();
     };
 
@@ -212,11 +237,11 @@ class SitePage extends Component {
                                         )
                                     }
                                     <div className="column">
-                                        <button onClick={this.togglePopup.bind(this)} value="New">New</button>
+                                        <button className='btn btn-primary' onClick={this.togglePopup.bind(this)} value="New">New</button>
                                         {this.state.showPopup ?
                                             <Popup
                                                 text='Enter the title of the new page.'
-                                                handleDashClick = {this.props.handleDashClick}
+                                                handleDashClick={this.props.handleDashClick}
                                                 closePopup={this.togglePopup.bind(this)}
                                             />
                                             : null

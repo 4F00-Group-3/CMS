@@ -1,0 +1,34 @@
+.get-started-container {
+  background-image: url(https://www.cosc.brocku.ca/~c4f00g03/react/public/imagesFolder/get-started-bg-min.jpg);
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
+.center-center-jumbotron-get-started {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: transparent;
+    margin-bottom: 0!important;
+}
+
+.get-started-row {
+    padding: 0;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.paypal-btn {
+  background-color: #0984e3;
+}
+
+.sign-up-btn {
+  width: 100%;
+}
+
+.sign-up-container {
+  padding-bottom: 0%!important;
+}

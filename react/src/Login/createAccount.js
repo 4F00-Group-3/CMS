@@ -1,12 +1,17 @@
 import React, { Component } from "react";
 import Container from "@material-ui/core/Container";
 import Card from "@material-ui/core/Card";
-import "../Components/LandingPage.css";
 import AjaxCall from "../ajax.js";
+import Form from 'react-bootstrap/Form';
+import Row from 'react-bootstrap/Row';
+import Col from 'react-bootstrap/Col';
+import { Jumbotron } from "react-bootstrap";
+import '../css/LoginPage.css';
+import "../css/LandingPage.css";
 import CreateAccountBackend from "./backend/CreateAccountBackend";
 let backend = new CreateAccountBackend();
 
-class createAccount extends Component {
+class CreateAccount extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -58,84 +63,113 @@ class createAccount extends Component {
 
   render() {
     return (
-      <div>
+      <Jumbotron className='login-container'>
         <Container maxWidth="sm">
-          <Card>
-            <div>
-              <div className="submitformdiv">
-                <h2>Create An Account</h2>
-                <p>Please enter the security code we emailed you.</p>
-                <form
-                  className="centerBoxItems"
-                  onSubmit={this.handleFormSubmit}
-                >
-                  <label htmlFor="fn">First Name</label>
-                  <br></br>
+          <Card className='create-account-card'>
+            <h2>Create An Account</h2>
+            <Form
+              className="centerBoxItems"
+              onSubmit={this.props.handleFormSubmit}
+            >
+              <Row>
+                <Col>
+                  <Form.Label htmlFor="fn">First Name</Form.Label>
+                </Col>
+                <Col>
+
                   <input
                     type="text"
                     id="email"
                     emailaddr="email"
-                    className="emailaddressbar"
+                    className="create-account-form-input"
                     name="fn"
-                    onChange={this.handleChange}
+                    onChange={this.props.handleChange}
                   />
+                </Col>
+              </Row>
 
-                  <label htmlFor="ln">Last Name</label>
-                  <br></br>
+              <Row>
+                <Col>
+                  <Form.Label htmlFor="ln">Last Name</Form.Label>
+                </Col>
+                <Col>
                   <input
                     type="text"
                     id="email"
                     emailaddr="email"
-                    className="emailaddressbar"
+                    className="create-account-form-input"
                     name="ln"
-                    onChange={this.handleChange}
+                    onChange={this.props.handleChange}
                   />
+                </Col>
+              </Row>
 
-                  <label for="email">Email</label>
-                  <br></br>
+              <Row>
+                <Col>
+                  <Form.Label for="email">Email</Form.Label></Col>
+                <Col>
                   <input
                     type="text"
                     id="email"
                     emailaddr="email"
-                    class="emailaddressbar"
+                    className="create-account-form-input"
                     name="email"
-                    onChange={this.handleChange}
+                    onChange={this.props.handleChange}
                   />
-                  <br></br>
+                </Col>
+              </Row>
 
-                  <label for="pw">Password</label>
-                  <br></br>
+              <Row>
+                <Col>
+                  <Form.Label for="pw">Password</Form.Label>
+                </Col>
+                <Col>
+
                   <input
                     type="password"
                     id="pw"
                     pass="pw"
-                    class="emailaddressbar"
+                    className="create-account-form-input"
                     name="pw"
-                    onChange={this.handleChange}
+                    onChange={this.props.handleChange}
                   />
-                  <br></br>
+                </Col>
+              </Row>
 
+              <Row>
+                <Col>
                   <label for="pw2">Re-Enter Password</label>
-                  <br></br>
+                </Col>
+                <Col>
                   <input
                     type="password"
                     id="pw"
                     pass2="pw2"
-                    class="emailaddressbar"
+                    className="create-account-form-input"
                   />
-                  <br></br>
-                  <br></br>
-                  <input type="submit" value="Next" class="submitnextbutton" />
-                </form>
+                </Col>
+              </Row>
+              <Row className='center'>
+                <input type="submit" value="Next" class="submitnextbutton" />
+              </Row>
+            </Form>
 
-                <br></br>
-              </div>
-            </div>
+            <Row>
+              <Col>
+                <input
+                  className='input-as-anchor'
+                  type="button"
+                  value="Back"
+                  onClick={this.props.back_onClick} />
+              </Col>
+              <Col>
+              {/* empty to align left */}
+              </Col>
+            </Row>
           </Card>
         </Container>
-      </div>
+      </Jumbotron>
     );
-  }
+  } 
 }
-
-export default createAccount;
+export default CreateAccount;

@@ -1,24 +1,24 @@
 //import React from "react";
 import React, { Component, createRef } from "react";
-import "./HomePage.css";
+import "./css/HomePage.css";
 import {
   Layout,
   Header,
   Content
 } from "react-mdl";
-
-import PlansPricing from './Components/landingPage';
 import GetStarted from './Components/getStarted';
-import LoginPage from "./Login/loginpage";
-import LandingPage from "./Components/landingPage";
-import CreateAccount from "./Login/createAccount";
+import LoginPage from "./Login/LoginPage";
+import LandingPage from "./Components/LandingPage";
+import CreateAccount from "./Login/CreateAccount";
+import Col from 'react-bootstrap/Col';
+import Row from 'react-bootstrap/Row';
 
 class HomePage extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      page: <LandingPage getStartedOnClick={this.getStarted_OnClick}/>,
-      activeButton: ""
+      page: <LandingPage getStartedOnClick={this.getStarted_OnClick} />,
+      activeButton: "landing"
     };
 
     this.scrollDiv = createRef();
@@ -29,10 +29,19 @@ class HomePage extends Component {
    * based on what the user last clicked
    */
   returnButtonCSS = button => {
-    if (button === this.state.activeButton) {
-      return "button button-primary active";
-    } else {
-      return "button button-primary";
+    if (button === 'faq' || button === 'plans-pricing' || button === 'landing') {
+      if (button === this.state.activeButton) {
+        return "a-btn button-primary active";
+      } else {
+        return "a-btn button-primary";
+      }
+    }
+    else {
+      if (button === this.state.activeButton) {
+        return "button button-primary active";
+      } else {
+        return "button button-primary";
+      }
     }
   };
 
@@ -41,7 +50,7 @@ class HomePage extends Component {
    * This method is for the "NO" icon on the navigation menu
    * this will redirect the user to the top of the landing page
    */
-  logOn_OnClick = () => {
+  homeButton_OnClick = () => {
     this.setState({
       page: <LandingPage getStartedOnClick={this.getStarted_OnClick} />,
       activeButton: "landing"
@@ -76,7 +85,7 @@ class HomePage extends Component {
    */
   plansPricing_OnClick = () => {
     this.setState({
-      page: <LandingPage getStartedOnClick={this.getStarted_OnClick}/>,
+      page: <LandingPage getStartedOnClick={this.getStarted_OnClick} />,
       activeButton: "plans-pricing"
     });
   };
@@ -98,60 +107,77 @@ class HomePage extends Component {
    */
   FAQ_OnClick = () => {
     this.setState({
-      page: <LandingPage scrollDiv={this.scrollDiv} getStartedOnClick={this.getStarted_OnClick}/>,
+      page: <LandingPage scrollDiv={this.scrollDiv} getStartedOnClick={this.getStarted_OnClick} />,
       activeButton: "faq"
     });
-    //this.scrollDiv.current.scrollIntoView({ behavior: 'smooth' })
-    //eventually scroll to component here,
-    //for the sake of time I'm going to leave this
   };
+
+  /**
+   * This function returns the top navigation
+   */
+  TopNav() {
+    return (
+      <Header transparent>
+        <Row className='topnav-row'>
+          <Col>
+            <a href='#landing' onClick={this.homeButton_OnClick} className="main-top-home-nav" />
+          </Col>
+          <Col style={{ textAlign: 'right' }}>
+            <a
+              href="#landing"
+              onClick={this.plansPricing_OnClick}
+              className={this.returnButtonCSS("landing")}
+            >
+              Home
+            </a>
+
+
+            <button
+              onClick={this.login_OnClick}
+              className={this.returnButtonCSS("log-in")}
+            >
+              Log In
+            </button>
+
+            <button
+              onClick={this.getStarted_OnClick}
+              className={this.returnButtonCSS("get-started")}
+            >
+              Get Started
+            </button>
+            <a
+              href="#planspricing"
+              onClick={this.plansPricing_OnClick}
+              className={this.returnButtonCSS("plans-pricing")}
+            >
+              Plans & Pricing
+            </a>
+            <a
+              href="#faqsec"
+              onClick={this.FAQ_OnClick}
+              className={this.returnButtonCSS("faq")}
+            >
+              FAQ
+            </a>
+          </Col>
+        </Row>
+      </Header>);
+  }
+
+
 
   render() {
     return (
-      <div>
+      <>
         <Layout fixedHeader className="website-background">
-          <Header transparent>
-            <button onClick={this.logOn_OnClick} className="main-top-home-nav">
-              <h4 style={{ color: "transparent" }}>NO</h4>
-            </button>
-            {/* <Navigation> */}
-            <div>
-              <button
-                onClick={this.login_OnClick}
-                className={this.returnButtonCSS("log-in")}
-              >
-                Log In
-              </button>
-              <button
-                onClick={this.getStarted_OnClick}
-                className={this.returnButtonCSS("get-started")}
-              >
-                Get Started
-              </button>
-              <a
-                href="#planspricing"
-                onClick={this.plansPricing_OnClick}
-                className={this.returnButtonCSS("plans-pricing")}
-              >
-                Plans & Pricing
-              </a>
-              <a
-                href="#faqsec"
-                onClick={this.FAQ_OnClick}
-                className={this.returnButtonCSS("faq")}
-              >
-                FAQ
-              </a>
-            </div>
-            {/* </Navigation> */}
-          </Header>
-          <Content style={{scrollbarWidth: "none"}}>
-            {/* <div className="page-content" /> */}
-            {/* <Main /> */}
+          {this.TopNav()}
+          <Content style={{ scrollbarWidth: "none" }}>
             {this.state.page}
+
           </Content>
+
         </Layout>
-      </div>
+      </>
     );
   }
 }

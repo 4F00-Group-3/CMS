@@ -1,0 +1,169 @@
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+img.center {
+  display: block;
+  margin: auto;
+}
+
+/*Center image class*/
+
+
+/*For boxes*/
+
+.boxPadding {
+  padding: 20px;
+}
+
+.centerBoxItems {
+  text-align: center;
+}
+
+.editorMenu {
+  color: white;
+  text-align: center;
+}
+
+.Components-Editor {
+  margin-top: 2vh;
+  margin: auto;
+  width: 60vh;
+  height: 100vh;
+  background: grey;
+  padding: 10px;
+  text-decoration: white;
+  float: left;
+}
+
+.centreBoxOnPage {
+  margin-top: 5%;
+}
+
+.logo-size {
+  width: 350px;
+  text-align: center;
+}
+
+.center-logo {
+  text-align: center;
+  padding-right: 3em;
+  padding-left: 3em;
+}
+
+.LandingPage-Card {
+  width: "256px";
+  height: "256px";
+  margin: "auto";
+}
+
+.LandingPage-Grid-bg {
+  background: "white";
+}
+
+.logo-jumbotron {
+  background-image: url(https://www.cosc.brocku.ca/~c4f00g03/react/public/imagesFolder/landing-page-banner-min.jpg);
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  margin-bottom: 0em !important;
+  padding-bottom: 10% !important;
+}
+
+.right-banner-text {
+  bottom: 0;
+  position: absolute;
+  color: #fff;
+  text-align: right;
+}
+
+.landing-page-title {
+  padding-top: 0.125em;
+  text-align: right;
+  color: white!important  ;
+  font-family: inherit;
+  font-weight: inherit;
+}
+
+.center-center-jumbotron {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #2d3436 !important;
+  padding: 15% !important;
+  margin-bottom: 0em !important;
+}
+
+.center {
+  text-align: center !important;
+}
+
+.start-btn {
+  background-color: #0984e3 !important;
+  border-radius: 10px !important;
+  font-family: inherit !important;
+  text-transform: capitalize !important;
+}
+
+.upper-case {
+  text-transform: uppercase !important;
+}
+
+.faq-jumbotron {
+  background-image: url(https://www.cosc.brocku.ca/~c4f00g03/react/public/imagesFolder/langing-page-banner-min.jpg);
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  margin-bottom: 0em !important;
+  padding: 15% !important;
+}
+
+.faq-page {
+  padding-top: 800;
+  text-align: center;
+  color: #fff;
+  font-weight: 600;
+  margin-top: "30px";
+}
+
+.full-screen {
+  height: 100%;
+}
+
+.full-screen-row {
+  height: 100%;
+}
+
+.half-screen {
+  height: 50%;
+}
+
+.plans-pricing-jumbotron {
+  background-image: url(https://www.cosc.brocku.ca/~c4f00g03/react/public/imagesFolder/plans-pricing-bg-min.jpg);
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  margin-bottom: 0em !important;
+  padding: 15% !important;
+}
+
+.center-center-text {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+.plans-pricing-row {
+  padding: 5% !important;
+}
+
+.plans-pricing-card {
+  margin: 2%;
+  text-align: center;
+}
+
+.white {
+  color: #fff!important;
+}
