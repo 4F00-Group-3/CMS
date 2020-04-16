@@ -16,8 +16,7 @@ import {
     faLock,
 } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { ChromePicker } from 'react-color';
-import { AlignmentInput } from './EditorMenuComponents';
+import { AlignmentInput, ColourPicker } from './EditorMenuComponents';
 
 class IconEditorMenu extends Component {
     constructor(props) {
@@ -59,12 +58,8 @@ class IconEditorMenu extends Component {
             return (
                 <>
                     <Button onClick={() => this.handleColorPicker()}>Close Color Picker</Button>
-                    <ChromePicker
-                        color={"#000"}
-                        onChange={(event) => {
-                            this.props.menuComponentOnClick(
-                                "color|" + event.hex)
-                        }}
+                    <ColourPicker
+                        onChange={this.props.menuComponentOnClick}
                     />
                 </>);
 
