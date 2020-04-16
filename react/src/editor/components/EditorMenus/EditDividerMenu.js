@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import Form from 'react-bootstrap/Form';
 import Col from 'react-bootstrap/Col';
 import Button from 'react-bootstrap/Button';
-import { ChromePicker } from 'react-color';
+import { ColourPicker } from './EditorMenuComponents';
 
 class EditDividerMenu extends Component {
   constructor(props) {
@@ -15,7 +15,7 @@ class EditDividerMenu extends Component {
       borderColour: "#bbb",
       borderStyle: "solid",
       borderUnits: "px",
-      
+
     }
   }
 
@@ -64,6 +64,20 @@ class EditDividerMenu extends Component {
     }
   }
 
+
+  handleColourChange = (colourString) => {
+    // This is due to ColourString being undefined at the beginning when ColourPicker is first created
+    try{
+      var colour = colourString.split("|")[1];
+      this.props.menuComponentOnClick(
+        "borderTop|" + this.state.heightValue +
+        this.state.heightUnits + " " +
+        this.state.borderStyle + " " +
+        colour);
+    }catch(e){
+    }
+  }
+
   /**
    * This method dynamically shows a color picker on button click.
    * As well, sets the css for the correct color.
@@ -75,15 +89,8 @@ class EditDividerMenu extends Component {
       return (
         <>
           <Button onClick={() => this.handleColorPicker()}>Close Color Picker</Button>
-          <ChromePicker
-            color={"#000"}
-            onChange={(event) => {
-              this.props.menuComponentOnClick(
-                "borderTop|" + this.state.heightValue +
-                this.state.heightUnits + " " +
-                this.state.borderStyle + " " +
-                event.hex)
-            }}
+          <ColourPicker
+            onChange={this.handleColourChange}
           />
         </>);
 
