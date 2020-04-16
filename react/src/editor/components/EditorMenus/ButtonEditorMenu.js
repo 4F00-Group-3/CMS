@@ -2,8 +2,10 @@ import React, { Component } from 'react';
 import '../../../css/EditorMenuComponents.css';
 import {
     AlignmentImage,
+    ColourPicker,
+    BackgroundColorPicker
 } from './EditorMenuComponents';
-import { ChromePicker } from 'react-color';
+// import { ChromePicker } from 'react-color';
 import { Form, Col, Button } from 'react-bootstrap';
 
 
@@ -61,9 +63,8 @@ class ButtonEditor extends Component {
                     return (
                         <>
                             <Button onClick={() => this.handleColorPicker(btn)}>Close Color Picker</Button>
-                            <ChromePicker
-                                color={"#000"}
-                                onChange={(event) => { this.props.menuComponentOnClick("color|" + event.hex) }}
+                            <ColourPicker
+                                onChange={this.props.menuComponentOnClick}
                             />
                         </>);
 
@@ -77,9 +78,8 @@ class ButtonEditor extends Component {
                     return (
                         <>
                             <Button onClick={() => this.handleColorPicker(btn)}>Close Color Picker</Button>
-                            <ChromePicker
-                                color={"#000"}
-                                onChange={(event) => this.props.menuComponentOnClick("backgroundColor|" + event.hex)}
+                            <BackgroundColorPicker
+                                onChange={this.props.menuComponentOnClick}
                             />
                         </>);
 

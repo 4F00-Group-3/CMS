@@ -398,6 +398,35 @@ export class ColourPicker extends Component {
     }
 }
 
+export class BackgroundColorPicker extends Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            background: '#fff',
+        };
+        this.handler = this.handler.bind(this);
+    }
+
+    handler() {
+        this.props.onChange("backgroundColor|" + this.state.background)
+    }
+
+    handleOnChange = (color) => {
+        this.setState({ background: color.hex });
+        this.handler()
+    };
+
+
+    render() {
+        return (
+            <ChromePicker
+                color={this.state.background}
+                onChange={this.handleOnChange}
+            />
+        );
+    }
+}
+
 export class AlignmentImage extends Component {
     render() {
         return (
