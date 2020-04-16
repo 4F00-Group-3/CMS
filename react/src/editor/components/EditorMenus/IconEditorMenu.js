@@ -90,7 +90,7 @@ class IconEditorMenu extends Component {
                 <Form.Row>
                     <Col>
                         <Button
-                        onClick={
+                            onClick={
                                 () =>
                                     this.props.menuComponentOnClick("faClassName|faAddressBook|faClassName")}
                         >
@@ -99,7 +99,7 @@ class IconEditorMenu extends Component {
                     </Col>
                     <Col>
                         <Button
-                        onClick={
+                            onClick={
                                 () =>
                                     this.props.menuComponentOnClick("faClassName|faBell|faClassName")}
                         >
@@ -108,7 +108,7 @@ class IconEditorMenu extends Component {
                     </Col>
                     <Col>
                         <Button
-                        onClick={
+                            onClick={
                                 () =>
                                     this.props.menuComponentOnClick("faClassName|faBook|faClassName")}
                         >
@@ -117,7 +117,7 @@ class IconEditorMenu extends Component {
                     </Col>
                     <Col>
                         <Button
-                        onClick={
+                            onClick={
                                 () =>
                                     this.props.menuComponentOnClick("faClassName|faCamera|faClassName")}
                         >
@@ -126,7 +126,7 @@ class IconEditorMenu extends Component {
                     </Col>
                     <Col>
                         <Button
-                        onClick={
+                            onClick={
                                 () =>
                                     this.props.menuComponentOnClick("faClassName|faCreditCard|faClassName")}
                         >
@@ -137,40 +137,40 @@ class IconEditorMenu extends Component {
                 <Form.Row className="mt-2">
                     <Col>
                         <Button onClick={
-                                () =>
-                                    this.props.menuComponentOnClick("faClassName|faEye|faClassName")}
+                            () =>
+                                this.props.menuComponentOnClick("faClassName|faEye|faClassName")}
                         >
                             <FontAwesomeIcon icon={faEye}></FontAwesomeIcon>
                         </Button>
                     </Col>
                     <Col>
                         <Button onClick={
-                                () =>
-                                    this.props.menuComponentOnClick("faClassName|faGift|faClassName")}
+                            () =>
+                                this.props.menuComponentOnClick("faClassName|faGift|faClassName")}
                         >
                             <FontAwesomeIcon icon={faGift}></FontAwesomeIcon>
                         </Button>
                     </Col>
                     <Col>
                         <Button onClick={
-                                () =>
-                                    this.props.menuComponentOnClick("faClassName|faHeart|faClassName")}
+                            () =>
+                                this.props.menuComponentOnClick("faClassName|faHeart|faClassName")}
                         >
                             <FontAwesomeIcon icon={faHeart}></FontAwesomeIcon>
                         </Button>
                     </Col>
                     <Col>
                         <Button onClick={
-                                () =>
-                                    this.props.menuComponentOnClick("faClassName|faLaptop|faClassName")}
+                            () =>
+                                this.props.menuComponentOnClick("faClassName|faLaptop|faClassName")}
                         >
                             <FontAwesomeIcon icon={faLaptop}></FontAwesomeIcon>
                         </Button>
                     </Col>
                     <Col>
                         <Button onClick={
-                                () =>
-                                    this.props.menuComponentOnClick("faClassName|faLock|faClassName")}
+                            () =>
+                                this.props.menuComponentOnClick("faClassName|faLock|faClassName")}
                         >
                             <FontAwesomeIcon icon={faLock}></FontAwesomeIcon>
                         </Button>
@@ -218,9 +218,6 @@ class IconEditorMenu extends Component {
                         </Form.Control>
                     </Col>
                 </Form.Row>
-
-
-
                 <Form.Row className="mt-2">
                     <Col>
                         <Form.Label className="d-block left">Alignment:</Form.Label>
@@ -234,52 +231,6 @@ class IconEditorMenu extends Component {
 
                 <Button variant="primary" type="submit">Save</Button>
             </Form>}</>
-            /* <Container maxWidth="sm">
-              <Card>
-                <div className="boxPadding">
-                  <h2>Log into your account</h2>
-    
-                  <form className="centerBoxItems">
-                    <label for="email">Username:</label>
-                    <br></br>
-                    <input
-                      type="text"
-                      id="email"
-                      emailaddr="email"
-                      class="emailaddressbar"
-                    />
-                    <br></br>
-                    <br></br>
-    
-                    <label for="email">Password:</label>
-                    <br></br>
-                    <input type="text" id="pw" pass="pw" class="emailaddressbar" />
-                    <br></br>
-                    <br></br>
-                    <br></br>
-    
-                    <input type="submit" value="Login" class="submitnextbutton" />
-                  </form>
-    
-                  <a
-                    href="forgot-password.html"
-                    style={{ color: "grey", textdecoration: "none" }}
-                  >
-                    Forgot Password
-                  </a>
-                  <a
-                    href="create-account.html"
-                    style={{
-                      color: "grey",
-                      textdecoration: "none",
-                      float: "right"
-                    }}
-                  >
-                    Create Account
-                  </a>
-                </div>
-              </Card>
-            </Container> */
         );
     }
 }
