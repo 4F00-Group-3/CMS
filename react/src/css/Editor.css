@@ -17,18 +17,16 @@
   margin-top: 2vh;
   margin: auto;
   width: 50vh;
-  height: auto;
-  background: #2d3436;
+  height: 100vh;
+  background: rgb(26, 26, 26);
   /*border: 3px solid green;*/
   float: left;
   position: fixed;
+  
+  
+  justify-content:center;
+  align-items:center;
 
-  justify-content: center;
-  align-items: center;
-}
-
-.inline {
-  display: inline;
 }
 
 .Editor-SideBar-Container {
@@ -39,12 +37,12 @@
   margin: auto;
   width: 50vh;
   height: 100vh;
-  background: #2d3436;
+  background: rgb(26, 26, 26);
   /*border: 3px solid green;*/
   float: left;
   position: fixed;
 
-  display: flex;
+  display: block;
   justify-content: center;
   align-items: center;
   /* height: 100%; */
@@ -60,6 +58,14 @@
   padding: 10px;
 }
 
+.PageListItem .LinkContainer {
+  float: right;
+}
+
+.PageListItem .LinkContainer .Link {
+  padding-left: 7vh;
+}
+
 .Components-Editor {
   margin-top: 2vh;
   margin: auto;
@@ -73,24 +79,4 @@
 
 .edit-menu-nav {
   margin: 2%;
-}
-
-.sidebar-button {
-  height: 20%;
-  border-radius: 20px;
-  margin: 5%;
-  border: 0px hidden;
-  background-color: #fff;
-  padding: 4%;
-}
-
-.sidebar-icon {
-  height: 8vh !important;
-  width: 8vh !important;
-  color: #2d3436;
-}
-
-p {
-  color: #2d3436 !important;
-  margin-bottom: 0 !important;
 }

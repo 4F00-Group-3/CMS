@@ -6,7 +6,7 @@ import {
     faBars,
     faAlignRight,
     faAsterisk,
-    faInfo,
+    faArrowDown,
     faCircle,
     faColumns
 } from "@fortawesome/free-solid-svg-icons";
@@ -47,43 +47,28 @@ export default class EditorSideBar extends Component {
         let menu = this.props.menu;
         switch (menu) {
             case "heading": {
-                return (
-                    <div className="inline">
-                        <HeadingEditorMenu selectedId={this.props.selectedId} menuComponentOnClick={this.props.menuComponentOnClick} />
-                        <EditMenuNav handleBack={this.props.handleBack} handleDelete={this.props.handleDelete} />
-                    </div>
-                )
+                return <> <HeadingEditorMenu selectedId={this.props.selectedId} menuComponentOnClick={this.props.menuComponentOnClick} /> <EditMenuNav handleBack={this.props.handleBack} handleDelete={this.props.handleDelete} /> </>
             }
             case "divider": {
-                return (<div className="inline"> <EditDividerMenu selectedId={this.props.selectedId} menuComponentOnClick={this.props.menuComponentOnClick} /><EditMenuNav handleBack={this.props.handleBack} handleDelete={this.props.handleDelete} /> </div>)
+                return <> <EditDividerMenu selectedId={this.props.selectedId} menuComponentOnClick={this.props.menuComponentOnClick} /><EditMenuNav handleBack={this.props.handleBack} handleDelete={this.props.handleDelete} /> </>
             }
             case "image": {
-                return (<div className="inline"> <ImageEditorMenu selectedId={this.props.selectedId} menuComponentOnClick={this.props.menuComponentOnClick} /> <EditMenuNav handleBack={this.props.handleBack} handleDelete={this.props.handleDelete} /> </div>)
+                return <> <ImageEditorMenu selectedId={this.props.selectedId} menuComponentOnClick={this.props.menuComponentOnClick} /> <EditMenuNav handleBack={this.props.handleBack} handleDelete={this.props.handleDelete} /> </>
             }
             case "icon": {
-                return (<div className="inline"> <IconEditorMenu selectedId={this.props.selectedId} menuComponentOnClick={this.props.menuComponentOnClick} /> <EditMenuNav handleBack={this.props.handleBack} handleDelete={this.props.handleDelete} /> </div>)
+                return <> <IconEditorMenu selectedId={this.props.selectedId} menuComponentOnClick={this.props.menuComponentOnClick} /> <EditMenuNav handleBack={this.props.handleBack} handleDelete={this.props.handleDelete} /> </>
             }
             case "video": {
-                return (<div className="inline"> <VideoEditorMenu selectedId={this.props.selectedId} menuComponentOnClick={this.props.menuComponentOnClick} /> <EditMenuNav handleBack={this.props.handleBack} handleDelete={this.props.handleDelete} /> </div>)
+                return <> <VideoEditorMenu selectedId={this.props.selectedId} menuComponentOnClick={this.props.menuComponentOnClick} /> <EditMenuNav handleBack={this.props.handleBack} handleDelete={this.props.handleDelete} /> </>
             }
             case "button": {
-                return (<div className="inline"> <ButtonEditorMenu selectedId={this.props.selectedId} menuComponentOnClick={this.props.menuComponentOnClick} /> <EditMenuNav handleBack={this.props.handleBack} handleDelete={this.props.handleDelete} /> </div>)
+                return <> <ButtonEditorMenu selectedId={this.props.selectedId} menuComponentOnClick={this.props.menuComponentOnClick} /> <EditMenuNav handleBack={this.props.handleBack} handleDelete={this.props.handleDelete} /> </>
             }
             case "spacer": {
-                return (<div className="inline"> <SpacerEditorMenu selectedId={this.props.selectedId} menuComponentOnClick={this.props.menuComponentOnClick} /> <EditMenuNav handleBack={this.props.handleBack} handleDelete={this.props.handleDelete} /> </div>)
+                return <> <SpacerEditorMenu selectedId={this.props.selectedId} menuComponentOnClick={this.props.menuComponentOnClick} /> <EditMenuNav handleBack={this.props.handleBack} handleDelete={this.props.handleDelete} /> </>
             }
             case "row": {
-                return (
-                    <div className="inline">
-                        <RowEditorMenu 
-                        selectedId={this.props.selectedId} 
-                        selectedRowNumberOfColumns={this.props.selectedRowNumberOfColumns} 
-                        menuComponentOnClick={this.props.menuComponentOnClick} 
-                        handleBack={this.props.handleBack} 
-                        handleDelete={this.props.handleDelete} 
-                        onPush={this.props.onPush} />
-                    </div>
-                );
+                return <RowEditorMenu selectedId={this.props.selectedId} selectedRowNumberOfColumns={this.props.selectedRowNumberOfColumns} menuComponentOnClick={this.props.menuComponentOnClick} handleBack={this.props.handleBack} handleDelete={this.props.handleDelete} onPush={this.props.onPush} />;
             }
             case "column": {
                 return (
@@ -94,7 +79,7 @@ export default class EditorSideBar extends Component {
                             <EditorButton text="Button" faIcon={faAsterisk} onClick={this.AddElementToColumn} />
                             <EditorButton text="Dividers" faIcon={faBars} onClick={this.AddElementToColumn} />
                             <EditorButton text="Spacer" faIcon={faAlignRight} onClick={this.AddElementToColumn} />
-                            <EditorButton text="Icon" faIcon={faInfo} onClick={this.AddElementToColumn} />
+                            <EditorButton text="Icon" faIcon={faArrowDown} onClick={this.AddElementToColumn} />
                             <EditorButton text="Video" faIcon={faCircle} onClick={this.AddElementToColumn} />
                             <EditMenuNav handleBack={this.props.handleBack} handleDelete={this.props.handleDelete} />
                         </div>
@@ -110,7 +95,7 @@ export default class EditorSideBar extends Component {
                         <EditorButton text="Dividers" faIcon={faBars} onClick={this.props.onPush} />
                         <EditorButton text="Spacer" faIcon={faAlignRight} onClick={this.props.onPush} />
                         <EditorButton text="Row" faIcon={faColumns} onClick={this.props.onPush} />
-                        <EditorButton text="Icon" faIcon={faInfo} onClick={this.props.onPush} />
+                        <EditorButton text="Icon" faIcon={faArrowDown} onClick={this.props.onPush} />
                         <EditorButton text="Video" faIcon={faCircle} onClick={this.props.onPush} />
                     </div>
                 </>
