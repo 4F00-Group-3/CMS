@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import "../../css/Dashboard.css";
+import "../../css/PageAdmin.css";
 import { Navbar, NavbarBrand } from "reactstrap";
 
 class TopBar extends Component {
@@ -22,8 +22,10 @@ class TopBar extends Component {
     return (
       <div>
         <Navbar
-          className="justify-content-between TopBar"
+          className="bg-light justify-content-between TopBar"
           sticky="top"
+          color="light"
+          light
           expand="md"
         >
           <NavbarBrand href="#">

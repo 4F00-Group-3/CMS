@@ -3,7 +3,6 @@ import { DndProvider } from "react-dnd";
 import Backend from "react-dnd-html5-backend";
 import Card from "./Card.jsx";
 import update from 'immutability-helper'
-import ReactDOM from 'react-dom';
 
 class EditingPage extends Component {
   constructor(props) {
@@ -13,21 +12,6 @@ class EditingPage extends Component {
       active: 0
     }
   }
-
-  generateHTML = () => {
-    ReactDOM.findDOMNode(this)
-    this.props.backend.returnHTMLString("page title", document.getElementsByClassName('page-section'))
-  }
-
-  componentDidMount() {
-    setTimeout(this.generateHTML, 1500)
-  }
-
-  componentDidUpdate() {
-    setTimeout(this.generateHTML, 1500)
-  }
-
-
 
   /**
    * This element sets highlights the current element the user is editing

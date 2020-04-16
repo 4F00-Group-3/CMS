@@ -3,8 +3,8 @@ import Home from '../HomePage';
 import Editor from '../editor/Editor';
 import Dashboard from '../dashboard/Dashboard'
 import SitePage from '../Site Page/SitePage';
-import Login from '../Login/LoginPage';
-import CreateAccount from '../Login/CreateAccount';
+import Login from '../Login/loginpage';
+import CreateAccount from '../Login/createAccount.js';
 import GetStarted from '../Components/getStarted';
 
 class MasterTestMenu extends Component {

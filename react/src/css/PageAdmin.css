@@ -1,0 +1,118 @@
+.PagesContainer {
+  margin-left: 10vh;
+  margin-right: 10vh;
+  margin-top: 2vh;
+  margin: auto;
+  width: 80%;
+  padding: 10px;
+}
+
+.ListItemContainer {
+  margin: auto;
+  margin-bottom: 5px;
+  width: 90%;
+  padding: 10px;
+  border-radius: 1px;
+  background: rgb(233, 228, 255);
+  color: rgb(0, 0, 0);
+}
+
+.PagesList {
+  list-style: none;
+  margin: auto;
+  width: 100%;
+  padding: 10px;
+}
+
+.SideBySide {
+  display: flex;
+  flex-direction: row;
+}
+
+.TopBar {
+  height: 10vh;
+}
+
+.TopBar-Icon {
+  height: 5vh;
+  width: 5vh;
+}
+
+.SideNav{
+    width: "25vh";
+    height: "90vh";
+    background: "lightgrey";
+}
+  /*Styling for the add page pop up
+  May want to play with later to make look better
+  leaving as is for now as it is functional  */
+  .popup {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    margin: auto;
+    background-color: rgba(0,0,0, 0.5);
+  }
+  .popup_inner {
+    position: absolute;
+    left: 35%;
+    right: 35%;
+    top: 20%;
+    bottom: 20%;
+    margin: auto;
+    background: white;
+  }
+  
+.dashButtons {
+  /*Pages, Users, Settings, LogOut*/
+  background-color: rgb(52, 51, 56);
+  border: none;
+  border-radius: 5px;
+  color: white;
+  padding: 12px 32px;
+  text-align: center;
+  display: inline-block;
+  font-size: 16px;
+  margin-bottom: 5px;
+  margin-left: 10px;
+  width: 130px;
+}
+
+.dashButtons:hover {
+  background-color: rgb(82, 82, 85);
+}
+
+.inner-edit-dashButtons {
+  background-color: rgb(113, 98, 243);
+  border: none;
+  border-radius: 5px;
+  color: black;
+  padding: 5px 10px;
+  text-align: center;
+  display: inline-block;
+  font-size: 12px;
+}
+
+.inner-edit-dashButtons:hover {
+  background-color: rgb(169, 161, 240);
+}
+
+.inner-delete-dashButtons {
+  background-color: rgb(255, 31, 31);
+  border: none;
+  border-radius: 5px;
+  color: black;
+  padding: 5px 10px;
+  text-align: center;
+  display: inline-block;
+  font-size: 12px;
+  margin-left: 5px;
+}
+
+.inner-delete-dashButtons:hover {
+  background-color: rgb(255, 87, 87);
+}

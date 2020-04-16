@@ -13,49 +13,6 @@ class EditorBackend {
     }
 
     /**
-     * This method returns an html string for the page rendered in a PageSection.
-     * To be called in PageSection class.
-     * 
-     * @param {String} page_title 
-     * @param {HTMLCollection} _htmlCollection 
-     */
-    returnHTMLString(page_title, _htmlCollection) {
-        var htmlCollection = _htmlCollection;
-        var result = "<!DOCTYPE html><html><head><meta charset=\"UTF-8\"><link rel=\"stylesheet\" href=\"https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css\" integrity=\"sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T\" crossorigin=\"anonymous\"><title>" + page_title + "</title></head><body>";
-        console.log(htmlCollection)
-
-        for (let index = 0; index < htmlCollection.length; index++) {
-            const element = htmlCollection[index];
-            if (element.innerHTML.includes("</svg>") && element.innerHTML.includes("font-size")) {
-                //fix icon css here
-                var css = element.innerHTML.substring(
-                    element.innerHTML.lastIndexOf("style=\"") + 1,
-                    element.innerHTML.lastIndexOf(";\">")
-                ).split("=")[1].split(';');
-
-                for (let cssIndex = 0; cssIndex < css.length; cssIndex++) {
-                    console.log(css[cssIndex])
-                    if (css[cssIndex].includes("font-size")) {
-                        //extracts font-size and changes it to height
-                        var returned = css.splice(cssIndex, 1);
-                        var newCSS = "style=\"" + returned[0].replace("font-size", "height") + ";\"";
-
-                        console.log(newCSS)
-                        //injects height into appropriate div that way the icon renders as the right size
-                        result += element.innerHTML.replace("role=\"img\"", ("role=\"img\" " + newCSS))
-                    }
-                }
-            }
-            else {
-                result += element.innerHTML;
-            }
-        }
-        var closingHTMLTags = "</body></html>";
-        result += closingHTMLTags;
-        return result;
-    }
-
-    /**
      * This method recursively traverses the page to find the page section with the matching id, and modified its style according to the provided style key and value
      * @param {*} id id of the page section to modify
      * @param {*} style_key the style key to modify
@@ -121,14 +78,14 @@ class EditorBackend {
      * @param {*} rowId the id of the row to edit
      * @param {*} numColumns the new number of columns with in the row
      */
-    editSectionRow(rowId, numColumns) {
+    editSectionRow(rowId, numColumns) { 
         var page = this.getPage(); // get the current page
 
         // Find the row element to edit based on rowId
         for (let index = 0; index < page.length; index++) {
             var pageSection = page[index];
             var exitingRowColumns = parseInt(pageSection.col)
-
+           
             // Row is found
             if (pageSection.id === rowId) {
 
@@ -142,10 +99,10 @@ class EditorBackend {
                         pageSection.page.pop();
                     }
                 }
-
+                
                 // update number of column values
                 pageSection.col = numColumns;
-
+                
                 // return num columns, this is used in editor to pass to RowEditorMenu to show current column count
                 return numColumns;
             }
@@ -188,211 +145,110 @@ class EditorBackend {
         //TODO: the following code will change to a ajax function to return a saved user page from database
         // This is for testing purposes
         return [
-            {
-                "id": 1,
-                "type": "heading",
-                "text": "Your Homepage",
-                "style": [
-                    {
-                        "color": "black",
-                        "fontSize": "81px",
-                        "textAlign": "center",
-                        "fontFamily": "\"Lucida Sans Unicode\", \"Lucida Grande\", sans-serif"
-                    }
-                ]
-            },
-            {
-                "id": 12,
-                "type": "spacer",
-                "text": "heading 1",
-                "style": [
-                    {
-                        "color": "black",
-                        "fontSize": "13px",
-                        "textAlign": "left"
-                    }
-                ]
-            },
-            {
-                "id": 2,
-                "type": "image",
-                "text": "alt text here",
-                "url": "https://images.unsplash.com/photo-1528557692780-8e7be39eafab?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1350&q=80",
-                "style": [
-                    {
-                        "width": "px",
-                        "borderRadius": "5px",
-                        "marginLeft": "0",
-                        "marginRight": "0",
-                        "marginTop": "0",
-                        "marginBottom": "0",
-                        "textAlign": "center"
-                    }
-                ]
-            },
-            {
-                "id": 3,
-                "type": "row",
-                "style": [],
-                "col": 1,
-                "page": [
-                    {
-                        "id": "3|1",
-                        "type": "column",
-                        "style": [],
-                        "page": []
-                    }
-                ]
-            },
-            {
-                "id": 4,
-                "type": "row",
-                "style": [],
-                "col": 1,
-                "page": [
-                    {
-                        "id": "4|1",
-                        "type": "column",
-                        "style": [],
-                        "page": []
-                    }
-                ]
-            },
-            {
-                "id": 13,
-                "type": "spacer",
-                "text": "heading 1",
-                "style": [
-                    {
-                        "color": "black",
-                        "fontSize": "12px",
-                        "textAlign": "left"
-                    }
-                ]
-            },
-            {
-                "id": 6,
-                "type": "heading",
-                "text": "Add videos and pictures to express your company's unique culture",
-                "style": [
-                    {
-                        "color": "black",
-                        "fontSize": "38px",
-                        "textAlign": "center",
-                        "fontFamily": "\"Lucida Sans Unicode\", \"Lucida Grande\", sans-serif"
-                    }
-                ]
-            },
-            {
-                "id": 14,
-                "type": "spacer",
-                "text": "heading 1",
-                "style": [
-                    {
-                        "color": "black",
-                        "fontSize": "12px",
-                        "textAlign": "left"
-                    }
-                ]
-            },
-            {
-                "id": 5,
-                "type": "video",
-                "text": "heading 1",
-                "url": "https://youtu.be/X4Q7d0CtYyk",
-                "style": [
-                    {
-                        "color": "black",
-                        "fontSize": "10vh",
-                        "textAlign": "center",
-                        "height": "500px",
-                        "width": "750px",
-                        "margin": "auto",
-                        "autoplay": "0",
-                        "loop": "0"
-                    }
-                ]
-            },
-            {
-                "id": 11,
-                "type": "divider",
-                "text": "rounded divider",
-                "style": [
-                    {
-                        "borderTop": "8px solid #000000",
-                        "borderRadius": "0px",
-                        "width": "100%"
-                    }
-                ]
-            },
-            {
-                "id": 7,
-                "type": "heading",
-                "text": "Create custom buttons",
-                "style": [
-                    {
-                        "color": "black",
-                        "fontSize": "43px",
-                        "textAlign": "center",
-                        "fontFamily": "\"Lucida Sans Unicode\", \"Lucida Grande\", sans-serif"
-                    }
-                ]
-            },
-            {
-                "id": 8,
-                "type": "button",
-                "text": "Your Button",
-                "href": "#",
-                "style": [
-                    {
-                        "color": "#000000",
-                        "backgroundColor": "#696969",
-                        "textAlign": "center",
-                        "border": "0px",
-                        "borderRadius": "12px"
-                    }
-                ]
-            },
-            {
-                "id": 10,
-                "type": "divider",
-                "text": "rounded divider",
-                "style": [
-                    {
-                        "borderTop": "8px solid #0a0606",
-                        "borderRadius": "0px",
-                        "width": "100%"
-                    }
-                ]
-            },
-            {
-                "id": 9,
-                "type": "heading",
-                "text": "Get started by clicking an element to edit it!",
-                "style": [
-                    {
-                        "color": "black",
-                        "fontSize": "40px",
-                        "textAlign": "center",
-                        "fontFamily": "\"Lucida Sans Unicode\", \"Lucida Grande\", sans-serif"
-                    }
-                ]
-            },
-            {
-                "id": 15,
-                "type": "heading",
-                "text": "Or, try adding other elements to the site by choosing one to the left in the editor!",
-                "style": [
-                    {
-                        "color": "black",
-                        "fontSize": "22px",
-                        "textAlign": "center",
-                        "fontFamily": "\"Lucida Sans Unicode\", \"Lucida Grande\", sans-serif"
-                    }
-                ]
-            }
+            // {
+            //     id: 0,
+            //     type: "heading",
+            //     text: "heading 1",
+            //     style: [
+            //         {
+            //             color: "black",
+            //             fontSize: "10vh",
+            //             textAlign: "left",
+            //         }
+            //     ],
+            // },
+            // {
+            //     id: 1,
+            //     type: "heading",
+            //     text: "heading 2",
+            //     style: [
+            //         {
+            //             color: "black",
+            //             fontSize: "20vh",
+            //             textAlign: "center",
+            //         }
+            //     ],
+            // },
+            // {
+            //     id: 2,
+            //     type: "heading",
+            //     text: "heading 3",
+            //     style: [
+            //         {
+            //             color: "black",
+            //             fontSize: "30vh",
+            //             textAlign: "right",
+            //         }
+            //     ],
+            // },
+            // {
+            //     id: 3,
+            //     type: "divider",
+            //     text: "rounded divider",
+            //     style: [
+            //         {
+            //             borderTop: "8px solid #bbb",
+            //             borderRadius: "5px",
+            //         }
+            //     ],
+            // },
+            // {
+            //     id: 4,
+            //     type: "divider",
+            //     text: "dashed divider",
+            //     style: [
+            //         {
+            //             borderTop: "3px dashed #bbb",
+            //             borderRadius: "5px",
+            //         }
+            //     ],
+            // },
+            // {
+            //     id: 5,
+            //     type: "divider",
+            //     text: "solid divider",
+            //     style: [
+            //         {
+            //             borderTop: "3px solid #bbb",
+            //         }
+            //     ],
+            // },
+            // {
+            //     id: 6,
+            //     type: "image",
+            //     text: "alt text here",
+            //     url: "https://images.unsplash.com/photo-1583485056322-f0ba6fe51508?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1006&q=80",
+            //     style: [
+            //         {
+            //             width: "100%",
+            //             borderRadius: "5px",
+            //         }
+            //     ],
+            // },
+            // {
+            //     id: 7,
+            //     type: "divider",
+            //     text: "dotted divider",
+            //     style: [
+            //         {
+            //             borderTop: "3px dotted #bbb",
+            //             borderRadius: "5px",
+            //         }
+            //     ],
+            // },
+            // {
+            //     id: 8,
+            //     type: "button",
+            //     text: "button text here",
+            //     onClick: "some script maybe or something idk",
+            //     style: [
+            //         {
+            //             borderTop: "3px dotted #bbb",
+            //             borderRadius: "5px",
+            //         }
+            //     ],
+            // }
         ];
-
     }
 
     /**

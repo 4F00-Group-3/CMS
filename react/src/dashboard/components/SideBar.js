@@ -1,12 +1,12 @@
 import React, { Component } from "react";
 import { Nav, NavItem } from "reactstrap";
-import "../../css/Dashboard.css";
+import "../../css/PageAdmin.css";
 
 class SideBar extends Component {
   render() {
     return (
       <div className="SideNav">
-        <Nav vertical className="dash-button-list justify-content-between">
+        <Nav vertical className="bg-light justify-content-between">
           <NavItem>
             <button
               className="dashButtons"

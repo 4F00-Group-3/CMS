@@ -1,6 +1,7 @@
 import React from "react";
 import PaypalExpressBtn from "react-paypal-express-checkout";
 import Dashboard from "../dashboard/Dashboard";
+import { CardActions } from "@material-ui/core";
 import AjaxCall from "../ajax";
 
 export default class Payments extends React.Component {
@@ -69,9 +70,9 @@ export default class Payments extends React.Component {
     // Document on Paypal's currency code: https://developer.paypal.com/docs/classic/api/currency_codes/
 
     const style = {
-      size: "responsive",
-      color: "gold",
-      shape: "rect",
+      size: "small",
+      color: "blue",
+      shape: "pill",
       tagline: "false",
     };
 
