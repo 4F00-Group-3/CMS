@@ -23,8 +23,10 @@ class Editor extends Component {
             props.handleHomeClick();
         }
 
-        this.setState({page: backend.getPage()})
+        this.setState({ page: backend.getPage() })
     }
+
+
 
     /**
      * This method adds appends a PageSection component in to the EditingPage
@@ -272,7 +274,10 @@ class Editor extends Component {
             <>
                 <EditorSideBar onPush={this.addToPage_onClick} menu={this.state.menu} selectedId={this.state.selectedId} selectedRowNumberOfColumns={this.state.selectedRowNumberOfColumns} menuComponentOnClick={this.menuComponentOnClick} handleBack={this.handleBack} handleDelete={this.handleDelete} />
                 <div style={{ marginLeft: "50vh" }}>
-                    <EditingPage page={this.state.page} onSectionPush={this.pageSection_onClick} />
+                    <EditingPage
+                        page={this.state.page}
+                        onSectionPush={this.pageSection_onClick}
+                        backend={backend} />
                 </div>
             </>
         );
