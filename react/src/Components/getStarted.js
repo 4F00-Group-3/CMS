@@ -56,7 +56,9 @@ class GetStarted extends Component {
                 <Button className="sign-up-btn" onClick={this.props.signUp_click}>Sign Up</Button>
               </Card.Body>
               <Card.Body>
-                <Payments className='paypal-btn' amount={10}>Pay</Payments>
+                <Payments className='paypal-btn' amount={10}
+                handleSitePageClick = {this.props.handleSitePageClick}
+                >Pay</Payments>
               </Card.Body>
             </Card>
 
@@ -77,7 +79,9 @@ class GetStarted extends Component {
                 <Button className="sign-up-btn" onClick={this.props.signUp_click}>Sign Up</Button>
               </Card.Body>
               <Card.Body>
-                <Payments amount={20}>Pay</Payments>
+                <Payments amount={20}
+                handleSitePageClick = {this.props.handleSitePageClick}
+                >Pay</Payments>
               </Card.Body>
             </Card>
 
@@ -98,7 +102,9 @@ class GetStarted extends Component {
                 <Button className="sign-up-btn" onClick={this.props.signUp_click}>Sign Up</Button>
               </Card.Body>
               <Card.Body>
-                <Payments amount={30}>Pay</Payments>
+                <Payments amount={30}
+                  handleSitePageClick = {this.props.handleSitePageClick}
+                >Pay</Payments>
               </Card.Body>
             </Card>
           </Row>

@@ -47,28 +47,43 @@ export default class EditorSideBar extends Component {
         let menu = this.props.menu;
         switch (menu) {
             case "heading": {
-                return <> <HeadingEditorMenu selectedId={this.props.selectedId} menuComponentOnClick={this.props.menuComponentOnClick} /> <EditMenuNav handleBack={this.props.handleBack} handleDelete={this.props.handleDelete} /> </>
+                return (
+                    <div className="inline">
+                        <HeadingEditorMenu selectedId={this.props.selectedId} menuComponentOnClick={this.props.menuComponentOnClick} />
+                        <EditMenuNav handleBack={this.props.handleBack} handleDelete={this.props.handleDelete} />
+                    </div>
+                )
             }
             case "divider": {
-                return <> <EditDividerMenu selectedId={this.props.selectedId} menuComponentOnClick={this.props.menuComponentOnClick} /><EditMenuNav handleBack={this.props.handleBack} handleDelete={this.props.handleDelete} /> </>
+                return (<div className="inline"> <EditDividerMenu selectedId={this.props.selectedId} menuComponentOnClick={this.props.menuComponentOnClick} /><EditMenuNav handleBack={this.props.handleBack} handleDelete={this.props.handleDelete} /> </div>)
             }
             case "image": {
-                return <> <ImageEditorMenu selectedId={this.props.selectedId} menuComponentOnClick={this.props.menuComponentOnClick} /> <EditMenuNav handleBack={this.props.handleBack} handleDelete={this.props.handleDelete} /> </>
+                return (<div className="inline"> <ImageEditorMenu selectedId={this.props.selectedId} menuComponentOnClick={this.props.menuComponentOnClick} /> <EditMenuNav handleBack={this.props.handleBack} handleDelete={this.props.handleDelete} /> </div>)
             }
             case "icon": {
-                return <> <IconEditorMenu selectedId={this.props.selectedId} menuComponentOnClick={this.props.menuComponentOnClick} /> <EditMenuNav handleBack={this.props.handleBack} handleDelete={this.props.handleDelete} /> </>
+                return (<div className="inline"> <IconEditorMenu selectedId={this.props.selectedId} menuComponentOnClick={this.props.menuComponentOnClick} /> <EditMenuNav handleBack={this.props.handleBack} handleDelete={this.props.handleDelete} /> </div>)
             }
             case "video": {
-                return <> <VideoEditorMenu selectedId={this.props.selectedId} menuComponentOnClick={this.props.menuComponentOnClick} /> <EditMenuNav handleBack={this.props.handleBack} handleDelete={this.props.handleDelete} /> </>
+                return (<div className="inline"> <VideoEditorMenu selectedId={this.props.selectedId} menuComponentOnClick={this.props.menuComponentOnClick} /> <EditMenuNav handleBack={this.props.handleBack} handleDelete={this.props.handleDelete} /> </div>)
             }
             case "button": {
-                return <> <ButtonEditorMenu selectedId={this.props.selectedId} menuComponentOnClick={this.props.menuComponentOnClick} /> <EditMenuNav handleBack={this.props.handleBack} handleDelete={this.props.handleDelete} /> </>
+                return (<div className="inline"> <ButtonEditorMenu selectedId={this.props.selectedId} menuComponentOnClick={this.props.menuComponentOnClick} /> <EditMenuNav handleBack={this.props.handleBack} handleDelete={this.props.handleDelete} /> </div>)
             }
             case "spacer": {
-                return <> <SpacerEditorMenu selectedId={this.props.selectedId} menuComponentOnClick={this.props.menuComponentOnClick} /> <EditMenuNav handleBack={this.props.handleBack} handleDelete={this.props.handleDelete} /> </>
+                return (<div className="inline"> <SpacerEditorMenu selectedId={this.props.selectedId} menuComponentOnClick={this.props.menuComponentOnClick} /> <EditMenuNav handleBack={this.props.handleBack} handleDelete={this.props.handleDelete} /> </div>)
             }
             case "row": {
-                return <RowEditorMenu selectedId={this.props.selectedId} selectedRowNumberOfColumns={this.props.selectedRowNumberOfColumns} menuComponentOnClick={this.props.menuComponentOnClick} handleBack={this.props.handleBack} handleDelete={this.props.handleDelete} onPush={this.props.onPush} />;
+                return (
+                    <div className="inline">
+                        <RowEditorMenu 
+                        selectedId={this.props.selectedId} 
+                        selectedRowNumberOfColumns={this.props.selectedRowNumberOfColumns} 
+                        menuComponentOnClick={this.props.menuComponentOnClick} 
+                        handleBack={this.props.handleBack} 
+                        handleDelete={this.props.handleDelete} 
+                        onPush={this.props.onPush} />
+                    </div>
+                );
             }
             case "column": {
                 return (

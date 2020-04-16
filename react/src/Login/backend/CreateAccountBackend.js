@@ -1,14 +1,13 @@
 
-class LoginBackend {
+class CreateAccountBackend {
     constructor() {
         this.f = null;
     }
 
-    redirect(id, subscription) {
+    redirect(id) {
         sessionStorage.setItem("id", id);
-        sessionStorage.setItem("tier", subscription);
         this.f();
     }
 }
 
-export default LoginBackend;
+export default CreateAccountBackend;

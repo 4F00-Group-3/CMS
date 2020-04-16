@@ -20,10 +20,10 @@ class Dashboard extends Component {
         this.state = {
             page: <Pages backend={backend}/>,
         };
-      // if (sessionStorage.getItem('id') === null || sessionStorage.getItem('siteId') === null) {
-      //   props.handleHomeClick();
-      // }
-        //backend.returnAllPages();
+      if (sessionStorage.getItem('id') === null || sessionStorage.getItem('siteId') === null) {
+        props.handleHomeClick();
+      }
+      backend.returnAllPages();
     }
 
   onPush = buttonName => {

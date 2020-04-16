@@ -18,15 +18,17 @@
   margin: auto;
   width: 50vh;
   height: auto;
-  background:  #2d3436;
+  background: #2d3436;
   /*border: 3px solid green;*/
   float: left;
   position: fixed;
-  
-  
-  justify-content:center;
-  align-items:center;
 
+  justify-content: center;
+  align-items: center;
+}
+
+.inline {
+  display: inline;
 }
 
 .Editor-SideBar-Container {
@@ -37,7 +39,7 @@
   margin: auto;
   width: 50vh;
   height: 100vh;
-  background:  #2d3436;
+  background: #2d3436;
   /*border: 3px solid green;*/
   float: left;
   position: fixed;
@@ -57,8 +59,6 @@
   border: 3px solid green;
   padding: 10px;
 }
-
-
 
 .Components-Editor {
   margin-top: 2vh;
@@ -80,17 +80,17 @@
   border-radius: 20px;
   margin: 5%;
   border: 0px hidden;
-  background-color: #FFF;
+  background-color: #fff;
   padding: 4%;
 }
 
 .sidebar-icon {
-  height: 8vh!important;
-  width: 8vh!important;
+  height: 8vh !important;
+  width: 8vh !important;
   color: #2d3436;
 }
 
 p {
-  color: #2d3436!important;
-  margin-bottom: 0!important;
+  color: #2d3436 !important;
+  margin-bottom: 0 !important;
 }

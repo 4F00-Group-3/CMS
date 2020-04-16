@@ -39,22 +39,13 @@ export default class Payments extends React.Component {
               let responseArray = JSON.parse(response.split('php-cgi')[1].trim());
               console.log(responseArray);
               let accountId = responseArray.accountId;
-              console.log(accountId);
-              sessionStorage.setItem('tier',amount);
+              sessionStorage.setItem('tier',subscription);
               redirect();
-              // REDIRECT TO ANOTHER PAGE AFTER THIS
             } else {
               alert("Payment failed to process. Please try again.")
             }
           }
       );
-      //window.location.pathname = "../dashboard/Dashboard";
-      /*  this.setState({
-        page: <Dashboard getStartedOnClick={this.getStarted_OnClick} />,
-        activeButton: "",
-      }); */
-      // this.props.history.push("/../dashboard/Dashboard");
-      // You can bind the "payment" object's value to your state or props or whatever here, please see below for sample returned data
     };
 
     const onCancel = (data) => {
