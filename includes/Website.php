@@ -209,22 +209,23 @@ class Website{
             ->PREPARE("INSERT INTO $schemaPages(name, file, path) VALUES(:name, :file, :path)");
         $stmt->bindValue(':name', "home.html");
         $stmt->bindValue(':file', json_encode($file));
-        $stmt->bindValue(':path',"sites/".$siteName."/html/home.html" );
+        $stmt->bindValue(':path',"sites/".$accountId."/".$siteName."/html/home.html" );
         $stmt->execute();
         //Check to see if page is in DB
         $stmt = Dbh::connect()
             ->PREPARE("SELECT * FROM $schemaPages WHERE path=?");
-        $stmt->execute(["sites/".$siteName."/html/home.html"]);
+        $stmt->execute(["sites/".$accountId."/".$siteName."/html/home.html"]);
         if(!$stmt->rowCount()){
             return false;
         }
 
         //Create backend directory and home page
-        mkdir("../sites/".$siteName);
-        mkdir("../sites/".$siteName."/html");
-        mkdir("../sites/".$siteName."/css");
-        mkdir("../sites/".$siteName."/js");
-        $file = fopen("../sites/".$siteName."/html/home.html","w");
+        mkdir("../sites/".$accountId);
+        mkdir("../sites/".$accountId."/".$siteName);
+        mkdir("../sites/".$accountId."/".$siteName."/html");
+        mkdir("../sites/".$accountId."/".$siteName."/css");
+        mkdir("../sites/".$accountId."/".$siteName."/js");
+        $file = fopen("../sites/".$accountId."/".$siteName."/html/home.html","w");
         $txt = "<!DOCTYPE html>
                     <html>
                     <head>
@@ -302,12 +303,12 @@ class Website{
 
 
         //Delete backend directory
-        array_map('unlink', glob("../sites/".$siteName."/html/*.*"));
+        array_map('unlink', glob("../sites/".$accountId."/".$siteName."/html/*.*"));
 
-        rmdir("../sites/".$siteName."/html");
-        rmdir("../sites/".$siteName."/css");
-        rmdir("../sites/".$siteName."/js");
-        return rmdir("../sites/".$siteName);
+        rmdir("../sites/".$accountId."/".$siteName."/html");
+        rmdir("../sites/".$accountId."/".$siteName."/css");
+        rmdir("../sites/".$accountId."/".$siteName."/js");
+        return rmdir("../sites/".$accountId."/".$siteName);
     }
 
     //********************* FUNCTIONS FOR WEBSITE USERS *****************************
@@ -423,7 +424,7 @@ class Website{
         }
     }
 
-    public static function addPage($schema, $pageName, $siteId){
+    public static function addPage($schema, $pageName, $siteId,$accountId){
         //Get website name
         $stmt = Dbh::connect()
             ->PREPARE("SELECT * FROM websites WHERE website_id=?");
@@ -437,7 +438,7 @@ class Website{
         $siteName = $websiteId["name"];
 
         // ADD PAGE to new schema page table
-        $path = "sites/".$siteName."/html/".$pageName.".html";
+        $path = "sites/".$accountId."/".$siteName."/html/".$pageName.".html";
         $stmt = Dbh::connect()
             ->PREPARE("INSERT INTO $schema.pages(name, path) VALUES(:name, :path)");
         $stmt->bindValue(':name', $pageName.".html");

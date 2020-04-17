@@ -29,7 +29,7 @@ function createAccount(){
 
 function createWebsite(){
     if (!empty($_POST)) {
-        $website = Website::createWebsite($_POST['accountId'], "sites/".$_POST['title']."/html/home.html", $_POST['title'], $_POST['description']);
+        $website = Website::createWebsite($_POST['accountId'], "sites/".$_POST['accountId']."/".$_POST['title']."/html/home.html", $_POST['title'], $_POST['description']);
         if ($website === false) {
             echo "false";
         } else {
@@ -184,9 +184,9 @@ function getUsersData(){
 
 function addPage(){
     $success = false;
-    if (!empty($_POST['websiteId']) && !empty($_POST['pageName'])) {
+    if (!empty($_POST['websiteId']) && !empty($_POST['pageName']) && !empty($_POST['accountId'])) {
         $schema = "website".$_POST['websiteId'];
-        $data = Website::addPage($schema, $_POST['pageName'], $_POST['websiteId']);
+        $data = Website::addPage($schema, $_POST['pageName'], $_POST['websiteId'],$_POST['accountId']);
         if ($data !== false) {
             $success = true;
         }
