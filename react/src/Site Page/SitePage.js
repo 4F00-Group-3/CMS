@@ -4,7 +4,6 @@ import "../css/SitePage.css";
 import AjaxCall from "../ajax.js";
 import Login from "../Login/loginpage";
 import SitePageBackend from "../Site Page/backend/SitePageBackend";
-import Settings from "./Settings";
 let backend = new SitePageBackend();
 
 /*Popup class for the add page pop up, handles opening the popup and passing
@@ -161,11 +160,9 @@ class SitePage extends Component {
    */
   handleRedirectToAccoutingSettings() {
     // For testing purposes
-    this.setState({
-      page: <Settings />,
-      activeButton: "",
-    });
-    //alert("Redirecting to Account Settings...oops we don't have an account settings page");
+    alert(
+      "Redirecting to Account Settings...oops we don't have an account settings page"
+    );
   }
 
   /**
@@ -173,7 +170,8 @@ class SitePage extends Component {
    */
   handleUpgradePlan() {
     // For testing purposes
-    alert("Upgrading you to Supreme Overlord of the Universe!!");
+    this.props.handleUpgradePlan();
+    //alert("Upgrading you to Supreme Overlord of the Universe!!");
   }
 
   togglePopup() {
@@ -204,7 +202,7 @@ class SitePage extends Component {
                 Account Settings
               </p>
               <p onClick={this.handleLogOut}>Log Out</p>
-              <p onClick={this.handleUpgradePlan}>Upgrade</p>
+              <p onClick={this.handleUpgradePlan}>Manage Subscription</p>
             </div>
             <div className="Content">
               <div className="SiteList">
