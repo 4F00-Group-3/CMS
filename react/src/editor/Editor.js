@@ -15,7 +15,7 @@ class Editor extends Component {
             selectedId: undefined,
             selectedRowNumberOfColumns: undefined
         };
-        
+
         // redirect user to home page if the user has not signed in
         if (sessionStorage.getItem('id') === null) {
             props.handleHomeClick();
@@ -88,11 +88,8 @@ class Editor extends Component {
      * based on which PageSection component the user clicked in the EditingPage
      * @param _id this is the idea of the specific component
      * @param _type this is the type of the specific component
-     * @param _style the css for the specific component
      */
-    pageSection_onClick = (_id, _type, _style) => {
-        console.log(_type)
-        console.log("editor pagesection clicked", _id)
+    pageSection_onClick = (_id, _type) => {
         switch (_type) {
             case "heading": {
                 this.setState({
@@ -198,15 +195,45 @@ class Editor extends Component {
         }
 
         this.setState(
-            { page: backend.getPage()}
+            { page: backend.getPage() }
         )
     }
 
     /**
-     * TODO: This method handles going back to the last menu 
+     * This method handles going back to the last menu 
      */
     handleBack = () => {
-        this.setState({ menu: 'main' });
+        try {
+            // find current element
+            var menuItem = backend.getSubMenuItem(this.state.page, this.state.selectedId);
+            var id = menuItem.id.toString().split("|");
+            switch (id.length) {
+                case 3: // within column element, go back to column
+                    this.setState({
+                        selectedId: id[0] + "|" + id[2],
+                        menu: "column"
+                    });
+                    break;
+                case 2: // inside row, go back to Row
+                    this.setState({
+                        selectedId: parseInt(id[0]),
+                        menu: "row"
+                    });
+                    break;
+                default: // unknown, just go back to main
+                    this.setState({
+                        selectedId: undefined,
+                        menu: 'main'
+                    });
+                    break;
+            }
+        } catch (e) {
+            // if anything just go back to main
+            this.setState({
+                selectedId: undefined,
+                menu: 'main'
+            });
+        }
     }
 
 
@@ -216,9 +243,9 @@ class Editor extends Component {
     handleDelete = () => {
         var activeSection = this.state.selectedId;
 
-        try{
+        try {
             // Try and see if we are trying to delete an element within a column
-            if(activeSection.split("|").length === 3){
+            if (activeSection.split("|").length === 3) {
                 var sectionId = activeSection.split("|");
                 var rowId = sectionId[0];
                 var columnId = sectionId[1];
@@ -227,11 +254,11 @@ class Editor extends Component {
                 // TODO: handle deleting a column if the column is empty
                 // TODO: haandle deleting a row if the row is empty
             }
-        }catch(Exception){
+        } catch (Exception) {
 
             backend.getSubMenuItem_Delete(this.state.page, activeSection);
         }
-       
+
         // go back to last menu, currently returns to main menu
         this.handleBack();
     }
@@ -241,7 +268,7 @@ class Editor extends Component {
             <>
                 <EditorSideBar onPush={this.addToPage_onClick} menu={this.state.menu} selectedId={this.state.selectedId} selectedRowNumberOfColumns={this.state.selectedRowNumberOfColumns} menuComponentOnClick={this.menuComponentOnClick} handleBack={this.handleBack} handleDelete={this.handleDelete} />
                 <div style={{ marginLeft: "50vh" }}>
-                    <EditingPage page={this.state.page} onSectionPush={this.pageSection_onClick} setActive={this.setActive} />
+                    <EditingPage page={this.state.page} onSectionPush={this.pageSection_onClick} />
                 </div>
             </>
         );

@@ -102,7 +102,7 @@ export default class PageSection extends Component {
         for (var i = 0; i < numColumns; i++) {
             rowColumns.push(
                 <Col key={i}>
-                    <PageSection page={listOfColumns[i]} onSectionPush={this.props.onSectionPush} />
+                    <PageSection page={listOfColumns[i]} onSectionPush={this.props.onSectionPush} clicked={this.props.click} onClick={this.props.onClick} />
                 </Col>
             );
         }
@@ -116,7 +116,9 @@ export default class PageSection extends Component {
         var numPages = this.props.page.page.length;
         var pages = [];
         for (var i = 0; i < numPages; i++) {
-            pages.push(<PageSection key={i} page={this.props.page.page[i]} onSectionPush={this.props.onSectionPush} />);
+            pages.push(
+                <PageSection key={i} page={this.props.page.page[i]} onSectionPush={this.props.onSectionPush} clicked={this.props.click} onClick={this.props.onClick} />
+            );
         }
         return pages;
     }
@@ -127,11 +129,6 @@ export default class PageSection extends Component {
     returnElement() {
         switch (this.props.page.type) {
             case "heading": {
-                console.log("C: ",<h1
-                    key={this.props.page.id}
-                    style={this.props.page.style[0]}>
-                    {this.props.page.text}
-                </h1>);
                 return (
                     <h1
                         key={this.props.page.id}
@@ -141,21 +138,15 @@ export default class PageSection extends Component {
                 )
             }
             case "divider": {
-                console.log("C: ",<hr key={this.props.page.id} style={this.props.page.style[0]} />);
                 return (<hr key={this.props.page.id} style={this.props.page.style[0]} />);
             }
             case "image": {
-                console.log("C: ",<div style={{ textAlign: this.props.page.style[0]['textAlign'] }}><img key={this.props.page.id} style={this.props.page.style[0]} src={this.props.page.url} alt={this.props.page.text} /></div>);
                 return (<div style={{ textAlign: this.props.page.style[0]['textAlign'] }}><img key={this.props.page.id} style={this.props.page.style[0]} src={this.props.page.url} alt={this.props.page.text} /></div>)
             }
             case "button": {
-                console.log("C: ",<div style={{ textAlign: this.props.page.style[0]['textAlign'] }}><a className={"btn btn-primary"} key={this.props.page.id} href={this.props.page.href} style={this.props.page.style[0]}>{this.props.page.text}</a></div>);
                 return (<div style={{ textAlign: this.props.page.style[0]['textAlign'] }}><a className={"btn btn-primary"} key={this.props.page.id} href={this.props.page.href} style={this.props.page.style[0]}>{this.props.page.text}</a></div>)
             }
             case "spacer": {
-                console.log("C: ",<div key={this.props.page.id} style={this.props.page.style[0]}>
-                    {'\xa0'}
-                </div>);
                 return (
                     <div key={this.props.page.id} style={this.props.page.style[0]}>
                         {'\xa0'}
@@ -163,14 +154,6 @@ export default class PageSection extends Component {
                 );
             }
             case "video": {
-                console.log("C: ",<div key={this.props.page.id} style={this.props.page.style[0]}>
-                    {this.returnYouTube(
-                        this.props.page.url,
-                        this.props.page.style[0]["height"],
-                        this.props.page.style[0]["width"],
-                        this.props.page.style[0]["autoplay"],
-                        this.props.page.style[0]["loop"])}
-                </div>);
                 return (
                     <div key={this.props.page.id} style={this.props.page.style[0]}>
                         {this.returnYouTube(
@@ -183,9 +166,6 @@ export default class PageSection extends Component {
                 );
             }
             case "icon": {
-                console.log("C: ",<div key={this.props.page.id} style={this.props.page.style[0]}>
-                    {this.returnIcon(this.props.page.faClassName)}
-                </div>);
                 return (
                     <div key={this.props.page.id} style={this.props.page.style[0]}>
                         {this.returnIcon(this.props.page.faClassName)}
@@ -193,11 +173,6 @@ export default class PageSection extends Component {
                 )
             }
             case "row": {
-                console.log("C: ",<div key={this.props.page.id}>
-                    <Row>
-                        {this.renderRowColumns(this.props.page.col, this.props.page.page)}
-                    </Row>
-                </div>);
                 return (
                     <div key={this.props.page.id}>
                         <Row>
@@ -207,10 +182,6 @@ export default class PageSection extends Component {
                 );
             }
             case "column": {
-                console.log("C: ",<div key={this.props.page.id}>
-                    {this.renderColumnPages()}
-                </div>);
-                console.log('PageSection column', this.props.page);
                 return (
                     <div key={this.props.page.id}>
                         {this.renderColumnPages()}
@@ -226,10 +197,11 @@ export default class PageSection extends Component {
 
     render() {
         // this clicked methid here is used to height the selected page section
-        const isClicked = this.props.page.clicked;
+        const isClicked = this.props.clicked;
         var classList = isClicked ? "pageSectionClick" : "pageSection";
         return (
             <div className={classList} onClick={e => {
+                this.props.onClick(this.props.page.id)
                 this.props.onSectionPush(this.props.page.id, this.props.page.type, this.props.page.style[0]);
                 e.stopPropagation();
             }}>
