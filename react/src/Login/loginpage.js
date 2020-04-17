@@ -30,6 +30,7 @@ class LoginPage extends Component {
     AjaxCall(
         { function: "login", email: this.state.email, password: this.state.pw },
         function(response) {
+          console.log(response);
           if (!response.toString().includes("false")) {
             let responseArray = JSON.parse(response.split('php-cgi')[1].trim());
             console.log(responseArray);
