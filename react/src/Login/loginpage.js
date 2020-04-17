@@ -37,9 +37,7 @@ class LoginPage extends Component {
             let subscription = responseArray.subscription;
             console.log(accountId);
             backend.redirect(accountId, subscription);
-            // REDIRECT TO ANOTHER PAGE AFTER THIS
           } else {
-            //TODO::LOGIN FAILED DISPLAY ERROR MSG
             alert("Incorrect login credentials. Please try again.")
           }
         }
@@ -55,7 +53,6 @@ class LoginPage extends Component {
           if (!response.toString().includes("false")) {
             backend.redirectNewPass();
           } else {
-            //TODO::LOGIN FAILED DISPLAY ERROR MSG
             alert("Incorrect email. Please try again.")
           }
         }

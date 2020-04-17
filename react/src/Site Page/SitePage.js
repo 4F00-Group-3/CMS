@@ -138,6 +138,23 @@ class SitePage extends Component {
           });
         }
       );
+      var check = false;
+      AjaxCall(
+        {
+          function: "checkWebsites",
+          subscription: sessionStorage.getItem("tier"),
+          accountId: sessionStorage.getItem("id"),
+        },
+        function (response) {
+          if (!response.toString().includes("false")) {
+            console.log("Response:", response);
+            check = true;
+            self.setState({
+              tier: check,
+            });
+          }
+        }
+      );
     } else {
       // Redirect to login
       this.props.handleHomeClick();
@@ -179,7 +196,6 @@ class SitePage extends Component {
       showPopup: !this.state.showPopup,
     });
   }
-
   handleViewWebsite = (info) => {
     console.log(info);
     window.location.assign("../../" + info);
@@ -189,6 +205,26 @@ class SitePage extends Component {
     console.log(info);
     sessionStorage.setItem("siteId", info);
     this.props.handleDashClick();
+  };
+
+  handleDeleteWebsite = (info) => {
+    console.log(info);
+    AjaxCall(
+      {
+        function: "deleteWebsite",
+        accountId: sessionStorage.getItem("id"),
+        websiteId: info,
+      },
+      function (response) {
+        console.log(response);
+        if (!response.toString().includes("false")) {
+          alert("Website successfully deleted");
+        } else {
+          alert("Website failed to delete");
+        }
+        window.location.reload(false);
+      }
+    );
   };
 
   render() {
@@ -234,22 +270,34 @@ class SitePage extends Component {
                                 View
                               </button>
                             </div>
+                            <div className="column">
+                              <button
+                                onClick={() =>
+                                  this.handleDeleteWebsite(site.id)
+                                }
+                                value="Delete"
+                              >
+                                Delete
+                              </button>
+                            </div>
                           </div>
                         </div>
                       </div>
                     ))}
-                  <div className="column">
-                    <button onClick={this.togglePopup.bind(this)} value="New">
-                      New
-                    </button>
-                    {this.state.showPopup ? (
-                      <Popup
-                        text="Enter the title of the new page."
-                        handleDashClick={this.props.handleDashClick}
-                        closePopup={this.togglePopup.bind(this)}
-                      />
-                    ) : null}
-                  </div>
+                  {this.state.tier ? (
+                    <div className="column">
+                      <button onClick={this.togglePopup.bind(this)} value="New">
+                        New
+                      </button>
+                      {this.state.showPopup ? (
+                        <Popup
+                          text="Enter the title of the new page."
+                          handleDashClick={this.props.handleDashClick}
+                          closePopup={this.togglePopup.bind(this)}
+                        />
+                      ) : null}
+                    </div>
+                  ) : null}
                 </div>
               </div>
             </div>
