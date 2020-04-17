@@ -59,7 +59,7 @@ class EditVideo extends Component {
 
   render() {
     return (<>
-      <Form className="border bg-light rounded p-1 editor-menu" onSubmit={this.handleSubmit}>
+      <Form className=" rounded p-1 editor-menu" onSubmit={this.handleSubmit}>
         <Form.Group>
           <Form.Label className="d-block font-weight-bold">Edit Video</Form.Label>
         </Form.Group>

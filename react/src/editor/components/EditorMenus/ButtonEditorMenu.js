@@ -111,7 +111,7 @@ class ButtonEditor extends Component {
 
     render() {
         return (
-            <Form className="border bg-light rounded p-1 editor-menu ButtonEditorContainer">
+            <Form className="editor-menu rounded p-1 ButtonEditorContainer">
                 <Form.Group>
                     <Form.Label className="d-block font-weight-bold">Edit Button</Form.Label>
                 </Form.Group>

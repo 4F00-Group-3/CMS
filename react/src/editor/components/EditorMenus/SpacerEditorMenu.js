@@ -15,12 +15,12 @@ import Col from 'react-bootstrap/Col';
 class SpacerEditor extends Component {
     render() {
         return (
-            <Form className="border bg-light rounded p-1 editor-menu">
+            <Form className=" rounded p-1 editor-menu">
                 <Form.Group>
                     <Form.Label className="d-block font-weight-bold">Edit Space</Form.Label>
                 </Form.Group>
                 <Form.Row>
-                    <Col><Form.Label className="d-block left w-50">Space Height</Form.Label></Col>
+                    <Col><Form.Label className="d-block center">Space Height</Form.Label></Col>
                     <Col>
                         <NumericInput
                             rightAddon={"px"}

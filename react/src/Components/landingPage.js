@@ -5,7 +5,7 @@ import Jumbotron from 'react-bootstrap/Jumbotron';
 import Col from 'react-bootstrap/Col';
 import Row from 'react-bootstrap/Row';
 import Container from 'react-bootstrap/Container';
-import Card from 'react-bootstrap/Card';
+import Card from 'react-bootstrap/Card';  
 import Button from 'react-bootstrap/Button';
 import {
   FooterSection,
@@ -91,7 +91,7 @@ class LandingPage extends Component {
         <Container fluid className="full-screen">
           <Row className="full-screen-row">
             <Col className='center-center-text' style={{ backgroundColor: "#6c5ce7" }}>
-              <h1>
+              <h1 className="faq-header">
                 What is a content management system?
               </h1>
             </Col>
@@ -119,7 +119,7 @@ class LandingPage extends Component {
               </p>
             </Col>
             <Col className='center-center-text' style={{ backgroundColor: "#a29bfe" }}>
-              <h1>
+              <h1 className="faq-header">
                 How can my business benefit from a CMS?
               </h1>
             </Col>
@@ -129,7 +129,7 @@ class LandingPage extends Component {
         <Container fluid className="full-screen">
           <Row className="full-screen-row">
             <Col className='center-center-text' style={{ backgroundColor: "#0984e3" }}>
-              <h1>
+              <h1 className="faq-header">
                 What user support is available to me?
               </h1>
             </Col>
@@ -157,7 +157,7 @@ class LandingPage extends Component {
               </p>
             </Col>
             <Col className='center-center-text' style={{ backgroundColor: "#74b9ff" }}>
-              <h1>
+              <h1 className="faq-header">
                 How do I know which plan to choose?
               </h1>
             </Col>
@@ -167,7 +167,7 @@ class LandingPage extends Component {
         <Container fluid className="full-screen">
           <Row className="full-screen-row">
             <Col className='center-center-text' style={{ backgroundColor: "#00cec9" }}>
-              <h1>
+              <h1 className="faq-header">
                 What challenges can I expect using a CMS?
               </h1>
             </Col>
@@ -195,7 +195,7 @@ class LandingPage extends Component {
               </p>
             </Col>
             <Col className='center-center-text' style={{ backgroundColor: "#81ecec" }}>
-              <h1>
+              <h1 className="faq-header">
                 I love your service! How can I leave a review?
               </h1>
             </Col>

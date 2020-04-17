@@ -72,7 +72,7 @@ class IconEditorMenu extends Component {
     render() {
         return (<>
             <div className=""></div>
-            {<Form className="border bg-light rounded p-1 editor-menu" onSubmit={this.handleSubmit}>
+            {<Form className="rounded p-1 editor-menu" onSubmit={this.handleSubmit}>
                 <Form.Group>
                     <Form.Label className="d-block font-weight-bold">Edit Icon</Form.Label>
 
@@ -80,7 +80,7 @@ class IconEditorMenu extends Component {
 
                 {/* select icon */}
                 <Form.Row>
-                    <Col><Form.Label>Select Icon:</Form.Label></Col>
+                    <Col className='left'><Form.Label >Select Icon:</Form.Label></Col>
                 </Form.Row>
                 <Form.Row>
                     <Col>
@@ -176,7 +176,7 @@ class IconEditorMenu extends Component {
 
                 {/* select border colour */}
                 <Form.Row className="mt-2">
-                    <Col>
+                    <Col className = " left-centered-label">
                         <Form.Label className="d-block left" >Colour:</Form.Label>
                     </Col>
                     <Col>
@@ -186,8 +186,8 @@ class IconEditorMenu extends Component {
 
                 {/* set size */}
                 <Form.Row className="mt-2">
-                    <Col>
-                        <Form.Label className="d-block left">Size:</Form.Label>
+                    <Col className = "left-centered-label">
+                        <Form.Label className="d-block">Size:</Form.Label>
                     </Col>
                     <Col>
                         <Form.Control
@@ -214,8 +214,8 @@ class IconEditorMenu extends Component {
                     </Col>
                 </Form.Row>
                 <Form.Row className="mt-2">
-                    <Col>
-                        <Form.Label className="d-block left">Alignment:</Form.Label>
+                    <Col className = "left-centered-label">
+                        <Form.Label className="d-block ">Alignment:</Form.Label>
                     </Col>
                     <Col>
                         <AlignmentInput
@@ -223,8 +223,6 @@ class IconEditorMenu extends Component {
                         />
                     </Col>
                 </Form.Row>
-
-                <Button variant="primary" type="submit">Save</Button>
             </Form>}</>
         );
     }

@@ -103,7 +103,7 @@ class EditDividerMenu extends Component {
   render() {
     return (
       <>
-        {<Form className="border bg-light rounded p-1 editor-menu" onSubmit={this.handleSubmit}>
+        {<Form className="border rounded p-1 editor-menu" onSubmit={this.handleSubmit}>
           {/* title */}
           <Form.Group>
             <Form.Label className="d-block font-weight-bold">Edit Divider</Form.Label>
@@ -218,7 +218,7 @@ class EditDividerMenu extends Component {
           {/* select border radius */}
           <Form.Row className="mt-4">
             <Col>
-              <Form.Label className="d-block">Border Radius (Optional):</Form.Label>
+              <Form.Label className="d-block left">Border Radius (Optional):</Form.Label>
             </Col>
 
             <Col>

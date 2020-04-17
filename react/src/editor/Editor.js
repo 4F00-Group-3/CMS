@@ -17,11 +17,11 @@ class Editor extends Component {
         };
 
         // redirect user to home page if the user has not signed in
-        //commented for testing, to be uncommented
+        //commented for local testing, to be uncommented
 
-        if (sessionStorage.getItem('id') === null) {
-            props.handleHomeClick();
-        }
+        // if (sessionStorage.getItem('id') === null) {
+        //     props.handleHomeClick();
+        // }
 
         this.setState({ page: backend.getPage() })
     }

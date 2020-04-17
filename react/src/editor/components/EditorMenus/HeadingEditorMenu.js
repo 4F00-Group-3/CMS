@@ -46,13 +46,13 @@ class HeadingEditor extends Component {
     render() {
         return (
             <>
-                <Form className="border bg-light rounded p-1 editor-menu">
+                <Form className=" rounded p-1 editor-menu">
                     <Form.Group>
                         <Form.Label className="d-block font-weight-bold">Edit Heading</Form.Label>
                     </Form.Group>
                     <Form.Row>
-                        <Col><Form.Label className="d-block left w-50">Title</Form.Label></Col>
-                        <Col>
+                        <Col className='center'><Form.Label className="d-block center w-50">Title</Form.Label></Col>
+                        <Col className='center'>
                             <Form.Control
                                 id="headingText"
                                 type="text"
@@ -63,15 +63,15 @@ class HeadingEditor extends Component {
                     </Form.Row>
 
                     <Form.Row>
-                        <Col><Form.Label className="d-block left">Text Color:</Form.Label></Col>
-                        <Col>
+                        <Col className='center'><Form.Label className="d-block center">Text Color:</Form.Label></Col>
+                        <Col className='center'>
                             {this.returnColorPicker(this.state.colorPickerActive)}
                         </Col>
                     </Form.Row>
 
                     <Form.Row className="mt-2">
-                        <Col><Form.Label className="d-block left">Font Size:</Form.Label></Col>
-                        <Col>
+                        <Col className='center'><Form.Label className="d-block center">Font Size:</Form.Label></Col>
+                        <Col className='center'>
                             <NumericInput
                                 id="headingFontSize"
                                 rightAddon={"px"}
@@ -83,15 +83,15 @@ class HeadingEditor extends Component {
                         </Col>
                     </Form.Row>
                     <Form.Row>
-                        <Col><Form.Label className="d-block left">Alignment:</Form.Label></Col>
-                        <Col>
+                        <Col className='center'><Form.Label className="d-block center">Alignment:</Form.Label></Col>
+                        <Col className='center'>
                             <AlignmentInput onClick={this.props.menuComponentOnClick} />
                         </Col>
                     </Form.Row>
 
                     <Form.Row>
-                        <Col><Form.Label className="d-block left">Font-Family:</Form.Label></Col>
-                        <Col>
+                        <Col className='center'><Form.Label className="d-block center">Font-Family:</Form.Label></Col>
+                        <Col className='center'>
                             <Form.Control
                                 id='headingFont'
                                 as="select"

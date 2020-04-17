@@ -231,12 +231,10 @@
   text-align: left !important;
 }
 
-.editor-menu {
-  margin: 2%;
-}
+
 
 .image-editor-menu-form-row {
-  width: 95%;
+  width: 100%;
   justify-content:center;
   align-items:center;
   margin-right: 0;

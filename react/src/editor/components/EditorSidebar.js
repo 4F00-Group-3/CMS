@@ -96,7 +96,7 @@ export default class EditorSideBar extends Component {
                             <EditorButton text="Spacer" faIcon={faAlignRight} onClick={this.AddElementToColumn} />
                             <EditorButton text="Icon" faIcon={faInfo} onClick={this.AddElementToColumn} />
                             <EditorButton text="Video" faIcon={faCircle} onClick={this.AddElementToColumn} />
-                            <EditMenuNav handleBack={this.props.handleBack} handleDelete={this.props.handleDelete} />
+                            <EditMenuNav className = "auto-bottom" handleBack={this.props.handleBack} handleDelete={this.props.handleDelete} />
                         </div>
                     </>
                 );

@@ -22,7 +22,7 @@ class EditorBackend {
     returnHTMLString(page_title, _htmlCollection) {
         var htmlCollection = _htmlCollection;
         var result = "<!DOCTYPE html><html><head><meta charset=\"UTF-8\"><link rel=\"stylesheet\" href=\"https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css\" integrity=\"sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T\" crossorigin=\"anonymous\"><title>" + page_title + "</title></head><body>";
-        console.log(htmlCollection)
+        //console.log(htmlCollection)
 
         for (let index = 0; index < htmlCollection.length; index++) {
             const element = htmlCollection[index];
@@ -188,209 +188,209 @@ class EditorBackend {
         //TODO: the following code will change to a ajax function to return a saved user page from database
         // This is for testing purposes
         return [
-            {
-                "id": 1,
-                "type": "heading",
-                "text": "Your Homepage",
-                "style": [
-                    {
-                        "color": "black",
-                        "fontSize": "81px",
-                        "textAlign": "center",
-                        "fontFamily": "\"Lucida Sans Unicode\", \"Lucida Grande\", sans-serif"
-                    }
-                ]
-            },
-            {
-                "id": 12,
-                "type": "spacer",
-                "text": "heading 1",
-                "style": [
-                    {
-                        "color": "black",
-                        "fontSize": "13px",
-                        "textAlign": "left"
-                    }
-                ]
-            },
-            {
-                "id": 2,
-                "type": "image",
-                "text": "alt text here",
-                "url": "https://images.unsplash.com/photo-1528557692780-8e7be39eafab?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1350&q=80",
-                "style": [
-                    {
-                        "width": "px",
-                        "borderRadius": "5px",
-                        "marginLeft": "0",
-                        "marginRight": "0",
-                        "marginTop": "0",
-                        "marginBottom": "0",
-                        "textAlign": "center"
-                    }
-                ]
-            },
-            {
-                "id": 3,
-                "type": "row",
-                "style": [],
-                "col": 1,
-                "page": [
-                    {
-                        "id": "3|1",
-                        "type": "column",
-                        "style": [],
-                        "page": []
-                    }
-                ]
-            },
-            {
-                "id": 4,
-                "type": "row",
-                "style": [],
-                "col": 1,
-                "page": [
-                    {
-                        "id": "4|1",
-                        "type": "column",
-                        "style": [],
-                        "page": []
-                    }
-                ]
-            },
-            {
-                "id": 13,
-                "type": "spacer",
-                "text": "heading 1",
-                "style": [
-                    {
-                        "color": "black",
-                        "fontSize": "12px",
-                        "textAlign": "left"
-                    }
-                ]
-            },
-            {
-                "id": 6,
-                "type": "heading",
-                "text": "Add videos and pictures to express your company's unique culture",
-                "style": [
-                    {
-                        "color": "black",
-                        "fontSize": "38px",
-                        "textAlign": "center",
-                        "fontFamily": "\"Lucida Sans Unicode\", \"Lucida Grande\", sans-serif"
-                    }
-                ]
-            },
-            {
-                "id": 14,
-                "type": "spacer",
-                "text": "heading 1",
-                "style": [
-                    {
-                        "color": "black",
-                        "fontSize": "12px",
-                        "textAlign": "left"
-                    }
-                ]
-            },
-            {
-                "id": 5,
-                "type": "video",
-                "text": "heading 1",
-                "url": "https://youtu.be/X4Q7d0CtYyk",
-                "style": [
-                    {
-                        "color": "black",
-                        "fontSize": "10vh",
-                        "textAlign": "center",
-                        "height": "500px",
-                        "width": "750px",
-                        "margin": "auto",
-                        "autoplay": "0",
-                        "loop": "0"
-                    }
-                ]
-            },
-            {
-                "id": 11,
-                "type": "divider",
-                "text": "rounded divider",
-                "style": [
-                    {
-                        "borderTop": "8px solid #000000",
-                        "borderRadius": "0px",
-                        "width": "100%"
-                    }
-                ]
-            },
-            {
-                "id": 7,
-                "type": "heading",
-                "text": "Create custom buttons",
-                "style": [
-                    {
-                        "color": "black",
-                        "fontSize": "43px",
-                        "textAlign": "center",
-                        "fontFamily": "\"Lucida Sans Unicode\", \"Lucida Grande\", sans-serif"
-                    }
-                ]
-            },
-            {
-                "id": 8,
-                "type": "button",
-                "text": "Your Button",
-                "href": "#",
-                "style": [
-                    {
-                        "color": "#000000",
-                        "backgroundColor": "#696969",
-                        "textAlign": "center",
-                        "border": "0px",
-                        "borderRadius": "12px"
-                    }
-                ]
-            },
-            {
-                "id": 10,
-                "type": "divider",
-                "text": "rounded divider",
-                "style": [
-                    {
-                        "borderTop": "8px solid #0a0606",
-                        "borderRadius": "0px",
-                        "width": "100%"
-                    }
-                ]
-            },
-            {
-                "id": 9,
-                "type": "heading",
-                "text": "Get started by clicking an element to edit it!",
-                "style": [
-                    {
-                        "color": "black",
-                        "fontSize": "40px",
-                        "textAlign": "center",
-                        "fontFamily": "\"Lucida Sans Unicode\", \"Lucida Grande\", sans-serif"
-                    }
-                ]
-            },
-            {
-                "id": 15,
-                "type": "heading",
-                "text": "Or, try adding other elements to the site by choosing one to the left in the editor!",
-                "style": [
-                    {
-                        "color": "black",
-                        "fontSize": "22px",
-                        "textAlign": "center",
-                        "fontFamily": "\"Lucida Sans Unicode\", \"Lucida Grande\", sans-serif"
-                    }
-                ]
-            }
+            // {
+            //     "id": 1,
+            //     "type": "heading",
+            //     "text": "Your Homepage",
+            //     "style": [
+            //         {
+            //             "color": "black",
+            //             "fontSize": "81px",
+            //             "textAlign": "center",
+            //             "fontFamily": "\"Lucida Sans Unicode\", \"Lucida Grande\", sans-serif"
+            //         }
+            //     ]
+            // },
+            // {
+            //     "id": 12,
+            //     "type": "spacer",
+            //     "text": "heading 1",
+            //     "style": [
+            //         {
+            //             "color": "black",
+            //             "fontSize": "13px",
+            //             "textAlign": "left"
+            //         }
+            //     ]
+            // },
+            // {
+            //     "id": 2,
+            //     "type": "image",
+            //     "text": "alt text here",
+            //     "url": "https://images.unsplash.com/photo-1528557692780-8e7be39eafab?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1350&q=80",
+            //     "style": [
+            //         {
+            //             "width": "px",
+            //             "borderRadius": "5px",
+            //             "marginLeft": "0",
+            //             "marginRight": "0",
+            //             "marginTop": "0",
+            //             "marginBottom": "0",
+            //             "textAlign": "center"
+            //         }
+            //     ]
+            // },
+            // {
+            //     "id": 3,
+            //     "type": "row",
+            //     "style": [],
+            //     "col": 1,
+            //     "page": [
+            //         {
+            //             "id": "3|1",
+            //             "type": "column",
+            //             "style": [],
+            //             "page": []
+            //         }
+            //     ]
+            // },
+            // {
+            //     "id": 4,
+            //     "type": "row",
+            //     "style": [],
+            //     "col": 1,
+            //     "page": [
+            //         {
+            //             "id": "4|1",
+            //             "type": "column",
+            //             "style": [],
+            //             "page": []
+            //         }
+            //     ]
+            // },
+            // {
+            //     "id": 13,
+            //     "type": "spacer",
+            //     "text": "heading 1",
+            //     "style": [
+            //         {
+            //             "color": "black",
+            //             "fontSize": "12px",
+            //             "textAlign": "left"
+            //         }
+            //     ]
+            // },
+            // {
+            //     "id": 6,
+            //     "type": "heading",
+            //     "text": "Add videos and pictures to express your company's unique culture",
+            //     "style": [
+            //         {
+            //             "color": "black",
+            //             "fontSize": "38px",
+            //             "textAlign": "center",
+            //             "fontFamily": "\"Lucida Sans Unicode\", \"Lucida Grande\", sans-serif"
+            //         }
+            //     ]
+            // },
+            // {
+            //     "id": 14,
+            //     "type": "spacer",
+            //     "text": "heading 1",
+            //     "style": [
+            //         {
+            //             "color": "black",
+            //             "fontSize": "12px",
+            //             "textAlign": "left"
+            //         }
+            //     ]
+            // },
+            // {
+            //     "id": 5,
+            //     "type": "video",
+            //     "text": "heading 1",
+            //     "url": "https://youtu.be/X4Q7d0CtYyk",
+            //     "style": [
+            //         {
+            //             "color": "black",
+            //             "fontSize": "10vh",
+            //             "textAlign": "center",
+            //             "height": "500px",
+            //             "width": "750px",
+            //             "margin": "auto",
+            //             "autoplay": "0",
+            //             "loop": "0"
+            //         }
+            //     ]
+            // },
+            // {
+            //     "id": 11,
+            //     "type": "divider",
+            //     "text": "rounded divider",
+            //     "style": [
+            //         {
+            //             "borderTop": "8px solid #000000",
+            //             "borderRadius": "0px",
+            //             "width": "100%"
+            //         }
+            //     ]
+            // },
+            // {
+            //     "id": 7,
+            //     "type": "heading",
+            //     "text": "Create custom buttons",
+            //     "style": [
+            //         {
+            //             "color": "black",
+            //             "fontSize": "43px",
+            //             "textAlign": "center",
+            //             "fontFamily": "\"Lucida Sans Unicode\", \"Lucida Grande\", sans-serif"
+            //         }
+            //     ]
+            // },
+            // {
+            //     "id": 8,
+            //     "type": "button",
+            //     "text": "Your Button",
+            //     "href": "#",
+            //     "style": [
+            //         {
+            //             "color": "#000000",
+            //             "backgroundColor": "#696969",
+            //             "textAlign": "center",
+            //             "border": "0px",
+            //             "borderRadius": "12px"
+            //         }
+            //     ]
+            // },
+            // {
+            //     "id": 10,
+            //     "type": "divider",
+            //     "text": "rounded divider",
+            //     "style": [
+            //         {
+            //             "borderTop": "8px solid #0a0606",
+            //             "borderRadius": "0px",
+            //             "width": "100%"
+            //         }
+            //     ]
+            // },
+            // {
+            //     "id": 9,
+            //     "type": "heading",
+            //     "text": "Get started by clicking an element to edit it!",
+            //     "style": [
+            //         {
+            //             "color": "black",
+            //             "fontSize": "40px",
+            //             "textAlign": "center",
+            //             "fontFamily": "\"Lucida Sans Unicode\", \"Lucida Grande\", sans-serif"
+            //         }
+            //     ]
+            // },
+            // {
+            //     "id": 15,
+            //     "type": "heading",
+            //     "text": "Or, try adding other elements to the site by choosing one to the left in the editor!",
+            //     "style": [
+            //         {
+            //             "color": "black",
+            //             "fontSize": "22px",
+            //             "textAlign": "center",
+            //             "fontFamily": "\"Lucida Sans Unicode\", \"Lucida Grande\", sans-serif"
+            //         }
+            //     ]
+            // }
         ];
 
     }
