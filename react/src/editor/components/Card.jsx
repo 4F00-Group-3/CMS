@@ -3,16 +3,10 @@ import { useDrag, useDrop } from 'react-dnd'
 import ItemTypes from './ItemTypes'
 import PageSection from "./PageSection"
 
-// const style = { //styling of card
-//   border: '1px solid green',
-//   padding: '0.5rem 1rem',
-//   marginBottom: '.5rem',
-//   backgroundColor: 'white',
-//   cursor: 'move',
-// }
+const Card = ({ page, onClick, onSectionPush, index, moveCard, clicked }) => {
 
-const Card = ({ id, type, style, text, faClassName, onClick, url, onSectionPush, index, moveCard, href, toggleClickClass, clicked}) => { //section fields + index + moveCard
-  const ref = useRef(null)
+  const ref = useRef(null);
+
   const [, drop] = useDrop({
     accept: ItemTypes.CARD,
     hover(item, monitor) {
@@ -36,46 +30,28 @@ const Card = ({ id, type, style, text, faClassName, onClick, url, onSectionPush,
       }
       moveCard(dragIndex, hoverIndex) //move card
       item.index = hoverIndex
-      console.log("ITEM INDEX: "+item.index)
-      console.log("HOVER INDEX: "+hoverIndex);
     },
-  })
+  });
+
   const [{ isDragging }, drag] = useDrag({
-    item: { type: ItemTypes.CARD, id, index },
+    item: { type: ItemTypes.CARD, index },
     collect: (monitor) => ({
       isDragging: monitor.isDragging(),
     }),
-  })
-  const opacity = isDragging ? 0 : 1
-  drag(drop(ref))
-  /*
-  console.log("ID "+id);
-  console.log("TYPE "+type);
-  console.log("STYLE "+style);
-  console.log("TEXT "+text);
-  console.log("CLASSNAME "+faClassName);
-  console.log("ONCLICK "+onClick);
-  console.log("URL "+url);
-  console.log("ON SEC PUSH "+onSectionPush);
-  */
+  });
 
-    return (
-      <div ref={ref}>
-        {   //card returns a page section
-           <PageSection
-            index={id}
-            type={type}
-            style={style}
-            text={text}
-            faClassName={faClassName}
-            href={href}
-            url={url}
-            onSectionPush={onSectionPush}
-            toggleClickClass={toggleClickClass}
-            clicked={clicked}
-          />
-        }
-      </div>
-    )
+  drag(drop(ref));
+
+  return (
+    <div ref={ref}>
+      <PageSection
+        page={page}
+        onSectionPush={onSectionPush}
+        clicked={clicked}
+        onClick={onClick}
+      />
+    </div>
+  )
 }
-export default Card
+
+export default Card;

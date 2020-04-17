@@ -1,21 +1,24 @@
+import React, { Component } from "react";
 import AjaxCall from "./../../ajax" //change this
-
+import Pages from "./../components/Pages";
 class DashboardBackend {
   constructor() {
     this.deleted = [];
     this.updates = [];
     this.pages = undefined;
-
-    this.getPages();
+    this.dash = '';
   }
 
 
 
-  getPages = () => {
+  getPages = (dash) => {
+    if(this.dash == ''){
+      this.dash = dash;
+    }
+
     AjaxCall(
       { function: "getAllPages", websiteId: sessionStorage.getItem('siteId') || 0 },
       (response) => {
-        // console.log(response);
         if (!response.toString().includes("false")) {
 
           let pagesList = JSON.parse(response.split('php-cgi')[1].trim());
@@ -23,11 +26,13 @@ class DashboardBackend {
           for (let i = 0; i < pagesList.length; i++) {
             pagesList[i].file = JSON.parse(pagesList[i].file);
           }
-          console.log(pagesList);
-          // this.setState({pages:pagesList});
-          this.pages = pagesList;
-        } else {
 
+          this.pages = pagesList;
+          dash.setState({ page:  <Pages backend={this}/> });
+
+          
+          
+          console.log(this.pages);
         }
       }
     );
@@ -98,26 +103,27 @@ class DashboardBackend {
     AjaxCall(
       { function: "addPage", websiteId: sessionStorage.getItem('siteId') || 0, pageName: name },
       (response) => {
-        console.log(response);
+        // console.log(response);
         if (!response.toString().includes("false")) {
-          console.log('page added');
-          //this.getPages();
+          let pageInfo = JSON.parse(response.split('php-cgi')[1].trim());
+          let pages_id = pageInfo[0];
+          let path = pageInfo[1];
+          let file = [];
+          // console.log(pageInfo);
+          this.pages.push({ pages_id, name, file, path });
+          this.dash.setState({ page:  <Pages backend={this}/> });
+          console.log(this.pages);
+          // this.getPages(this.dash);
         } else {
           console.log('failed to add page');
         }
 
         
       }
-      /**
-       * hook up edit button for page to editor
-       * save page changes made in editor
-       * bug: addPage, might not have correct pageId (refresh dash, or get next page id from db SQL)
-       * 
-       */
     );
 
-    this.pages.push({ id, name, segment, body });
-    console.log(this.pages);
+    
+    // console.log(this.pages);
   }
 }
 

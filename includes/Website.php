@@ -64,9 +64,28 @@ class Website{
             ->PREPARE('CREATE TABLE '.$schemaPages.'(
             pages_id SERIAL PRIMARY KEY NOT NULL,
             name text NOT NULL,
+            path text UNIQUE NOT NULL,
             file text NOT NULL)');
         $schemaStmt->execute();
 
+
+        // ADD PAGE to new schema page table
+        $file[] = array("source" =>"<!DOCTYPE html><html><head><title>Page Title</title></head><body><h1>This is a Heading</h1><p>This is a paragraph.</p></body></html>");
+        $stmt = Dbh::connect()
+            ->PREPARE("INSERT INTO $schemaPages(name, file, path) VALUES(:name, :file, :path)");
+        $stmt->bindValue(':name', "home.html");
+        $stmt->bindValue(':file', json_encode($file));
+        $stmt->bindValue(':path',"sites/".$siteName."/html/home.html" );
+        $stmt->execute();
+        //Check to see if page is in DB
+        $stmt = Dbh::connect()
+            ->PREPARE("SELECT * FROM $schemaPages WHERE path=?");
+        $stmt->execute(["sites/".$siteName."/html/home.html"]);
+        if(!$stmt->rowCount()){
+            return false;
+        }
+
+        //Create backend directory and home page
         mkdir("../sites/".$siteName);
         mkdir("../sites/".$siteName."/html");
         mkdir("../sites/".$siteName."/css");
@@ -198,22 +217,40 @@ class Website{
         }
     }
 
-    public static function addPage($schema, $pageName, $file){
-//        $pageName = "TestName";
-//        $file = "index.php";
+    public static function addPage($schema, $pageName, $siteId){
+        //Get website name
         $stmt = Dbh::connect()
-            ->PREPARE("INSERT INTO $schema.pages(name, file) VALUES(:pageName, :file)");
-        $stmt->bindValue(':pageName', $pageName);
-        $stmt->bindValue(':file', $file);
+            ->PREPARE("SELECT * FROM websites WHERE website_id=?");
+        $stmt->execute([$siteId]);
+        if($stmt->rowCount()){
+            $row = $stmt->fetch();
+            $websiteId = array("name"=>$row['site_name']);
+        }else{
+            return false;
+        }
+        $siteName = $websiteId["name"];
 
+        // ADD PAGE to new schema page table
+        $file[] = array("source" =>"<!DOCTYPE html><html><head><title>Page Title</title></head><body><h1>This is a Heading</h1><p>This is a paragraph.</p></body></html>");
+        $path = "sites/".$siteName."/html/".$pageName.".html";
+        $stmt = Dbh::connect()
+            ->PREPARE("INSERT INTO $schema.pages(name, file, path) VALUES(:name, :file, :path)");
+        $stmt->bindValue(':name', $pageName);
+        $stmt->bindValue(':file', json_encode([]));
+        $stmt->bindValue(':path', $path);
         $stmt->execute();
+
+        //Add page in server under /sites/"websiteName"/html/"pageName"
+        $file = fopen("../".$path,"w");
+        fwrite($file, $file["source"]);
+        fclose($file);
 
         //Check to see if page is in DB
         $stmt = Dbh::connect()
-            ->PREPARE("SELECT * FROM $schema.pages WHERE name=?");
-        $stmt->execute([$pageName]);
+            ->PREPARE("SELECT * FROM $schema.pages WHERE path=?");
+        $stmt->execute([$path]);
         if($stmt->rowCount()){
-            return true;
+            return [$stmt->fetch(PDO::FETCH_ASSOC)['pages_id'], $path];
         }else{
             return false;
         }
@@ -222,25 +259,31 @@ class Website{
     public static function addPageJSON($schema, $content, $pageName){
         $data = array($content, $pageName);
 
-		$stmt = Dbh::connect() ->PREPARE("INSERT INTO $schema.pages (content, name) VALUES (?, ?) ON CONFLICT DO NOTHING RETURNING page_id");
+		$stmt = Dbh::connect() ->PREPARE("INSERT INTO $schema.pages (content, name) VALUES (?, ?) ON CONFLICT DO NOTHING RETURNING pages_id");
 		$stmt->execute($data);
 
-		return $stmt->fetch(PDO::FETCH_ASSOC)['page_id'];
+		return $stmt->fetch(PDO::FETCH_ASSOC)['pages_id'];
     }
 
     public static function deletePageById($schema, $pageId){
-        $stmt = Dbh::connect()->PREPARE("DELETE FROM $schema.pages WHERE page_id=?");
+        $stmt = Dbh::connect()->PREPARE("DELETE FROM $schema.pages WHERE pages_id=?");
 		$stmt->execute([$pageId]);
 
         //Check to see if user is in DB
         $stmt = Dbh::connect()
-            ->PREPARE("SELECT * FROM $schema.pages WHERE page_id=?");
+            ->PREPARE("SELECT * FROM $schema.pages WHERE pages_id=?");
         $stmt->execute([$pageId]);
         if($stmt->rowCount()){
             return false;
         }else{
             return true;
         }
+    }
+
+    public static function savePage($schema, $page, $pageId, $html){
+        $stmt = Dbh::connect()
+            ->PREPARE("UPDATE $schema.pages SET file =? WHERE pages_id=?");
+        $stmt->execute([$page, $pageId]);
     }
 
 }

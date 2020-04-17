@@ -18,18 +18,16 @@ class Dashboard extends Component {
     constructor(props){
         super(props);
         this.state = {
-            page: <Pages backend={backend}/>,
+            page: '',
         };
-      if (sessionStorage.getItem('id') === null || sessionStorage.getItem('siteId') === null) {
-        props.handleHomeClick();
-      }
-        //backend.returnAllPages();
+        
+        if (sessionStorage.getItem('id') === null || sessionStorage.getItem('siteId') === null) {
+          props.handleHomeClick();
+        }
     }
 
-  componentDidMount() {    
-    setTimeout(function () { //Start the timer
-      this.setState({ page:  <Pages backend={backend}/> });
-    }.bind(this), 1000)
+  componentDidMount = () => {
+    backend.getPages(this);    
   }
 
   onPush = buttonName => {

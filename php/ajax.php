@@ -1,22 +1,26 @@
 #!/usr/bin/php-cgi
 <?php
 require_once ('header_functions.php');
+//require_once ('payment.php');
 
 $functions = array('test', 'currentUser', 'updateUser','currentUserId', 'addUser', 'getAllPages', 'getAllUsers', 'getMedia', 'getPage',
     'addMedia', 'addPage', 'deletePage', 'deleteUser', 'login', 'createAccount', 'createWebsite', 'getWebsiteData',
-    'getPagesData','getUsersData','getAccountMedia', 'deleteUser', 'deletePage', 'addUser','addPage', 'updateAccountPassword');
+    'getPagesData','getUsersData','getAccountMedia', 'deleteUser', 'deletePage', 'addUser','addPage', 'updateAccountPassword', 'confirmSubscription', 'savePage');
 
 if(isset($_POST['function']) && in_array($_POST['function'], $functions)){
     $_POST['function']();
 }
 
+function display10payment(){
+}
+
 function createAccount(){
     if (!empty($_POST)) {
         $account = Account::addAccount($_POST['email'], $_POST['first_name'], $_POST['last_name'], 'ADMIN', $_POST['password']);
-        if (!$account) {
-            echo 'There was a problem creating your account!';
+        if ($account === false) {
+            echo "false";
         } else {
-            echo 'Account created!';
+            echo json_encode($account);
         }
     }
     die;
@@ -53,6 +57,7 @@ function login(){
     }
     if($success === true){
         $response['accountId'] = $account->accountId;
+        $response['subscription'] = $account->subscription;
         echo json_encode($response);
     }else{
         echo "false";
@@ -74,8 +79,18 @@ function updateAccountPassword(){
     die;
 }
 
-
-
+function confirmSubscription(){
+    $success = false;
+    if (!empty($_POST['accountId']) && !empty($_POST['subscription'])) {
+        $success = Account::confirmSubscription($_POST['accountId'], $_POST['subscription']);
+    }
+    if($success === true){
+        echo "true";
+    }else{
+        echo "false";
+    }
+    die;
+}
 
 function getWebsiteData(){
     $success = false;
@@ -136,13 +151,13 @@ function addPage(){
     $success = false;
     if (!empty($_POST['websiteId']) && !empty($_POST['pageName'])) {
         $schema = "website".$_POST['websiteId'];
-        $data = Website::addPage($schema, $_POST['pageName'], json_encode([]));
+        $data = Website::addPage($schema, $_POST['pageName'], $_POST['websiteId']);
         if ($data !== false) {
             $success = true;
         }
     }
     if($success === true){
-        echo "true";
+        echo json_encode($data);
     }else{
         echo "false";
     }
@@ -326,4 +341,16 @@ function addMedia(){
         move_uploaded_file($fileTmpName, $dest);
     }
 
+}
+
+function savePage(){
+    // if (!empty($_POST['websiteId']) && !empty($_POST['page']) && !empty($_POST['pageId'])) {
+    if (!empty($_POST)) {
+        $schema = "website".$_POST['websiteId'];
+        $page = $_POST['page'];
+        $pageId = $_POST['pageId'];
+        Website::savePage($schema, $page, $pageId, $html);
+    }
+   
+    die;
 }

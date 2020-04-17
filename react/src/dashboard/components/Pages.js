@@ -46,7 +46,7 @@ class Pages extends Component {
         this.handlePageUpdate = this.handlePageUpdate.bind(this);
         this.onClick = this.onClick.bind(this);
         this.state = {
-            'pages': this.props.backend.pages,
+            pages: this.props.backend.pages,
             showPopup: false,
             pageID : this.props.backend.pages.length + 1,
         }
@@ -82,24 +82,24 @@ class Pages extends Component {
     }
 
     handlePageDelete(id) {
-        console.log("handle page delete clicked");
+        console.log(id);
         //THIS IS A BACKEND CALL TO DELETE PAGE ASSOCIATED TO WEBSITEID BY A PAGEID
         //All console logs are for testing purposes
-        var arr = [];
-        AjaxCall({function: 'deleteUser', websiteId: sessionStorage.getItem('siteId'), pageId: id},
-            function (response) {
-                console.log(response);
-                let responseArray = JSON.parse(response.split('php-cgi')[1].trim());
-                console.log(responseArray);
-                arr = responseArray;
-            });
-        console.log(arr);
+        // var arr = [];
+        // AjaxCall({function: 'deleteUser', websiteId: sessionStorage.getItem('siteId'), pageId: id},
+        //     function (response) {
+        //         console.log(response);
+        //         let responseArray = JSON.parse(response.split('php-cgi')[1].trim());
+        //         console.log(responseArray);
+        //         arr = responseArray;
+        //     });
+        // console.log(arr);
         //END OF BACKEND CALL
 
-        this.props.backend.delete(id);
-        this.setState({
-            'pages': this.props.backend.pages,
-        })
+        // this.props.backend.delete(id);
+        // this.setState({
+        //     'pages': this.props.backend.pages,
+        // })
     }
 
     handlePageUpdate(id, field, value) {
@@ -118,6 +118,7 @@ class Pages extends Component {
                                 return (
                                     <li key={i}  className="ListItemContainer">
                                         <Page
+                                            id={i}
                                             {...page}
                                             onPageEdit={this.handlePageEdit}
                                             onPageUpdate={this.handlePageUpdate}
@@ -146,7 +147,7 @@ class Pages extends Component {
 
     createPage=(ptitle)=> {
         this.props.backend.updatePages(this.state.pageID, ptitle, ptitle, []);
-        console.log(this.state.pageID);
+        // console.log(this.state.pageID);
         this.setState({pages: this.props.backend.pages, pageID: this.state.pageID+1});
     }
 }

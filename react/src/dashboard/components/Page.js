@@ -11,7 +11,7 @@ class Page extends Component {
         this.handlePageEdit = this.handlePageEdit.bind(this);
         this.handlePageDelete = this.handlePageDelete.bind(this);
         this.handleOnPageCancel = this.handleOnPageCancel.bind(this);
-        console.log(props);
+        // console.log(props);
         this.state = {
             'isEditing': false,
 
@@ -28,7 +28,7 @@ class Page extends Component {
     }
 
     handlePageDelete(id) {
-        console.log("time to delete a page " + this.props.id);
+        // console.log("time to delete a page " + this.props.id);
         this.props.onPageDelete(this.props.id)
     }
 
@@ -45,7 +45,7 @@ class Page extends Component {
 
     render() {
         var result = null;
-        console.log(this.props);
+        // console.log(this.props);
         if (this.state.isEditing) {
             result =
                 <>

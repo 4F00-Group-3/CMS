@@ -15,10 +15,10 @@ Main repository for the group project CMS
         - PostgresDB
 
 - Our Team:
+    - Param J (Team Leader and Lead Developer for Front-end technologies)
     - Casey M (Lead Developer for Back-end technologies)
     - Matthew P (Lead Developer for Back-end technologies)
     - Matthew A (Lead Developer for Front-end technologies)
-    - Param J (Lead Developer for Front-end technologies)
     - Tokunbo O (Front-end Developer)
     - Jon (Front-end/Back-end Developer)
     - Steve B (Front-end/Back-end Developer)
