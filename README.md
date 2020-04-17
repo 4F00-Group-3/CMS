@@ -22,5 +22,3 @@ Main repository for the group project CMS
     - Tokunbo O (Front-end Developer)
     - Jon (Front-end/Back-end Developer)
     - Steve B (Front-end/Back-end Developer)
-    - Greg (Front-end/Administrative)
-    - Ahmed M (Front End Developer)
