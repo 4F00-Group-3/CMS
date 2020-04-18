@@ -62,32 +62,32 @@ class MasterTestMenu extends Component {
     let page;
     switch (view) {
       case "Editor":
-        page = <Editor handleHomeClick={this.handleHomeClick}/>;
+        page = <Editor handleHomeClick={this.handleHomeClick} />;
         break;
       case "Home":
         page = <Home />;
         break;
       case "Dash":
-        page = <Dashboard handleHomeClick = {this.handleHomeClick}/>;
+        page = <Dashboard handleHomeClick={this.handleHomeClick} />;
         break;
       case "Login":
-        page = <Login handleSitePageClick = {this.handleSitePageClick}
-                      handleCreateAccountClick={this.handleCreateAccountClick}
-                      handleGetStartedClick = {this.handleGetStartedClick}
-                      handleHomeClick={this.handleHomeClick}/>;
+        page = <Login handleSitePageClick={this.handleSitePageClick}
+          handleCreateAccountClick={this.handleCreateAccountClick}
+          handleGetStartedClick={this.handleGetStartedClick}
+          handleHomeClick={this.handleHomeClick} />;
         break;
       case "Create Account":
-        page = <CreateAccount handleSitePageClick = {this.handleSitePageClick}
-                              handleGetStartedClick = {this.handleGetStartedClick}/>;
+        page = <CreateAccount handleSitePageClick={this.handleSitePageClick}
+          handleGetStartedClick={this.handleGetStartedClick} />;
         break;
       case "SitePage":
-        page = <SitePage handleHomeClick = {this.handleHomeClick}
-                         handleDashClick = {this.handleDashClick}
-                         handleSitePageClick = {this.handleSitePageClick}
-                         handleGetStartedClick = {this.handleGetStartedClick}/>;
+        page = <SitePage handleHomeClick={this.handleHomeClick}
+          handleDashClick={this.handleDashClick}
+          handleSitePageClick={this.handleSitePageClick}
+          handleGetStartedClick={this.handleGetStartedClick} />;
         break;
       case "GetStarted":
-        page = <GetStarted handleSitePageClick = {this.handleSitePageClick}/>;
+        page = <GetStarted handleSitePageClick={this.handleSitePageClick} />;
         break;
       default:
         page = <Home />;
