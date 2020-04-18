@@ -4,6 +4,7 @@ import '../css/SitePage.css'
 import AjaxCall from '../ajax.js';
 import Login from '../Login/loginpage';
 import SitePageBackend from "../Site Page/backend/SitePageBackend";
+import MasterTestMenu from "../Testing Components/MasterTestMenu";
 let backend = new SitePageBackend();
 
 /*Popup class for the add page pop up, handles opening the popup and passing
@@ -94,14 +95,60 @@ class Popup extends Component {
     }
 }
 
-class SitePage extends Component {
 
+class PopupDelete extends Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            websiteId: this.props.websiteId,
+        };
+        backend.f=this.props.handleHomeClick;
+        backend.s=this.props.handleSitePageClick;
+    }
+
+    handleDeleteWebsite = () =>{
+        const state = this;
+        AjaxCall({
+                function: "deleteWebsite",
+                accountId: sessionStorage.getItem("id"),
+                websiteId: this.state.websiteId,
+            },
+            function(response) {
+                console.log(response);
+                if (!response.toString().includes("false")) {
+                    alert("Website successfully deleted");
+                }else{
+                    alert("Website failed to delete");
+                }
+                backend.redirectDelete();
+            }
+        );
+    };
+
+
+    render() {
+        return(
+            <div className='popup'>
+                <div className='popup_inner'>
+                    <h3>Are you sure you want to delete?</h3>
+                    <button className="submitnextbutton" onClick={this.handleDeleteWebsite}>Delete</button>
+                    <br/><br/>
+                    <button className="submitnextbutton" onClick={this.props.closePopup}>Cancel</button>
+                </div>
+            </div>
+        )
+    }
+}
+
+
+class SitePage extends Component {
     constructor(props) {
         super(props);
 
         this.state = {
             userLoggedIn: true,
-            showPopup: false
+            showPopup: false,
+            showPopupDelete: false
         };
         this.handleLogOut = this.handleLogOut.bind(this);
         this.handleRedirectToAccoutingSettings = this.handleRedirectToAccoutingSettings.bind(this);
@@ -127,6 +174,17 @@ class SitePage extends Component {
                     self.setState({
                         siteInfo: json
                     });
+                });
+            var check = false;
+            AjaxCall({ function: 'checkWebsites', subscription: sessionStorage.getItem("tier"), accountId: sessionStorage.getItem("id")},
+                function (response) {
+                    if (!response.toString().includes("false")) {
+                        console.log("Response:", response);
+                        check = true;
+                        self.setState({
+                            tier: check
+                        });
+                    }
                 });
         } else {
             // Redirect to login
@@ -166,7 +224,6 @@ class SitePage extends Component {
             showPopup: !this.state.showPopup
         });
     }
-
     handleViewWebsite = (info) =>{
         console.log(info);
         window.location.assign('../../'+info);
@@ -176,6 +233,12 @@ class SitePage extends Component {
         console.log(info);
         sessionStorage.setItem("siteId",info);
         this.props.handleDashClick();
+    };
+
+    handleDeleteWebsite = () =>{
+        this.setState({
+            showPopupDelete: !this.state.showPopupDelete
+        });
     };
 
     render() {
@@ -206,23 +269,37 @@ class SitePage extends Component {
                                                         <div className="column">
                                                             <button onClick={() => this.handleViewWebsite(site.path)} value="View">View</button>
                                                         </div>
+                                                        <div className="column">
+                                                            <button onClick={() => this.handleDeleteWebsite(this)} value="Delete">Delete</button>
+                                                            {this.state.showPopupDelete ?
+                                                                <PopupDelete
+                                                                    websiteId = {site.id}
+                                                                    handleHomeClick={this.props.handleHomeClick}
+                                                                    handleSitePageClick={this.props.handleSitePageClick}
+                                                                    closePopup={this.handleDeleteWebsite.bind(this)}
+                                                                />
+                                                                : null
+                                                            }
+                                                        </div>
                                                     </div>
                                                 </div>
                                             </div>
                                         )
                                     }
-                                    <div className="column">
-                                        <button onClick={this.togglePopup.bind(this)} value="New">New</button>
-                                        {this.state.showPopup ?
-                                            <Popup
-                                                text='Enter the title of the new page.'
-                                                handleDashClick = {this.props.handleDashClick}
-                                                closePopup={this.togglePopup.bind(this)}
-                                            />
-                                            : null
-                                        }
-                                    </div>
-
+                                    {this.state.tier?
+                                        <div className="column">
+                                            <button onClick={this.togglePopup.bind(this)} value="New">New</button>
+                                            {this.state.showPopup ?
+                                                <Popup
+                                                    text='Enter the title of the new page.'
+                                                    handleDashClick={this.props.handleDashClick}
+                                                    closePopup={this.togglePopup.bind(this)}
+                                                />
+                                                : null
+                                            }
+                                        </div>
+                                        :null
+                                    }
                                 </div>
                             </div>
                         </div>

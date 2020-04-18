@@ -151,6 +151,13 @@ class Account {
         }
     }
 
+    public static function checkWebsites($account_id) {
+        $stmt = Dbh::connect()
+            ->PREPARE("SELECT * FROM websites WHERE account_id=?");
+        $stmt->execute([$account_id]);
+        return $stmt->rowCount();
+    }
+
     function updateAccount($accountId, $userdata){
         $queryString = '';
         foreach($userdata as $key => $data){

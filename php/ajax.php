@@ -5,7 +5,8 @@ require_once ('header_functions.php');
 
 $functions = array('test', 'currentUser', 'updateUser','currentUserId', 'addUser', 'getAllPages', 'getAllUsers', 'getMedia', 'getPage',
     'addMedia', 'addPage', 'deletePage', 'deleteUser', 'login', 'createAccount', 'createWebsite', 'getWebsiteData',
-    'getPagesData','getUsersData','getAccountMedia', 'deleteUser', 'deletePage', 'addUser','addPage', 'updateAccountPassword', 'confirmSubscription');
+    'getPagesData','getUsersData','getAccountMedia', 'deleteUser', 'deletePage', 'deleteWebsite', 'addUser','addPage',
+    'updateAccountPassword', 'confirmSubscription', 'checkWebsites');
 
 if(isset($_POST['function']) && in_array($_POST['function'], $functions)){
     $_POST['function']();
@@ -28,12 +29,22 @@ function createAccount(){
 
 function createWebsite(){
     if (!empty($_POST)) {
-        $website = Website::createWebsite($_POST['accountId'], "sites/".$_POST['title']."/html/home.html", $_POST['title'], $_POST['description']);
+        $website = Website::createWebsite($_POST['accountId'], "sites/".$_POST['accountId']."/".$_POST['title']."/html/home.html", $_POST['title'], $_POST['description']);
         if ($website === false) {
             echo "false";
         } else {
             echo json_encode($website);
         }
+    }
+    die;
+}
+
+function deleteWebsite(){
+    $success = Website::deleteWebsite($_POST['accountId'], $_POST['websiteId']);
+    if ($success) {
+        echo "true";
+    } else {
+        echo "false";
     }
     die;
 }
@@ -111,6 +122,30 @@ function getWebsiteData(){
     die;
 }
 
+function checkWebsites(){
+    if (!empty($_POST['accountId'])) {
+        $accountId = $_POST['accountId'];
+        $data = Account::checkWebsites($accountId);
+    }
+    if ($_POST['subscription']==="1"){
+        if ($data<1){
+            echo "true";
+        }else
+            echo "false";
+    }else if ($_POST['subscription']==="2"){
+        if ($data<3)
+            echo "true";
+        else
+            echo "false";
+    }else if ($_POST['subscription']==="3") {
+        if ($data < 5)
+            echo "true";
+        else
+            echo "false";
+    }
+    die;
+}
+
 function getPagesData(){
     $success = false;
     if (!empty($_POST['websiteId'])) {
@@ -149,9 +184,9 @@ function getUsersData(){
 
 function addPage(){
     $success = false;
-    if (!empty($_POST['websiteId']) && !empty($_POST['pageName'])) {
+    if (!empty($_POST['websiteId']) && !empty($_POST['pageName']) && !empty($_POST['accountId'])) {
         $schema = "website".$_POST['websiteId'];
-        $data = Website::addPage($schema, $_POST['pageName'], $_POST['websiteId']);
+        $data = Website::addPage($schema, $_POST['pageName'], $_POST['websiteId'],$_POST['accountId']);
         if ($data !== false) {
             $success = true;
         }
