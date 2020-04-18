@@ -18,7 +18,7 @@ class EditorBackend {
      * @param {*} style_key the style key to modify
      * @param {*} style_value the value of the style key to change to
      */
-    getSubMenuItem_Style(id, style_key, style_value) {
+    setSubMenuItem_Style(id, style_key, style_value) {
         var pageSection = this.getSubMenuItem(this.state.page, id);
         var style = JSON.parse(JSON.stringify(pageSection['style'][0]));
         style["" + style_key] = style_value;
@@ -31,7 +31,7 @@ class EditorBackend {
      * @param {*} jsonField the json field within the page section to modify
      * @param {*} jsonValue the json value to set the modified json field to
      */
-    getSubMenuItem_Text(id, jsonField, jsonValue) {
+    setSubMenuItem_Text(id, jsonField, jsonValue) {
         var pageSection = this.getSubMenuItem(this.state.page, id);
         pageSection["" + jsonField] = jsonValue;
     }

@@ -174,20 +174,18 @@ class Editor extends Component {
                 var cssKey = css.split("|")[0]
                 var cssValue = css.split("|")[1]
                 if (cssKey === "Col") {
-                    console.log("col number edited", this.state.selectedId, cssValue)
                     this.setState({
                         selectedRowNumberOfColumns: backend.editSectionRow(this.state.selectedId, cssValue)
                     });
-
                 } else {
-                    backend.getSubMenuItem_Style(this.state.selectedId, cssKey, cssValue);
+                    backend.setSubMenuItem_Style(this.state.selectedId, cssKey, cssValue);
                 }
                 break;
             }
             case 3: {
                 var jsonField = css.split("|")[0];
                 var jsonValue = css.split("|")[1];
-                backend.getSubMenuItem_Text(this.state.selectedId, jsonField, jsonValue);
+                backend.setSubMenuItem_Text(this.state.selectedId, jsonField, jsonValue);
                 break;
             }
             default:
