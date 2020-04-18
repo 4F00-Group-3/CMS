@@ -505,7 +505,7 @@ class EditorBackend {
                         {
                             color: "black",
                             fontSize: "10vh",
-                            textAlign: "left",
+                            textAlign: "center",
                             height: "200px",
                             width: "300px",
                             margin: "auto",

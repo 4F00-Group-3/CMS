@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import Form from 'react-bootstrap/Form';
 import Col from 'react-bootstrap/Col';
-import { AlignmentInput } from './EditorMenuComponents';
+import { AlignmentVideo, AlignmentImage } from './EditorMenuComponents';
 
 
 class EditVideo extends Component {
@@ -141,7 +141,7 @@ class EditVideo extends Component {
             <Form.Label>Alignment:</Form.Label>
           </Col>
           <Col>
-            <AlignmentInput
+            <AlignmentVideo
               onClick={this.props.menuComponentOnClick}
             />
           </Col>
