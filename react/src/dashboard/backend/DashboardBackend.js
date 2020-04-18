@@ -12,7 +12,7 @@ class DashboardBackend {
 
 
   getPages = (dash) => {
-    if(this.dash == ''){
+    if (this.dash == '') {
       this.dash = dash;
     }
 
@@ -28,14 +28,12 @@ class DashboardBackend {
           }
 
           this.pages = pagesList;
-          dash.setState({ page:  <Pages backend={this}/> });
-
-          
-          
+          dash.setState({ page: <Pages backend={this} loadEditor={dash.loadEditor} /> });
           console.log(this.pages);
         }
       }
     );
+
   }
 
   all() {
@@ -66,9 +64,9 @@ class DashboardBackend {
       },
     ]
 
-    if (arr.length <= this.pages) {
-      arr = this.pages
-    }
+    // if (arr.length <= this.pages) {
+    //   arr = this.pages
+    // }
 
     return arr.filter((page) => this.deleted.indexOf(page.id) === -1)
       .map((page) => {
@@ -82,6 +80,8 @@ class DashboardBackend {
       });
 
   }
+
+
   /*Receives id of page to delete, then loops through all pages to find matching
   page and removes it.
   Each const page is the id of a page -1, so by subtracting one from id on
@@ -111,18 +111,18 @@ class DashboardBackend {
           let file = [];
           // console.log(pageInfo);
           this.pages.push({ pages_id, name, file, path });
-          this.dash.setState({ page:  <Pages backend={this}/> });
+          this.dash.setState({ page: <Pages backend={this} /> });
           console.log(this.pages);
           // this.getPages(this.dash);
         } else {
           console.log('failed to add page');
         }
 
-        
+
       }
     );
 
-    
+
     // console.log(this.pages);
   }
 }

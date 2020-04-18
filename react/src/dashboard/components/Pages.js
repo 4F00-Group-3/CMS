@@ -51,6 +51,8 @@ class Pages extends Component {
             pageID : this.props.backend.pages.length + 1,
         }
 
+        console.log(this.state.pages)
+
     }
 
     componentDidMount() {
@@ -124,6 +126,7 @@ class Pages extends Component {
                                             onPageUpdate={this.handlePageUpdate}
                                             onPageDelete={this.handlePageDelete}
                                             page={this.state.pages[i]}
+                                            loadEditor={this.props.loadEditor}
                                         />
                                     </li>
                                 );

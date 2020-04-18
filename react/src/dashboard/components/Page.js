@@ -7,24 +7,13 @@ import NewWindow from 'react-new-window'
 class Page extends Component {
     constructor(props) {
         super(props);
-
         this.handlePageEdit = this.handlePageEdit.bind(this);
         this.handlePageDelete = this.handlePageDelete.bind(this);
-        this.handleOnPageCancel = this.handleOnPageCancel.bind(this);
-        // console.log(props);
-        this.state = {
-            'isEditing': false,
-
-        }
-
     }
 
 
     handlePageEdit() {
-        this.setState({
-            'isEditing': true,
-        });
-        console.log("time to edit a page");
+        this.props.loadEditor(this.props.page)
     }
 
     handlePageDelete(id) {
@@ -32,46 +21,12 @@ class Page extends Component {
         this.props.onPageDelete(this.props.id)
     }
 
-    handleOnPageCancel() {
-        this.setState({
-            'isEditing': false,
-        });
-        console.log("time to cancel a page ");
-    }
-
     onEditorUnload = () => {
         this.setState({isEditing: false})
     }
 
     render() {
-        var result = null;
-        // console.log(this.props);
-        if (this.state.isEditing) {
-            result =
-                <>
-                    <NewWindow 
-                    name={"Editor"}  
-                    title={"Editor"}
-                    onUnload={this.onEditorUnload}>
-                        <Editor
-                            onPageCancel={this.handleOnPageCancel}
-                            page={this.props.page}
-                        />
-                    </NewWindow>
-                    <ListItem
-                        type={"page"}
-                        {...this.props}
-                        isEditing={this.props.isEditing}
-                        onPageEdit={this.handlePageEdit}
-                        onPageDelete={this.handlePageDelete}
-                        title={this.props.name}
-
-                    />
-                </>;
-
-        }
-        else {
-            result = <ListItem
+        var result = <ListItem
                 type={"page"}
                 {...this.props}
                 isEditing={this.props.isEditing}
@@ -80,7 +35,6 @@ class Page extends Component {
                 title={this.props.name}    
 
             />;
-        }
 
         return result;
     }
