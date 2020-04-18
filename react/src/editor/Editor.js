@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import EditorSideBar from './components/EditorSidebar';
 import EditingPage from '../editor/components/EditingPage';
 import EditorBackend from './EditorBackend';
+import Button from 'react-bootstrap/Button'
 
 const backend = new EditorBackend();
 
@@ -285,6 +286,7 @@ class Editor extends Component {
                 <div style={{ marginLeft: "50vh" }}>
                     <EditingPage page={this.state.page} onSectionPush={this.pageSection_onClick} />
                 </div>
+                <Button className='return-to-dash-btn' onClick={this.props.returnToDash}>Return to Dashboard</Button>
             </>
         );
     }

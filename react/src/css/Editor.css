@@ -22,11 +22,9 @@
   /*border: 3px solid green;*/
   float: left;
   position: fixed;
-  
-  
-  justify-content:center;
-  align-items:center;
 
+  justify-content: center;
+  align-items: center;
 }
 
 .Editor-SideBar-Container {
@@ -79,4 +77,10 @@
 
 .edit-menu-nav {
   margin: 2%;
+}
+
+.return-to-dash-btn {
+  bottom: 1%;
+  right: 1%;
+  position: fixed;
 }

@@ -31,11 +31,22 @@ class Dashboard extends Component {
     backend.getPages(this);
   }
 
+  returnToDash = () => {
+    console.log('returning to dash')
+    this.setState({
+      page: <Pages
+        loadEditor={this.loadEditor}
+        backend={backend} />,
+      isEditing: false
+    });
+  }
+
   loadEditor = (page) => {
     this.setState({
       page:
         <Editor
           page={page}
+          returnToDash={this.returnToDash}
         />,
       isEditing: true,
     }
