@@ -27,9 +27,19 @@ export default class PageSection extends Component {
      * @param {*} autoplay autoplay boolean
      * @param {*} loop loop boolean
      */
+    //https://www.youtube.com/watch?v=IUMTaAQ43lY
     returnYouTube(url, height, width, autoplay, loop) {
-        var splitURL = url.split("/");
-        let result = splitURL[0] + "//" + splitURL[2] + "/embed/" + splitURL[3] + "/";
+        var videoID = "";
+        var splitURL;
+        if(url.includes("watch")) {
+            splitURL = url.split("=");
+            videoID=splitURL[1]
+        }
+        else {
+            splitURL = url.split("/");
+            videoID = splitURL[3]
+        }
+        
         const opts = {
             height: height,
             width: width,
@@ -42,7 +52,7 @@ export default class PageSection extends Component {
 
         return (
             <YouTube
-                videoId={splitURL[3]}
+                videoId={videoID}
                 opts={opts}
                 onReady={this._onReady}
             />)
