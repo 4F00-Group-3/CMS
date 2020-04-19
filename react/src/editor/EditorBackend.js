@@ -492,7 +492,7 @@ class EditorBackend {
                     text: "heading 1",
                     style: [
                         {
-                            color: "black",
+                            backgroundColor: "#FFF",
                             fontSize: "12px",
                             textAlign: "left",
                         }

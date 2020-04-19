@@ -51,7 +51,6 @@ class EditDividerMenu extends Component {
     this.setState({ borderUnits: value, })
   }
 
-
   /**
    * This method re-renders the colour pickers based on which btn is clicked
    */
@@ -100,16 +99,16 @@ class EditDividerMenu extends Component {
     }
   }
 
-      /**
-     * This method toggles the section background colour picker
-     */
-    handleBGColorPicker = () => {
-      if (this.state.sectionBgColorPickerActive === false) {
-          this.setState({ sectionBgColorPickerActive: true });
-      }
-      else {
-          this.setState({ sectionBgColorPickerActive: false });
-      }
+  /**
+   * This method toggles the section background colour picker
+   */
+  handleBGColorPicker = () => {
+    if (this.state.sectionBgColorPickerActive === false) {
+      this.setState({ sectionBgColorPickerActive: true });
+    }
+    else {
+      this.setState({ sectionBgColorPickerActive: false });
+    }
   }
 
   /**
@@ -119,19 +118,19 @@ class EditDividerMenu extends Component {
   * @param {bool} bg 
   */
   returnSectionColorPicker(active) {
-      if (active) {
-          return (
-              <>
-                  <Button id='bgColorPickerButton' className="mt-2" onClick={this.handleBGColorPicker}>Close Color Picker</Button>
-                  <BackgroundColorPicker
-                      id='bgColorPicker'
-                      onChange={this.props.menuComponentOnClick}
-                  />
-              </>);
-      }
-      else {
-          return (<Button id='bgColorPickerButton' className="mt-2" onClick={this.handleBGColorPicker}>Open Color Picker</Button>);
-      }
+    if (active) {
+      return (
+        <>
+          <Button id='bgColorPickerButton' className="mt-2" onClick={this.handleBGColorPicker}>Close Color Picker</Button>
+          <BackgroundColorPicker
+            id='bgColorPicker'
+            onChange={this.props.menuComponentOnClick}
+          />
+        </>);
+    }
+    else {
+      return (<Button id='bgColorPickerButton' className="mt-2" onClick={this.handleBGColorPicker}>Open Color Picker</Button>);
+    }
   }
 
   render() {
