@@ -5,7 +5,7 @@ import Col from 'react-bootstrap/Col';
 import Row from 'react-bootstrap/Row';
 import Button from 'react-bootstrap/Button';
 import Container from 'react-bootstrap/Container';
-import { AlignmentImage } from './EditorMenuComponents';
+import { AlignmentImage, BackgroundColorPicker } from './EditorMenuComponents';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faUpload } from "@fortawesome/free-solid-svg-icons";
 import AjaxCall from './../../../ajax';
@@ -20,7 +20,8 @@ class ImageEditorMenu extends Component {
             borderRadiusUnits: "px",
             showImageGallery: false,
             images: [],
-            imageElements: []
+            imageElements: [],
+            bgColorPickerActive: false,
         }
 
         this.getImages();
@@ -86,6 +87,7 @@ class ImageEditorMenu extends Component {
             }
         );
     }
+
     /* fires after a user picks a files from their computer and clicks OK */
     uploadImage = (files) => {
         console.log('upload');
@@ -113,6 +115,36 @@ class ImageEditorMenu extends Component {
         }
     }
 
+    handleBGColorPicker = () => {
+        if (this.state.bgColorPickerActive === false) {
+            this.setState({ bgColorPickerActive: true });
+        }
+        else {
+            this.setState({ bgColorPickerActive: false });
+        }
+    }
+
+    /**
+    * This method returns the appropriate colour picker.  There are dual conditionals so this method could be 
+    * used for both the background colour picker, and the heading colour picker.  
+    * @param {bool} active 
+    * @param {bool} bg 
+    */
+    returnColorPicker(active) {
+        if (active) {
+            return (
+                <>
+                    <Button id='bgColorPickerButton' className="mt-2" onClick={this.handleBGColorPicker}>Close Color Picker</Button>
+                    <BackgroundColorPicker
+                        id='bgColorPicker'
+                        onChange={this.props.menuComponentOnClick}
+                    />
+                </>);
+        }
+        else {
+            return (<Button id='bgColorPickerButton' className="mt-2" onClick={this.handleBGColorPicker}>Open Color Picker</Button>);
+        }
+    }
 
     render() {
         return (<>
@@ -139,9 +171,9 @@ class ImageEditorMenu extends Component {
                         </Col>
                     </Form.Row>
                     <Form.Row className="w-100">
-                    <Col className='left'>
-                        <Form.Label>Margin Units: </Form.Label>
-                    </Col>
+                        <Col className='left'>
+                            <Form.Label>Margin Units: </Form.Label>
+                        </Col>
                         <Col >
                             <Form.Control
                                 as="select"
@@ -253,6 +285,13 @@ class ImageEditorMenu extends Component {
                     </Col>
                     <Col className='center'>
                         <AlignmentImage onClick={this.props.menuComponentOnClick} />
+                    </Col>
+                </Form.Row>
+
+                <Form.Row>
+                    <Col className='center'><Form.Label className="d-block center">Background Color:</Form.Label></Col>
+                    <Col className='center'>
+                        {this.returnColorPicker(this.state.bgColorPickerActive, true)}
                     </Col>
                 </Form.Row>
 

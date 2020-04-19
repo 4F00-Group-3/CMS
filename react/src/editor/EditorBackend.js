@@ -412,10 +412,12 @@ class EditorBackend {
                     text: "heading 1",
                     style: [
                         {
+                            backgroundColor: "#FFF",
                             color: "black",
                             fontSize: "10vh",
                             textAlign: "left",
                             fontFamily: "Georgia, serif",
+                            marginBottom: "0px",
                         }
                     ],
                 }
@@ -453,7 +455,7 @@ class EditorBackend {
                             marginTop: "0",
                             marginBottom: "0",
                             textAlign: "center",
-
+                            backgroundColor: "#FFF",
                         }
                     ],
                 }

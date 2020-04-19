@@ -151,7 +151,7 @@ export default class PageSection extends Component {
                 return (<hr key={this.props.page.id} style={this.props.page.style[0]} />);
             }
             case "image": {
-                return (<div style={{ textAlign: this.props.page.style[0]['textAlign'] }}><img key={this.props.page.id} style={this.props.page.style[0]} src={this.props.page.url} alt={this.props.page.text} /></div>)
+                return (<div style={{ textAlign: this.props.page.style[0]['textAlign'], backgroundColor: this.props.page.style[0]['backgroundColor'] }}><img key={this.props.page.id} style={this.props.page.style[0]} src={this.props.page.url} alt={this.props.page.text} /></div>)
             }
             case "button": {
                 return (<div style={{ textAlign: this.props.page.style[0]['textAlign'] }}><a className={"btn btn-primary"} key={this.props.page.id} href={this.props.page.href} style={this.props.page.style[0]}>{this.props.page.text}</a></div>)

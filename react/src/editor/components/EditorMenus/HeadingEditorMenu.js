@@ -2,7 +2,8 @@ import React, { Component } from 'react';
 import {
     ColourPicker,
     AlignmentInput,
-    NumericInput
+    NumericInput,
+    BackgroundColorPicker
 } from './EditorMenuComponents';
 
 import Form from 'react-bootstrap/Form';
@@ -15,6 +16,7 @@ class HeadingEditor extends Component {
         super(props);
         this.state = {
             colorPickerActive: false,
+            bgColorPickerActive: false,
         }
     }
 
@@ -27,19 +29,51 @@ class HeadingEditor extends Component {
         }
     }
 
-    returnColorPicker(active) {
-        if (active) {
-            return (
-                <>
-                    <Button id='headingColorPickerButton' className="mt-2" onClick={this.handleColorPicker}>Close Color Picker</Button>
-                    <ColourPicker
-                        id='headingColorPicker'
-                        onChange={this.props.menuComponentOnClick}
-                    />
-                </>);
+    handleBGColorPicker = () => {
+        if (this.state.bgColorPickerActive === false) {
+            this.setState({ bgColorPickerActive: true });
         }
         else {
-            return (<Button id='headingColorPickerButton' className="mt-2" onClick={this.handleColorPicker}>Open Color Picker</Button>);
+            this.setState({ bgColorPickerActive: false });
+        }
+    }
+
+    /**
+     * This method returns the appropriate colour picker.  There are dual conditionals so this method could be 
+     * used for both the background colour picker, and the heading colour picker.  
+     * @param {bool} active 
+     * @param {bool} bg 
+     */
+    returnColorPicker(active, bg) {
+        if (bg) {
+            if (active) {
+                return (
+                    <>
+                        <Button id='bgColorPickerButton' className="mt-2" onClick={this.handleBGColorPicker}>Close Color Picker</Button>
+                        <BackgroundColorPicker
+                            id='bgColorPicker'
+                            onChange={this.props.menuComponentOnClick}
+                        />
+                    </>);
+            }
+            else {
+                return (<Button id='bgColorPickerButton' className="mt-2" onClick={this.handleBGColorPicker}>Open Color Picker</Button>);
+            }
+        }
+        else {
+            if (active) {
+                return (
+                    <>
+                        <Button id='headingColorPickerButton' className="mt-2" onClick={this.handleColorPicker}>Close Color Picker</Button>
+                        <ColourPicker
+                            id='headingColorPicker'
+                            onChange={this.props.menuComponentOnClick}
+                        />
+                    </>);
+            }
+            else {
+                return (<Button id='headingColorPickerButton' className="mt-2" onClick={this.handleColorPicker}>Open Color Picker</Button>);
+            }
         }
     }
 
@@ -65,7 +99,7 @@ class HeadingEditor extends Component {
                     <Form.Row>
                         <Col className='center'><Form.Label className="d-block center">Text Color:</Form.Label></Col>
                         <Col className='center'>
-                            {this.returnColorPicker(this.state.colorPickerActive)}
+                            {this.returnColorPicker(this.state.colorPickerActive, false)}
                         </Col>
                     </Form.Row>
 
@@ -111,6 +145,13 @@ class HeadingEditor extends Component {
                                 <option>"Courier New", Courier, monospace</option>
                                 <option>"Lucida Console", Monaco, monospace</option>
                             </Form.Control>
+                        </Col>
+                    </Form.Row>
+
+                    <Form.Row>
+                        <Col className='center'><Form.Label className="d-block center">Background Color:</Form.Label></Col>
+                        <Col className='center'>
+                            {this.returnColorPicker(this.state.bgColorPickerActive, true)}
                         </Col>
                     </Form.Row>
 
