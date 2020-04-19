@@ -12,9 +12,20 @@ import {
   Layout,
 } from "react-mdl";
 import Payments from "./payments";
-import NewWindow from "react-new-window";
 
 class getStarted extends Component {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      showSignUp: false
+    };
+
+    if (sessionStorage.getItem('id') === null) {
+      this.state.showSignUp = true;
+    }
+  }
+
   render() {
     return (
       <div>
@@ -37,9 +48,12 @@ class getStarted extends Component {
                 <CardActions border>
                   <Payments amount={10}
                             handleSitePageClick = {this.props.handleSitePageClick}>Pay</Payments>
-                  <a href="#" onClick={this.props.signUp_click}>
-                    Sign up
-                  </a>
+                  {this.state.showSignUp ?
+                      <a href="#" onClick={this.props.signUp_click}>
+                        Sign up
+                      </a>
+                      : null
+                  }
                 </CardActions>
               </Card>
 
@@ -60,9 +74,12 @@ class getStarted extends Component {
                 <CardActions border>
                   <Payments amount={20}
                             handleSitePageClick = {this.props.handleSitePageClick}>Pay</Payments>
-                  <a href="#" onClick={this.props.signUp_click}>
-                    Sign up
-                  </a>
+                  {this.state.showSignUp ?
+                      <a href="#" onClick={this.props.signUp_click}>
+                        Sign up
+                      </a>
+                      : null
+                  }
                 </CardActions>
               </Card>
 
@@ -84,9 +101,12 @@ class getStarted extends Component {
                 <CardActions border>
                   <Payments amount={30}
                             handleSitePageClick = {this.props.handleSitePageClick}>Pay</Payments>
-                  <a href="#" onClick={this.props.signUp_click}>
-                    Sign up
-                  </a>
+                  {this.state.showSignUp ?
+                      <a href="#" onClick={this.props.signUp_click}>
+                        Sign up
+                      </a>
+                      : null
+                  }
                 </CardActions>
               </Card>
             </div>
