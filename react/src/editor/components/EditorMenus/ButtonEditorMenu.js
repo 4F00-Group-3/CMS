@@ -3,10 +3,9 @@ import '../../../css/EditorMenuComponents.css';
 import {
     AlignmentImage,
     ColourPicker,
-    BackgroundColorPicker
 } from './EditorMenuComponents';
-// import { ChromePicker } from 'react-color';
 import { Form, Col, Button } from 'react-bootstrap';
+import { ChromePicker } from 'react-color';
 
 
 
@@ -19,6 +18,7 @@ class ButtonEditor extends Component {
             borderRadiusUnits: "px",
             textColorPickerActive: false,
             bgColorPickerActive: false,
+            sectionBgColorPickerActive: false,
         }
     }
 
@@ -108,6 +108,40 @@ class ButtonEditor extends Component {
         this.setState({ widthUnits: value })
     }
 
+    /**
+     * This method toggles the section background colour picker
+     */
+    handleBGColorPicker = () => {
+        if (this.state.sectionBgColorPickerActive === false) {
+            this.setState({ sectionBgColorPickerActive: true });
+        }
+        else {
+            this.setState({ sectionBgColorPickerActive: false });
+        }
+    }
+
+    /**
+    * This method returns the appropriate colour picker.  There are dual conditionals so this method could be 
+    * used for both the background colour picker, and the heading colour picker.  
+    * @param {bool} active 
+    * @param {bool} bg 
+    */
+    returnSectionColorPicker(active) {
+        if (active) {
+            return (
+                <>
+                    <Button id='bgColorPickerButton' className="mt-2" onClick={this.handleBGColorPicker}>Close Color Picker</Button>
+                    <BackgroundColorPicker
+                        id='bgColorPicker'
+                        onChange={this.props.menuComponentOnClick}
+                    />
+                </>);
+        }
+        else {
+            return (<Button id='bgColorPickerButton' className="mt-2" onClick={this.handleBGColorPicker}>Open Color Picker</Button>);
+        }
+    }
+
 
     render() {
         return (
@@ -128,7 +162,7 @@ class ButtonEditor extends Component {
                     </Col>
                 </Form.Row>
                 <Form.Row>
-                    <Col><Form.Label className="d-block left w-50">Button Text:</Form.Label></Col>
+                    <Col><Form.Label className="d-block left">Button Text:</Form.Label></Col>
                     <Col>
                         <Form.Control
                             type="text"
@@ -183,9 +217,44 @@ class ButtonEditor extends Component {
                         </Form.Control>
                     </Col>
                 </Form.Row>
+                <Form.Row>
+                    <Col className='center'><Form.Label className="d-block left">Section Background Color:</Form.Label></Col>
+                    <Col className='center'>
+                        {this.returnSectionColorPicker(this.state.sectionBgColorPickerActive, true)}
+                    </Col>
+                </Form.Row>
             </Form>
         );
     };
+}
+
+class BackgroundColorPicker extends Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            background: '#fff',
+        };
+        this.handler = this.handler.bind(this);
+    }
+
+    handler() {
+        this.props.onChange("sectionBg|" + this.state.background + "|sectionBg")
+    }
+
+    handleOnChange = (color) => {
+        this.setState({ background: color.hex });
+        this.handler()
+    };
+
+
+    render() {
+        return (
+            <ChromePicker
+                color={this.state.background}
+                onChange={this.handleOnChange}
+            />
+        );
+    }
 }
 
 export default ButtonEditor

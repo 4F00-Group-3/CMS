@@ -467,11 +467,12 @@ class EditorBackend {
                     id: page.length + 1,
                     type: "button",
                     text: "button text here",
+                    sectionBg: "#FFF",
                     href: "#",
                     style: [
                         {
-                            color: "#000",
-                            backgroundColor: "#FFF",
+                            color: "#FFF",
+                            backgroundColor: "#000",
                             textAlign: "center",
                             border: "0px",
                             borderRadius: "0px",
