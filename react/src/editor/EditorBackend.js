@@ -476,6 +476,7 @@ class EditorBackend {
                             textAlign: "center",
                             border: "0px",
                             borderRadius: "0px",
+                            width: "180px",
                         }
                     ],
                 }

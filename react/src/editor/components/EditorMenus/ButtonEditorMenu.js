@@ -201,6 +201,37 @@ class ButtonEditor extends Component {
                         </Form.Control>
                     </Col>
                 </Form.Row>
+
+                <Form.Row className="mt-4">
+                    <Col>
+                        <Form.Label className="d-block left">Width:</Form.Label>
+                    </Col>
+
+                    <Col>
+                        <Form.Control
+                            onChange={(event) => this.props.menuComponentOnClick("width|" + event.target.value + this.state.widthUnits)}
+
+                            className="w-100"
+                            type="number"
+                            min="0"
+                            placeholder="0" />
+
+                    </Col>
+                    <Col>
+                        <Form.Control
+                            onChange={(event) => this.onWidthUnitChange(event.target.value)}
+                            as="select"
+                            className="w-100">
+                            <option>px</option>
+                            <option>%</option>
+                            <option>pt</option>
+                            <option>em</option>
+                            <option>vw</option>
+                            <option>vh</option>
+                        </Form.Control>
+                    </Col>
+                </Form.Row>
+
                 <Form.Row>
                     <Col><Form.Label className="d-block left">Alignment:</Form.Label></Col>
                     <Col>
