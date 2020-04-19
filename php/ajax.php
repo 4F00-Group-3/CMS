@@ -146,6 +146,31 @@ function checkWebsites(){
     die;
 }
 
+// checks subscription level for user to modify their subscription
+function checkSubLevel(){
+    if (!empty($_POST['accountId'])) {
+        $accountId = $_POST['accountId'];
+        $data = Account::checkSubLevel($accountId);
+    }
+    if ($_POST['subscription']==="1"){
+        if ($data<1){
+            echo "1";
+        }else
+            echo "false";
+    }else if ($_POST['subscription']==="2"){
+        if ($data<3)
+            echo "2";
+        else
+            echo "false";
+    }else if ($_POST['subscription']==="3") {
+        if ($data < 5)
+            echo "3";
+        else
+            echo "false";
+    }
+    die;
+}
+
 function getPagesData(){
     $success = false;
     if (!empty($_POST['websiteId'])) {
