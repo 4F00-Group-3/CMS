@@ -220,7 +220,6 @@ class Website{
         }
 
         //Create backend directory and home page
-        mkdir("../sites/".$accountId);
         mkdir("../sites/".$accountId."/".$siteName);
         mkdir("../sites/".$accountId."/".$siteName."/html");
         mkdir("../sites/".$accountId."/".$siteName."/css");
