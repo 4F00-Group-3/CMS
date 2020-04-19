@@ -7,6 +7,7 @@ import Login from "../Login/loginpage";
 import CreateAccount from "../Login/createAccount.js";
 import GetStarted from "../Components/getStarted";
 import Subscription from "../Site Page/Subscription.js";
+import UserManual from "../UserManual.js";
 
 class MasterTestMenu extends Component {
   constructor(props) {
@@ -23,7 +24,8 @@ class MasterTestMenu extends Component {
     this.handleLoginClick = this.handleLoginClick.bind(this);
     this.handleCreateAccountClick = this.handleCreateAccountClick.bind(this);
     this.handleGetStartedClick = this.handleGetStartedClick.bind(this);
-    this.handleUpgradePlan = this.handleUpgradePlan.bind(this);
+    this.handleUpgradeClick = this.handleUpgradeClick.bind(this);
+    this.handleManualClick = this.handleManualClick.bind(this);
   }
 
   handler() {
@@ -58,8 +60,12 @@ class MasterTestMenu extends Component {
     this.setState({ viewPage: "GetStarted" });
   }
 
-  handleUpgradePlan() {
+  handleUpgradeClick() {
     this.setState({ viewPage: "Subscription" });
+  }
+
+  handleManualClick() {
+    this.setState({ viewPage: "UserManual" });
   }
 
   render() {
@@ -106,7 +112,10 @@ class MasterTestMenu extends Component {
         page = <GetStarted handleSitePageClick={this.handleSitePageClick} />;
         break;
       case "Subscription":
-        page = <Subscription handleUpgradePlan={this.handleUpgradePlan} />;
+        page = <Subscription handleUpgradeClick={this.handleUpgradeClick} />;
+        break;
+      case "UserManual":
+        page = <UserManual handleManualClick={this.handleManualClick} />;
         break;
       default:
         page = <Home />;
@@ -123,7 +132,8 @@ class MasterTestMenu extends Component {
           </button>
           <button onClick={this.handleSitePageClick}>Site Page</button>
           <button onClick={this.handleGetStartedClick}>GetStart</button>
-          <button onClick={this.handleUpgradePlan}>Manage Subscription</button>
+          <button onClick={this.handleUpgradeClick}>Manage Subscription</button>
+          <button onClick={this.handleManualClick}>User Manual</button>
         </div>
         <div id="testingCanvas">{page}</div>
       </div>
