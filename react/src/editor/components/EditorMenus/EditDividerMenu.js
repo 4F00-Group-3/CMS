@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import Form from 'react-bootstrap/Form';
 import Col from 'react-bootstrap/Col';
 import Button from 'react-bootstrap/Button';
-import { ColourPicker } from './EditorMenuComponents';
+import { ColourPicker, BackgroundColorPicker } from './EditorMenuComponents';
 
 class EditDividerMenu extends Component {
   constructor(props) {
@@ -15,7 +15,7 @@ class EditDividerMenu extends Component {
       borderColour: "#bbb",
       borderStyle: "solid",
       borderUnits: "px",
-
+      sectionBgColorPickerActive: false,
     }
   }
 
@@ -67,14 +67,14 @@ class EditDividerMenu extends Component {
 
   handleColourChange = (colourString) => {
     // This is due to ColourString being undefined at the beginning when ColourPicker is first created
-    try{
+    try {
       var colour = colourString.split("|")[1];
       this.props.menuComponentOnClick(
         "borderTop|" + this.state.heightValue +
         this.state.heightUnits + " " +
         this.state.borderStyle + " " +
         colour);
-    }catch(e){
+    } catch (e) {
     }
   }
 
@@ -98,6 +98,40 @@ class EditDividerMenu extends Component {
     else {
       return (<Button onClick={() => this.handleColorPicker()}>Open Color Picker</Button>);
     }
+  }
+
+      /**
+     * This method toggles the section background colour picker
+     */
+    handleBGColorPicker = () => {
+      if (this.state.sectionBgColorPickerActive === false) {
+          this.setState({ sectionBgColorPickerActive: true });
+      }
+      else {
+          this.setState({ sectionBgColorPickerActive: false });
+      }
+  }
+
+  /**
+  * This method returns the appropriate colour picker.  There are dual conditionals so this method could be 
+  * used for both the background colour picker, and the heading colour picker.  
+  * @param {bool} active 
+  * @param {bool} bg 
+  */
+  returnSectionColorPicker(active) {
+      if (active) {
+          return (
+              <>
+                  <Button id='bgColorPickerButton' className="mt-2" onClick={this.handleBGColorPicker}>Close Color Picker</Button>
+                  <BackgroundColorPicker
+                      id='bgColorPicker'
+                      onChange={this.props.menuComponentOnClick}
+                  />
+              </>);
+      }
+      else {
+          return (<Button id='bgColorPickerButton' className="mt-2" onClick={this.handleBGColorPicker}>Open Color Picker</Button>);
+      }
   }
 
   render() {
@@ -245,7 +279,14 @@ class EditDividerMenu extends Component {
               </Form.Control>
             </Col>
           </Form.Row>
-        </Form>}</>
+          <Form.Row>
+            <Col className='center'><Form.Label className="d-block left">Section Background Color:</Form.Label></Col>
+            <Col className='center'>
+              {this.returnSectionColorPicker(this.state.sectionBgColorPickerActive, true)}
+            </Col>
+          </Form.Row>
+        </Form>
+        }</>
     );
   }
 }

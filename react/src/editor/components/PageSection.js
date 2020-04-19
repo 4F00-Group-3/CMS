@@ -148,7 +148,11 @@ export default class PageSection extends Component {
                 )
             }
             case "divider": {
-                return (<hr key={this.props.page.id} style={this.props.page.style[0]} />);
+                return (
+                    <div style={{backgroundColor: this.props.page.style[0]['backgroundColor'], padding: "1%"}}>
+                        <hr key={this.props.page.id} style={this.props.page.style[0]} />
+                    </div>
+                );
             }
             case "image": {
                 return (<div style={{ textAlign: this.props.page.style[0]['textAlign'], backgroundColor: this.props.page.style[0]['backgroundColor'] }}><img key={this.props.page.id} style={this.props.page.style[0]} src={this.props.page.url} alt={this.props.page.text} /></div>)
