@@ -16,7 +16,7 @@ import {
     faLock,
 } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { AlignmentInput, ColourPicker } from './EditorMenuComponents';
+import { AlignmentInput, ColourPicker, BackgroundColorPicker } from './EditorMenuComponents';
 
 class IconEditorMenu extends Component {
     constructor(props) {
@@ -66,6 +66,40 @@ class IconEditorMenu extends Component {
         }
         else {
             return (<Button onClick={() => this.handleColorPicker()}>Open Color Picker</Button>);
+        }
+    }
+
+    /**
+ * This method toggles the section background colour picker
+ */
+    handleBGColorPicker = () => {
+        if (this.state.sectionBgColorPickerActive === false) {
+            this.setState({ sectionBgColorPickerActive: true });
+        }
+        else {
+            this.setState({ sectionBgColorPickerActive: false });
+        }
+    }
+
+    /**
+    * This method returns the appropriate colour picker.  There are dual conditionals so this method could be 
+    * used for both the background colour picker, and the heading colour picker.  
+    * @param {bool} active 
+    * @param {bool} bg 
+    */
+    returnSectionColorPicker(active) {
+        if (active) {
+            return (
+                <>
+                    <Button id='bgColorPickerButton' className="mt-2" onClick={this.handleBGColorPicker}>Close Color Picker</Button>
+                    <BackgroundColorPicker
+                        id='bgColorPicker'
+                        onChange={this.props.menuComponentOnClick}
+                    />
+                </>);
+        }
+        else {
+            return (<Button id='bgColorPickerButton' className="mt-2" onClick={this.handleBGColorPicker}>Open Color Picker</Button>);
         }
     }
 
@@ -176,7 +210,7 @@ class IconEditorMenu extends Component {
 
                 {/* select border colour */}
                 <Form.Row className="mt-2">
-                    <Col className = " left-centered-label">
+                    <Col className=" left-centered-label">
                         <Form.Label className="d-block left" >Colour:</Form.Label>
                     </Col>
                     <Col>
@@ -186,7 +220,7 @@ class IconEditorMenu extends Component {
 
                 {/* set size */}
                 <Form.Row className="mt-2">
-                    <Col className = "left-centered-label">
+                    <Col className="left-centered-label">
                         <Form.Label className="d-block">Size:</Form.Label>
                     </Col>
                     <Col>
@@ -214,7 +248,7 @@ class IconEditorMenu extends Component {
                     </Col>
                 </Form.Row>
                 <Form.Row className="mt-2">
-                    <Col className = "left-centered-label">
+                    <Col className="left-centered-label">
                         <Form.Label className="d-block ">Alignment:</Form.Label>
                     </Col>
                     <Col>
@@ -223,7 +257,17 @@ class IconEditorMenu extends Component {
                         />
                     </Col>
                 </Form.Row>
-            </Form>}</>
+
+                <Form.Row>
+                    <Col className='center'><Form.Label className="d-block left">Section Background Color:</Form.Label></Col>
+                    <Col className='center'>
+                        {this.returnSectionColorPicker(this.state.sectionBgColorPickerActive, true)}
+                    </Col>
+                </Form.Row>
+
+            </Form>
+            }
+        </>
         );
     }
 }

@@ -534,6 +534,7 @@ class EditorBackend {
                             color: "black",
                             fontSize: "10vh",
                             textAlign: "left",
+                            backgroundColor: "#FFF"
                         }
                     ],
                 }
