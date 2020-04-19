@@ -19,33 +19,34 @@ export default class Payments extends React.Component {
   render() {
     var amount = this.props.amount;
 
-
     const onSuccess = (payment) => {
       // Congratulation, it came here means everything's fine!
       console.log("The payment has succeeded!", payment);
       var subscription;
-      if (amount === 10){
+      if (amount === 10) {
         subscription = 1;
-      }else if(amount === 20)
-        subscription = 2;
-      else
-        subscription = 3;
+      } else if (amount === 20) subscription = 2;
+      else subscription = 3;
 
       const redirect = this.props.handleSitePageClick;
       AjaxCall(
-          { function: "confirmSubscription", accountId: sessionStorage.getItem("id"), subscription: subscription},
-          function(response) {
-            console.log(response);
-            if (!response.toString().includes("false")) {
-              let responseArray = JSON.parse(response.split('php-cgi')[1].trim());
-              console.log(responseArray);
-              let accountId = responseArray.accountId;
-              sessionStorage.setItem('tier',subscription);
-              redirect();
-            } else {
-              alert("Payment failed to process. Please try again.")
-            }
+        {
+          function: "confirmSubscription",
+          accountId: sessionStorage.getItem("id"),
+          subscription: subscription,
+        },
+        function (response) {
+          console.log(response);
+          if (!response.toString().includes("false")) {
+            let responseArray = JSON.parse(response.split("php-cgi")[1].trim());
+            console.log(responseArray);
+            let accountId = responseArray.accountId;
+            sessionStorage.setItem("tier", subscription);
+            redirect();
+          } else {
+            alert("Payment failed to process. Please try again.");
           }
+        }
       );
     };
 
