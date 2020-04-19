@@ -509,7 +509,7 @@ class EditorBackend {
                     url: "https://youtu.be/X4Q7d0CtYyk",
                     style: [
                         {
-                            color: "black",
+                            backgroundColor: "#FFF",
                             fontSize: "10vh",
                             textAlign: "center",
                             height: "200px",

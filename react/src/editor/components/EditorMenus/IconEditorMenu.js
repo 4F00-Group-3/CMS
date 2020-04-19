@@ -23,7 +23,8 @@ class IconEditorMenu extends Component {
         super(props);
         this.state = {
             textColorPickerActive: false,
-            sizeUnits: "px"
+            sizeUnits: "px",
+            sectionBgColorPickerActive: false,
         };
     }
 

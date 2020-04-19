@@ -149,7 +149,7 @@ export default class PageSection extends Component {
             }
             case "divider": {
                 return (
-                    <div style={{backgroundColor: this.props.page.style[0]['backgroundColor'], padding: "1%"}}>
+                    <div style={{ backgroundColor: this.props.page.style[0]['backgroundColor'], padding: "1%" }}>
                         <hr key={this.props.page.id} style={this.props.page.style[0]} />
                     </div>
                 );
@@ -183,13 +183,15 @@ export default class PageSection extends Component {
             }
             case "video": {
                 return (
-                    <div key={this.props.page.id} style={this.props.page.style[0]}>
-                        {this.returnYouTube(
-                            this.props.page.url,
-                            this.props.page.style[0]["height"],
-                            this.props.page.style[0]["width"],
-                            this.props.page.style[0]["autoplay"],
-                            this.props.page.style[0]["loop"])}
+                    <div style={{backgroundColor: this.props.page.style[0]["backgroundColor"]}}>
+                        <div key={this.props.page.id} style={this.props.page.style[0]}>
+                            {this.returnYouTube(
+                                this.props.page.url,
+                                this.props.page.style[0]["height"],
+                                this.props.page.style[0]["width"],
+                                this.props.page.style[0]["autoplay"],
+                                this.props.page.style[0]["loop"])}
+                        </div>
                     </div>
                 );
             }
