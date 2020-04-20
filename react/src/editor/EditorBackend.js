@@ -6,18 +6,6 @@ class EditorBackend {
             page: [],
         }
 
-        /**
-        Bugs to fix before push:
-        pop out editor no drag and drop
-        page is undefined in editor when accessing editor from test nav menu
-        addpage id bug (call getPages() in DashboardBackend?)
-        saving a page changes the order of the pages in the database, so we need to sort the pages after getting them from the db
-        clicking edit on a website the first time leads to blank screen (no siteid or maybe no pages yet)
-
-        issues with Param's Row element:
-        make menus more obvious (labels)
-        the column borders and row border need to be clicked easier (margin in between sections)
-         */
     }
 
     /**

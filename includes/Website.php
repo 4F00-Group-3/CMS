@@ -192,10 +192,10 @@ class Website{
         }
     }
 
-    //hey dont comment this out again it is actually useful unlike the above
+    //hey dont comment this out again it is actually useful
     public static function getAllPagesJSON($schema){
         $stmt = Dbh::connect()
-            ->query("SELECT * FROM  $schema.pages");
+            ->query("SELECT * FROM  $schema.pages ORDER BY pages_id ASC");
         $pages = array();
         while ($row = $stmt->fetch(PDO::FETCH_ASSOC)){
             $pages[] = $row;
@@ -265,25 +265,35 @@ class Website{
 		return $stmt->fetch(PDO::FETCH_ASSOC)['pages_id'];
     }
 
-    public static function deletePageById($schema, $pageId){
+    public static function deletePageById($schema, $pageId, $path){
+        //delete pages table entry
         $stmt = Dbh::connect()->PREPARE("DELETE FROM $schema.pages WHERE pages_id=?");
 		$stmt->execute([$pageId]);
+
+        //delete html file
+        $htmlFileDeleted = unlink("../".$path);
 
         //Check to see if user is in DB
         $stmt = Dbh::connect()
             ->PREPARE("SELECT * FROM $schema.pages WHERE pages_id=?");
         $stmt->execute([$pageId]);
-        if($stmt->rowCount()){
+        if($stmt->rowCount() || !$htmlFileDeleted){
             return false;
         }else{
             return true;
         }
     }
 
-    public static function savePage($schema, $page, $pageId, $html){
+    public static function savePage($schema, $pageId, $page, $path, $html){
         $stmt = Dbh::connect()
             ->PREPARE("UPDATE $schema.pages SET file =? WHERE pages_id=?");
         $stmt->execute([$page, $pageId]);
-    }
 
+        if(!empty($path)){
+            $file = fopen("../".$path,"w");
+            fwrite($file, $html);
+            fclose($file);
+        }
+
+    }
 }

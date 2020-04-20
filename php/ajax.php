@@ -5,7 +5,8 @@ require_once ('header_functions.php');
 
 $functions = array('test', 'currentUser', 'updateUser','currentUserId', 'addUser', 'getAllPages', 'getAllUsers', 'getMedia', 'getPage',
     'addMedia', 'addPage', 'deletePage', 'deleteUser', 'login', 'createAccount', 'createWebsite', 'getWebsiteData',
-    'getPagesData','getUsersData','getAccountMedia', 'deleteUser', 'deletePage', 'addUser','addPage', 'updateAccountPassword', 'confirmSubscription', 'savePage');
+    'getPagesData','getUsersData','getAccountMedia', 'deleteUser', 'deletePage', 'addUser','addPage', 'updateAccountPassword', 
+    'confirmSubscription', 'savePage', 'deletePage');
 
 if(isset($_POST['function']) && in_array($_POST['function'], $functions)){
     $_POST['function']();
@@ -184,9 +185,9 @@ function addUser(){
 
 function deletePage(){
     $success = false;
-    if (!empty($_POST['websiteId']) && !empty($_POST['pageId'])) {
+    if (!empty($_POST['websiteId']) && !empty($_POST['pageId']) && !empty($_POST['path'])) {
         $schema = "website".$_POST['websiteId'];
-        $data = Website::deletePageById($schema, $_POST['pageId']);
+        $data = Website::deletePageById($schema, $_POST['pageId'], $_POST['path']);
         if ($data !== false) {
             $success = true;
         }
@@ -344,12 +345,15 @@ function addMedia(){
 }
 
 function savePage(){
-    // if (!empty($_POST['websiteId']) && !empty($_POST['page']) && !empty($_POST['pageId'])) {
-    if (!empty($_POST)) {
-        $schema = "website".$_POST['websiteId'];
-        $page = $_POST['page'];
-        $pageId = $_POST['pageId'];
-        Website::savePage($schema, $page, $pageId, $html);
+    if (!empty($_POST) && isset($_POST['data'])) {
+        $data = $_POST['data'];
+        $schema = "website".$data['websiteId'];
+        $pageId = $data['pageId'];
+        $page = $data['page'];
+        $path = $data['path'];
+        $html = $data['html'];
+
+        Website::savePage($schema, $pageId, $page, $path, $html);
     }
    
     die;

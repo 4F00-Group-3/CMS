@@ -12,41 +12,38 @@ class EditingPage extends Component {
     this.state = {
       page: this.props.page,
       active: 0,
-      autosaveTimer: ''
     }
-  }
-
-  componentDidMount () {
-    //start saving every 15 seconds
-    if(this.state.page !== undefined){ //page not set if clicking editor from master nav menu
-      this.state.autosaveTimer = window.setInterval(this.save, 5000); //milliseconds ... 15000
-    }
-  }
-
-  componentWillUnmount = () => {
-    //stop saving when editor is unmounted
-    clearInterval(this.state.autosaveTimer);
   }
 
   componentDidUpdate() {
-    ReactDOM.findDOMNode(this);
-    console.log(document.getElementById('root'));
+    setTimeout(this.save, 1500);
   }
 
   save = () => {
-    console.log(this.state.page);
+    // console.log(this.state.page);
     var _pageId = this.state.page.pages_id;
     var _page = this.state.page.file;
+    var _path = this.state.page.path;
 
     ReactDOM.findDOMNode(this);
     var html = this.returnHTMLString(this.state.page.name, document.getElementsByClassName('page-section'));
 
-    AjaxCall({function:"savePage", websiteId:sessionStorage.getItem('siteId') || 0, pageId:_pageId || 0, page:JSON.stringify(_page), html:html},
+    var data = {
+      websiteId: sessionStorage.getItem('siteId') || 0,
+      pageId: _pageId,
+      page: JSON.stringify(_page),
+      path: _path,
+      html: html
+    }
+
+    AjaxCall({function:"savePage", data:data},
         (response) => {
-            console.log('page saved!');
+            console.log('page saved');
         }
     );
+    
   }
+  
 
     /**
    * This method returns an html string for the page rendered in a PageSection.
@@ -58,7 +55,7 @@ class EditingPage extends Component {
   returnHTMLString(page_title, _htmlCollection) {
     var htmlCollection = _htmlCollection;
     var result = "<!DOCTYPE html><html><head><meta charset=\"UTF-8\"><link rel=\"stylesheet\" href=\"https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css\" integrity=\"sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T\" crossorigin=\"anonymous\"><title>" + page_title + "</title></head><body>";
-    console.log(htmlCollection)
+    // console.log(htmlCollection)
 
     for (let index = 0; index < htmlCollection.length; index++) {
         const element = htmlCollection[index];
@@ -70,7 +67,7 @@ class EditingPage extends Component {
             ).split("=")[1].split(';');
 
             for (let cssIndex = 0; cssIndex < css.length; cssIndex++) {
-                console.log(css[cssIndex])
+                // console.log(css[cssIndex])
                 if (css[cssIndex].includes("font-size")) {
                     //extracts font-size and changes it to height
                     var returned = css.splice(cssIndex, 1);

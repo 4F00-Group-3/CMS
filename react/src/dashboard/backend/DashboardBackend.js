@@ -88,11 +88,7 @@ class DashboardBackend {
   the comparison, we get an effective compare and the page is removed from pages
   */
   delete(id) {
-    for (const page in this.pages) {
-      if (page == id - 1) {
-        delete this.pages[page];
-      }
-    }
+
   }
 
   update(id, field, value) {
@@ -100,30 +96,7 @@ class DashboardBackend {
   }
 
   updatePages = (id, name, segment, body) => {
-    AjaxCall(
-      { function: "addPage", websiteId: sessionStorage.getItem('siteId') || 0, pageName: name },
-      (response) => {
-        // console.log(response);
-        if (!response.toString().includes("false")) {
-          let pageInfo = JSON.parse(response.split('php-cgi')[1].trim());
-          let pages_id = pageInfo[0];
-          let path = pageInfo[1];
-          let file = [];
-          // console.log(pageInfo);
-          this.pages.push({ pages_id, name, file, path });
-          this.dash.setState({ page: <Pages backend={this} /> });
-          console.log(this.pages);
-          // this.getPages(this.dash);
-        } else {
-          console.log('failed to add page');
-        }
 
-
-      }
-    );
-
-
-    // console.log(this.pages);
   }
 }
 
