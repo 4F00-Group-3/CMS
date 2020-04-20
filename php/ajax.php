@@ -5,7 +5,8 @@ require_once ('header_functions.php');
 
 $functions = array('test', 'currentUser', 'updateUser','currentUserId', 'addUser', 'getAllPages', 'getAllUsers', 'getMedia', 'getPage',
     'addMedia', 'addPage', 'deletePage', 'deleteUser', 'login', 'createAccount', 'createWebsite', 'getWebsiteData',
-    'getPagesData','getUsersData','getAccountMedia', 'deleteUser', 'deletePage', 'addUser','addPage', 'updateAccountPassword', 'confirmSubscription');
+    'getPagesData','getUsersData','getAccountMedia', 'deleteUser', 'deletePage', 'addUser','addPage', 'updateAccountPassword', 
+    'confirmSubscription', 'savePage', 'deletePage');
 
 if(isset($_POST['function']) && in_array($_POST['function'], $functions)){
     $_POST['function']();
@@ -157,7 +158,7 @@ function addPage(){
         }
     }
     if($success === true){
-        echo "true";
+        echo json_encode($data);
     }else{
         echo "false";
     }
@@ -184,9 +185,9 @@ function addUser(){
 
 function deletePage(){
     $success = false;
-    if (!empty($_POST['websiteId']) && !empty($_POST['pageId'])) {
+    if (!empty($_POST['websiteId']) && !empty($_POST['pageId']) && !empty($_POST['path'])) {
         $schema = "website".$_POST['websiteId'];
-        $data = Website::deletePageById($schema, $_POST['pageId']);
+        $data = Website::deletePageById($schema, $_POST['pageId'], $_POST['path']);
         if ($data !== false) {
             $success = true;
         }
@@ -273,8 +274,20 @@ function currentUserId(){
 }
 
 function getAllPages(){
-    $all_pages = Website::getAllPagesJSON(DB_SCHEMA);
-    echo json_encode($all_pages);
+    $success = false;
+    if (!empty($_POST['websiteId'])) {
+        $schema = "website".$_POST['websiteId'];
+        $data = Website::getAllPagesJSON($schema);
+        if ($data !== false) {
+            $json = json_encode($data);
+            $success = true;
+        }
+    }
+    if($success === true){
+        echo $json;
+    }else{
+        echo "false";
+    }
     die;
 }
 
@@ -329,4 +342,19 @@ function addMedia(){
         move_uploaded_file($fileTmpName, $dest);
     }
 
+}
+
+function savePage(){
+    if (!empty($_POST) && isset($_POST['data'])) {
+        $data = $_POST['data'];
+        $schema = "website".$data['websiteId'];
+        $pageId = $data['pageId'];
+        $page = $data['page'];
+        $path = $data['path'];
+        $html = $data['html'];
+
+        Website::savePage($schema, $pageId, $page, $path, $html);
+    }
+   
+    die;
 }

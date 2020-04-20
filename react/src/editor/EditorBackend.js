@@ -1,8 +1,11 @@
+import AjaxCall from "./../ajax";
+
 class EditorBackend {
     constructor() {
         this.state = {
-            page: this.all(),
+            page: [],
         }
+
     }
 
     /**
@@ -10,6 +13,10 @@ class EditorBackend {
      */
     getPage() {
         return this.state.page;
+    }
+
+    setPage = (_page) => {
+        this.state.page = _page;
     }
 
     /**

@@ -124,3 +124,8 @@ p {
   align-items:center;
   width:100%;
 }
+.return-to-dash-btn {
+  bottom: 1%;
+  right: 1%;
+  position: fixed;
+}

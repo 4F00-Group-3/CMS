@@ -64,25 +64,27 @@ class Pages extends Component {
         this.handlePageUpdate = this.handlePageUpdate.bind(this);
         this.onClick = this.onClick.bind(this);
         this.state = {
-            'pages': this.props.backend.pages,
+            pages: this.props.backend.pages,
             showPopup: false,
             pageID: this.props.backend.pages.length + 1,
         }
+
+        // console.log(this.state.pages)
 
     }
 
     componentDidMount() {
         //THIS IS A BACKEND CALL TO RETRIEVE ALL PAGES ASSOCIATED TO WEBSITEID
         //All console logs are for testing purposes
-        var arr = [];
-        AjaxCall({ function: 'getPagesData', websiteId: sessionStorage.getItem('siteId') },
-            function (response) {
-                console.log(response);
-                let responseArray = JSON.parse(response.split('php-cgi')[1].trim());
-                console.log(responseArray);
-                arr = responseArray;
-            });
-        console.log(arr);
+        // var arr = [];
+        // AjaxCall({function: 'getPagesData', websiteId: sessionStorage.getItem('siteId')},
+        //     function (response) {
+        //     console.log(response);
+        //     let responseArray = JSON.parse(response.split('php-cgi')[1].trim());
+        //     console.log(responseArray);
+        //     arr = responseArray;
+        // });
+        // console.log(arr);
     }
 
     togglePopup() {
@@ -99,25 +101,27 @@ class Pages extends Component {
         console.log("handle page edSDFGJDFZGJXFGJXFGJit clicked");
     }
 
-    handlePageDelete(id) {
-        console.log("handle page delete clicked");
-        //THIS IS A BACKEND CALL TO DELETE PAGE ASSOCIATED TO WEBSITEID BY A PAGEID
-        //All console logs are for testing purposes
-        var arr = [];
-        AjaxCall({ function: 'deleteUser', websiteId: sessionStorage.getItem('siteId'), pageId: id },
-            function (response) {
-                console.log(response);
-                let responseArray = JSON.parse(response.split('php-cgi')[1].trim());
-                console.log(responseArray);
-                arr = responseArray;
-            });
-        console.log(arr);
-        //END OF BACKEND CALL
+    handlePageDelete = (id) => {
+        console.log(id);
+        var c = window.confirm("Are you sure you want to delete this page?");
+        if(c){
+            var tempPages = this.state.pages;
+            var dbId = tempPages[id].pages_id;
+            var htmlPath = tempPages[id].path;
+            delete tempPages[id];
 
-        this.props.backend.delete(id);
-        this.setState({
-            'pages': this.props.backend.pages,
-        })
+            this.setState({pages:tempPages});
+
+            AjaxCall({function: 'deletePage', websiteId: sessionStorage.getItem('siteId'), pageId: dbId, path:htmlPath},
+            function (response) {
+                // console.log(response);
+                if(response == "true"){
+                    console.log("page deleted");
+                }
+                
+            });
+        }
+
     }
 
     handlePageUpdate(id, field, value) {
@@ -132,40 +136,65 @@ class Pages extends Component {
         return (
             <>
                 <div className="PagesContainer" >
-                    <ul className="PageList">
-                        {this.state.pages.map((page, i) => {
-                            return (
-                                <li key={i} className="ListItemContainer">
-                                    <Page
-                                        {...page}
-                                        onPageEdit={this.handlePageEdit}
-                                        onPageUpdate={this.handlePageUpdate}
-                                        onPageDelete={this.handlePageDelete}
-                                        page={this.state.pages[i]}
-                                    />
-                                </li>
-                            );
-                        })}
-                    </ul>
-                    <button className='add-page-button btn btn-primary' onClick={this.togglePopup.bind(this)}>Add Page</button>
-                    {this.state.showPopup ?
-                        <Popup
-                            text='Enter the title of the new page.'
-                            closePopup={this.togglePopup.bind(this)}
-                            titlePage={this.createPage}
-                        />
-                        : null
-                    }
+                        <ol className="PageList">
+                            {this.state.pages.map((page, i) => {
+                                return (
+                                    <li key={i}  className="ListItemContainer">
+                                        <Page
+                                            id={i}
+                                            {...page}
+                                            onPageEdit={this.handlePageEdit}
+                                            onPageUpdate={this.handlePageUpdate}
+                                            onPageDelete={this.handlePageDelete}
+                                            page={this.state.pages[i]}
+                                            loadEditor={this.props.loadEditor}
+                                        />
+                                    </li>
+                                );
+                            })}
+                        </ol>                        
+                        <button className='add-page-button btn btn-primary' onClick={this.togglePopup.bind(this)}>Add Page</button>
+                       {this.state.showPopup ? 
+                            <Popup
+                                text='Enter the title of the new page.'
+                                closePopup={this.togglePopup.bind(this)}
+                                titlePage={this.createPage}
+                                
+                                />
+                            : null
+                        } 
 
-                </div>
+                    </div>
             </>
         );
     }
 
-    createPage = (ptitle) => {
-        this.props.backend.updatePages(this.state.pageID, ptitle, ptitle, []);
-        console.log(this.state.pageID);
-        this.setState({ pages: this.props.backend.pages, pageID: this.state.pageID + 1 });
+    createPage=(name)=> {
+        AjaxCall(
+            { function: "addPage", websiteId: sessionStorage.getItem('siteId') || 0, pageName: name },
+            (response) => {
+              console.log(response);
+              if (!response.toString().includes("false")) {
+                let pageInfo = JSON.parse(response.split('php-cgi')[1].trim());
+                let pages_id = pageInfo[0];
+                let path = pageInfo[1];
+                let file = [];
+                // console.log(pageInfo);
+
+                var tempPages = this.state.pages;
+                tempPages.push({ pages_id, name, file, path });
+                this.setState({ page: tempPages });
+              } else {
+                console.log('failed to add page');
+              }
+      
+      
+            });
+
+        // this.setState({pages: this.props.backend.pages, pageID: this.state.pageID+1});
+        // this.props.backend.updatePages(this.state.pageID, name, name, []);
+        // console.log(this.state.pageID);
+        
     }
 }
 

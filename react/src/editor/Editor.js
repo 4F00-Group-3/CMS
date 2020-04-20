@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import EditorSideBar from './components/EditorSidebar';
 import EditingPage from '../editor/components/EditingPage';
 import EditorBackend from './EditorBackend';
+import Button from 'react-bootstrap/Button'
 
 const backend = new EditorBackend();
 
@@ -13,19 +14,28 @@ class Editor extends Component {
             page: props.page,
             menu: "main",
             selectedId: undefined,
-            selectedRowNumberOfColumns: undefined
+            selectedRowNumberOfColumns: undefined,
         };
 
         // redirect user to home page if the user has not signed in
-        //commented for local testing, to be uncommented
+        if (sessionStorage.getItem('id') === null) {
+            props.handleHomeClick();
+        }
+        // console.log(this.state.page);
 
-        // if (sessionStorage.getItem('id') === null) {
-        //     props.handleHomeClick();
-        // }
-
-        this.setState({ page: backend.getPage() })
+        //page is undefined if the Editor is accessed from the top nav bar
+        if(this.state.page !== undefined){
+            backend.setPage(this.state.page.file);
+        } else {
+            backend.setPage([]);
+        }
+        
     }
 
+    componentDidMount = () => {
+        //render the selected page
+        this.setState({page: backend.getPage()});
+    }
 
 
     /**
@@ -252,10 +262,10 @@ class Editor extends Component {
         try {
             // Try and see if we are trying to delete an element within a column
             if (activeSection.split("|").length === 3) {
-                var sectionId = activeSection.split("|");
-                var rowId = sectionId[0];
-                var columnId = sectionId[1];
-                var colSectionId = sectionId[2];
+                // var sectionId = activeSection.split("|");
+                // var rowId = sectionId[0];
+                // var columnId = sectionId[1];
+                // var colSectionId = sectionId[2];
                 backend.getSubMenuItem_Delete(this.state.page, activeSection);
                 // TODO: handle deleting a column if the column is empty
                 // TODO: haandle deleting a row if the row is empty
@@ -279,6 +289,7 @@ class Editor extends Component {
                         onSectionPush={this.pageSection_onClick}
                         backend={backend} />
                 </div>
+                <Button className='return-to-dash-btn' onClick={this.props.returnToDash}>Return to Dashboard</Button>
             </>
         );
     }

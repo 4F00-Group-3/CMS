@@ -1,13 +1,40 @@
-//import AjaxCall from "../../ajax" //change this
-
+import React, { Component } from "react";
+import AjaxCall from "./../../ajax" //change this
+import Pages from "./../components/Pages";
 class DashboardBackend {
   constructor() {
     this.deleted = [];
     this.updates = [];
-    this.pages = this.all();
+    this.pages = undefined;
+    this.dash = '';
   }
 
 
+
+  getPages = (dash) => {
+    if (this.dash == '') {
+      this.dash = dash;
+    }
+
+    AjaxCall(
+      { function: "getAllPages", websiteId: sessionStorage.getItem('siteId') || 0 },
+      (response) => {
+        if (!response.toString().includes("false")) {
+
+          let pagesList = JSON.parse(response.split('php-cgi')[1].trim());
+
+          for (let i = 0; i < pagesList.length; i++) {
+            pagesList[i].file = JSON.parse(pagesList[i].file);
+          }
+
+          this.pages = pagesList;
+          dash.setState({ page: <Pages backend={this} loadEditor={dash.loadEditor} /> });
+          console.log(this.pages);
+        }
+      }
+    );
+
+  }
 
   all() {
     var arr = [
@@ -37,9 +64,9 @@ class DashboardBackend {
       },
     ]
 
-    if(arr.length <= this.pages) {
-      arr = this.pages
-    }
+    // if (arr.length <= this.pages) {
+    //   arr = this.pages
+    // }
 
     return arr.filter((page) => this.deleted.indexOf(page.id) === -1)
       .map((page) => {
@@ -53,25 +80,23 @@ class DashboardBackend {
       });
 
   }
+
+
   /*Receives id of page to delete, then loops through all pages to find matching
   page and removes it.
   Each const page is the id of a page -1, so by subtracting one from id on
   the comparison, we get an effective compare and the page is removed from pages
   */
   delete(id) {
-    for (const page in this.pages) {
-      if (page == id-1) {
-        delete this.pages[page];
-      }
-    }
+
   }
 
   update(id, field, value) {
     this.updates.push([id, field, value]);
   }
 
-  updatePages(id, title, segment, body){
-    this.pages.push({id, title, segment, body});
+  updatePages = (id, name, segment, body) => {
+
   }
 }
 
