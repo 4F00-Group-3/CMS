@@ -1,24 +1,21 @@
 //import React from "react";
 import React, { Component, createRef } from "react";
 import "./HomePage.css";
-import {
-  Layout,
-  Header,
-  Content
-} from "react-mdl";
+import { Layout, Header, Content } from "react-mdl";
 
-import PlansPricing from './Components/landingPage';
-import GetStarted from './Components/getStarted';
+import PlansPricing from "./Components/landingPage";
+import GetStarted from "./Components/getStarted";
 import LoginPage from "./Login/loginpage";
 import LandingPage from "./Components/landingPage";
 import CreateAccount from "./Login/createAccount";
+import UserManual from "./UserManual";
 
 class HomePage extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      page: <LandingPage getStartedOnClick={this.getStarted_OnClick}/>,
-      activeButton: ""
+      page: <LandingPage getStartedOnClick={this.getStarted_OnClick} />,
+      activeButton: "",
     };
 
     this.scrollDiv = createRef();
@@ -28,14 +25,13 @@ class HomePage extends Component {
    * This method changes the active button on the navigation menu
    * based on what the user last clicked
    */
-  returnButtonCSS = button => {
+  returnButtonCSS = (button) => {
     if (button === this.state.activeButton) {
       return "button button-primary active";
     } else {
       return "button button-primary";
     }
   };
-
 
   /**
    * This method is for the "NO" icon on the navigation menu
@@ -44,7 +40,7 @@ class HomePage extends Component {
   logOn_OnClick = () => {
     this.setState({
       page: <LandingPage getStartedOnClick={this.getStarted_OnClick} />,
-      activeButton: "landing"
+      activeButton: "landing",
     });
   };
 
@@ -55,7 +51,7 @@ class HomePage extends Component {
   signUp_OnClick = () => {
     this.setState({
       page: <CreateAccount />,
-      activeButton: ""
+      activeButton: "",
     });
   };
 
@@ -66,7 +62,7 @@ class HomePage extends Component {
   getStarted_OnClick = () => {
     this.setState({
       page: <GetStarted signUp_click={this.signUp_OnClick} />,
-      activeButton: "get-started"
+      activeButton: "get-started",
     });
   };
 
@@ -76,8 +72,8 @@ class HomePage extends Component {
    */
   plansPricing_OnClick = () => {
     this.setState({
-      page: <LandingPage getStartedOnClick={this.getStarted_OnClick}/>,
-      activeButton: "plans-pricing"
+      page: <LandingPage getStartedOnClick={this.getStarted_OnClick} />,
+      activeButton: "plans-pricing",
     });
   };
 
@@ -88,7 +84,18 @@ class HomePage extends Component {
   login_OnClick = () => {
     this.setState({
       page: <LoginPage />,
-      activeButton: "log-in"
+      activeButton: "log-in",
+    });
+  };
+
+  /**
+   * This method is for the 'User Manual' button on the nav menu
+   * this will redirect the user to the user manual
+   */
+  userManual_OnClick = () => {
+    this.setState({
+      page: <UserManual />,
+      activeButton: "user-manual",
     });
   };
 
@@ -98,8 +105,13 @@ class HomePage extends Component {
    */
   FAQ_OnClick = () => {
     this.setState({
-      page: <LandingPage scrollDiv={this.scrollDiv} getStartedOnClick={this.getStarted_OnClick}/>,
-      activeButton: "faq"
+      page: (
+        <LandingPage
+          scrollDiv={this.scrollDiv}
+          getStartedOnClick={this.getStarted_OnClick}
+        />
+      ),
+      activeButton: "faq",
     });
     //this.scrollDiv.current.scrollIntoView({ behavior: 'smooth' })
     //eventually scroll to component here,
@@ -142,10 +154,17 @@ class HomePage extends Component {
               >
                 FAQ
               </a>
+              <a
+                href="#usermanual"
+                onClick={this.userManual_OnClick}
+                className={this.returnButtonCSS("user-manual")}
+              >
+                User Manual
+              </a>
             </div>
             {/* </Navigation> */}
           </Header>
-          <Content style={{scrollbarWidth: "none"}}>
+          <Content style={{ scrollbarWidth: "none" }}>
             {/* <div className="page-content" /> */}
             {/* <Main /> */}
             {this.state.page}
