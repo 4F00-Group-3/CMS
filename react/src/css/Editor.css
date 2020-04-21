@@ -22,11 +22,9 @@
   /*border: 3px solid green;*/
   float: left;
   position: fixed;
-  
-  
-  justify-content:center;
-  align-items:center;
 
+  justify-content: center;
+  align-items: center;
 }
 
 .Editor-SideBar-Container {
@@ -129,4 +127,9 @@ p {
   display:flex;
   align-items:center;
   width:100%;
+}
+.return-to-dash-btn {
+  bottom: 1%;
+  right: 1%;
+  position: fixed;
 }

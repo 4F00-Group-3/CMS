@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import EditorSideBar from './components/EditorSidebar';
 import EditingPage from '../editor/components/EditingPage';
 import EditorBackend from './EditorBackend';
+import Button from 'react-bootstrap/Button'
 
 const backend = new EditorBackend();
 
@@ -13,14 +14,29 @@ class Editor extends Component {
             page: props.page,
             menu: "main",
             selectedId: undefined,
-            selectedRowNumberOfColumns: undefined
+            selectedRowNumberOfColumns: undefined,
         };
 
         // redirect user to home page if the user has not signed in
         if (sessionStorage.getItem('id') === null) {
             props.handleHomeClick();
         }
+        // console.log(this.state.page);
+
+        //page is undefined if the Editor is accessed from the top nav bar
+        if(this.state.page !== undefined){
+            backend.setPage(this.state.page.file);
+        } else {
+            backend.setPage([]);
+        }
+        
     }
+
+    componentDidMount = () => {
+        //render the selected page
+        this.setState({page: backend.getPage()});
+    }
+
 
     /**
      * This method adds appends a PageSection component in to the EditingPage
@@ -268,6 +284,7 @@ class Editor extends Component {
                 <div style={{ marginLeft: "50vh" }}>
                     <EditingPage page={this.state.page} onSectionPush={this.pageSection_onClick} />
                 </div>
+                <Button className='return-to-dash-btn' onClick={this.props.returnToDash}>Return to Dashboard</Button>
             </>
         );
     }

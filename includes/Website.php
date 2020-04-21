@@ -399,15 +399,16 @@ class Website{
         }
     }
 
-//    public static function getAllPagesJSON($schema){
-//        $stmt = Dbh::connect()
-//            ->query("SELECT * FROM  $schema.pages");
-//        $pages = array();
-//        while ($row = $stmt->fetch(PDO::FETCH_ASSOC)){
-//            $pages[] = $row;
-//        }
-//        return $pages;
-//    }
+    //hey dont comment this out again it is actually useful
+    public static function getAllPagesJSON($schema){
+        $stmt = Dbh::connect()
+            ->query("SELECT * FROM  $schema.pages ORDER BY pages_id ASC");
+        $pages = array();
+        while ($row = $stmt->fetch(PDO::FETCH_ASSOC)){
+            $pages[] = $row;
+        }
+        return $pages;
+    }
 
     public static function getPagesByPageId($schema, $page_id){
         $stmt = Dbh::connect()
@@ -439,8 +440,9 @@ class Website{
         // ADD PAGE to new schema page table
         $path = "sites/".$accountId."/".$siteName."/html/".$pageName.".html";
         $stmt = Dbh::connect()
-            ->PREPARE("INSERT INTO $schema.pages(name, path) VALUES(:name, :path)");
-        $stmt->bindValue(':name', $pageName.".html");
+            ->PREPARE("INSERT INTO $schema.pages(name, file, path) VALUES(:name, :file, :path)");
+        $stmt->bindValue(':name', $pageName);
+        $stmt->bindValue(':file', json_encode([]));
         $stmt->bindValue(':path', $path);
         $stmt->execute();
 
@@ -454,7 +456,7 @@ class Website{
             ->PREPARE("SELECT * FROM $schema.pages WHERE path=?");
         $stmt->execute([$path]);
         if($stmt->rowCount()){
-            return true;
+            return [$stmt->fetch(PDO::FETCH_ASSOC)['pages_id'], $path];
         }else{
             return false;
         }
@@ -463,25 +465,41 @@ class Website{
     public static function addPageJSON($schema, $content, $pageName){
         $data = array($content, $pageName);
 
-		$stmt = Dbh::connect() ->PREPARE("INSERT INTO $schema.pages (content, name) VALUES (?, ?) ON CONFLICT DO NOTHING RETURNING page_id");
+		$stmt = Dbh::connect() ->PREPARE("INSERT INTO $schema.pages (content, name) VALUES (?, ?) ON CONFLICT DO NOTHING RETURNING pages_id");
 		$stmt->execute($data);
 
-		return $stmt->fetch(PDO::FETCH_ASSOC)['page_id'];
+		return $stmt->fetch(PDO::FETCH_ASSOC)['pages_id'];
     }
 
-    public static function deletePageById($schema, $pageId){
-        $stmt = Dbh::connect()->PREPARE("DELETE FROM $schema.pages WHERE page_id=?");
+    public static function deletePageById($schema, $pageId, $path){
+        //delete pages table entry
+        $stmt = Dbh::connect()->PREPARE("DELETE FROM $schema.pages WHERE pages_id=?");
 		$stmt->execute([$pageId]);
+
+        //delete html file
+        $htmlFileDeleted = unlink("../".$path);
 
         //Check to see if user is in DB
         $stmt = Dbh::connect()
-            ->PREPARE("SELECT * FROM $schema.pages WHERE page_id=?");
+            ->PREPARE("SELECT * FROM $schema.pages WHERE pages_id=?");
         $stmt->execute([$pageId]);
-        if($stmt->rowCount()){
+        if($stmt->rowCount() || !$htmlFileDeleted){
             return false;
         }else{
             return true;
         }
     }
 
+    public static function savePage($schema, $pageId, $page, $path, $html){
+        $stmt = Dbh::connect()
+            ->PREPARE("UPDATE $schema.pages SET file =? WHERE pages_id=?");
+        $stmt->execute([$page, $pageId]);
+
+        if(!empty($path)){
+            $file = fopen("../".$path,"w");
+            fwrite($file, $html);
+            fclose($file);
+        }
+
+    }
 }

@@ -7,36 +7,18 @@ import NewWindow from 'react-new-window'
 class Page extends Component {
     constructor(props) {
         super(props);
-
         this.handlePageEdit = this.handlePageEdit.bind(this);
         this.handlePageDelete = this.handlePageDelete.bind(this);
-        this.handleOnPageCancel = this.handleOnPageCancel.bind(this);
-
-        this.state = {
-            'isEditing': false,
-
-        }
-
     }
 
 
     handlePageEdit() {
-        this.setState({
-            'isEditing': true,
-        });
-        console.log("time to edit a page");
+        this.props.loadEditor(this.props.page)
     }
 
     handlePageDelete(id) {
-        console.log("time to delete a page " + this.props.id);
+        // console.log("time to delete a page " + this.props.id);
         this.props.onPageDelete(this.props.id)
-    }
-
-    handleOnPageCancel() {
-        this.setState({
-            'isEditing': false,
-        });
-        console.log("time to cancel a page ");
     }
 
     onEditorUnload = () => {
@@ -44,40 +26,15 @@ class Page extends Component {
     }
 
     render() {
-        var result = null;
-        if (this.state.isEditing) {
-            result =
-                <>
-                    <NewWindow 
-                    name={"Editor"}  
-                    title={"Editor"}
-                    onUnload={this.onEditorUnload}>
-                        <Editor
-                            onPageCancel={this.handleOnPageCancel}
-                            page={this.props.page}
-                        />
-                    </NewWindow>
-                    <ListItem
-                        type={"page"}
-                        {...this.props}
-                        isEditing={this.props.isEditing}
-                        onPageEdit={this.handlePageEdit}
-                        onPageDelete={this.handlePageDelete}
-
-                    />
-                </>;
-
-        }
-        else {
-            result = <ListItem
+        var result = <ListItem
                 type={"page"}
                 {...this.props}
                 isEditing={this.props.isEditing}
                 onPageEdit={this.handlePageEdit}
                 onPageDelete={this.handlePageDelete}
+                title={this.props.name}    
 
             />;
-        }
 
         return result;
     }
