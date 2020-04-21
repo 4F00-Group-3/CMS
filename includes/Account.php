@@ -78,7 +78,7 @@ class Account {
 	//add a new account to the database
 	public static function addAccount($email, $firstName, $lastName, $type,  $password){
 		$data = array($email, $firstName, $lastName, $type);
-
+        
 		foreach($data as $key => $field){
 			$data[$key] = trim(filter_var($field, FILTER_SANITIZE_STRING));
 		}

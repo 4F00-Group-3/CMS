@@ -12,12 +12,14 @@ import LandingPage from "./Components/LandingPage";
 import CreateAccount from "./Login/CreateAccount";
 import Col from 'react-bootstrap/Col';
 import Row from 'react-bootstrap/Row';
+import Dashboard from './dashboard/Dashboard'
+import SitePage from './Site Page/SitePage';
 
 class HomePage extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      page: <LandingPage getStartedOnClick={this.getStarted_OnClick} />,
+      page: <LandingPage login_OnClick={this.login_OnClick} />,
       activeButton: "landing"
     };
 
@@ -85,7 +87,7 @@ class HomePage extends Component {
    */
   plansPricing_OnClick = () => {
     this.setState({
-      page: <LandingPage getStartedOnClick={this.getStarted_OnClick} />,
+      page: <LandingPage login_OnClick={this.login_OnClick} />,
       activeButton: "plans-pricing"
     });
   };
@@ -96,7 +98,10 @@ class HomePage extends Component {
    */
   login_OnClick = () => {
     this.setState({
-      page: <LoginPage />,
+      page: <LoginPage handleSitePageClick = {this.props.handleSitePageClick}
+      handleCreateAccountClick={this.handleCreateAccountClick}
+      handleGetStartedClick = {this.handleGetStartedClick}
+      handleHomeClick={this.handleHomeClick}/>,
       activeButton: "log-in"
     });
   };
@@ -111,6 +116,21 @@ class HomePage extends Component {
       activeButton: "faq"
     });
   };
+
+  handleCreateAccountClick = () => {
+    this.setState({ page: <CreateAccount />, });
+  }
+
+  handleSitePageClick = () => {
+    console.log('homepage js!');
+    this.props.handleSitePageClick();
+  }
+
+  handleGetStartedClick = () => {
+    this.setState({ page: <GetStarted handleSitePageClick = {this.props.handleSitePageClick}/> });
+  }
+
+
 
   /**
    * This function returns the top navigation
@@ -139,12 +159,12 @@ class HomePage extends Component {
               Log In
             </button>
 
-            <button
+            {/* <button
               onClick={this.getStarted_OnClick}
               className={this.returnButtonCSS("get-started")}
             >
               Get Started
-            </button>
+            </button> */}
             <a
               href="#planspricing"
               onClick={this.plansPricing_OnClick}

@@ -42,7 +42,7 @@ export default class Payments extends React.Component {
               sessionStorage.setItem('tier',subscription);
               redirect();
             } else {
-              alert("Payment failed to process. Please try again.")
+              alert("Payment failed to process. Please try again.");
             }
           }
       );
@@ -50,14 +50,14 @@ export default class Payments extends React.Component {
 
     const onCancel = (data) => {
       // User pressed "cancel" or close Paypal's popup!
-      alert("The payment was cancelled! " + data);
+      // alert("The payment was cancelled! " + data);
       console.log("The payment was cancelled!", data);
       // You can bind the "data" object's value to your state or props or whatever here, please see below for sample returned data
     };
 
     const onError = (err) => {
       // The main Paypal's script cannot be loaded or somethings block the loading of that script!
-      alert("Error! " + err);
+      // alert("Error! " + err);
       console.log("Error!", err);
       // Because the Paypal's main script is loaded asynchronously from "https://www.paypalobjects.com/api/checkout.js"
       // => sometimes it may take about 0.5 second for everything to get set, or for the button to appear

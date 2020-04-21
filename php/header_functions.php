@@ -40,11 +40,11 @@ define('HOME_URL', 'https://www.cosc.brocku.ca/~mp16vd/');
 define('HOME_PATH', '/home/student/mp16vd/public_html/');
 
 // constants Matt A PERSONAL kind of
-define('DB_NAME', 'mp16vd');
-define('DB_PASS', '6053664');
-define('DB_SCHEMA', 'mp16vd'); //website specific, e.g. SELECT * FROM DB_SCHEMA.pages WHERE...
-define('HOME_URL', 'https://www.cosc.brocku.ca/~ma15uq/');
-define('HOME_PATH', '/home/student/ma15uq/public_html/');
+// define('DB_NAME', 'mp16vd');
+// define('DB_PASS', '6053664');
+// define('DB_SCHEMA', 'mp16vd'); //website specific, e.g. SELECT * FROM DB_SCHEMA.pages WHERE...
+// define('HOME_URL', 'https://www.cosc.brocku.ca/~ma15uq/');
+// define('HOME_PATH', '/home/student/ma15uq/public_html/');
 
 
 //LOCAL CONSTANTS

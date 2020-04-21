@@ -215,7 +215,7 @@ class LandingPage extends Component {
                 <Card.Text style={{ color: "#000" }}>
                   Begin building a new web experience with a great package of starter tools!
             </Card.Text>
-                <Button variant="primary" onClick={this.props.getStartedOnClick}>Get Started</Button>
+                <Button variant="primary" onClick={this.props.login_OnClick}>Get Started</Button>
               </Card.Body>
             </Card>
 
@@ -226,7 +226,7 @@ class LandingPage extends Component {
                 <Card.Text style={{ color: "#000" }}>
                   Upgrade and get access to more advanced features that will help you increase your firms efficiency!
             </Card.Text>
-                <Button variant="primary" onClick={this.props.getStartedOnClick}>Get Started</Button>
+                <Button variant="primary" onClick={this.props.login_OnClick}>Get Started</Button>
               </Card.Body>
             </Card>
 
@@ -237,7 +237,7 @@ class LandingPage extends Component {
                 <Card.Text style={{ color: "#000" }}>
                   Get full access to all the tools your business needs to be at the top of its game!
             </Card.Text>
-                <Button variant="primary" onClick={this.props.getStartedOnClick}>Get Started</Button>
+                <Button variant="primary" onClick={this.props.login_OnClick}>Get Started</Button>
               </Card.Body>
             </Card>
           </Row>

@@ -20,14 +20,15 @@ class CreateAccount extends Component {
       fn: "",
       ln: ""
     };
-    backend.f = props.handleGetStartedClick;
+    backend.f = this.props.handleGetStartedClick;
     if (sessionStorage.getItem('id') !== null) {
-      props.handleSitePageClick();
+      this.props.handleSitePageClick();
     }
   }
 
-  handleFormSubmit = event => {
+  handleCreateAccountSubmit = event => {
     event.preventDefault();
+    console.log()
     AjaxCall(
       {
         function: "createAccount",
@@ -69,7 +70,7 @@ class CreateAccount extends Component {
             <h2>Create An Account</h2>
             <Form
               className="centerBoxItems"
-              onSubmit={this.props.handleFormSubmit}
+              onSubmit={this.handleCreateAccountSubmit}
             >
               <Row>
                 <Col>
@@ -83,7 +84,7 @@ class CreateAccount extends Component {
                     emailaddr="email"
                     className="create-account-form-input"
                     name="fn"
-                    onChange={this.props.handleChange}
+                    onChange={(event) => {this.handleChange(event)}}
                   />
                 </Col>
               </Row>
@@ -99,7 +100,7 @@ class CreateAccount extends Component {
                     emailaddr="email"
                     className="create-account-form-input"
                     name="ln"
-                    onChange={this.props.handleChange}
+                    onChange={(event) => {this.handleChange(event)}}
                   />
                 </Col>
               </Row>
@@ -114,7 +115,7 @@ class CreateAccount extends Component {
                     emailaddr="email"
                     className="create-account-form-input"
                     name="email"
-                    onChange={this.props.handleChange}
+                    onChange={(event) => {this.handleChange(event)}}
                   />
                 </Col>
               </Row>
@@ -131,7 +132,7 @@ class CreateAccount extends Component {
                     pass="pw"
                     className="create-account-form-input"
                     name="pw"
-                    onChange={this.props.handleChange}
+                    onChange={(event) => {this.handleChange(event)}}
                   />
                 </Col>
               </Row>

@@ -134,9 +134,9 @@ class SitePage extends Component {
         if (sessionStorage.getItem("siteId")!==null) {
             sessionStorage.removeItem("siteId");
         }
-        if (sessionStorage.getItem('id') !== null && sessionStorage.getItem('tier')===null) {
-            props.handleGetStartedClick();
-        }
+        // if (sessionStorage.getItem('id') !== null && sessionStorage.getItem('tier')===null) {
+        //     props.handleGetStartedClick();
+        // }
     }
 
     componentDidMount() {
