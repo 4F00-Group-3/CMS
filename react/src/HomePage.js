@@ -9,6 +9,7 @@ import LoginPage from "./Login/loginpage";
 import LandingPage from "./Components/landingPage";
 import CreateAccount from "./Login/createAccount";
 import UserManual from "./UserManual";
+import PrivacyPolicy from "./PrivacyPolicy";
 
 class HomePage extends Component {
   constructor(props) {
@@ -18,6 +19,7 @@ class HomePage extends Component {
         <LandingPage
           getStartedOnClick={this.getStarted_OnClick}
           userManual_OnClick={this.userManual_OnClick}
+          privacyPolicy_OnClick={this.privacyPolicy_OnClick}
         />
       ),
       activeButton: "",
@@ -105,6 +107,17 @@ class HomePage extends Component {
   };
 
   /**
+   * This method is for the 'User Manual' button on the nav menu
+   * this will redirect the user to the user manual
+   */
+  privacyPolicy_OnClick = () => {
+    this.setState({
+      page: <PrivacyPolicy />,
+      activeButton: "privacy-policy",
+    });
+  };
+
+  /**
    * This method is for the 'FAQ' button on the nav menu
    * this will redirect the user to the FAQ section of the landing page
    */
@@ -165,6 +178,13 @@ class HomePage extends Component {
                 className={this.returnButtonCSS("user-manual")}
               >
                 User Manual
+              </a>
+              <a
+                href="#usermanual"
+                onClick={this.privacyPolicy_OnClick}
+                className={this.returnButtonCSS("privacy-policy")}
+              >
+                Privacy Policy
               </a>
             </div>
             {/* </Navigation> */}

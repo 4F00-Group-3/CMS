@@ -225,7 +225,11 @@ class landingPage extends Component {
                     User Manual
                   </a>
                 </div>
-                <a href="#">Privacy & Terms</a>
+                <div>
+                  <a href="#" onClick={this.props.privacyPolicy_OnClick}>
+                    Privacy & Terms
+                  </a>
+                </div>
               </FooterLinkList>
             </FooterSection>
           </Footer>
