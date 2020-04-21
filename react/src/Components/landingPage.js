@@ -1,23 +1,34 @@
 import React, { Component } from "react";
+import "./LandingPage.css";
 import {
   Grid,
   Cell,
   Button,
   Card,
   CardTitle,
-  CardText,
   CardActions,
   FooterSection,
   Footer,
   FooterLinkList
 } from "react-mdl";
-import ReactDOM from "react-dom";
+import GetStarted from "./getStarted";
 
 class landingPage extends Component {
-  
+  getStarted_OnClick = () => {
+    this.setState({
+      page: <GetStarted signUp_click={this.signUp_OnClick} />,
+      activeButton: "get-started"
+    });
+  };
+
   render() {
     return (
       <div>
+        <div className="center-logo">
+          <section ref={this.props.scrollHome} id="home">
+            <img src="./imagesFolder/logo.png" className="logo-size"></img>
+          </section>
+        </div>
         <Grid>
           <Cell col={12}>
             <h2 className="home-page-title">
@@ -26,28 +37,36 @@ class landingPage extends Component {
             <h4 className="home-page-subtitle">
               Proin placerat finibus porttitor mauris eu malesuada.
             </h4>
-            <div style={{ textAlign: "center", paddingBottom: "270px" }}>
-              <Button raised ripple primary>
+            <br />
+            <div className="center-logo">
+              <Button raised ripple primary onClick={this.props.getStartedOnClick}>
                 Get Started
               </Button>
             </div>
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
           </Cell>
         </Grid>
-        <div style={{ background: "white" }}>
+        <div className="LandingPage-Grid-bg" id="faqsec">
+          <br />
           <section ref={this.props.scrollDiv} id="faq-page">
             <h2 className="faq-page">FAQ</h2>
           </section>
-          <Grid>
+
+          <Grid className="LandingPage-Grid-bg">
             <Cell col={12}>
               {/* Row 1 */}
               <div className="faq-grid" style={{ paddingBottom: "30px" }}>
                 {/* Card 1 */}
-                <Card
+                <Card className={"LandingPage-Card"}
                   style={{
                     width: "256px",
                     height: "256px",
-                    background: "skyblue",
-                    margin: "auto"
+                    margin: "auto",
+                    background: "url(./imagesFolder/FAQ1.jpg)",
                   }}
                   shadow={0}
                 >
@@ -55,12 +74,12 @@ class landingPage extends Component {
                   <CardActions className="faq-cards-actions"></CardActions>
                 </Card>
                 {/* Card 2 */}
-                <Card
+                <Card className={"LandingPage-Card"}
                   style={{
                     width: "256px",
                     height: "256px",
-                    background: "skyblue",
-                    margin: "auto"
+                    margin: "auto",
+                    background: "url(./imagesFolder/FAQ2b.jpg)",
                   }}
                   shadow={0}
                 >
@@ -68,12 +87,12 @@ class landingPage extends Component {
                   <CardActions className="faq-cards-actions"></CardActions>
                 </Card>
                 {/* Card 3 */}
-                <Card
+                <Card className={"LandingPage-Card"}
                   style={{
                     width: "256px",
                     height: "256px",
-                    background: "skyblue",
-                    margin: "auto"
+                    margin: "auto",
+                    background: "url(./imagesFolder/FAQ3.jpg)",
                   }}
                   shadow={0}
                 >
@@ -86,12 +105,12 @@ class landingPage extends Component {
               {/* Row 2 */}
               <div className="faq-grid">
                 {/* Card 1 */}
-                <Card
+                <Card className={"LandingPage-Card"}
                   style={{
                     width: "256px",
                     height: "256px",
-                    background: "skyblue",
-                    margin: "auto"
+                    margin: "auto",
+                    background: "url(./imagesFolder/FAQ4b.jpg)",
                   }}
                   shadow={0}
                 >
@@ -99,12 +118,12 @@ class landingPage extends Component {
                   <CardActions className="faq-cards-actions"></CardActions>
                 </Card>
                 {/* Card 2 */}
-                <Card
+                <Card className={"LandingPage-Card"}
                   style={{
                     width: "256px",
                     height: "256px",
-                    background: "skyblue",
-                    margin: "auto"
+                    margin: "auto",
+                    background: "url(./imagesFolder/FAQ5.jpg)",
                   }}
                   shadow={0}
                 >
@@ -112,12 +131,12 @@ class landingPage extends Component {
                   <CardActions className="faq-cards-actions"></CardActions>
                 </Card>
                 {/* Card 3 */}
-                <Card
+                <Card className={"LandingPage-Card"}
                   style={{
                     width: "256px",
                     height: "256px",
-                    background: "skyblue",
-                    margin: "auto"
+                    margin: "auto",
+                    background: "url(./imagesFolder/FAQ6b.jpg)",
                   }}
                   shadow={0}
                 >
@@ -128,7 +147,11 @@ class landingPage extends Component {
             </Cell>
           </Grid>
         </div>
-        <div style={{ background: "white" }}>
+
+        <div style={{ background: "white" }} id="planspricing">
+          <br />
+          <br />
+          <br />
           <section id="pl-pr"></section>
           <h2 className="faq-page">Plans and Pricing</h2>
           <Grid>
@@ -136,49 +159,50 @@ class landingPage extends Component {
               {/* Row 1 */}
               <div className="faq-grid">
                 {/* Card 1 */}
-                <Card
+                <Card className={"LandingPage-Card"}
                   style={{
                     width: "256px",
                     height: "256px",
-                    background: "skyblue",
-                    margin: "auto"
+                    margin: "auto",
+                    background: "url(./imagesFolder/FirstPlanSquare.jpg)",
                   }}
-                  shadow={0}
+                  shadow={2}
                 >
                   <CardTitle expand />
                   <CardActions className="faq-cards-actions"></CardActions>
                 </Card>
                 {/* Card 2 */}
-                <Card
+                <Card className={"LandingPage-Card"}
                   style={{
                     width: "256px",
                     height: "256px",
-                    background: "skyblue",
-                    margin: "auto"
+                    margin: "auto",
+                    background: "url(./imagesFolder/SecondPlanSquare.jpg)",
                   }}
-                  shadow={0}
+                  shadow={2}
                 >
                   <CardTitle expand />
                   <CardActions className="faq-cards-actions"></CardActions>
                 </Card>
                 {/* Card 3 */}
-                <Card
+                <Card className={"LandingPage-Card"}
                   style={{
                     width: "256px",
                     height: "256px",
-                    background: "skyblue",
-                    margin: "auto"
+                    margin: "auto",
+                    background: "url(./imagesFolder/ThirdPlanSquare.jpg)",
                   }}
-                  shadow={0}
+                  shadow={2}
                 >
                   <CardTitle expand />
                   <CardActions className="faq-cards-actions"></CardActions>
                 </Card>
               </div>
+              <span> </span>
             </Cell>
           </Grid>
         </div>
-        <div style={{ paddingbottom: "60px" }}>
+        <div className="sticky-bottom">
           <Footer size="mini">
             <FooterSection type="left" logo="NO.">
               <FooterLinkList>

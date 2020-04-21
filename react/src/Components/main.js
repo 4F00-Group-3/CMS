@@ -3,12 +3,12 @@ import { BrowserRouter, Switch, Route } from "react-router-dom";
 import landingPage from "./landingPage";
 import getStarted from "./getStarted";
 import tempPage from "../tempPage";
-import LoginPage from "./LoginPage";
+import LoginPage from "../Login/loginpage";
 import passwordsubmit from "./passwordsubmit";
 import submitemail from "./submitemail";
 import securityCode from "./securityCode";
-import createAccount from "./createAccount";
-import imageEditorMenu from "./imageEditorMenu";
+import createAccount from "../Login/createAccount";
+import ImageEditor from "./ImageEditor";
 
 const Main = () => (
   <BrowserRouter>
@@ -21,7 +21,7 @@ const Main = () => (
       <Route path="/submitemail" component={submitemail} />
       <Route path="/securityCode" component={securityCode} />
       <Route path="/createAccount" component={createAccount} />
-      <Route path="/imageEditorMenu" component={imageEditorMenu} />
+      <Route path="/ImageEditor" component={ImageEditor} />
     </Switch>
   </BrowserRouter>
 );

@@ -1,59 +1,117 @@
-import React, { Component } from 'react';
-import * as constants from '../../constants';
-import PageSection from './PageSection';
+import React, { Component, useCallback, useState } from "react";
+import { DndProvider } from "react-dnd";
+import Backend from "react-dnd-html5-backend";
+import Card from "./Card.jsx";
+import update from 'immutability-helper'
 
 class EditingPage extends Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            page: this.props.page,
-        }
+  constructor(props) {
+    super(props);
+    this.state = {
+      page: this.props.page,
+      active: 0
     }
+  }
 
-    /**
-     * This method renders a page from JSON onto the actual page editor
-     * Can be reused for actual page viewing as well
-     */
-    returnPage() {
-        try {
-            let page = [];
-            for (let index = 0; index < this.props.page.length; index++) {
-                let section = this.props.page[index];
-                page.push(
-                    <PageSection 
-                        index={section.id}
-                        type={section.type}
-                        style={section.style[0]}
-                        text={section.text}
-                        faClassName={section.faClassName}
-                        onClick={section.onClick}
-                        url={section.url}
-                        onSectionPush={this.props.onSectionPush}
+  /**
+   * This element sets highlights the current element the user is editing
+   * @param {*} id id of the active element
+   */
+  handleActiveElement = (id) => {
+    this.setState({ active: id });
+  }
 
-                        />);
-            }
-
-            return page;
-        } catch (error) {
-
+  /**
+   * This method renders a page from JSON onto the actual page editor
+   * Can be reused for actual page viewing as well
+   * Returns the sections added to the editor page
+   */
+  returnPage() {
+    let x = []; //empty array
+    try {
+      for (let i = 0; i < this.props.page.length; i++) {  //for each section
+        var y = {   //get section values
+          page: this.props.page[i],
+          onSectionPush: this.props.onSectionPush,
+          // clicked is used later inside the PageSection to highlight a selected PageSection Component
+          clicked: this.state.active === this.props.page[i].id,
+          onClick: this.handleActiveElement
         }
-    }
+        x.push(y) //push to array
+      }
+    } catch (e) { }
+    return x;
+  }
 
-    render() {
+  render() {
+
+    const Container = () => {
+      let x = this.returnPage();
+
+      /**
+       * This sets up a setState handler called setCards
+       * and inializes the state of the cards object with x
+       */
+      const [cards, setCards] = useState(x)
+
+      /**
+       * This is a call back method used to update the index of a moved card
+       * which then updates the state.cards with the new arrangement.
+       */
+      const moveCard = useCallback(
+        (dragIndex, hoverIndex) => {
+          const dragCard = cards[dragIndex]
+          // This code simulates the movement of the dragged card by inserting it into the hover index
+          setCards(
+            update(cards, {
+              $splice: [
+                [dragIndex, 1],
+                [hoverIndex, 0, dragCard],
+              ],
+            }),
+          )
+        },
+        [cards],
+      );
+
+      /**
+       * This method creates a PageSection component i.e. Header, Image etc
+       * and wraps it inside a Card Component to allow verticle dragging
+       * @param {*} card 
+       * @param {*} index 
+       */
+      const renderCard = (card, index) => {
+
+        // Updates page with new arrangement
+        this.props.page[index] = card.page;
+
         return (
-            <div style={containerStyle}>
-                {this.returnPage()}
-            </div>
-        );
-    }
-}
+          <Card
+            page={card.page}
+            key={index}
+            onClick={card.onClick}
+            onSectionPush={card.onSectionPush}
+            clicked={card.clicked}
+            index={index}
+            moveCard={moveCard}
+          />
+        )
+      }
 
-const containerStyle = {
-    background: "white",
-    width: (100 - constants.EditorSideBarWidth) + "%",
-    height: "100vh",
-    border: "3px solid red",
-    marginLeft: constants.EditorSideBarWidth,
+      return (
+        <div>
+          {cards.map((card, i) => renderCard(card, i))}
+        </div>
+      )
+    }
+
+
+    return (
+      <DndProvider backend={Backend}>
+        <Container />
+      </DndProvider>
+    )
+  }
 }
 
 export default EditingPage;

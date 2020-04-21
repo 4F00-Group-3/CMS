@@ -8,16 +8,29 @@ const backend = new EditorBackend();
 class Editor extends Component {
     constructor(props) {
         super(props);
-        this.onClick.bind(this.onClick);
+        this.addToPage_onClick.bind(this.addToPage_onClick);
         this.state = {
             page: props.page,
             menu: "main",
             selectedId: undefined,
+            selectedRowNumberOfColumns: undefined
+        };
+
+        // redirect user to home page if the user has not signed in
+        if (sessionStorage.getItem('id') === null) {
+            props.handleHomeClick();
         }
     }
 
-    onClick = (name) => {
-        console.log(name);
+    /**
+     * This method adds appends a PageSection component in to the EditingPage
+     * It does this by appending it to the page json (handled in the EditorBackend)
+     * This new page object is re-rendered on to the EditingPage when setState is called
+     * @param name the name of the component which is recieved from the the button clicked on EditorSidebar
+     * @param subName the name of the component to add into a column
+     * @param columnId the id of the column to ass the subName component into
+     */
+    addToPage_onClick = (name, subName, columnId) => {
         switch (name) {
             case "Heading": {
                 backend.add("Heading");
@@ -44,9 +57,10 @@ class Editor extends Component {
                 this.setState({ page: backend.getPage() })
                 break;
             }
-            case "Size": {
-                backend.add("Size");
-                this.setState({ page: backend.getPage() })
+            case "Row": {
+                backend.add("Row");
+                this.setState({ page: backend.getPage(), selectedRowNumberOfColumns: 1 })
+                console.log("editor getpage", backend.getPage());
                 break;
             }
             case "Icon": {
@@ -59,14 +73,23 @@ class Editor extends Component {
                 this.setState({ page: backend.getPage() })
                 break;
             }
+            case "Column": {
+                backend.add("Column", subName, columnId);
+                this.setState({ page: backend.getPage() })
+                break;
+            }
             default:
                 break;
         }
-
     }
 
-    onSectionPush = (_id, _type, _style) => {
-        console.log(_type)
+    /**
+     * This method handles what menu to display in the EditorSidebar
+     * based on which PageSection component the user clicked in the EditingPage
+     * @param _id this is the idea of the specific component
+     * @param _type this is the type of the specific component
+     */
+    pageSection_onClick = (_id, _type) => {
         switch (_type) {
             case "heading": {
                 this.setState({
@@ -117,6 +140,20 @@ class Editor extends Component {
                 })
                 break;
             }
+            case "row": {
+                this.setState({
+                    menu: "row",
+                    selectedId: _id,
+                })
+                break;
+            }
+            case "column": {
+                this.setState({
+                    menu: "column",
+                    selectedId: _id,
+                })
+                break;
+            }
             default: {
                 this.setState({
                     menu: "main",
@@ -126,21 +163,29 @@ class Editor extends Component {
         }
     }
 
+    /**
+     * This method re-renders the css on a PageSection component in the 
+     * EditingPage based on what the user inputted into the specific component's menu
+     * @param css the new css to apply to the PageSection component on the EditingPage
+     */
     menuComponentOnClick = (css) => {
-        console.log(css.split("|").length, css)
-
-
         switch (css.split("|").length) {
             case 2: {
                 var cssKey = css.split("|")[0]
                 var cssValue = css.split("|")[1]
-                backend.editSectionStyle(this.state.selectedId, cssKey, cssValue);
+                if (cssKey === "Col") {
+                    this.setState({
+                        selectedRowNumberOfColumns: backend.editSectionRow(this.state.selectedId, cssValue)
+                    });
+                } else {
+                    backend.setSubMenuItem_Style(this.state.selectedId, cssKey, cssValue);
+                }
                 break;
             }
             case 3: {
                 var jsonField = css.split("|")[0];
                 var jsonValue = css.split("|")[1];
-                backend.editTextField(this.state.selectedId, jsonField, jsonValue);
+                backend.setSubMenuItem_Text(this.state.selectedId, jsonField, jsonValue);
                 break;
             }
             default:
@@ -148,15 +193,81 @@ class Editor extends Component {
         }
 
         this.setState(
-            { page: backend.getPage(), }
+            { page: backend.getPage() }
         )
+    }
+
+    /**
+     * This method handles going back to the last menu 
+     */
+    handleBack = () => {
+        try {
+            // find current element
+            var menuItem = backend.getSubMenuItem(this.state.page, this.state.selectedId);
+            var id = menuItem.id.toString().split("|");
+            switch (id.length) {
+                case 3: // within column element, go back to column
+                    this.setState({
+                        selectedId: id[0] + "|" + id[2],
+                        menu: "column"
+                    });
+                    break;
+                case 2: // inside row, go back to Row
+                    this.setState({
+                        selectedId: parseInt(id[0]),
+                        menu: "row"
+                    });
+                    break;
+                default: // unknown, just go back to main
+                    this.setState({
+                        selectedId: undefined,
+                        menu: 'main'
+                    });
+                    break;
+            }
+        } catch (e) {
+            // if anything just go back to main
+            this.setState({
+                selectedId: undefined,
+                menu: 'main'
+            });
+        }
+    }
+
+
+    /**
+     * This method handles deleting an element from the page
+     */
+    handleDelete = () => {
+        var activeSection = this.state.selectedId;
+
+        try {
+            // Try and see if we are trying to delete an element within a column
+            if (activeSection.split("|").length === 3) {
+                var sectionId = activeSection.split("|");
+                var rowId = sectionId[0];
+                var columnId = sectionId[1];
+                var colSectionId = sectionId[2];
+                backend.getSubMenuItem_Delete(this.state.page, activeSection);
+                // TODO: handle deleting a column if the column is empty
+                // TODO: haandle deleting a row if the row is empty
+            }
+        } catch (Exception) {
+
+            backend.getSubMenuItem_Delete(this.state.page, activeSection);
+        }
+
+        // go back to last menu, currently returns to main menu
+        this.handleBack();
     }
 
     render() {
         return (
             <>
-                <EditorSideBar onPush={this.onClick} menu={this.state.menu} selectedId={this.state.selectedId} menuComponentOnClick={this.menuComponentOnClick} />
-                <EditingPage page={this.state.page} onSectionPush={this.onSectionPush} />
+                <EditorSideBar onPush={this.addToPage_onClick} menu={this.state.menu} selectedId={this.state.selectedId} selectedRowNumberOfColumns={this.state.selectedRowNumberOfColumns} menuComponentOnClick={this.menuComponentOnClick} handleBack={this.handleBack} handleDelete={this.handleDelete} />
+                <div style={{ marginLeft: "50vh" }}>
+                    <EditingPage page={this.state.page} onSectionPush={this.pageSection_onClick} />
+                </div>
             </>
         );
     }

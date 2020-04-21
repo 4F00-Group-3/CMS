@@ -2,14 +2,30 @@ import React, { Component } from "react";
 import {
   Grid,
   Cell,
-  Button,
   Card,
   CardTitle,
+  CardActions,
   CardText,
-  CardActions
+  FooterSection,
+  Footer,
+  FooterLinkList,
+  Layout,
 } from "react-mdl";
+import Payments from "./payments";
 
 class getStarted extends Component {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      showSignUp: false
+    };
+
+    if (sessionStorage.getItem('id') === null) {
+      this.state.showSignUp = true;
+    }
+  }
+
   render() {
     return (
       <div>
@@ -25,18 +41,19 @@ class getStarted extends Component {
                   expand
                   style={{
                     color: "#fff",
-                    background:
-                      "url(http://www.getmdl.io/assets/demos/dog.png) bottom right 15% no-repeat #46B6AC"
+                    background: "url(./imagesFolder/FirstPlan.jpg)",
                   }}
-                >
-                  Plan 1
-                </CardTitle>
-                <CardText>
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenan
-                  convallis.
-                </CardText>
+                ></CardTitle>
+                <CardText>Get started with building web applications!</CardText>
                 <CardActions border>
-                  <Button colored>Sign Up</Button>
+                  <Payments amount={10}
+                            handleSitePageClick = {this.props.handleSitePageClick}>Pay</Payments>
+                  {this.state.showSignUp ?
+                      <a href="#" onClick={this.props.signUp_click}>
+                        Sign up
+                      </a>
+                      : null
+                  }
                 </CardActions>
               </Card>
 
@@ -48,18 +65,21 @@ class getStarted extends Component {
                   expand
                   style={{
                     color: "#fff",
-                    background:
-                      "url(http://www.getmdl.io/assets/demos/dog.png) bottom right 15% no-repeat #46B6AC"
+                    background: "url(./imagesFolder/SecondPlan.jpg)",
                   }}
-                >
-                  Plan 2
-                </CardTitle>
+                ></CardTitle>
                 <CardText>
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenan
-                  convallis.
+                  Take your business to the next level with premium features!
                 </CardText>
                 <CardActions border>
-                  <Button colored>Sign Up</Button>
+                  <Payments amount={20}
+                            handleSitePageClick = {this.props.handleSitePageClick}>Pay</Payments>
+                  {this.state.showSignUp ?
+                      <a href="#" onClick={this.props.signUp_click}>
+                        Sign up
+                      </a>
+                      : null
+                  }
                 </CardActions>
               </Card>
 
@@ -71,23 +91,45 @@ class getStarted extends Component {
                   expand
                   style={{
                     color: "#fff",
-                    background:
-                      "url(http://www.getmdl.io/assets/demos/dog.png) bottom right 15% no-repeat #46B6AC"
+                    background: "url(./imagesFolder/ThirdPlan.jpg)",
                   }}
-                >
-                  Plan 3
-                </CardTitle>
+                ></CardTitle>
                 <CardText>
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenan
-                  convallis.
+                  Get the necessary tools to provide a great web experience for
+                  your customers!
                 </CardText>
                 <CardActions border>
-                  <Button colored>Sign Up</Button>
+                  <Payments amount={30}
+                            handleSitePageClick = {this.props.handleSitePageClick}>Pay</Payments>
+                  {this.state.showSignUp ?
+                      <a href="#" onClick={this.props.signUp_click}>
+                        Sign up
+                      </a>
+                      : null
+                  }
                 </CardActions>
               </Card>
             </div>
           </Cell>
         </Grid>
+        <p className="creds">
+          Use our service for free for the first month! Use the following PayPal credentials:
+        </p>
+        <p className="creds">
+          Username: sb-odp9i1081433@personal.example.com Password:
+          dJQhG+S9
+        </p>
+        <Footer
+          style={{ bottom: "0", position: "fixed", width: "100%" }}
+          size="mini"
+        >
+          <FooterSection type="left" logo="No">
+            <FooterLinkList>
+              <a href="#">Help</a>
+              <a href="#">Privacy & Terms</a>
+            </FooterLinkList>
+          </FooterSection>
+        </Footer>
       </div>
     );
   }

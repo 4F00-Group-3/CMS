@@ -11,6 +11,7 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { ChromePicker } from 'react-color';
+import { Button } from 'react-bootstrap';
 
 export class NumericInput extends Component {
     render() {
@@ -90,21 +91,18 @@ export class AlignmentInput extends Component {
     render() {
         return (
             <div className="AlignmentInput" >
-                <p className="Title">Alignment</p>
-                <div>
-                    <button onClick={() => this.props.onClick("textAlign|left")}>
-                        <FontAwesomeIcon icon={faAlignLeft} />
-                    </button>
-                    <button onClick={() => this.props.onClick("textAlign|center")}>
-                        <FontAwesomeIcon icon={faAlignCenter} />
-                    </button>
-                    <button onClick={() => this.props.onClick("textAlign|right")}>
-                        <FontAwesomeIcon icon={faAlignRight} />
-                    </button>
-                    <button onClick={() => this.props.onClick("textAlign|justify")}>
-                        <FontAwesomeIcon icon={faAlignJustify} />
-                    </button>
-                </div>
+                <Button onClick={() => this.props.onClick("textAlign|left")}>
+                    <FontAwesomeIcon icon={faAlignLeft} />
+                </Button>
+                <Button onClick={() => this.props.onClick("textAlign|center")}>
+                    <FontAwesomeIcon icon={faAlignCenter} />
+                </Button>
+                <Button onClick={() => this.props.onClick("textAlign|right")}>
+                    <FontAwesomeIcon icon={faAlignRight} />
+                </Button>
+                <Button onClick={() => this.props.onClick("textAlign|justify")}>
+                    <FontAwesomeIcon icon={faAlignJustify} />
+                </Button>
             </div>
         );
     }
@@ -334,16 +332,16 @@ export function SetImageSize() {
                 </div>
                 <br></br>
                 <div>
-                    <label for = "height" className="HeightTag">Height:&nbsp;</label>
-                    <input type="text" id = "height" maxLength = "4" size = "5"></input>
-                    
-                    <label for = "width" className = "WidthTag">&nbsp;&nbsp;&nbsp;&nbsp;Width: &nbsp;</label>
-                    <input type="text" id = "width" maxLength = "4" size = "5"></input>
+                    <label for="height" className="HeightTag">Height:&nbsp;</label>
+                    <input type="text" id="height" maxLength="4" size="5"></input>
+
+                    <label for="width" className="WidthTag">&nbsp;&nbsp;&nbsp;&nbsp;Width: &nbsp;</label>
+                    <input type="text" id="width" maxLength="4" size="5"></input>
                     {/* &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; */}
-                    <div className = "ImageApply">
-                        <button type = "button">Apply</button>
+                    <div className="ImageApply">
+                        <button type="button">Apply</button>
                     </div>
-                    
+
                 </div>
 
             </div>
@@ -371,7 +369,7 @@ export class ColourPicker extends Component {
         this.handler = this.handler.bind(this);
     }
 
-    handler(){
+    handler() {
         this.props.onChange("color|" + this.state.background)
     }
 
@@ -387,6 +385,59 @@ export class ColourPicker extends Component {
                 color={this.state.background}
                 onChange={this.handleOnChange}
             />
+        );
+    }
+}
+
+export class BackgroundColorPicker extends Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            background: '#fff',
+        };
+        this.handler = this.handler.bind(this);
+    }
+
+    handler() {
+        this.props.onChange("backgroundColor|" + this.state.background)
+    }
+
+    handleOnChange = (color) => {
+        this.setState({ background: color.hex });
+        this.handler()
+    };
+
+
+    render() {
+        return (
+            <ChromePicker
+                color={this.state.background}
+                onChange={this.handleOnChange}
+            />
+        );
+    }
+}
+
+export class AlignmentImage extends Component {
+    render() {
+        return (
+            <div className="AlignmentInput" >
+                <Button onClick={() => {
+                    this.props.onClick("textAlign|left");
+                }}>
+                    <FontAwesomeIcon icon={faAlignLeft} />
+                </Button>
+                <Button onClick={() => {
+                    this.props.onClick("textAlign|center");
+                }}>
+                    <FontAwesomeIcon icon={faAlignCenter} />
+                </Button>
+                <Button onClick={() => {
+                    this.props.onClick("textAlign|right");
+                }}>
+                    <FontAwesomeIcon icon={faAlignRight} />
+                </Button>
+            </div>
         );
     }
 }
