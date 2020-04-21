@@ -14,7 +14,12 @@ class HomePage extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      page: <LandingPage getStartedOnClick={this.getStarted_OnClick} />,
+      page: (
+        <LandingPage
+          getStartedOnClick={this.getStarted_OnClick}
+          userManual_OnClick={this.userManual_OnClick}
+        />
+      ),
       activeButton: "",
     };
 

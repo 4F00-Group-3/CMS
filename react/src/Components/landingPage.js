@@ -9,7 +9,7 @@ import {
   CardActions,
   FooterSection,
   Footer,
-  FooterLinkList
+  FooterLinkList,
 } from "react-mdl";
 import GetStarted from "./getStarted";
 
@@ -17,7 +17,7 @@ class landingPage extends Component {
   getStarted_OnClick = () => {
     this.setState({
       page: <GetStarted signUp_click={this.signUp_OnClick} />,
-      activeButton: "get-started"
+      activeButton: "get-started",
     });
   };
 
@@ -39,7 +39,12 @@ class landingPage extends Component {
             </h4>
             <br />
             <div className="center-logo">
-              <Button raised ripple primary onClick={this.props.getStartedOnClick}>
+              <Button
+                raised
+                ripple
+                primary
+                onClick={this.props.getStartedOnClick}
+              >
                 Get Started
               </Button>
             </div>
@@ -61,7 +66,8 @@ class landingPage extends Component {
               {/* Row 1 */}
               <div className="faq-grid" style={{ paddingBottom: "30px" }}>
                 {/* Card 1 */}
-                <Card className={"LandingPage-Card"}
+                <Card
+                  className={"LandingPage-Card"}
                   style={{
                     width: "256px",
                     height: "256px",
@@ -74,7 +80,8 @@ class landingPage extends Component {
                   <CardActions className="faq-cards-actions"></CardActions>
                 </Card>
                 {/* Card 2 */}
-                <Card className={"LandingPage-Card"}
+                <Card
+                  className={"LandingPage-Card"}
                   style={{
                     width: "256px",
                     height: "256px",
@@ -87,7 +94,8 @@ class landingPage extends Component {
                   <CardActions className="faq-cards-actions"></CardActions>
                 </Card>
                 {/* Card 3 */}
-                <Card className={"LandingPage-Card"}
+                <Card
+                  className={"LandingPage-Card"}
                   style={{
                     width: "256px",
                     height: "256px",
@@ -105,7 +113,8 @@ class landingPage extends Component {
               {/* Row 2 */}
               <div className="faq-grid">
                 {/* Card 1 */}
-                <Card className={"LandingPage-Card"}
+                <Card
+                  className={"LandingPage-Card"}
                   style={{
                     width: "256px",
                     height: "256px",
@@ -118,7 +127,8 @@ class landingPage extends Component {
                   <CardActions className="faq-cards-actions"></CardActions>
                 </Card>
                 {/* Card 2 */}
-                <Card className={"LandingPage-Card"}
+                <Card
+                  className={"LandingPage-Card"}
                   style={{
                     width: "256px",
                     height: "256px",
@@ -131,7 +141,8 @@ class landingPage extends Component {
                   <CardActions className="faq-cards-actions"></CardActions>
                 </Card>
                 {/* Card 3 */}
-                <Card className={"LandingPage-Card"}
+                <Card
+                  className={"LandingPage-Card"}
                   style={{
                     width: "256px",
                     height: "256px",
@@ -159,7 +170,8 @@ class landingPage extends Component {
               {/* Row 1 */}
               <div className="faq-grid">
                 {/* Card 1 */}
-                <Card className={"LandingPage-Card"}
+                <Card
+                  className={"LandingPage-Card"}
                   style={{
                     width: "256px",
                     height: "256px",
@@ -172,7 +184,8 @@ class landingPage extends Component {
                   <CardActions className="faq-cards-actions"></CardActions>
                 </Card>
                 {/* Card 2 */}
-                <Card className={"LandingPage-Card"}
+                <Card
+                  className={"LandingPage-Card"}
                   style={{
                     width: "256px",
                     height: "256px",
@@ -185,7 +198,8 @@ class landingPage extends Component {
                   <CardActions className="faq-cards-actions"></CardActions>
                 </Card>
                 {/* Card 3 */}
-                <Card className={"LandingPage-Card"}
+                <Card
+                  className={"LandingPage-Card"}
                   style={{
                     width: "256px",
                     height: "256px",
@@ -206,7 +220,11 @@ class landingPage extends Component {
           <Footer size="mini">
             <FooterSection type="left" logo="NO.">
               <FooterLinkList>
-                <a href="#">Help</a>
+                <div>
+                  <a href="#" onClick={this.props.userManual_OnClick}>
+                    User Manual
+                  </a>
+                </div>
                 <a href="#">Privacy & Terms</a>
               </FooterLinkList>
             </FooterSection>
