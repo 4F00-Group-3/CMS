@@ -80,3 +80,53 @@
 .edit-menu-nav {
   margin: 2%;
 }
+
+.sidebar-button {
+  height: 20%;
+  border-radius: 20px;
+  margin: 5%;
+  border: 0px hidden;
+  background-color: #fff;
+  padding: 4%;
+}
+
+.sidebar-icon {
+  height: 8vh !important;
+  width: 8vh !important;
+  color: #2d3436;
+}
+
+p {
+  color: #2d3436 !important;
+  margin-bottom: 0 !important;
+}
+
+.back-delete-menu {
+  bottom: 0;
+  left: 0;
+  right: 0;
+  position: absolute;
+  background-color: #2d3436!important;
+  border: hidden!important;
+}
+
+.vertically-center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.editor-menu {
+  margin: 2%;
+  background-color: #dfe6e9!important;
+}
+
+.auto-bottom {
+  bottom: auto!important;
+}
+
+.left-centered-label {
+  display:flex;
+  align-items:center;
+  width:100%;
+}

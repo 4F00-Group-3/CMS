@@ -38,7 +38,7 @@ export default class RowEditorMenu extends Component {
 
     render() {
         return (
-            <div className="border bg-light rounded p-1 editor-menu">
+            <div className=" rounded p-1 editor-menu">
                 <div>
                     <label className="d-block font-weight-bold">Edit Row</label>
                 </div>
@@ -60,7 +60,7 @@ export default class RowEditorMenu extends Component {
                         </Form.Control>
                     </Col>
                 </Row>
-                <EditMenuNav handleBack={this.props.handleBack} handleDelete={this.props.handleDelete} />
+                <EditMenuNav  handleBack={this.props.handleBack} handleDelete={this.props.handleDelete} />
             </div>
         );
     };

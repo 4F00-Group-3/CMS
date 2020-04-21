@@ -441,3 +441,27 @@ export class AlignmentImage extends Component {
         );
     }
 }
+
+export class AlignmentVideo extends Component {
+    render() {
+        return (
+            <div className="AlignmentInput" >
+                <Button onClick={() => {
+                    this.props.onClick("margin|auto auto auto 0px");
+                }}>
+                    <FontAwesomeIcon icon={faAlignLeft} />
+                </Button>
+                <Button onClick={() => {
+                    this.props.onClick("margin|auto auto auto auto");
+                }}>
+                    <FontAwesomeIcon icon={faAlignCenter} />
+                </Button>
+                <Button onClick={() => {
+                    this.props.onClick("margin|auto 0px auto auto");
+                }}>
+                    <FontAwesomeIcon icon={faAlignRight} />
+                </Button>
+            </div>
+        );
+    }
+}

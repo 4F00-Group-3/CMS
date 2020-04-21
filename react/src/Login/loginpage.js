@@ -3,6 +3,21 @@ import Container from "@material-ui/core/Container";
 import Card from "@material-ui/core/Card";
 import AjaxCall from "../ajax.js";
 import LoginBackend from "./backend/LoginBackend";
+import CreateAccount from './CreateAccount.js';
+import '../css/LoginPage.css';
+import Form from 'react-bootstrap/Form';
+import Row from 'react-bootstrap/Row';
+import Col from 'react-bootstrap/Col';
+import { Jumbotron } from "react-bootstrap";
+import ForgotPassword from './ForgotPassword';
+
+
+import {
+  FooterSection,
+  Footer,
+  FooterLinkList
+} from "react-mdl";
+
 let backend = new LoginBackend();
 
 class LoginPage extends Component {

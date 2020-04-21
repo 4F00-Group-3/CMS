@@ -27,9 +27,19 @@ export default class PageSection extends Component {
      * @param {*} autoplay autoplay boolean
      * @param {*} loop loop boolean
      */
+    //https://www.youtube.com/watch?v=IUMTaAQ43lY
     returnYouTube(url, height, width, autoplay, loop) {
-        var splitURL = url.split("/");
-        let result = splitURL[0] + "//" + splitURL[2] + "/embed/" + splitURL[3] + "/";
+        var videoID = "";
+        var splitURL;
+        if (url.includes("watch")) {
+            splitURL = url.split("=");
+            videoID = splitURL[1]
+        }
+        else {
+            splitURL = url.split("/");
+            videoID = splitURL[3]
+        }
+
         const opts = {
             height: height,
             width: width,
@@ -42,7 +52,7 @@ export default class PageSection extends Component {
 
         return (
             <YouTube
-                videoId={splitURL[3]}
+                videoId={videoID}
                 opts={opts}
                 onReady={this._onReady}
             />)
@@ -138,13 +148,31 @@ export default class PageSection extends Component {
                 )
             }
             case "divider": {
-                return (<hr key={this.props.page.id} style={this.props.page.style[0]} />);
+                return (
+                    <div style={{ backgroundColor: this.props.page.style[0]['backgroundColor'], padding: "1%" }}>
+                        <hr key={this.props.page.id} style={this.props.page.style[0]} />
+                    </div>
+                );
             }
             case "image": {
-                return (<div style={{ textAlign: this.props.page.style[0]['textAlign'] }}><img key={this.props.page.id} style={this.props.page.style[0]} src={this.props.page.url} alt={this.props.page.text} /></div>)
+                return (<div style={{ textAlign: this.props.page.style[0]['textAlign'], backgroundColor: this.props.page.style[0]['backgroundColor'] }}><img key={this.props.page.id} style={this.props.page.style[0]} src={this.props.page.url} alt={this.props.page.text} /></div>)
             }
             case "button": {
-                return (<div style={{ textAlign: this.props.page.style[0]['textAlign'] }}><a className={"btn btn-primary"} key={this.props.page.id} href={this.props.page.href} style={this.props.page.style[0]}>{this.props.page.text}</a></div>)
+                return (
+                    <div
+                        style={{
+                            textAlign: this.props.page.style[0]['textAlign'],
+                            backgroundColor: this.props.page.sectionBg
+                        }}>
+                        <a
+                            className={"btn btn-primary"}
+                            key={this.props.page.id}
+                            href={this.props.page.href}
+                            style={this.props.page.style[0]}>
+                            {this.props.page.text}
+                        </a>
+                    </div>
+                )
             }
             case "spacer": {
                 return (
@@ -155,13 +183,15 @@ export default class PageSection extends Component {
             }
             case "video": {
                 return (
-                    <div key={this.props.page.id} style={this.props.page.style[0]}>
-                        {this.returnYouTube(
-                            this.props.page.url,
-                            this.props.page.style[0]["height"],
-                            this.props.page.style[0]["width"],
-                            this.props.page.style[0]["autoplay"],
-                            this.props.page.style[0]["loop"])}
+                    <div style={{backgroundColor: this.props.page.style[0]["backgroundColor"]}}>
+                        <div key={this.props.page.id} style={this.props.page.style[0]}>
+                            {this.returnYouTube(
+                                this.props.page.url,
+                                this.props.page.style[0]["height"],
+                                this.props.page.style[0]["width"],
+                                this.props.page.style[0]["autoplay"],
+                                this.props.page.style[0]["loop"])}
+                        </div>
                     </div>
                 );
             }
