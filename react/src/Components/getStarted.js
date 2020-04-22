@@ -13,25 +13,34 @@ import {
   Layout,
 } from "react-mdl";
 import Payments from "./payments";
-import NewWindow from "react-new-window";
 
 class GetStarted extends Component {
+  constructor(props) {
+      super(props);
 
+      this.state = {
+        showSignUp: false
+      };
 
-  Footer() {
-    return (
-      <div style={{ paddingbottom: "60px" }}>
-
-        <Footer className='login-footer' size="mini">
-          <FooterSection type="left" logo="NO.">
-            <FooterLinkList>
-              <a href="#">Help</a>
-              <a href="#">Privacy & Terms</a>
-            </FooterLinkList>
-          </FooterSection>
-        </Footer>
-      </div>);
+      if (sessionStorage.getItem('id') === null) {
+        this.state.showSignUp = true;
+    }
   }
+
+    Footer() {
+      return (
+          <div style={{ paddingbottom: "60px" }}>
+
+            <Footer className='login-footer' size="mini">
+              <FooterSection type="left" logo="NO.">
+                <FooterLinkList>
+                  <a href="#">Help</a>
+                  <a href="#">Privacy & Terms</a>
+                </FooterLinkList>
+              </FooterSection>
+            </Footer>
+          </div>);
+    }
 
 
   render() {
@@ -59,6 +68,12 @@ class GetStarted extends Component {
                 <Payments className='paypal-btn' amount={10}
                 handleSitePageClick = {this.props.handleSitePageClick}
                 >Pay</Payments>
+                {this.state.showSignUp ?
+                      <a href="#" onClick={this.props.signUp_click}>
+                        Sign up
+                      </a>
+                      : null
+                  }
               </Card.Body>
             </Card>
 
@@ -82,6 +97,12 @@ class GetStarted extends Component {
                 <Payments amount={20}
                 handleSitePageClick = {this.props.handleSitePageClick}
                 >Pay</Payments>
+                {this.state.showSignUp ?
+                      <a href="#" onClick={this.props.signUp_click}>
+                        Sign up
+                      </a>
+                      : null
+                  }
               </Card.Body>
             </Card>
 
@@ -105,6 +126,12 @@ class GetStarted extends Component {
                 <Payments amount={30}
                   handleSitePageClick = {this.props.handleSitePageClick}
                 >Pay</Payments>
+                {this.state.showSignUp ?
+                      <a href="#" onClick={this.props.signUp_click}>
+                        Sign up
+                      </a>
+                      : null
+                  }
               </Card.Body>
             </Card>
           </Row>

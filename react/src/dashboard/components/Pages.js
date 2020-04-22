@@ -171,7 +171,7 @@ class Pages extends Component {
 
     createPage=(name)=> {
         AjaxCall(
-            { function: "addPage", websiteId: sessionStorage.getItem('siteId') || 0, pageName: name },
+            { function: "addPage", websiteId: sessionStorage.getItem('siteId') || 0, pageName: name , accountId: sessionStorage.getItem('id') },
             (response) => {
               console.log(response);
               if (!response.toString().includes("false")) {

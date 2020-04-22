@@ -24,11 +24,12 @@ class Website{
         $siteName = str_replace(" ","_",$siteName);
 
         $stmt = Dbh::connect()
-            ->PREPARE('INSERT INTO websites(account_id, path, site_name, description) VALUES(:accountId, :path, :siteName, :description)');
+            ->PREPARE('INSERT INTO websites(account_id, path, site_name, description, image) VALUES(:accountId, :path, :siteName, :description, :image)');
         $stmt->bindValue(':accountId', $accountId);
         $stmt->bindValue(':path', $path);
         $stmt->bindValue(':siteName',$siteName);
         $stmt->bindValue(':description',$description);
+        $stmt->bindValue(':image',"https://images.unsplash.com/photo-1483651646696-c1b5fe39fc0e?ixlib=rb-1.2.1&auto=format&fit=crop&w=675&q=80");
         $stmt->execute();
 
         // Gather Schema data from website data
@@ -73,31 +74,241 @@ class Website{
 
 
         // ADD PAGE to new schema page table
-        $file[] = array("source" =>"<!DOCTYPE html><html><head><title>Page Title</title></head><body><h1>This is a Heading</h1><p>This is a paragraph.</p></body></html>");
+        $file = array(
+            array("id"=>1,
+                "type"=>"heading",
+                "text"=>"Your Homepage",
+                "style"=>array(
+                    "color"=>"black",
+                    "fontSize"=>"81px",
+                    "textAlign"=>"center",
+                    "fontFamily"=>"Lucida Sans Unicode", "Lucida Grande", "sans-serif")),
+            array("id"=>12,
+                "type"=>"spacer",
+                "text"=>"heading 1",
+                "style"=>array(
+                    "color"=>"black",
+                    "fontSize"=>"13px",
+                    "textAlign"=>"left"
+                )),
+
+            array("id"=>2,
+                "type"=>"image",
+                "text"=>"alt text here",
+                "url"=>"https://images.unsplash.com/photo-1528557692780-8e7be39eafab?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1350&q=80",
+                "style"=>array(
+                    "width"=>"px",
+                    "borderRadius"=>"5px",
+                    "marginLeft"=>"0",
+                    "marginRight"=>"0",
+                    "marginTop"=>"0",
+                    "marginBottom"=>"0",
+                    "textAlign"=>"center")),
+
+            array("id"=>3,
+                "type"=>"row",
+                "style"=>array(),
+                "col"=>1,
+                "page"=>array(
+                    "id"=>"3|1",
+                    "type"=>"column",
+                    "style"=>array(),
+                    "page"=>array())),
+
+            array("id"=>4,
+                "type"=>"row",
+                "style"=>array(),
+                "col"=>1,
+                "page"=>array(
+                    "id"=>"4|1",
+                    "type"=>"column",
+                    "style"=>array(),
+                    "page"=>array())),
+
+            array("id"=>13,
+                "type"=>"spacer",
+                "text"=>"heading 1",
+                "style"=>array(
+                    "color"=>"black",
+                    "fontSize"=>"12px",
+                    "textAlign"=>"left")),
+
+            array("id"=>6,
+                "type"=>"heading",
+                "text"=>"Add videos and pictures to express your company's unique culture",
+                "style"=>array(
+                    "color"=>"black",
+                    "fontSize"=>"38px",
+                    "textAlign"=>"center",
+                    "fontFamily"=>"Lucida Sans Unicode", "Lucida Grande", "sans-serif")),
+
+            array("id"=>14,
+                "type"=>"spacer",
+                "text"=>"heading 1",
+                "style"=>array(
+                    "color"=>"black",
+                    "fontSize"=>"12px",
+                    "textAlign"=>"left")),
+
+            array("id"=>5,
+                "type"=>"video",
+                "text"=>"heading 1",
+                "url"=>"https://youtu.be/X4Q7d0CtYyk",
+                "style"=>array(
+                    "color"=>"black",
+                    "fontSize"=>"10vh",
+                    "textAlign"=>"center",
+                    "height"=>"500px",
+                    "width"=>"750px",
+                    "margin"=>"auto",
+                    "autoplay"=>"0",
+                    "loop"=>"0")),
+            array("id"=>11,
+                "type"=>"divider",
+                "text"=>"rounded divider",
+                "style"=>array(
+                    "borderTop"=>"8px solid #000000",
+                    "borderRadius"=>"0px",
+                    "width"=>"100%")),
+            array("id"=>7,
+                "type"=>"heading",
+                "text"=>"Create custom buttons",
+                "style"=>array(
+                    "color"=>"black",
+                    "fontSize"=>"43px",
+                    "textAlign"=>"center",
+                    "fontFamily"=>"Lucida Sans Unicode", "Lucida Grande", "sans-serif")),
+            array("id"=>8,
+                "type"=>"button",
+                "text"=>"Your Button",
+                "href"=>"#",
+                "style"=>array(
+                    "color"=>"#000000",
+                    "backgroundColor"=>"#696969",
+                    "textAlign"=>"center",
+                    "border"=>"0px",
+                    "borderRadius"=>"12px")),
+            array("id"=>10,
+                "type"=>"divider",
+                "text"=>"rounded divider",
+                "style"=>array(
+                    "borderTop"=>"8px solid #0a0606",
+                    "borderRadius"=>"0px",
+                    "width"=>"100%")),
+            array("id"=>9,
+                "type"=>"heading",
+                "text"=>"Get started by using our editor!",
+                "style"=>array(
+                    "color"=>"black",
+                    "fontSize"=>"40px",
+                    "textAlign"=>"center",
+                    "fontFamily"=>"Lucida Sans Unicode", "Lucida Grande", "sans-serif")));
+
+
         $stmt = Dbh::connect()
             ->PREPARE("INSERT INTO $schemaPages(name, file, path) VALUES(:name, :file, :path)");
         $stmt->bindValue(':name', "home.html");
         $stmt->bindValue(':file', json_encode($file));
-        $stmt->bindValue(':path',"sites/".$siteName."/html/home.html" );
+        $stmt->bindValue(':path',"sites/".$accountId."/".$siteName."/html/home.html" );
         $stmt->execute();
         //Check to see if page is in DB
         $stmt = Dbh::connect()
             ->PREPARE("SELECT * FROM $schemaPages WHERE path=?");
-        $stmt->execute(["sites/".$siteName."/html/home.html"]);
+        $stmt->execute(["sites/".$accountId."/".$siteName."/html/home.html"]);
         if(!$stmt->rowCount()){
             return false;
         }
 
         //Create backend directory and home page
-        mkdir("../sites/".$siteName);
-        mkdir("../sites/".$siteName."/html");
-        mkdir("../sites/".$siteName."/css");
-        mkdir("../sites/".$siteName."/js");
-        $file = fopen("../sites/".$siteName."/html/home.html","w");
-        $txt = "<!DOCTYPE html><html><head><title>Page Title</title></head><body><h1>This is a Heading</h1><p>This is a paragraph.</p></body></html>";
+//        mkdir("../sites/".$accountId);
+        mkdir("../sites/".$accountId."/".$siteName);
+        mkdir("../sites/".$accountId."/".$siteName."/html");
+        mkdir("../sites/".$accountId."/".$siteName."/css");
+        mkdir("../sites/".$accountId."/".$siteName."/js");
+        $file = fopen("../sites/".$accountId."/".$siteName."/html/home.html","w");
+        $txt = "<!DOCTYPE html>
+                    <html>
+                    <head>
+                    <title>Home</title>
+                    </head>
+                    <body>
+                    <h1 style=\"color:black;font-size:81px;text-align:center;font-family:Lucida Sans Unicode,Lucida Grande,sans-serif;\">Your Homepage</h1>
+                    
+                    <div style=\"color:black;font-size:13px;text-align:left;\" ></div>
+                    
+                    
+                    <div style=\"text-align:center\">
+                    <img style=\"width:px;border-radius:5px;margin-left:0;margin-right:0;margin-top:0;margin-bottom:0;text-align:center\" src=\"https://images.unsplash.com/photo-1528557692780-8e7be39eafab?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1350&q=80\" alt=\"alt text here\" />
+                    </div>
+                    
+                    <div style=\"color:black;font-size:12px;text-align:left;\" ></div>
+                    
+                    <h1 style=\"color:black;font-size:38px;text-align:center;font-family:Lucida Sans Unicode,Lucida Grande,sans-serif;\">Add videos and pictures to express your company's unique culture</h1>
+                    
+                    <div style=\"color:black;font-size:12px;text-align:left;\" ></div>
+                    
+                    <div style=\"color:black;font-size:10vh;text-align:center;height:500px;width:750px;margin:auto;\">
+                    
+                    <iframe width=\"750px\" height=\"500px\" src=\"https://www.youtube.com/embed/X4Q7d0CtYyk\" frameborder=\"0\" allow=\"accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture\" allowfullscreen></iframe>
+                    
+                    </div>
+                    
+                    <hr style=\"border-top:8px solid #000000;border-radius:0px;width:100%\" />
+                    
+                    <h1 style=\"color:black;font-size:43px;text-align:center;font-family:Lucida Sans Unicode,Lucida Grande,sans-serif;\">Create custom buttons</h1>
+                    
+                    <div style=\"text-align:center;\">
+                    <a className=\"btn btn-primary\"
+                    href=\"#\"
+                    style=\"color:#000000;background-color:#696969;text-align:center;border:0px;border-radius:12px\">
+                    Your Button</a>
+                    </div>
+                    
+                    <hr style=\"border-top:8px solid #0a0606;border-radius:0px;width:100%\" />
+                    
+                    
+                    <h1 style=\"color:black;font-size:40px;text-align:center;font-family:Lucida Sans Unicode,Lucida Grande,sans-serif;\">Get started by using our editor!</h1>
+                    </body>
+                    </html>
+                    ";
         fwrite($file, $txt);
         fclose($file);
         return $websiteId;
+    }
+
+
+    public static function deleteWebsite($accountId, $websiteId){
+        //Gather website name for deletion
+        $stmt = Dbh::connect()
+            ->PREPARE("SELECT * FROM websites WHERE account_id=? AND website_Id=?");
+        $stmt->execute([$accountId, $websiteId]);
+        if($stmt->rowCount()){
+            $row = $stmt->fetch();
+            $siteName = $row['site_name'];
+        }else{
+            return false;
+        }
+
+        //Delete website from websites table
+        $stmt = Dbh::connect()
+            ->PREPARE('DELETE FROM websites WHERE account_id=? AND website_Id=?');
+        $stmt->execute([$accountId, $websiteId]);
+
+        $schemaName = 'website'.$websiteId;
+
+        //DELETE SCHEMA AND ALL TABLES
+        $stmt = Dbh::connect()
+            ->PREPARE('DROP SCHEMA IF EXISTS '.$schemaName.' CASCADE');
+        $stmt->execute();
+
+
+        //Delete backend directory
+        array_map('unlink', glob("../sites/".$accountId."/".$siteName."/html/*.*"));
+
+        rmdir("../sites/".$accountId."/".$siteName."/html");
+        rmdir("../sites/".$accountId."/".$siteName."/css");
+        rmdir("../sites/".$accountId."/".$siteName."/js");
+        return rmdir("../sites/".$accountId."/".$siteName);
     }
 
     //********************* FUNCTIONS FOR WEBSITE USERS *****************************
@@ -136,12 +347,6 @@ class Website{
 
     // Add user to website
     public static function addUser($schema, $firstName, $lastName, $password, $email, $userType){
-//        $firstName = "Casey";
-//        $lastName = "Morgado";
-//        $password = "test321";
-//        $email = "casey981@live.com";
-//        $userType = "ADMIN";
-
         $stmt = Dbh::connect()
             ->PREPARE('INSERT INTO $schema.users(first_name, last_name, password, email, user_type) VALUES(:firstName, :lastName, :password, :email, :userType)');
         $stmt->bindValue(':firstName', $firstName);
@@ -220,7 +425,7 @@ class Website{
         }
     }
 
-    public static function addPage($schema, $pageName, $siteId){
+    public static function addPage($schema, $pageName, $siteId,$accountId){
         //Get website name
         $stmt = Dbh::connect()
             ->PREPARE("SELECT * FROM websites WHERE website_id=?");
@@ -234,8 +439,8 @@ class Website{
         $siteName = $websiteId["name"];
 
         // ADD PAGE to new schema page table
-        $file[] = array("source" =>"<!DOCTYPE html><html><head><title>Page Title</title></head><body><h1>This is a Heading</h1><p>This is a paragraph.</p></body></html>");
-        $path = "sites/".$siteName."/html/".$pageName.".html";
+        $path = "sites/".$accountId."/".$siteName."/html/".$pageName.".html";
+
         $stmt = Dbh::connect()
             ->PREPARE("INSERT INTO $schema.pages(name, file, path) VALUES(:name, :file, :path)");
         $stmt->bindValue(':name', $pageName);
@@ -245,7 +450,7 @@ class Website{
 
         //Add page in server under /sites/"websiteName"/html/"pageName"
         $file = fopen("../".$path,"w");
-        fwrite($file, $file["source"]);
+        fwrite($file, "");
         fclose($file);
 
         //Check to see if page is in DB

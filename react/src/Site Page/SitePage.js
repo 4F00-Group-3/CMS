@@ -199,6 +199,17 @@ class SitePage extends Component {
                         siteInfo: json
                     });
                 });
+            var check = false;
+            AjaxCall({ function: 'checkWebsites', subscription: sessionStorage.getItem("tier"), accountId: sessionStorage.getItem("id")},
+                function (response) {
+                    if (!response.toString().includes("false")) {
+                        console.log("Response:", response);
+                        check = true;
+                        self.setState({
+                            tier: check
+                        });
+                    }
+                });
         } else {
             // Redirect to login
             this.props.handleHomeClick();
@@ -221,11 +232,7 @@ class SitePage extends Component {
      */
     handleRedirectToAccoutingSettings() {
         // For testing purposes
-        // alert("Redirecting to Account Settings...oops we don't have an account settings page");
-        this.setState({
-            page: <Settings />,
-            activeButton: "",
-        });
+        alert("Redirecting to Account Settings...oops we don't have an account settings page");
     }
 
     /**
@@ -233,8 +240,7 @@ class SitePage extends Component {
     */
     handleUpgradePlan() {
         // For testing purposes
-        // alert("Upgrading you to Supreme Overlord of the Universe!!");
-        this.props.handleUpgradePlan();
+        alert("Upgrading you to Supreme Overlord of the Universe!!");
     }
 
     togglePopup() {
@@ -305,18 +311,20 @@ class SitePage extends Component {
                                             </div>
                                         )
                                     }
-                                    <div className="column">
-                                        <button className='btn btn-primary' onClick={this.togglePopup.bind(this)} value="New">New</button>
-                                        {this.state.showPopup ?
-                                            <Popup
-                                                text='Enter the title of the new page.'
-                                                handleDashClick={this.props.handleDashClick}
-                                                closePopup={this.togglePopup.bind(this)}
-                                            />
-                                            : null
-                                        }
-                                    </div>
-
+                                    {this.state.tier?
+                                        <div className="column">
+                                            <button onClick={this.togglePopup.bind(this)} value="New">New</button>
+                                            {this.state.showPopup ?
+                                                <Popup
+                                                    text='Enter the title of the new page.'
+                                                    handleDashClick={this.props.handleDashClick}
+                                                    closePopup={this.togglePopup.bind(this)}
+                                                />
+                                                : null
+                                            }
+                                        </div>
+                                        :null
+                                    }
                                 </div>
                             </div>
                         </div>
