@@ -3,6 +3,7 @@ import '../../../css/EditorMenuComponents.css';
 import {
     AlignmentImage,
     ColourPicker,
+    BackgroundColorPicker,
 } from './EditorMenuComponents';
 import { ChromePicker } from 'react-color';
 import { Form, Col, Button } from 'react-bootstrap';
@@ -131,7 +132,7 @@ class ButtonEditor extends Component {
             return (
                 <>
                     <Button id='bgColorPickerButton' className="mt-2" onClick={this.handleBGColorPicker}>Close Color Picker</Button>
-                    <BackgroundColorPicker
+                    <SectionBackgroundColorPicker
                         id='bgColorPicker'
                         onChange={this.props.menuComponentOnClick}
                     />
@@ -259,7 +260,7 @@ class ButtonEditor extends Component {
     };
 }
 
-class BackgroundColorPicker extends Component {
+class SectionBackgroundColorPicker extends Component {
     constructor(props) {
         super(props);
         this.state = {
