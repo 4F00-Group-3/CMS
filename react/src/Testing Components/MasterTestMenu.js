@@ -6,6 +6,7 @@ import SitePage from '../Site Page/SitePage';
 import Login from '../Login/LoginPage';
 import CreateAccount from '../Login/CreateAccount';
 import GetStarted from '../Components/getStarted';
+import Subscription from '../Site Page/Subscription.js';
 
 class MasterTestMenu extends Component {
   constructor(props) {
@@ -22,6 +23,7 @@ class MasterTestMenu extends Component {
     this.handleLoginClick = this.handleLoginClick.bind(this);
     this.handleCreateAccountClick = this.handleCreateAccountClick.bind(this);
     this.handleGetStartedClick = this.handleGetStartedClick.bind(this);
+    this.handleUpgradePlan = this.handleUpgradePlan.bind(this);
   }
 
   handler() {
@@ -54,6 +56,9 @@ class MasterTestMenu extends Component {
 
   handleGetStartedClick() {
     this.setState({ viewPage: "GetStarted" });
+  }
+  handleUpgradePlan() {
+    this.setState({ viewPage: "Subscription" });
   }
 
 
@@ -88,6 +93,9 @@ class MasterTestMenu extends Component {
       case "GetStarted":
         page = <GetStarted handleSitePageClick = {this.handleSitePageClick}/>;
         break;
+      case "Subscription":
+        page = <Subscription handleUpgradePlan={this.handleUpgradePlan} />;
+        break;
       default:
         page = <Home />;
     }
@@ -101,6 +109,7 @@ class MasterTestMenu extends Component {
           <button onClick={this.handleCreateAccountClick}>Create Account</button>
           <button onClick={this.handleSitePageClick}>Site Page</button>
           <button onClick={this.handleGetStartedClick}>GetStart</button>
+          <button onClick={this.handleUpgradePlan}>Manage Subscription</button>
         </div>
         <div id="testingCanvas">
           {page}

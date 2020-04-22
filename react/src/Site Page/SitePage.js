@@ -8,6 +8,7 @@ import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import Container from 'react-bootstrap/Container';
 import { Form } from "react-bootstrap";
+import Settings from "./Settings";
 import Button from 'react-bootstrap/Button';
 
 
@@ -175,7 +176,11 @@ class SitePage extends Component {
      */
     handleRedirectToAccoutingSettings() {
         // For testing purposes
-        alert("Redirecting to Account Settings...oops we don't have an account settings page");
+        // alert("Redirecting to Account Settings...oops we don't have an account settings page");
+        this.setState({
+            page: <Settings />,
+            activeButton: "",
+        });
     }
 
     /**
@@ -183,7 +188,8 @@ class SitePage extends Component {
     */
     handleUpgradePlan() {
         // For testing purposes
-        alert("Upgrading you to Supreme Overlord of the Universe!!");
+        // alert("Upgrading you to Supreme Overlord of the Universe!!");
+        this.props.handleUpgradePlan();
     }
 
     togglePopup() {
@@ -212,7 +218,7 @@ class SitePage extends Component {
                         <div className="Menu">
                             <p onClick={this.handleRedirectToAccoutingSettings}>Account Settings</p>
                             <p onClick={this.handleLogOut}>Log Out</p>
-                            <p onClick={this.handleUpgradePlan}>Upgrade</p>
+                            <p onClick={this.handleUpgradePlan}>Manage Subscription</p>
                         </div>
                         <div className="Content">
                             <div className="SiteList">
