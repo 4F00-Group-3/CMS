@@ -89,7 +89,8 @@ class Account {
 		$stmt->execute($data);
 		
 		$accountId = $stmt->fetch(PDO::FETCH_ASSOC)['account_id'];
-		return Account::getAccountById($accountId);
+        mkdir("../sites/".$accountId);
+        return Account::getAccountById($accountId);
 	}
 
     //add a new account to the database

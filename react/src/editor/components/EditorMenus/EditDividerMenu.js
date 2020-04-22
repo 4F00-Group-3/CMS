@@ -3,6 +3,12 @@ import Form from 'react-bootstrap/Form';
 import Col from 'react-bootstrap/Col';
 import Button from 'react-bootstrap/Button';
 import { ColourPicker, BackgroundColorPicker } from './EditorMenuComponents';
+import {
+  faAlignLeft,
+  faAlignCenter,
+  faAlignRight,
+} from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 class EditDividerMenu extends Component {
   constructor(props) {
@@ -96,6 +102,32 @@ class EditDividerMenu extends Component {
     }
     else {
       return (<Button onClick={() => this.handleColorPicker()}>Open Color Picker</Button>);
+    }
+  }
+  
+  /**
+   * This method sets the alignment of the divider based on user selection
+   * @param {*} alignment This is the user chosen alignment for the divider
+   */
+  SetAlignment(alignment){
+    switch(alignment){
+      case "left":
+        this.props.menuComponentOnClick("textAlign|left");
+        this.props.menuComponentOnClick("marginLeft|0");
+        this.props.menuComponentOnClick("marginRight|auto");
+        break;
+      case "right":
+        this.props.menuComponentOnClick("textAlign|right");
+        this.props.menuComponentOnClick("marginLeft|auto");
+        this.props.menuComponentOnClick("marginRight|0");
+        break;
+      case "center":
+        this.props.menuComponentOnClick("textAlign|center");
+        this.props.menuComponentOnClick("marginLeft|auto");
+        this.props.menuComponentOnClick("marginRight|auto");
+        break;
+      default: // do nothing
+        break;
     }
   }
 
@@ -276,6 +308,23 @@ class EditDividerMenu extends Component {
                 <option>vw</option>
                 <option>vh</option>
               </Form.Control>
+            </Col>
+          </Form.Row>
+        {/* Select Alignment */}
+          <Form.Row>
+            <Col>
+              <Form.Label>Alignment</Form.Label>
+            </Col>
+            <Col>
+              <Button onClick={() => this.SetAlignment("left")}>
+                <FontAwesomeIcon icon={faAlignLeft} />
+              </Button>
+              <Button onClick={() => this.SetAlignment("center")}>
+                <FontAwesomeIcon icon={faAlignCenter} />
+              </Button>
+              <Button onClick={() => this.SetAlignment("right")}>
+                <FontAwesomeIcon icon={faAlignRight} />
+              </Button>
             </Col>
           </Form.Row>
           <Form.Row>

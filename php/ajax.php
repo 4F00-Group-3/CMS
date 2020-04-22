@@ -184,7 +184,7 @@ function getUsersData(){
 
 function addPage(){
     $success = false;
-    if (!empty($_POST['websiteId']) && !empty($_POST['pageName'])) {
+    if (!empty($_POST['websiteId']) && !empty($_POST['pageName']) && !empty($_POST['accountId'])) {
         $schema = "website".$_POST['websiteId'];
         $data = Website::addPage($schema, $_POST['pageName'], $_POST['websiteId'], $_POST['accountId']);
         if ($data !== false) {

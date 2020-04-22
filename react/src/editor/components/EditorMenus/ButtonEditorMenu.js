@@ -4,8 +4,8 @@ import {
     AlignmentImage,
     ColourPicker,
 } from './EditorMenuComponents';
-import { Form, Col, Button } from 'react-bootstrap';
 import { ChromePicker } from 'react-color';
+import { Form, Col, Button } from 'react-bootstrap';
 
 
 
