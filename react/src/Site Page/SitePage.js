@@ -119,6 +119,50 @@ class Popup extends Component {
     }
 }
 
+class PopupDelete extends Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            websiteId: this.props.websiteId,
+        };
+        backend.f=this.props.handleHomeClick;
+        backend.s=this.props.handleSitePageClick;
+    }
+
+    handleDeleteWebsite = () =>{
+        const state = this;
+        AjaxCall({
+                function: "deleteWebsite",
+                accountId: sessionStorage.getItem("id"),
+                websiteId: this.state.websiteId,
+            },
+            function(response) {
+                console.log(response);
+                if (!response.toString().includes("false")) {
+                    alert("Website successfully deleted");
+                }else{
+                    alert("Website failed to delete");
+                }
+                backend.redirectDelete();
+            }
+        );
+    };
+
+
+    render() {
+        return(
+            <div className='popup'>
+                <div className='popup_inner'>
+                    <h3>Are you sure you want to delete?</h3>
+                    <button className="submitnextbutton" onClick={this.handleDeleteWebsite}>Delete</button>
+                    <br/><br/>
+                    <button className="submitnextbutton" onClick={this.props.closePopup}>Cancel</button>
+                </div>
+            </div>
+        )
+    }
+}
+
 class SitePage extends Component {
 
     constructor(props) {
@@ -126,7 +170,8 @@ class SitePage extends Component {
 
         this.state = {
             userLoggedIn: true,
-            showPopup: false
+            showPopup: false,
+            showPopupDelete: false
         };
         this.handleLogOut = this.handleLogOut.bind(this);
         this.handleRedirectToAccoutingSettings = this.handleRedirectToAccoutingSettings.bind(this);
@@ -209,6 +254,12 @@ class SitePage extends Component {
         this.props.handleDashClick();
     };
 
+    handleDeleteWebsite = () =>{
+        this.setState({
+            showPopupDelete: !this.state.showPopupDelete
+        });
+    };
+
     render() {
         var userLoggedIn = this.state.userLoggedIn;
         return (
@@ -237,6 +288,18 @@ class SitePage extends Component {
                                                         <div className="column">
                                                             <button onClick={() => this.handleViewWebsite(site.path)} value="View">View</button>
                                                         </div>
+                                                    </div>
+                                                    <div className="column">
+                                                        <button onClick={() => this.handleDeleteWebsite(this)} value="Delete">Delete</button>
+                                                        {this.state.showPopupDelete ?
+                                                            <PopupDelete
+                                                                websiteId = {site.id}
+                                                                handleHomeClick={this.props.handleHomeClick}
+                                                                handleSitePageClick={this.props.handleSitePageClick}
+                                                                closePopup={this.handleDeleteWebsite.bind(this)}
+                                                            />
+                                                            : null
+                                                        }
                                                     </div>
                                                 </div>
                                             </div>

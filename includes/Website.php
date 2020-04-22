@@ -20,6 +20,9 @@ class Website{
 
     public static function createWebsite($accountId, $path, $siteName, $description){
         // Insert website data
+
+        $siteName = str_replace(" ","_",$siteName);
+
         $stmt = Dbh::connect()
             ->PREPARE('INSERT INTO websites(account_id, path, site_name, description) VALUES(:accountId, :path, :siteName, :description)');
         $stmt->bindValue(':accountId', $accountId);

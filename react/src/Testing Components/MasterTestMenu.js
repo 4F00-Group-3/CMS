@@ -88,7 +88,9 @@ class MasterTestMenu extends Component {
       case "SitePage":
         page = <SitePage handleHomeClick = {this.handleHomeClick}
                          handleDashClick = {this.handleDashClick}
-                         handleGetStartedClick = {this.handleGetStartedClick}/>;
+                         handleGetStartedClick = {this.handleGetStartedClick}
+                         handleSitePageClick = {this.handleSitePageClick}
+                         />;
         break;
       case "GetStarted":
         page = <GetStarted handleSitePageClick = {this.handleSitePageClick}/>;
