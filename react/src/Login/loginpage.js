@@ -76,8 +76,7 @@ class LoginPage extends Component {
       function (response) {
         console.log(response);
         if (!response.toString().includes("false")) {
-          // backend.redirectNewPass(); maybe casey knows how to fix this
-          alert("Password changed!");
+          backend.redirectNewPass();
         } else {
           //TODO::LOGIN FAILED DISPLAY ERROR MSG
           alert("Incorrect email. Please try again.")
@@ -113,10 +112,10 @@ class LoginPage extends Component {
       <div style={{ paddingbottom: "60px" }}>
 
         <Footer className='login-footer' size="mini">
-          <FooterSection type="left" logo="NORTH">
+          <FooterSection type="left" logo="NO.">
             <FooterLinkList>
-              <a target="_blank" href="https://drive.google.com/file/d/1MwbY9F0jgwucSeek6NNVVbjiav7j1oE6/preview">Help</a>
-              <a target="_blank" href="https://drive.google.com/file/d/1HRV9B0ux0zTa36ZUP3081JLIdw4o7NEo/preview">Privacy & Terms</a>
+              <a href="#">Help</a>
+              <a href="#">Privacy & Terms</a>
             </FooterLinkList>
           </FooterSection>
         </Footer>
