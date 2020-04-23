@@ -77,7 +77,7 @@ class LandingPage extends Component {
             </h4>
             <br />
             <div className="center-logo">
-              <Button className='start-btn' raised ripple primary onClick={this.props.getStartedOnClick}>
+              <Button className='start-btn' raised ripple primary onClick={this.props.login_OnClick}>
                 Get Started
               </Button>
             </div>
