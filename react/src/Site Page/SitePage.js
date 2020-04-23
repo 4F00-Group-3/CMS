@@ -269,7 +269,7 @@ class SitePage extends Component {
         this.props.handleDashClick();
     };
 
-    handleDeleteWebsite = () => {
+    handleDeleteWebsite = (info) => {
         sessionStorage.setItem("siteId", info);
         this.setState({
             showPopupDelete: !this.state.showPopupDelete
@@ -334,7 +334,7 @@ class SitePage extends Component {
                                                 </Col> */}
 
                                                 <Col className="center" xs={12} sm={6}>
-                                                    <button onClick={() => this.handleDeleteWebsite(site.id)} value="Delete">Delete</button>
+                                                    <Button className="sitepage-button-delete" onClick={() => this.handleDeleteWebsite(site.id)} value="Delete">Delete</Button>
                                                     {this.state.showPopupDelete ?
                                                         <PopupDelete
                                                             handleHomeClick={this.props.handleHomeClick}
