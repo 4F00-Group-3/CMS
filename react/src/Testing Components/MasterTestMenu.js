@@ -4,7 +4,7 @@ import Editor from '../editor/Editor';
 import Dashboard from '../dashboard/Dashboard'
 import SitePage from '../Site Page/SitePage';
 import Login from '../Login/LoginPage';
-import CreateAccount from '../Login/CreateAccount';
+import CreateAccount from '../Login/createAccount';
 import GetStarted from '../Components/getStarted';
 import Subscription from '../Site Page/Subscription.js';
 
@@ -67,33 +67,33 @@ class MasterTestMenu extends Component {
     let page;
     switch (view) {
       case "Editor":
-        page = <Editor handleHomeClick={this.handleHomeClick}/>;
+        page = <Editor handleHomeClick={this.handleHomeClick} />;
         break;
       case "Home":
         page = <Home />;
         break;
       case "Dash":
-        page = <Dashboard handleHomeClick = {this.handleHomeClick}/>;
+        page = <Dashboard handleHomeClick={this.handleHomeClick} />;
         break;
       case "Login":
-        page = <Login handleSitePageClick = {this.handleSitePageClick}
-                      handleCreateAccountClick={this.handleCreateAccountClick}
-                      handleGetStartedClick = {this.handleGetStartedClick}
-                      handleHomeClick={this.handleHomeClick}/>;
+        page = <Login handleSitePageClick={this.handleSitePageClick}
+          handleCreateAccountClick={this.handleCreateAccountClick}
+          handleGetStartedClick={this.handleGetStartedClick}
+          handleHomeClick={this.handleHomeClick} />;
         break;
       case "Create Account":
-        page = <CreateAccount handleSitePageClick = {this.handleSitePageClick}
-                              handleGetStartedClick = {this.handleGetStartedClick}/>;
+        page = <CreateAccount handleSitePageClick={this.handleSitePageClick}
+          handleGetStartedClick={this.handleGetStartedClick} />;
         break;
       case "SitePage":
-        page = <SitePage handleHomeClick = {this.handleHomeClick}
-                         handleDashClick = {this.handleDashClick}
-                         handleGetStartedClick = {this.handleGetStartedClick}
-                         handleSitePageClick = {this.handleSitePageClick}
-                         />;
+        page = <SitePage handleHomeClick={this.handleHomeClick}
+          handleDashClick={this.handleDashClick}
+          handleGetStartedClick={this.handleGetStartedClick}
+          handleSitePageClick={this.handleSitePageClick}
+        />;
         break;
       case "GetStarted":
-        page = <GetStarted handleSitePageClick = {this.handleSitePageClick}/>;
+        page = <GetStarted handleSitePageClick={this.handleSitePageClick} />;
         break;
       case "Subscription":
         page = <Subscription handleUpgradePlan={this.handleUpgradePlan} />;

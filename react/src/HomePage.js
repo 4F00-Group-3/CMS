@@ -8,18 +8,24 @@ import {
 } from "react-mdl";
 import GetStarted from './Components/getStarted';
 import LoginPage from "./Login/LoginPage";
-import LandingPage from "./Components/LandingPage";
-import CreateAccount from "./Login/CreateAccount";
+import LandingPage from "./Components/landingPage";
+import CreateAccount from "./Login/createAccount";
 import Col from 'react-bootstrap/Col';
 import Row from 'react-bootstrap/Row';
 import Dashboard from './dashboard/Dashboard'
 import SitePage from './Site Page/SitePage';
+import UserManual from './UserManual'
+import PrivacyPolicy from './PrivacyPolicy'
 
 class HomePage extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      page: <LandingPage login_OnClick={this.login_OnClick} />,
+      page: <LandingPage
+        login_OnClick={this.login_OnClick}
+        getStartedOnClick={this.getStarted_OnClick}
+        userManual_OnClick={this.userManual_OnClick}
+        privacyPolicy_OnClick={this.privacyPolicy_OnClick} />,
       activeButton: "landing"
     };
 
@@ -98,11 +104,33 @@ class HomePage extends Component {
    */
   login_OnClick = () => {
     this.setState({
-      page: <LoginPage handleSitePageClick = {this.props.handleSitePageClick}
-      handleCreateAccountClick={this.handleCreateAccountClick}
-      handleGetStartedClick = {this.handleGetStartedClick}
-      handleHomeClick={this.handleHomeClick}/>,
+      page: <LoginPage handleSitePageClick={this.props.handleSitePageClick}
+        handleCreateAccountClick={this.handleCreateAccountClick}
+        handleGetStartedClick={this.handleGetStartedClick}
+        handleHomeClick={this.handleHomeClick} />,
       activeButton: "log-in"
+    });
+  };
+
+  /**
+ * This method is for the 'User Manual' button on the footer
+ * this will redirect the user to the user manual
+ */
+  userManual_OnClick = () => {
+    this.setState({
+      page: <UserManual />,
+      activeButton: "user-manual",
+    });
+  };
+
+  /**
+   * This method is for the 'Privacy Policy' button on the footer
+   * this will redirect the user to the privacy policy
+   */
+  privacyPolicy_OnClick = () => {
+    this.setState({
+      page: <PrivacyPolicy />,
+      activeButton: "privacy-policy",
     });
   };
 
@@ -127,7 +155,7 @@ class HomePage extends Component {
   }
 
   handleGetStartedClick = () => {
-    this.setState({ page: <GetStarted handleSitePageClick = {this.props.handleSitePageClick}/> });
+    this.setState({ page: <GetStarted handleSitePageClick={this.props.handleSitePageClick} /> });
   }
 
 

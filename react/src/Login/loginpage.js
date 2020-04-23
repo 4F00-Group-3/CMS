@@ -4,7 +4,7 @@ import Container from "@material-ui/core/Container";
 import Card from "@material-ui/core/Card";
 import AjaxCall from "../ajax.js";
 import LoginBackend from "./backend/LoginBackend";
-import CreateAccount from './CreateAccount.js';
+import CreateAccount from './createAccount.js';
 import '../css/LoginPage.css';
 import Form from 'react-bootstrap/Form';
 import Row from 'react-bootstrap/Row';
@@ -38,8 +38,8 @@ class LoginPage extends Component {
     backend.l = this.props.handleHomeClick;
     backend.g = this.props.handleGetStartedClick;
 
-    if (sessionStorage.getItem('id') !== null && sessionStorage.getItem('tier')===null) {
-        this.props.handleGetStartedClick();
+    if (sessionStorage.getItem('id') !== null && sessionStorage.getItem('tier') === null) {
+      this.props.handleGetStartedClick();
     } else if (sessionStorage.getItem('id') !== null) {
       this.props.handleSitePageClick();
     }

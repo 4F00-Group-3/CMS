@@ -5,7 +5,7 @@ import Jumbotron from 'react-bootstrap/Jumbotron';
 import Col from 'react-bootstrap/Col';
 import Row from 'react-bootstrap/Row';
 import Container from 'react-bootstrap/Container';
-import Card from 'react-bootstrap/Card';  
+import Card from 'react-bootstrap/Card';
 import Button from 'react-bootstrap/Button';
 import {
   FooterSection,
@@ -28,8 +28,16 @@ class LandingPage extends Component {
         <Footer className='footer' size="mini">
           <FooterSection type="left" logo="NO.">
             <FooterLinkList>
-              <a href="#">Help</a>
-              <a href="#">Privacy & Terms</a>
+              <div>
+                <a href="#" onClick={this.props.userManual_OnClick}>
+                  User Manual / Help
+                </a>
+              </div>
+              <div>
+                <a href="#" onClick={this.props.privacyPolicy_OnClick}>
+                  Privacy & Terms
+                </a>
+              </div>
             </FooterLinkList>
           </FooterSection>
         </Footer>
@@ -96,7 +104,7 @@ class LandingPage extends Component {
               </h1>
             </Col>
             <Col className='center-center-text' style={{ backgroundColor: "#2d3436" }}>
-              <p  className='white'>
+              <p className='white'>
                 A content management system or CMS as it’s usually called is a web platform which allows
                 users to create websites (complete with their domain names and full control over design and
                 content). Think of it as opening an online gateway for your customers to interact with your
