@@ -23,9 +23,11 @@
 }
 
 .SitePage .Content {
-  margin-left: 160px;
+  margin-left: 17.5%;
   /* font-size: 28px; */
   padding: 0px 20px;
+  width: 82.5%;
+  height: 100vh;
 }
 
 .SitePage .SiteIcon {
