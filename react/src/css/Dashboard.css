@@ -115,6 +115,7 @@
   text-align: center;
   display: inline-block;
   font-size: 12px;
+  padding: 0;
 }
 
 .inner-edit-dashButtons:hover {
@@ -130,6 +131,7 @@
   display: inline-block;
   font-size: 12px;
   margin-left: 5px;
+  padding: 0;
 }
 
 .inner-delete-dashButtons:hover {
