@@ -35,9 +35,9 @@ class LoginPage extends Component {
     this.createAccountOnclick = this.createAccountOnclick.bind(this);   //make it so can use this.state
     this.forgotPasswordOnclick = this.forgotPasswordOnclick.bind(this);
     backend.f = this.props.handleSitePageClick;
-    backend.l = this.props.handleHomeClick;
+    backend.l = this.props.handleLandingClick;
     backend.g = this.props.handleGetStartedClick;
-
+    console.log(this.props);  
     if (sessionStorage.getItem('id') !== null && sessionStorage.getItem('tier')===null) {
         this.props.handleGetStartedClick();
     } else if (sessionStorage.getItem('id') !== null) {
@@ -112,10 +112,10 @@ class LoginPage extends Component {
       <div style={{ paddingbottom: "60px" }}>
 
         <Footer className='login-footer' size="mini">
-          <FooterSection type="left" logo="NO.">
+          <FooterSection type="left" logo="North.">
             <FooterLinkList>
-              <a href="#">Help</a>
-              <a href="#">Privacy & Terms</a>
+            <a target="_blank" href="https://drive.google.com/file/d/1MwbY9F0jgwucSeek6NNVVbjiav7j1oE6/preview">Help</a>
+              <a target="_blank" href="https://drive.google.com/file/d/1HRV9B0ux0zTa36ZUP3081JLIdw4o7NEo/preview">Privacy & Terms</a>
             </FooterLinkList>
           </FooterSection>
         </Footer>
@@ -131,6 +131,7 @@ class LoginPage extends Component {
             handlePasswordChangeSubmit={this.handlePasswordChangeSubmit}
             handleChange={this.handleChange}
             back_onClick={this.back_OnClick}
+            handleHomeClick={this.props.handleHomeClick}
           />
           {this.Footer()}
         </>

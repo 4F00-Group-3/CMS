@@ -26,10 +26,10 @@ class LandingPage extends Component {
       <div style={{ paddingbottom: "60px" }}>
 
         <Footer className='footer' size="mini">
-          <FooterSection type="left" logo="NO.">
+          <FooterSection type="left" logo="North.">
             <FooterLinkList>
-              <a href="#">Help</a>
-              <a href="#">Privacy & Terms</a>
+              <a target="_blank" href="https://drive.google.com/file/d/1MwbY9F0jgwucSeek6NNVVbjiav7j1oE6/preview">Help</a>
+              <a target="_blank" href="https://drive.google.com/file/d/1HRV9B0ux0zTa36ZUP3081JLIdw4o7NEo/preview">Privacy & Terms</a>
             </FooterLinkList>
           </FooterSection>
         </Footer>

@@ -23,22 +23,22 @@ class SideBar extends Component {
               Users
             </button>
           </NavItem>
-          <NavItem>
+          {/* <NavItem>
             <button
               className="dashButtons"
               onClick={() => this.props.onPush("Settings")}
             >
               Settings
             </button>
-          </NavItem>
-          <NavItem>
+          </NavItem> */}
+          {/* <NavItem>
             <button
               className="dashButtons"
               onClick={() => this.props.onPush("Log Out")}
             >
               Log Out
             </button>
-          </NavItem>
+          </NavItem> */}
         </Nav>
       </div>
     );

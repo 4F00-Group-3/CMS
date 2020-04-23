@@ -1,5 +1,5 @@
 .PagesContainer {
-  margin: 0;
+  margin: auto;
   width: 90%;
   padding: 10px;
   background-color: #FFF;
@@ -28,6 +28,7 @@
 .SideBySide {
   display: flex;
   flex-direction: row;
+  height: 92vh;
 }
 
 .TopBar {
@@ -44,7 +45,7 @@
 
 .SideNav {
   width: 30vh;
-  height: 90vh;  
+  height: 92vh;  
   background-color: #2d3436;
   justify-content: center;
   align-items: center;
@@ -108,10 +109,9 @@
 
 .inner-edit-dashButtons {
   background-color: #0984e3!important;
-  border: none;
+  border: 1px solid #0984e3!important;
   border-radius: 5px;
-  color: black;
-  padding: 0;
+  color: white;
   text-align: center;
   display: inline-block;
   font-size: 12px;
@@ -125,8 +125,7 @@
   background-color: #d63031!important;
   border: 1px solid #d63031!important;
   border-radius: 5px;
-  color: black;
-  padding: 0;
+  color: white;
   text-align: center;
   display: inline-block;
   font-size: 12px;
@@ -192,4 +191,58 @@
 .PageList {
   margin-top: 2%;
   padding: 0;
+}
+
+.dash-topnav {
+  height: 8vh!important;
+  display:flex!important;
+  justify-content:center!important;
+  align-items:center;
+}
+
+::-webkit-scrollbar {
+  width: 0px;  /* Remove scrollbar space */
+  background: transparent;  /* Optional: just make scrollbar invisible */
+}
+
+.dashboard-jumbotron {
+  background-image: url(https://www.cosc.brocku.ca/~c4f00g03/react/public/imagesFolder/dashboard-bg-min.jpg);
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  margin-bottom: 0em !important;
+  padding: 3%;
+  max-height: 350px;
+}
+
+.dashboard-button {
+  width: 30%;
+  background-color: #0984e3!important;
+  border: 1px solid white!important;
+}
+
+.dashboard-button:hover {
+  background-color: #74b9ff!important;
+}
+
+.return-to-sites-btn {
+  bottom: 2%;
+  right: 2%;
+  position: fixed;
+  background-color: #0984e3!important;
+  width: 15%!important;
+}
+
+.return-to-sites-btn:hover {
+  background-color: #74b9ff!important;
+}
+
+.PageListItem {
+  margin-right: 0!important;
+}
+
+.center-right {
+  justify-content: flex-end;
+  align-items: center;
+  display: flex;
 }
