@@ -128,9 +128,6 @@ class Popup extends Component {
 class PopupDelete extends Component {
     constructor(props) {
         super(props);
-        this.state = {
-            websiteId: this.props.websiteId,
-        };
         backend.f = this.props.handleHomeClick;
         backend.s = this.props.handleSitePageClick;
         console.log(this.props);
@@ -139,9 +136,9 @@ class PopupDelete extends Component {
     handleDeleteWebsite = () => {
         const state = this;
         AjaxCall({
-            function: "deleteWebsite",
-            accountId: sessionStorage.getItem("id"),
-            websiteId: this.state.websiteId,
+                function: "deleteWebsite",
+                accountId: sessionStorage.getItem("id"),
+                websiteId: sessionStorage.getItem("siteId"),
         },
             function (response) {
                 console.log(response);
@@ -150,6 +147,7 @@ class PopupDelete extends Component {
                 } else {
                     alert("Website failed to delete");
                 }
+                console.log(sessionStorage.getItem("siteId"));
                 backend.redirectDelete();
             }
         );
@@ -272,6 +270,7 @@ class SitePage extends Component {
     };
 
     handleDeleteWebsite = () => {
+        sessionStorage.setItem("siteId", info);
         this.setState({
             showPopupDelete: !this.state.showPopupDelete
         });
@@ -335,10 +334,9 @@ class SitePage extends Component {
                                                 </Col> */}
 
                                                 <Col className="center" xs={12} sm={6}>
-                                                    <Button className="sitepage-button" onClick={() => this.handleDeleteWebsite(this)} value="Delete">Delete</Button>
+                                                    <button onClick={() => this.handleDeleteWebsite(site.id)} value="Delete">Delete</button>
                                                     {this.state.showPopupDelete ?
                                                         <PopupDelete
-                                                            websiteId={site.id}
                                                             handleHomeClick={this.props.handleHomeClick}
                                                             handleSitePageClick={this.props.handleSitePageClick}
                                                             closePopup={this.handleDeleteWebsite.bind(this)}
