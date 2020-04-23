@@ -8,7 +8,7 @@ import Container from 'react-bootstrap/Container'
 import { Button } from 'react-bootstrap';
 
 /*Popup class for the add page pop up, handles opening the popup and passing
-information from it back to the add Page part */
+information from it back to the add User part */
 class Popup extends Component {
 
     getNameOfUser = () => {
@@ -60,22 +60,64 @@ class Users extends Component {
         this.state = {
             'users': this.props.backend.users,
             showPopup: false,
-            userID: this.props.backend.users.length + 1,
         }
     }
 
     componentDidMount() {
         //THIS IS A BACKEND CALL TO RETRIEVE ALL USERS ASSOCIATED TO WEBSITEID
-        console.log("response");
+        this.props.backend.clearUsers();
         var arr = [];
         AjaxCall({ function: 'getUsersData', websiteId: sessionStorage.getItem('siteId') },
             function (response) {
                 console.log(response);
                 let responseArray = JSON.parse(response.split('php-cgi')[1].trim());
-                console.log(responseArray);
                 arr = responseArray;
+        });
+        setTimeout(()=> this.initUsers(arr), 2000);
+    }
+
+    initUsers(users) {
+
+        if (users !== "false"){
+            for (var i = 0; i<users.length; i++) {
+                this.props.backend.loadUsers(users[i].id, users[i].firstName);
+            }
+            this.setState({
+                users: this.props.backend.users, 
+
             });
-        console.log(arr);
+        }
+        else {
+            console.log("Nothing to load");
+
+        }
+    }
+
+    getUsers(){
+        var arr = [];
+        AjaxCall({function: 'getUsersData', websiteId: sessionStorage.getItem('siteId')},
+            function (response) {
+            console.log(response);
+            let responseArray = JSON.parse(response.split('php-cgi')[1].trim());
+            arr = responseArray;
+            console.log(arr);
+
+        });
+        this.props.backend.clearUsers();
+        console.log(this.props.backend.users);
+        setTimeout(()=> this.updateUsers(arr), 2000);
+    }
+
+    updateUsers(users){
+        console.log(users);
+        for (var i = 0; i<users.length; i++) {
+            this.props.backend.loadUsers(users[i].id, users[i].firstName);
+        }
+        this.setState({
+            users: this.props.backend.users,             
+        });
+
+        console.log(this.props.backend.users);
     }
 
     togglePopup() {
@@ -86,6 +128,7 @@ class Users extends Component {
 
     handleUserAdd() {
         console.log("user add clicked");
+        
     }
 
     handleDelete(id) {
@@ -93,20 +136,15 @@ class Users extends Component {
         //THIS IS A BACKEND CALL TO DELETE USER ASSOCIATED TO WEBSITEID BY A USERID
         //All console logs are for testing purposes
         var arr = [];
-        AjaxCall({ function: 'deletePage', websiteId: sessionStorage.getItem('siteId'), userId: id },
+        AjaxCall({function: 'deleteUser', websiteId: sessionStorage.getItem('siteId'), userId: id},
             function (response) {
                 console.log(response);
                 let responseArray = JSON.parse(response.split('php-cgi')[1].trim());
                 console.log(responseArray);
                 arr = responseArray;
             });
-        console.log(arr);
         //END OF BACKEND CALL
-
-        this.props.backend.delete(id);
-        this.setState({
-            'users': this.props.backend.users,
-        })
+        setTimeout(()=> this.getUsers(), 1000);
     }
 
     render() {
@@ -142,9 +180,17 @@ class Users extends Component {
         );
     }
     createUser = (uname) => {
-        this.props.backend.updateUsers(this.state.userID, uname);
-        console.log(this.state.userID);
-        this.setState({ pages: this.props.backend.users, userID: this.state.userID + 1 });
+        var arr = [];
+        AjaxCall({function: 'addUser', websiteId: sessionStorage.getItem('siteId'), firstName: uname, lastName: 'test', 
+        password: 'test123', email: 'test@testing.com', type:'Admin'},
+            function (response) {
+                console.log(response);
+                let responseArray = JSON.parse(response.split('php-cgi')[1].trim());
+                console.log(responseArray);
+                arr = responseArray;
+            });
+        console.log(arr);
+        setTimeout(()=> this.getUsers(), 1000);
     }
 }
 

@@ -55,7 +55,9 @@ class ImageEditorMenu extends Component {
         AjaxCall(
             { function: "getAccountMedia", accountId: sessionStorage.getItem('id') || 0 },
             (response) => {
+                console.log(response);
                 if (!response.toString().includes("false")) {
+                    
                     let responseArray = JSON.parse(response.split('php-cgi')[1].trim());
                     this.setState({ images: responseArray });
 
@@ -100,10 +102,10 @@ class ImageEditorMenu extends Component {
         if (match.includes(fileType)) {
             AjaxFileUpload("addMedia", sessionStorage.getItem('id') || 0, file,
                 (response) => {
-                    response = JSON.parse(response.split('php-cgi')[1].trim());
                     console.log(response);
-                    if (response) {
-                        //reload menu
+                    response = JSON.parse(response.split('php-cgi')[1].trim());
+                    if (response != "false") {
+                        // reload menu
                         this.getImages();
                     } else {
                         alert('Something went wrong with your upload!');

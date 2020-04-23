@@ -20,7 +20,6 @@ class Website{
 
     public static function createWebsite($accountId, $path, $siteName, $description){
         // Insert website data
-
         $siteName = str_replace(" ","_",$siteName);
 
         $stmt = Dbh::connect()
@@ -74,141 +73,12 @@ class Website{
 
 
         // ADD PAGE to new schema page table
-        $file = array(
-            array("id"=>1,
-                "type"=>"heading",
-                "text"=>"Your Homepage",
-                "style"=>array(
-                    "color"=>"black",
-                    "fontSize"=>"81px",
-                    "textAlign"=>"center",
-                    "fontFamily"=>"Lucida Sans Unicode", "Lucida Grande", "sans-serif")),
-            array("id"=>12,
-                "type"=>"spacer",
-                "text"=>"heading 1",
-                "style"=>array(
-                    "color"=>"black",
-                    "fontSize"=>"13px",
-                    "textAlign"=>"left"
-                )),
-
-            array("id"=>2,
-                "type"=>"image",
-                "text"=>"alt text here",
-                "url"=>"https://images.unsplash.com/photo-1528557692780-8e7be39eafab?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1350&q=80",
-                "style"=>array(
-                    "width"=>"px",
-                    "borderRadius"=>"5px",
-                    "marginLeft"=>"0",
-                    "marginRight"=>"0",
-                    "marginTop"=>"0",
-                    "marginBottom"=>"0",
-                    "textAlign"=>"center")),
-
-            array("id"=>3,
-                "type"=>"row",
-                "style"=>array(),
-                "col"=>1,
-                "page"=>array(
-                    "id"=>"3|1",
-                    "type"=>"column",
-                    "style"=>array(),
-                    "page"=>array())),
-
-            array("id"=>4,
-                "type"=>"row",
-                "style"=>array(),
-                "col"=>1,
-                "page"=>array(
-                    "id"=>"4|1",
-                    "type"=>"column",
-                    "style"=>array(),
-                    "page"=>array())),
-
-            array("id"=>13,
-                "type"=>"spacer",
-                "text"=>"heading 1",
-                "style"=>array(
-                    "color"=>"black",
-                    "fontSize"=>"12px",
-                    "textAlign"=>"left")),
-
-            array("id"=>6,
-                "type"=>"heading",
-                "text"=>"Add videos and pictures to express your company's unique culture",
-                "style"=>array(
-                    "color"=>"black",
-                    "fontSize"=>"38px",
-                    "textAlign"=>"center",
-                    "fontFamily"=>"Lucida Sans Unicode", "Lucida Grande", "sans-serif")),
-
-            array("id"=>14,
-                "type"=>"spacer",
-                "text"=>"heading 1",
-                "style"=>array(
-                    "color"=>"black",
-                    "fontSize"=>"12px",
-                    "textAlign"=>"left")),
-
-            array("id"=>5,
-                "type"=>"video",
-                "text"=>"heading 1",
-                "url"=>"https://youtu.be/X4Q7d0CtYyk",
-                "style"=>array(
-                    "color"=>"black",
-                    "fontSize"=>"10vh",
-                    "textAlign"=>"center",
-                    "height"=>"500px",
-                    "width"=>"750px",
-                    "margin"=>"auto",
-                    "autoplay"=>"0",
-                    "loop"=>"0")),
-            array("id"=>11,
-                "type"=>"divider",
-                "text"=>"rounded divider",
-                "style"=>array(
-                    "borderTop"=>"8px solid #000000",
-                    "borderRadius"=>"0px",
-                    "width"=>"100%")),
-            array("id"=>7,
-                "type"=>"heading",
-                "text"=>"Create custom buttons",
-                "style"=>array(
-                    "color"=>"black",
-                    "fontSize"=>"43px",
-                    "textAlign"=>"center",
-                    "fontFamily"=>"Lucida Sans Unicode", "Lucida Grande", "sans-serif")),
-            array("id"=>8,
-                "type"=>"button",
-                "text"=>"Your Button",
-                "href"=>"#",
-                "style"=>array(
-                    "color"=>"#000000",
-                    "backgroundColor"=>"#696969",
-                    "textAlign"=>"center",
-                    "border"=>"0px",
-                    "borderRadius"=>"12px")),
-            array("id"=>10,
-                "type"=>"divider",
-                "text"=>"rounded divider",
-                "style"=>array(
-                    "borderTop"=>"8px solid #0a0606",
-                    "borderRadius"=>"0px",
-                    "width"=>"100%")),
-            array("id"=>9,
-                "type"=>"heading",
-                "text"=>"Get started by using our editor!",
-                "style"=>array(
-                    "color"=>"black",
-                    "fontSize"=>"40px",
-                    "textAlign"=>"center",
-                    "fontFamily"=>"Lucida Sans Unicode", "Lucida Grande", "sans-serif")));
-
+        $file = '[{"id":2,"type":"spacer","text":"heading 1","style":[{"backgroundColor":"#FFF","fontSize":"13px","textAlign":"left"}]},{"id":1,"type":"heading","text":"Your Homepage","style":[{"backgroundColor":"#FFF","color":"black","fontSize":"10vh","textAlign":"center","fontFamily":"\"Lucida Sans Unicode\", \"Lucida Grande\", sans-serif","marginBottom":"0px"}]},{"id":3,"type":"image","text":"alt text here","url":"https://images.unsplash.com/photo-1528557692780-8e7be39eafab?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1350&q=80","style":[{"width":"1150px","borderRadius":"5px","marginLeft":"0","marginRight":"0","marginTop":"0","marginBottom":"0","textAlign":"center","backgroundColor":"#FFF"}]},{"id":4,"type":"spacer","text":"heading 1","style":[{"backgroundColor":"#ffffff","fontSize":"12px","textAlign":"left"}]},{"id":5,"type":"heading","text":"Add videos and pictures to express the unique culture of your company","style":[{"backgroundColor":"#FFF","color":"black","fontSize":"38px","textAlign":"center","fontFamily":"\"Lucida Sans Unicode\", \"Lucida Grande\", sans-serif","marginBottom":"0px"}]},{"id":6,"type":"spacer","text":"heading 1","style":[{"backgroundColor":"#FFF","fontSize":"12px","textAlign":"left"}]},{"id":7,"type":"video","text":"heading 1","url":"https://youtu.be/X4Q7d0CtYyk","style":[{"backgroundColor":"#FFF","fontSize":"10vh","textAlign":"center","height":"500px","width":"750px","margin":"auto","autoplay":"0","loop":"0"}]},{"id":9,"type":"divider","text":"rounded divider","style":[{"borderTop":"8px solid #000000","borderRadius":"0px","width":"100%","backgroundColor":"#ffffff","margin":"0px"}]},{"id":10,"type":"heading","text":"Create custom buttons","style":[{"backgroundColor":"#FFF","color":"black","fontSize":"43px","textAlign":"center","fontFamily":"\"Lucida Sans Unicode\", \"Lucida Grande\", sans-serif","marginBottom":"0px"}]},{"id":11,"type":"button","text":"Your Button","sectionBg":"#FFF","href":"#","style":[{"color":"#FFF","backgroundColor":"#c71a1a","textAlign":"center","border":"0px","borderRadius":"17px","width":"180px"}]},{"id":8,"type":"divider","text":"rounded divider","style":[{"borderTop":"8px solid #000000","borderRadius":"0px","width":"100%","backgroundColor":"#FFF","margin":"0px"}]},{"id":12,"type":"heading","text":"Get started by using our editor!","style":[{"backgroundColor":"#FFF","color":"black","fontSize":"40px","textAlign":"center","fontFamily":"\"Lucida Sans Unicode\", \"Lucida Grande\", sans-serif","marginBottom":"0px"}]}]';
 
         $stmt = Dbh::connect()
             ->PREPARE("INSERT INTO $schemaPages(name, file, path) VALUES(:name, :file, :path)");
-        $stmt->bindValue(':name', "home.html");
-        $stmt->bindValue(':file', json_encode($file));
+        $stmt->bindValue(':name', "Home");
+        $stmt->bindValue(':file', $file);
         $stmt->bindValue(':path',"sites/".$accountId."/".$siteName."/html/home.html" );
         $stmt->execute();
         //Check to see if page is in DB
@@ -221,10 +91,10 @@ class Website{
 
         //Create backend directory and home page
 //        mkdir("../sites/".$accountId);
-        mkdir("../sites/".$accountId."/".$siteName);
-        mkdir("../sites/".$accountId."/".$siteName."/html");
-        mkdir("../sites/".$accountId."/".$siteName."/css");
-        mkdir("../sites/".$accountId."/".$siteName."/js");
+        mkdir("../sites/".$accountId."/".$siteName, 0701, true);
+        mkdir("../sites/".$accountId."/".$siteName."/html", 0701, true);
+        mkdir("../sites/".$accountId."/".$siteName."/css", 0701, true);
+        mkdir("../sites/".$accountId."/".$siteName."/js", 0701, true);
         $file = fopen("../sites/".$accountId."/".$siteName."/html/home.html","w");
         $txt = "<!DOCTYPE html>
                     <html>
@@ -336,7 +206,7 @@ class Website{
         $users = array();
         if($stmt->rowCount()){
             while ($row = $stmt->fetch()){
-                $data = array("firstName"=>$row['first_name'],"lastName"=>$row['last_Name'],"email"=>$row['email'],"type"=>$row['user_type'], "id"=>$row['user_id']);
+                $data = array("firstName"=>$row['first_name'],"lastName"=>$row['last_name'],"email"=>$row['email'],"type"=>$row['user_type'], "id"=>$row['user_id']);
                 $users[] = $data;
             }
             return $users;
@@ -348,7 +218,7 @@ class Website{
     // Add user to website
     public static function addUser($schema, $firstName, $lastName, $password, $email, $userType){
         $stmt = Dbh::connect()
-            ->PREPARE('INSERT INTO $schema.users(first_name, last_name, password, email, user_type) VALUES(:firstName, :lastName, :password, :email, :userType)');
+            ->PREPARE("INSERT INTO $schema.users(first_name, last_name, password, email, user_type) VALUES(:firstName, :lastName, :password, :email, :userType)");
         $stmt->bindValue(':firstName', $firstName);
         $stmt->bindValue(':lastName', $lastName);
         $stmt->bindValue(':password',$password);
