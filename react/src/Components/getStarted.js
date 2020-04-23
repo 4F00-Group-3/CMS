@@ -133,6 +133,12 @@ class GetStarted extends Component {
             </Card>
           </Row>
         </Jumbotron>
+        <p className={'creds'}>
+          Use our service for free for the first month! Use the following PayPal credentials:
+          <br/>
+          Username: sb-odp9i1081433@personal.example.com Password:
+          dJQhG+S9
+        </p>
         {this.Footer()}
       </>
     );
