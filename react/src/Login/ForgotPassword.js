@@ -67,7 +67,7 @@ class ForgotPassword extends Component {
                             <Row className='center'>
                                 <input
                                     type="submit"
-                                    value="Next"
+                                    value="Submit"
                                     className="submitnextbutton"
                                 />
                             </Row>

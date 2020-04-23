@@ -89,7 +89,7 @@ class Account {
 		$stmt->execute($data);
 		
 		$accountId = $stmt->fetch(PDO::FETCH_ASSOC)['account_id'];
-        mkdir("../sites/".$accountId);
+        mkdir("../sites/".$accountId, 0701, true);
         return Account::getAccountById($accountId);
 	}
 

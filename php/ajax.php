@@ -361,7 +361,7 @@ function addMedia(){
 
     if(!$dirExists){
         //create directory and insert upload
-        mkdir(HOME_PATH.$dir);
+        mkdir(HOME_PATH.$dir, 0701, true);
         $dest = HOME_PATH.$dir.$fileName.$fileExt;
         move_uploaded_file($fileTmpName, $dest);
     } else {
@@ -374,6 +374,19 @@ function addMedia(){
         }
         //insert upload
         move_uploaded_file($fileTmpName, $dest);
+    }
+
+    //data to insert into database
+    $url = str_replace(HOME_PATH, HOME_URL, $dest);
+    $fileExt = str_replace('.', '', $fileExt);
+    $unixDate = time();
+
+    $mediaFile = Media::addImage($fileExt, $url, $accountId);
+
+    if(!$mediaFile){
+        echo 'false';
+    } else {
+        echo 'true';
     }
 
 }
