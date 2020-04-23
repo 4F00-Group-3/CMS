@@ -11,6 +11,7 @@ class SitePageBackend {
     }
 
     redirectDelete() {
+        sessionStorage.removeItem("siteId");
         this.f();
         this.s();
     }

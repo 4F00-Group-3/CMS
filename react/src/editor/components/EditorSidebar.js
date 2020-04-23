@@ -75,13 +75,14 @@ export default class EditorSideBar extends Component {
             case "row": {
                 return (
                     <div className="inline">
-                        <RowEditorMenu 
-                        selectedId={this.props.selectedId} 
-                        selectedRowNumberOfColumns={this.props.selectedRowNumberOfColumns} 
-                        menuComponentOnClick={this.props.menuComponentOnClick} 
-                        handleBack={this.props.handleBack} 
-                        handleDelete={this.props.handleDelete} 
-                        onPush={this.props.onPush} />
+                        <h4 style={{color: "#FFF"}}>Add to Row</h4>
+                        <RowEditorMenu
+                            selectedId={this.props.selectedId}
+                            selectedRowNumberOfColumns={this.props.selectedRowNumberOfColumns}
+                            menuComponentOnClick={this.props.menuComponentOnClick}
+                            handleBack={this.props.handleBack}
+                            handleDelete={this.props.handleDelete}
+                            onPush={this.props.onPush} />
                     </div>
                 );
             }
@@ -89,6 +90,7 @@ export default class EditorSideBar extends Component {
                 return (
                     <>
                         <div className="editor-buttons-container">
+                            <h4 style={{color: "#FFF"}}>Add to Column</h4>
                             <EditorButton text="Heading" faIcon={faFont} onClick={this.AddElementToColumn} />
                             <EditorButton text="Image" faIcon={faFileImage} onClick={this.AddElementToColumn} />
                             <EditorButton text="Button" faIcon={faAsterisk} onClick={this.AddElementToColumn} />
@@ -96,7 +98,7 @@ export default class EditorSideBar extends Component {
                             <EditorButton text="Spacer" faIcon={faAlignRight} onClick={this.AddElementToColumn} />
                             <EditorButton text="Icon" faIcon={faInfo} onClick={this.AddElementToColumn} />
                             <EditorButton text="Video" faIcon={faCircle} onClick={this.AddElementToColumn} />
-                            <EditMenuNav className = "auto-bottom" handleBack={this.props.handleBack} handleDelete={this.props.handleDelete} />
+                            <EditMenuNav className="auto-bottom" handleBack={this.props.handleBack} handleDelete={this.props.handleDelete} />
                         </div>
                     </>
                 );

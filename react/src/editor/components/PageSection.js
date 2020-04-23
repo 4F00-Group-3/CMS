@@ -127,7 +127,9 @@ export default class PageSection extends Component {
         var pages = [];
         for (var i = 0; i < numPages; i++) {
             pages.push(
-                <PageSection key={i} page={this.props.page.page[i]} onSectionPush={this.props.onSectionPush} clicked={this.props.click} onClick={this.props.onClick} />
+                <div style={{ margin: "3px", padding: "3px" }}>
+                    <PageSection key={i} page={this.props.page.page[i]} onSectionPush={this.props.onSectionPush} clicked={this.props.click} onClick={this.props.onClick} />
+                </div>
             );
         }
         return pages;
@@ -183,7 +185,7 @@ export default class PageSection extends Component {
             }
             case "video": {
                 return (
-                    <div style={{backgroundColor: this.props.page.style[0]["backgroundColor"]}}>
+                    <div style={{ backgroundColor: this.props.page.style[0]["backgroundColor"] }}>
                         <div key={this.props.page.id} style={this.props.page.style[0]}>
                             {this.returnYouTube(
                                 this.props.page.url,
@@ -230,7 +232,7 @@ export default class PageSection extends Component {
         const isClicked = this.props.clicked;
         var classList = isClicked ? "pageSectionClick page-section" : "pageSection page-section";
         return (
-            <div className={classList+" page-section"} onClick={e => {
+            <div className={classList + " page-section"} onClick={e => {
                 this.props.onClick(this.props.page.id)
                 this.props.onSectionPush(this.props.page.id, this.props.page.type, this.props.page.style[0]);
                 e.stopPropagation();

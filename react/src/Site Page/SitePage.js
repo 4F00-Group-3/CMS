@@ -2,7 +2,7 @@ import React, { Component } from "react";
 // import axios from 'axios';
 import '../css/SitePage.css'
 import AjaxCall from '../ajax.js';
-import Login from '../Login/LoginPage';
+import Login from '../Login/loginpage';
 import SitePageBackend from "../Site Page/backend/SitePageBackend";
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
@@ -10,6 +10,12 @@ import Container from 'react-bootstrap/Container';
 import { Form } from "react-bootstrap";
 import Settings from "./Settings";
 import Button from 'react-bootstrap/Button';
+import {
+    Layout,
+    Header,
+    Content
+} from "react-mdl";
+import Jumbotron from 'react-bootstrap/Jumbotron';
 
 
 let backend = new SitePageBackend();
@@ -108,7 +114,7 @@ class Popup extends Component {
                                 <Form.Control className='site-page-button' type="submit" value="Create" />
                             </Col>
                             <Col>
-                                <Form.Control className="site-page-button cancel-btn" type='button' value="Cancel" onClick={this.props.closePopup}/>
+                                <Form.Control className="site-page-button cancel-btn" type='button' value="Cancel" onClick={this.props.closePopup} />
                             </Col>
                         </Row>
                     </Form>
@@ -122,27 +128,26 @@ class Popup extends Component {
 class PopupDelete extends Component {
     constructor(props) {
         super(props);
-        this.state = {
-            websiteId: this.props.websiteId,
-        };
-        backend.f=this.props.handleHomeClick;
-        backend.s=this.props.handleSitePageClick;
+        backend.f = this.props.handleHomeClick;
+        backend.s = this.props.handleSitePageClick;
+        console.log(this.props);
     }
 
-    handleDeleteWebsite = () =>{
+    handleDeleteWebsite = () => {
         const state = this;
         AjaxCall({
                 function: "deleteWebsite",
                 accountId: sessionStorage.getItem("id"),
-                websiteId: this.state.websiteId,
-            },
-            function(response) {
+                websiteId: sessionStorage.getItem("siteId"),
+        },
+            function (response) {
                 console.log(response);
                 if (!response.toString().includes("false")) {
                     alert("Website successfully deleted");
-                }else{
+                } else {
                     alert("Website failed to delete");
                 }
+                console.log(sessionStorage.getItem("siteId"));
                 backend.redirectDelete();
             }
         );
@@ -150,13 +155,14 @@ class PopupDelete extends Component {
 
 
     render() {
-        return(
+        return (
             <div className='popup'>
                 <div className='popup_inner'>
                     <h3>Are you sure you want to delete?</h3>
-                    <button className="submitnextbutton" onClick={this.handleDeleteWebsite}>Delete</button>
-                    <br/><br/>
-                    <button className="submitnextbutton" onClick={this.props.closePopup}>Cancel</button>
+                    <div className="delete-popup-btn-container">
+                        <button className="submitnextbutton" onClick={this.handleDeleteWebsite}>Delete</button>
+                        <button className="submitnextbutton" onClick={this.props.closePopup}>Cancel</button>
+                    </div>
                 </div>
             </div>
         )
@@ -177,9 +183,12 @@ class SitePage extends Component {
         this.handleRedirectToAccoutingSettings = this.handleRedirectToAccoutingSettings.bind(this);
         this.handleUpgradePlan = this.handleUpgradePlan.bind(this);
 
-        if (sessionStorage.getItem("siteId")!==null) {
+        //uncomment top
+        if (sessionStorage.getItem("siteId") !== null) {
             sessionStorage.removeItem("siteId");
         }
+
+
         // if (sessionStorage.getItem('id') !== null && sessionStorage.getItem('tier')===null) {
         //     props.handleGetStartedClick();
         // }
@@ -200,7 +209,7 @@ class SitePage extends Component {
                     });
                 });
             var check = false;
-            AjaxCall({ function: 'checkWebsites', subscription: sessionStorage.getItem("tier"), accountId: sessionStorage.getItem("id")},
+            AjaxCall({ function: 'checkWebsites', subscription: sessionStorage.getItem("tier"), accountId: sessionStorage.getItem("id") },
                 function (response) {
                     if (!response.toString().includes("false")) {
                         console.log("Response:", response);
@@ -260,72 +269,99 @@ class SitePage extends Component {
         this.props.handleDashClick();
     };
 
-    handleDeleteWebsite = () =>{
+    handleDeleteWebsite = (info) => {
+        sessionStorage.setItem("siteId", info);
         this.setState({
             showPopupDelete: !this.state.showPopupDelete
         });
     };
 
+
+    /**
+     * This function returns the top navigation
+     */
+    TopNav() {
+        return (
+            <Header transparent style={{ backgroundColor: "#000" }}>
+                <Row className='topnav-row'>
+                    <Col>
+                        <a href='#landing' onClick={this.props.handleHomeClick} className="main-top-home-nav" />
+                    </Col>
+                    <Col style={{ textAlign: 'right' }}>
+                        <button
+                            onClick={this.handleLogOut}
+                            className={"button button-primary"}
+                        >
+                            Log Out
+                        </button>
+                    </Col>
+                </Row>
+            </Header>
+        );
+    }
+
     render() {
         var userLoggedIn = this.state.userLoggedIn;
         return (
             <>
+                {this.TopNav()}
                 {userLoggedIn ?
                     <div className="SitePage">
-                        <div className="Menu">
+                        {/* <div className="Menu">
                             <p onClick={this.handleRedirectToAccoutingSettings}>Account Settings</p>
                             <p onClick={this.handleLogOut}>Log Out</p>
                             <p onClick={this.handleUpgradePlan}>Manage Subscription</p>
-                        </div>
+                        </div> */}
+                        <Container className="sitepage-jumbotron" fluid >
+                            <h1 className="site-page-header">Manage Your Sites</h1>
+                        </Container>
+
+
                         <div className="Content">
                             <div className="SiteList">
-                                <div>
-                                    {this.state && this.state.siteInfo &&
-                                        this.state.siteInfo.map((site, index) =>
-                                            <div key={index}>
-                                                <div className="SiteIcon">
-                                                    <p>{site.name.replace("_"," ")}</p>
-                                                    <img src={site.image} alt={site.name} />
-                                                    <p>description: {site.description}</p>
-                                                    <div className="row">
-                                                        <div className="column">
-                                                            <button onClick={() => this.handleEditWebsite(site.id)} value="Edit">Edit</button>
-                                                        </div>
-                                                        <div className="column">
-                                                            <button onClick={() => this.handleViewWebsite(site.path)} value="View">View</button>
-                                                        </div>
-                                                    </div>
-                                                    <div className="column">
-                                                        <button onClick={() => this.handleDeleteWebsite(this)} value="Delete">Delete</button>
-                                                        {this.state.showPopupDelete ?
-                                                            <PopupDelete
-                                                                websiteId = {site.id}
-                                                                handleHomeClick={this.props.handleHomeClick}
-                                                                handleSitePageClick={this.props.handleSitePageClick}
-                                                                closePopup={this.handleDeleteWebsite.bind(this)}
-                                                            />
-                                                            : null
-                                                        }
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        )
-                                    }
-                                    {this.state.tier?
-                                        <div className="column">
-                                            <button onClick={this.togglePopup.bind(this)} value="New">New</button>
-                                            {this.state.showPopup ?
-                                                <Popup
-                                                    text='Enter the title of the new page.'
-                                                    handleDashClick={this.props.handleDashClick}
-                                                    closePopup={this.togglePopup.bind(this)}
-                                                />
-                                                : null
-                                            }
+                                {this.state && this.state.siteInfo &&
+                                    this.state.siteInfo.map((site, index) =>
+                                        <div key={index} className="SiteIcon">
+                                            <p style={{ textAlign: "center" }}>{site.name.replace("_", " ")}</p>
+                                            <img src={site.image} alt={site.name} />
+                                            <p style={{ textAlign: "center" }}>description: {site.description}</p>
+                                            <Row>
+                                                <Col className="center" xs={12} sm={6}>
+                                                    <Button className="sitepage-button" onClick={() => this.handleEditWebsite(site.id)} value="Edit">Edit</Button>
+                                                </Col>
+                                                {/* <Col className="center" xs={12} sm={4}>
+                                                    <Button className="sitepage-button" onClick={() => this.handleViewWebsite(site.path)} value="View">View</Button>
+                                                </Col> */}
+
+                                                <Col className="center" xs={12} sm={6}>
+                                                    <Button className="sitepage-button-delete" onClick={() => this.handleDeleteWebsite(site.id)} value="Delete">Delete</Button>
+                                                    {this.state.showPopupDelete ?
+                                                        <PopupDelete
+                                                            handleHomeClick={this.props.handleHomeClick}
+                                                            handleSitePageClick={this.props.handleSitePageClick}
+                                                            closePopup={this.handleDeleteWebsite.bind(this)}
+                                                        />
+                                                        : null
+                                                    }
+                                                </Col>
+                                            </Row>
                                         </div>
-                                        :null
-                                    }
-                                </div>
+                                    )
+                                }
+                                {this.state.tier ?
+                                    <div>
+                                        <Button className="new-site-btn" onClick={this.togglePopup.bind(this)} value="New">New</Button>
+                                        {this.state.showPopup ?
+                                            <Popup
+                                                text='Enter the title of the new page.'
+                                                handleDashClick={this.props.handleDashClick}
+                                                closePopup={this.togglePopup.bind(this)}
+                                            />
+                                            : null
+                                        }
+                                    </div>
+                                    : null
+                                }
                             </div>
                         </div>
                     </div>

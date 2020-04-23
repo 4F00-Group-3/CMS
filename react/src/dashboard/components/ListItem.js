@@ -9,6 +9,7 @@ class ListItem extends Component {
   constructor(props) {
     super(props);
     this.onClick.bind();
+    console.log(this.props);
   }
 
   onClick() {
@@ -20,8 +21,8 @@ class ListItem extends Component {
       return (
         <Container className="PageListItem">
           <Row>
-            <Col className='dash-text'>{this.props.title}</Col>
-            <Col xs lg={2} style={{ padding: 0 }}>
+            <Col xs={12} sm={6} className='dash-text'>{this.props.title}</Col>
+            <Col  className="center-right" xs={12} sm={2}>
               <Button
                 className="inner-edit-dashButtons right"
                 onClick={this.props.onPageEdit}
@@ -30,7 +31,18 @@ class ListItem extends Component {
               Edit
             </Button>
             </Col>
-            <Col xs lg={2} style={{ padding: 0 }}>
+            <Col  className="center-right" xs={12} sm={2}>
+              <Button
+                href="#"
+                className="inner-edit-dashButtons right"
+                onClick={() => window.open('../../' + this.props.path, '_blank').focus()}
+                variant='danger'
+              >
+                {" "}
+              View
+            </Button>
+            </Col>
+            <Col  className="center-right" xs={12} sm={2}>
               <Button
                 href="#"
                 className="inner-delete-dashButtons right"
@@ -52,12 +64,12 @@ class ListItem extends Component {
               {this.props.title}
             </Col>
             <Col xs lg={2} style={{ padding: 0 }}>
-                <Button
-                  href="#"
-                  className="inner-delete-dashButtons right"
-                  onClick={this.props.onDelete}
-                >
-                  {" "}
+              <Button
+                href="#"
+                className="inner-delete-dashButtons right"
+                onClick={this.props.onDelete}
+              >
+                {" "}
               Delete
             </Button>
             </Col>

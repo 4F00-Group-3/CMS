@@ -16,31 +16,31 @@ import Payments from "./payments";
 
 class GetStarted extends Component {
   constructor(props) {
-      super(props);
+    super(props);
 
-      this.state = {
-        showSignUp: false
-      };
+    this.state = {
+      showSignUp: false
+    };
 
-      if (sessionStorage.getItem('id') === null) {
-        this.state.showSignUp = true;
-      }
+    if (sessionStorage.getItem('id') === null) {
+      this.state.showSignUp = true;
+    }
   }
 
-    Footer() {
-      return (
-          <div style={{ paddingbottom: "60px" }}>
+  Footer() {
+    return (
+      <div style={{ paddingbottom: "60px" }}>
 
-            <Footer className='login-footer' size="mini">
-              <FooterSection type="left" logo="NO.">
-                <FooterLinkList>
-                  <a href="#">Help</a>
-                  <a href="#">Privacy & Terms</a>
-                </FooterLinkList>
-              </FooterSection>
-            </Footer>
-          </div>);
-    }
+        <Footer className='login-footer' size="mini">
+          <FooterSection type="left" logo="North.">
+            <FooterLinkList>
+              <a target="_blank" href="https://drive.google.com/file/d/1MwbY9F0jgwucSeek6NNVVbjiav7j1oE6/preview">Help</a>
+              <a target="_blank" href="https://drive.google.com/file/d/1HRV9B0ux0zTa36ZUP3081JLIdw4o7NEo/preview">Privacy & Terms</a>
+            </FooterLinkList>
+          </FooterSection>
+        </Footer>
+      </div>);
+  }
 
 
   render() {
@@ -63,15 +63,15 @@ class GetStarted extends Component {
               </ListGroup>
               <Card.Body className='sign-up-container'>
                 {this.state.showSignUp ?
-                    <a href="#" onClick={this.props.signUp_click}>
-                      Sign up
+                  <a href="#" onClick={this.props.signUp_click}>
+                    Sign up
                     </a>
-                    : null
+                  : null
                 }
               </Card.Body>
               <Card.Body>
                 <Payments className='paypal-btn' amount={10}
-                handleSitePageClick = {this.props.handleSitePageClick}
+                  handleSitePageClick={this.props.handleSitePageClick}
                 >Pay</Payments>
               </Card.Body>
             </Card>
@@ -91,15 +91,15 @@ class GetStarted extends Component {
               </ListGroup>
               <Card.Body className='sign-up-container'>
                 {this.state.showSignUp ?
-                    <a href="#" onClick={this.props.signUp_click}>
-                      Sign up
+                  <a href="#" onClick={this.props.signUp_click}>
+                    Sign up
                     </a>
-                    : null
+                  : null
                 }
               </Card.Body>
               <Card.Body>
                 <Payments amount={20}
-                handleSitePageClick = {this.props.handleSitePageClick}
+                  handleSitePageClick={this.props.handleSitePageClick}
                 >Pay</Payments>
               </Card.Body>
             </Card>
@@ -119,23 +119,23 @@ class GetStarted extends Component {
               </ListGroup>
               <Card.Body className='sign-up-container'>
                 {this.state.showSignUp ?
-                    <a href="#" onClick={this.props.signUp_click}>
-                      Sign up
+                  <a href="#" onClick={this.props.signUp_click}>
+                    Sign up
                     </a>
-                    : null
+                  : null
                 }
               </Card.Body>
               <Card.Body>
                 <Payments amount={30}
-                  handleSitePageClick = {this.props.handleSitePageClick}
+                  handleSitePageClick={this.props.handleSitePageClick}
                 >Pay</Payments>
               </Card.Body>
             </Card>
           </Row>
         </Jumbotron>
-        <p className={'creds'}>
+        <p className={'creds'} style={{ color: "#FFF!important" }}>
           Use our service for free for the first month! Use the following PayPal credentials:
-          <br/>
+          <br />
           Username: sb-odp9i1081433@personal.example.com Password:
           dJQhG+S9
         </p>

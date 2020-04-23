@@ -7,7 +7,7 @@ import {
   Content
 } from "react-mdl";
 import GetStarted from './Components/getStarted';
-import LoginPage from "./Login/LoginPage";
+import LoginPage from "./Login/loginpage";
 import LandingPage from "./Components/LandingPage";
 import CreateAccount from "./Login/CreateAccount";
 import Col from 'react-bootstrap/Col';
@@ -70,6 +70,8 @@ class HomePage extends Component {
     });
   };
 
+
+
   /**
    * This method is for the 'Get Started' button on the nav menu
    * this will redirect the user to get started page
@@ -101,7 +103,7 @@ class HomePage extends Component {
       page: <LoginPage handleSitePageClick = {this.props.handleSitePageClick}
       handleCreateAccountClick={this.handleCreateAccountClick}
       handleGetStartedClick = {this.handleGetStartedClick}
-      handleHomeClick={this.handleHomeClick}/>,
+      handleLandingClick={this.homeButton_OnClick}/>,
       activeButton: "log-in"
     });
   };

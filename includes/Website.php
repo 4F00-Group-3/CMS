@@ -28,7 +28,7 @@ class Website{
         $stmt->bindValue(':path', $path);
         $stmt->bindValue(':siteName',$siteName);
         $stmt->bindValue(':description',$description);
-        $stmt->bindValue(':image',"https://images.unsplash.com/photo-1483651646696-c1b5fe39fc0e?ixlib=rb-1.2.1&auto=format&fit=crop&w=675&q=80");
+        $stmt->bindValue(':image',"https://images.unsplash.com/photo-1528557692780-8e7be39eafab?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1350&q=80");
         $stmt->execute();
 
         // Gather Schema data from website data
