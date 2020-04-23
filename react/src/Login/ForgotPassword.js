@@ -16,7 +16,7 @@ class ForgotPassword extends Component {
                 <Container maxWidth="sm">
                     <Card  className='create-account-card'>
                         <h2>Forgot Password</h2>
-                        <p>
+                        <p style={{textAlign: "center"}}>
                             Please enter a new password that is secure.
                         </p>
                         <Form className="centerBoxItems" onSubmit={this.props.handlePasswordChangeSubmit}>
