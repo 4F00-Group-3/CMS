@@ -21,8 +21,8 @@ class ListItem extends Component {
       return (
         <Container className="PageListItem">
           <Row>
-            <Col xs={12} sm={6} className='dash-text'>{this.props.title}</Col>
-            <Col  className="center-right" xs={12} sm={2}>
+            <Col xs={12} sm={9} className='dash-text'>{this.props.title}</Col>
+            <Col  className="center-right" xs={12} sm={1}>
               <Button
                 className="inner-edit-dashButtons right"
                 onClick={this.props.onPageEdit}
@@ -31,7 +31,7 @@ class ListItem extends Component {
               Edit
             </Button>
             </Col>
-            <Col  className="center-right" xs={12} sm={2}>
+            <Col  className="center-right" xs={12} sm={1}>
               <Button
                 href="#"
                 className="inner-edit-dashButtons right"
@@ -42,7 +42,7 @@ class ListItem extends Component {
               View
             </Button>
             </Col>
-            <Col  className="center-right" xs={12} sm={2}>
+            <Col  className="center-right" xs={12} sm={1}>
               <Button
                 href="#"
                 className="inner-delete-dashButtons right"
