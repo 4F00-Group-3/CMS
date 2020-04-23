@@ -2,7 +2,7 @@ import React, { Component } from "react";
 // import axios from 'axios';
 import '../css/SitePage.css'
 import AjaxCall from '../ajax.js';
-import Login from '../Login/LoginPage';
+import Login from '../Login/loginpage';
 import SitePageBackend from "../Site Page/backend/SitePageBackend";
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
