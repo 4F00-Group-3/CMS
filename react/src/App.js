@@ -19,7 +19,8 @@ class App extends Component {
   handleSitePageClick = () => {
     this.setState({ page:<SitePage handleHomeClick = {this.handleHomeClick}
                         handleDashClick = {this.handleDashClick}
-                        handleGetStartedClick = {this.handleGetStartedClick}/>
+                        handleGetStartedClick = {this.handleGetStartedClick}
+                        handleSitePageClick = {this.handleSitePageClick}/>
     });
     console.log('app js!');
   }

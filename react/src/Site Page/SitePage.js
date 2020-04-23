@@ -251,7 +251,7 @@ class SitePage extends Component {
 
     handleViewWebsite = (info) => {
         console.log(info);
-        window.location.assign('../../' + info);
+        window.location.assign('../../' + info.replace(" ", "_"));
     };
 
     handleEditWebsite = (info) => {
@@ -284,7 +284,7 @@ class SitePage extends Component {
                                         this.state.siteInfo.map((site, index) =>
                                             <div key={index}>
                                                 <div className="SiteIcon">
-                                                    <p>{site.name}</p>
+                                                    <p>{site.name.replace("_"," ")}</p>
                                                     <img src={site.image} alt={site.name} />
                                                     <p>description: {site.description}</p>
                                                     <div className="row">

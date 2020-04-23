@@ -24,7 +24,7 @@ class GetStarted extends Component {
 
       if (sessionStorage.getItem('id') === null) {
         this.state.showSignUp = true;
-    }
+      }
   }
 
     Footer() {
@@ -62,18 +62,17 @@ class GetStarted extends Component {
                 <ListGroupItem>Manage 1 Site</ListGroupItem>
               </ListGroup>
               <Card.Body className='sign-up-container'>
-                <Button className="sign-up-btn" onClick={this.props.signUp_click}>Sign Up</Button>
+                {this.state.showSignUp ?
+                    <a href="#" onClick={this.props.signUp_click}>
+                      Sign up
+                    </a>
+                    : null
+                }
               </Card.Body>
               <Card.Body>
                 <Payments className='paypal-btn' amount={10}
                 handleSitePageClick = {this.props.handleSitePageClick}
                 >Pay</Payments>
-                {this.state.showSignUp ?
-                      <a href="#" onClick={this.props.signUp_click}>
-                        Sign up
-                      </a>
-                      : null
-                  }
               </Card.Body>
             </Card>
 
@@ -91,18 +90,17 @@ class GetStarted extends Component {
                 <ListGroupItem>Manage 2-3 Sites</ListGroupItem>
               </ListGroup>
               <Card.Body className='sign-up-container'>
-                <Button className="sign-up-btn" onClick={this.props.signUp_click}>Sign Up</Button>
+                {this.state.showSignUp ?
+                    <a href="#" onClick={this.props.signUp_click}>
+                      Sign up
+                    </a>
+                    : null
+                }
               </Card.Body>
               <Card.Body>
                 <Payments amount={20}
                 handleSitePageClick = {this.props.handleSitePageClick}
                 >Pay</Payments>
-                {this.state.showSignUp ?
-                      <a href="#" onClick={this.props.signUp_click}>
-                        Sign up
-                      </a>
-                      : null
-                  }
               </Card.Body>
             </Card>
 
@@ -120,22 +118,27 @@ class GetStarted extends Component {
                 <ListGroupItem>Manage Unlimited Sites</ListGroupItem>
               </ListGroup>
               <Card.Body className='sign-up-container'>
-                <Button className="sign-up-btn" onClick={this.props.signUp_click}>Sign Up</Button>
+                {this.state.showSignUp ?
+                    <a href="#" onClick={this.props.signUp_click}>
+                      Sign up
+                    </a>
+                    : null
+                }
               </Card.Body>
               <Card.Body>
                 <Payments amount={30}
                   handleSitePageClick = {this.props.handleSitePageClick}
                 >Pay</Payments>
-                {this.state.showSignUp ?
-                      <a href="#" onClick={this.props.signUp_click}>
-                        Sign up
-                      </a>
-                      : null
-                  }
               </Card.Body>
             </Card>
           </Row>
         </Jumbotron>
+        <p className={'creds'}>
+          Use our service for free for the first month! Use the following PayPal credentials:
+          <br/>
+          Username: sb-odp9i1081433@personal.example.com Password:
+          dJQhG+S9
+        </p>
         {this.Footer()}
       </>
     );
