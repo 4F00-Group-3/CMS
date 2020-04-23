@@ -113,7 +113,7 @@ h6 {
   background-position: center;
   background-size: cover;
   background-repeat: no-repeat;
-  margin-bottom: 0em !important;
+  margin-bottom: 3% !important;
   padding: 5%;
   max-height: 350px;
 }
@@ -131,9 +131,18 @@ h6 {
   width: 100%;
 }
 
+.sitepage-button:hover {
+  background-color: #74b9ff!important;
+}
+
 .sitepage-button-delete {
   background-color: #d63031!important;
+  border: 1px solid #d63031;
   width: 100%;
+}
+
+.sitepage-button-delete:hover {
+  background-color: #ff7675!important;
 }
 
 .new-site-btn {
