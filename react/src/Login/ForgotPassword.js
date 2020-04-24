@@ -47,20 +47,22 @@ class ForgotPassword extends Component {
                                         pass="pw"
                                         className="create-account-form-input"
                                         name="pw"
-                                        onChange={this.props.handleChange}
+                                        
                                     />
                                 </Col>
                             </Row>
                             <Row>
                                 <Col>
-                                    <Form.Label htmlFor="pw2">Re-Enter Password</Form.Label>
+                                    <Form.Label htmlFor="pw2">New Password</Form.Label>
                                 </Col>
                                 <Col>
                                     <input
                                         type="password"
                                         id="pw"
+                                        name="pw2"
                                         pass2="pw2"
                                         className="create-account-form-input"
+                                        onChange={this.props.handleChange}
                                     />
                                 </Col>
                             </Row>

@@ -72,7 +72,7 @@ class LoginPage extends Component {
   handlePasswordChangeSubmit = event => {
     event.preventDefault();
     AjaxCall(
-      { function: "updateAccountPassword", email: this.state.email, password: this.state.pw },
+      { function: "updateAccountPassword", email: this.state.email, password: this.state.pw2 },
       function (response) {
         console.log(response);
         if (!response.toString().includes("false")) {
