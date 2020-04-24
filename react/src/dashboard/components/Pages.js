@@ -176,7 +176,9 @@ class Pages extends Component {
                 { function: "addPage", websiteId: sessionStorage.getItem('siteId') || 0, pageName: name , accountId: sessionStorage.getItem('id') },
                 (response) => {
                 console.log(response);
-                if (!response.toString().includes("false")) {
+                if(response.toString().includes("duplicate")){
+                    alert("That page name already exists!");
+                } else if (!response.toString().includes("false")) {
                     let pageInfo = JSON.parse(response.split('php-cgi')[1].trim());
                     let pages_id = pageInfo[0];
                     let path = pageInfo[1];

@@ -23,6 +23,15 @@ class Website{
         $siteName = str_replace(" ","_",$siteName);
 
         $stmt = Dbh::connect()
+            ->PREPARE("SELECT * FROM websites WHERE account_id=? AND site_name=?");
+        $stmt->execute([$accountId, $siteName]);
+        
+        if($stmt->rowCount()){
+            return "duplicate";
+            die;
+        }
+
+        $stmt = Dbh::connect()
             ->PREPARE('INSERT INTO websites(account_id, path, site_name, description, image) VALUES(:accountId, :path, :siteName, :description, :image)');
         $stmt->bindValue(':accountId', $accountId);
         $stmt->bindValue(':path', $path);
@@ -296,6 +305,16 @@ class Website{
     }
 
     public static function addPage($schema, $pageName, $siteId,$accountId){
+        $pageName = trim($pageName);
+
+        $stmt = Dbh::connect()
+            ->PREPARE("SELECT * FROM $schema.pages WHERE name=?");
+        $stmt->execute([$pageName]);
+        if($stmt->rowCount()){
+            return 'duplicate';
+            die;
+        }
+            
         //Get website name
         $stmt = Dbh::connect()
             ->PREPARE("SELECT * FROM websites WHERE website_id=?");
@@ -310,6 +329,14 @@ class Website{
 
         // ADD PAGE to new schema page table
         $path = "sites/".$accountId."/".$siteName."/html/".$pageName.".html";
+
+        $stmt = Dbh::connect()
+            ->PREPARE("SELECT * FROM $schema.pages WHERE path=?");
+        $stmt->execute([$path]);
+        if($stmt->rowCount()){
+            return 'duplicate';
+            die;
+        }
 
         $stmt = Dbh::connect()
             ->PREPARE("INSERT INTO $schema.pages(name, file, path) VALUES(:name, :file, :path)");

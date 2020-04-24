@@ -45,7 +45,9 @@ class Popup extends Component {
                         description: this.state.description,
                     },
                     function (response) {
-                        if (!response.toString().includes("false")) {
+                        if(response.toString().includes("duplicate")){
+                            alert("That website name already exists!");
+                        } else if (!response.toString().includes("false")) {
                             console.log(response);
                             let responseArray = JSON.parse(response.split('php-cgi')[1].trim());
                             console.log(responseArray);
