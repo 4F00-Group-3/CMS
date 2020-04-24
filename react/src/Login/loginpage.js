@@ -162,7 +162,7 @@ class LoginPage extends Component {
 
                 <Form className="centerBoxItems" onSubmit={this.handleFormSubmit}>
                   <Row className='center'>
-                    <label htmlFor="email">Username</label>
+                    <label htmlFor="email">Email</label>
                   </Row>
                   <Row className='center'>
                     <input
