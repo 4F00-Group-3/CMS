@@ -5,7 +5,7 @@ import Jumbotron from 'react-bootstrap/Jumbotron';
 import Col from 'react-bootstrap/Col';
 import Row from 'react-bootstrap/Row';
 import Container from 'react-bootstrap/Container';
-import Card from 'react-bootstrap/Card';  
+import Card from 'react-bootstrap/Card';
 import Button from 'react-bootstrap/Button';
 import {
   FooterSection,
@@ -30,6 +30,7 @@ class LandingPage extends Component {
             <FooterLinkList>
               <a target="_blank" href="https://drive.google.com/file/d/1MwbY9F0jgwucSeek6NNVVbjiav7j1oE6/preview">Help</a>
               <a target="_blank" href="https://drive.google.com/file/d/1HRV9B0ux0zTa36ZUP3081JLIdw4o7NEo/preview">Privacy & Terms</a>
+              <a target="_blank" href="#">Terms & Conditions</a>
             </FooterLinkList>
           </FooterSection>
         </Footer>
@@ -96,7 +97,7 @@ class LandingPage extends Component {
               </h1>
             </Col>
             <Col className='center-center-text' style={{ backgroundColor: "#2d3436" }}>
-              <p  className='white'>
+              <p className='white'>
                 A content management system or CMS as it’s usually called is a web platform which allows
                 users to create websites (complete with their domain names and full control over design and
                 content). Think of it as opening an online gateway for your customers to interact with your
@@ -111,11 +112,8 @@ class LandingPage extends Component {
           <Row className="full-screen-row">
             <Col className='center-center-text' style={{ backgroundColor: "#2d3436" }}>
               <p className='white'>
-                A content management system or CMS as it’s usually called is a web platform which allows
-                users to create websites (complete with their domain names and full control over design and
-                content). Think of it as opening an online gateway for your customers to interact with your
-                business 24/7 and/or an avenue for employees to share, store and have access to information
-                vital to their work.
+              There are many reasons to use a CMS to handle your website's needs. Some of the main benefits are that it's easy for the 
+              non-technically minded, it allows for multiple users, design changes are simple, and site maintenance is made easier.
               </p>
             </Col>
             <Col className='center-center-text' style={{ backgroundColor: "#a29bfe" }}>
@@ -135,11 +133,8 @@ class LandingPage extends Component {
             </Col>
             <Col className='center-center-text' style={{ backgroundColor: "#2d3436" }}>
               <p className='white'>
-                A content management system or CMS as it’s usually called is a web platform which allows
-                users to create websites (complete with their domain names and full control over design and
-                content). Think of it as opening an online gateway for your customers to interact with your
-                business 24/7 and/or an avenue for employees to share, store and have access to information
-                vital to their work.
+                Our support staff is available by email 24/7 to assist you with any issues
+                or concerns you may have with our CMS. Contact us any time at webcms@northsolutions.ca.
               </p>
             </Col>
           </Row>
@@ -149,11 +144,10 @@ class LandingPage extends Component {
           <Row className="full-screen-row">
             <Col className='center-center-text' style={{ backgroundColor: "#2d3436" }}>
               <p className='white'>
-                A content management system or CMS as it’s usually called is a web platform which allows
-                users to create websites (complete with their domain names and full control over design and
-                content). Think of it as opening an online gateway for your customers to interact with your
-                business 24/7 and/or an avenue for employees to share, store and have access to information
-                vital to their work.
+                North offers a number of plans. Whether you are looking make a single personal website or multiple websites for your business.
+                So the plan you choose will entire depend on your needs, but don't worry you can always change your plan later if you need to.
+                Here at North we like the idea of multiple people managing a single website, so we allow our users to add a number of other users
+                manage a single website. This ability is offered no matter the plan!
               </p>
             </Col>
             <Col className='center-center-text' style={{ backgroundColor: "#74b9ff" }}>
@@ -173,11 +167,11 @@ class LandingPage extends Component {
             </Col>
             <Col className='center-center-text' style={{ backgroundColor: "#2d3436" }}>
               <p className='white'>
-                A content management system or CMS as it’s usually called is a web platform which allows
-                users to create websites (complete with their domain names and full control over design and
-                content). Think of it as opening an online gateway for your customers to interact with your
-                business 24/7 and/or an avenue for employees to share, store and have access to information
-                vital to their work.
+                Our CMS has been designed to give the user the most seamless process through creating, designing,
+                and viewing their own websites. We provide users with a help manual located at the bottom of this
+                page through the help button. We provide step-by-step instructions with images included to help you
+                navigate through our CMS! If you face any other challenges feel free to send an email to our customer
+                service team at webcms@northsolutions.ca and we'll get back to you as soon as possible.
               </p>
             </Col>
           </Row>
@@ -187,11 +181,8 @@ class LandingPage extends Component {
           <Row className="full-screen-row">
             <Col className='center-center-text' style={{ backgroundColor: "#2d3436" }}>
               <p className='white'>
-                A content management system or CMS as it’s usually called is a web platform which allows
-                users to create websites (complete with their domain names and full control over design and
-                content). Think of it as opening an online gateway for your customers to interact with your
-                business 24/7 and/or an avenue for employees to share, store and have access to information
-                vital to their work.
+                We would be happy to hear from you. Please send us an email at webcms@northsolutions.ca for the chance
+                to be featured in our customer testimonials!
               </p>
             </Col>
             <Col className='center-center-text' style={{ backgroundColor: "#81ecec" }}>

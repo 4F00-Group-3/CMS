@@ -37,9 +37,9 @@ class LoginPage extends Component {
     backend.f = this.props.handleSitePageClick;
     backend.l = this.props.handleLandingClick;
     backend.g = this.props.handleGetStartedClick;
-    console.log(this.props);  
-    if (sessionStorage.getItem('id') !== null && sessionStorage.getItem('tier')===null) {
-        this.props.handleGetStartedClick();
+    console.log(this.props);
+    if (sessionStorage.getItem('id') !== null && sessionStorage.getItem('tier') === null) {
+      this.props.handleGetStartedClick();
     } else if (sessionStorage.getItem('id') !== null) {
       this.props.handleSitePageClick();
     }
@@ -114,8 +114,9 @@ class LoginPage extends Component {
         <Footer className='login-footer' size="mini">
           <FooterSection type="left" logo="North.">
             <FooterLinkList>
-            <a target="_blank" href="https://drive.google.com/file/d/1MwbY9F0jgwucSeek6NNVVbjiav7j1oE6/preview">Help</a>
+              <a target="_blank" href="https://drive.google.com/file/d/1MwbY9F0jgwucSeek6NNVVbjiav7j1oE6/preview">Help</a>
               <a target="_blank" href="https://drive.google.com/file/d/1HRV9B0ux0zTa36ZUP3081JLIdw4o7NEo/preview">Privacy & Terms</a>
+              <a target="_blank" href="#">Terms & Conditions</a>
             </FooterLinkList>
           </FooterSection>
         </Footer>
