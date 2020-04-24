@@ -170,27 +170,31 @@ class Pages extends Component {
     }
 
     createPage=(name)=> {
-        AjaxCall(
-            { function: "addPage", websiteId: sessionStorage.getItem('siteId') || 0, pageName: name , accountId: sessionStorage.getItem('id') },
-            (response) => {
-              console.log(response);
-              if (!response.toString().includes("false")) {
-                let pageInfo = JSON.parse(response.split('php-cgi')[1].trim());
-                let pages_id = pageInfo[0];
-                let path = pageInfo[1];
-                let file = [];
-                // console.log(pageInfo);
+        var letters = /^[0-9a-zA-Z\s\_\-]+$/;
+        if(name.match(letters)){
+            AjaxCall(
+                { function: "addPage", websiteId: sessionStorage.getItem('siteId') || 0, pageName: name , accountId: sessionStorage.getItem('id') },
+                (response) => {
+                console.log(response);
+                if(response.toString().includes("duplicate")){
+                    alert("That page name already exists!");
+                } else if (!response.toString().includes("false")) {
+                    let pageInfo = JSON.parse(response.split('php-cgi')[1].trim());
+                    let pages_id = pageInfo[0];
+                    let path = pageInfo[1];
+                    let file = [];
+                    // console.log(pageInfo);
 
-                var tempPages = this.state.pages;
-                tempPages.push({ pages_id, name, file, path });
-                this.setState({ page: tempPages });
-              } else {
-                console.log('failed to add page');
-              }
-      
-      
+                    var tempPages = this.state.pages;
+                    tempPages.push({ pages_id, name, file, path });
+                    this.setState({ page: tempPages });
+                } else {
+                    console.log('failed to add page');
+                }
             });
-
+        } else {
+            alert('Please input alphanumeric characters only');
+        }
         // this.setState({pages: this.props.backend.pages, pageID: this.state.pageID+1});
         // this.props.backend.updatePages(this.state.pageID, name, name, []);
         // console.log(this.state.pageID);

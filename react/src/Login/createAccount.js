@@ -17,6 +17,7 @@ class CreateAccount extends Component {
     this.state = {
       email: "",
       pw: "",
+      pw2:"",
       fn: "",
       ln: ""
     };
@@ -28,28 +29,33 @@ class CreateAccount extends Component {
 
   handleCreateAccountSubmit = event => {
     event.preventDefault();
-    console.log()
-    AjaxCall(
-      {
-        function: "createAccount",
-        email: this.state.email,
-        password: this.state.pw,
-        first_name: this.state.fn,
-        last_name: this.state.ln
-      },
-      function(response) {
-        console.log(response);
-        if (!response.toString().includes("false")) {
-          let responseArray = JSON.parse(response.split('php-cgi')[1].trim());
-          console.log(responseArray);
-          let accountId = responseArray.id;
-          console.log(accountId);
-          backend.redirect(accountId);
-        }else{
-          alert("Unable to create account. Email already in use.")
+
+    if(this.state.pw === this.state.pw2 && this.state.pw !== "" && this.state.pw2 !== ""){
+      AjaxCall(
+        {
+          function: "createAccount",
+          email: this.state.email,
+          password: this.state.pw,
+          first_name: this.state.fn,
+          last_name: this.state.ln
+        },
+        function(response) {
+          console.log(response);
+          if (!response.toString().includes("false")) {
+            let responseArray = JSON.parse(response.split('php-cgi')[1].trim());
+            console.log(responseArray);
+            let accountId = responseArray.id;
+            console.log(accountId);
+            backend.redirect(accountId);
+          }else{
+            alert("Unable to create account. Email already in use.")
+          }
         }
-      }
-    );
+      );
+    } else {
+      alert("Password fields do not match!");
+    }
+    
   };
 
   handleChange = event => {
@@ -144,9 +150,11 @@ class CreateAccount extends Component {
                 <Col>
                   <input
                     type="password"
-                    id="pw"
+                    id="pw2"
+                    name="pw2"
                     pass2="pw2"
                     className="create-account-form-input"
+                    onChange={(event) => {this.handleChange(event)}}
                   />
                 </Col>
               </Row>

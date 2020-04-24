@@ -4,7 +4,7 @@ import Editor from '../editor/Editor';
 import Dashboard from '../dashboard/Dashboard'
 import SitePage from '../Site Page/SitePage';
 import Login from '../Login/loginpage';
-import CreateAccount from '../Login/CreateAccount';
+import CreateAccount from '../Login/createAccount';
 import GetStarted from '../Components/getStarted';
 import Subscription from '../Site Page/Subscription.js';
 

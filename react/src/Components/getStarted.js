@@ -34,9 +34,9 @@ class GetStarted extends Component {
         <Footer className='login-footer' size="mini">
           <FooterSection type="left" logo="North.">
             <FooterLinkList>
-              <a target="_blank" href="https://drive.google.com/file/d/1MwbY9F0jgwucSeek6NNVVbjiav7j1oE6/preview">Help</a>
-              <a target="_blank" href="https://drive.google.com/file/d/1HRV9B0ux0zTa36ZUP3081JLIdw4o7NEo/preview">Privacy & Terms</a>
-              <a target="_blank" href="#">Terms & Conditions</a>
+              <a target="_blank" href="https://drive.google.com/open?id=1bModZ1EzBEdGyZltHlMCmiW2o0fjjEmC">Help</a>
+              <a target="_blank" href="https://drive.google.com/open?id=1tWE13UlHbMgXlFPAvF59OO0xwQB_wCrt">Privacy Policy</a>
+              <a target="_blank" href="https://drive.google.com/open?id=1NtARcUGS2ygw1dfAhPEHjpanxqG8OuH-">Terms & Conditions</a>
             </FooterLinkList>
           </FooterSection>
         </Footer>
@@ -116,7 +116,7 @@ class GetStarted extends Component {
               <ListGroup className="list-group-flush">
                 <ListGroupItem>Visual Editor</ListGroupItem>
                 <ListGroupItem>Platform Security</ListGroupItem>
-                <ListGroupItem>Manage Unlimited Sites</ListGroupItem>
+                <ListGroupItem>Manage up to 5 Sites</ListGroupItem>
               </ListGroup>
               <Card.Body className='sign-up-container'>
                 {this.state.showSignUp ?

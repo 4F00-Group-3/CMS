@@ -30,7 +30,9 @@ function createAccount(){
 function createWebsite(){
     if (!empty($_POST)) {
         $website = Website::createWebsite($_POST['accountId'], "sites/".$_POST['accountId']."/".$_POST['title']."/html/home.html", $_POST['title'], $_POST['description']);
-        if ($website === false) {
+        if ($website == 'duplicate'){
+            echo $website;
+        } else if ($website === false) {
             echo "false";
         } else {
             echo json_encode($website);
@@ -191,7 +193,9 @@ function addPage(){
             $success = true;
         }
     }
-    if($success === true){
+    if($data == "duplicate"){
+        echo $data;
+    } else if($success === true){
         echo json_encode($data);
     }else{
         echo "false";

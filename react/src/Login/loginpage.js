@@ -4,7 +4,7 @@ import Container from "@material-ui/core/Container";
 import Card from "@material-ui/core/Card";
 import AjaxCall from "../ajax.js";
 import LoginBackend from "./backend/LoginBackend";
-import CreateAccount from './CreateAccount.js';
+import CreateAccount from './createAccount.js';
 import '../css/LoginPage.css';
 import Form from 'react-bootstrap/Form';
 import Row from 'react-bootstrap/Row';
@@ -72,7 +72,7 @@ class LoginPage extends Component {
   handlePasswordChangeSubmit = event => {
     event.preventDefault();
     AjaxCall(
-      { function: "updateAccountPassword", email: this.state.email, password: this.state.pw },
+      { function: "updateAccountPassword", email: this.state.email, password: this.state.pw2 },
       function (response) {
         console.log(response);
         if (!response.toString().includes("false")) {
@@ -114,9 +114,9 @@ class LoginPage extends Component {
         <Footer className='login-footer' size="mini">
           <FooterSection type="left" logo="North.">
             <FooterLinkList>
-              <a target="_blank" href="https://drive.google.com/file/d/1MwbY9F0jgwucSeek6NNVVbjiav7j1oE6/preview">Help</a>
-              <a target="_blank" href="https://drive.google.com/file/d/1HRV9B0ux0zTa36ZUP3081JLIdw4o7NEo/preview">Privacy & Terms</a>
-              <a target="_blank" href="#">Terms & Conditions</a>
+              <a target="_blank" href="https://drive.google.com/open?id=1bModZ1EzBEdGyZltHlMCmiW2o0fjjEmC">Help</a>
+              <a target="_blank" href="https://drive.google.com/open?id=1tWE13UlHbMgXlFPAvF59OO0xwQB_wCrt">Privacy Policy</a>
+              <a target="_blank" href="https://drive.google.com/open?id=1NtARcUGS2ygw1dfAhPEHjpanxqG8OuH-">Terms & Conditions</a>
             </FooterLinkList>
           </FooterSection>
         </Footer>

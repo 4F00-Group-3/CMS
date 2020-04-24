@@ -97,7 +97,7 @@ class Account {
     public static function updatePassword($email, $password){
         $pw = password_hash($password, PASSWORD_BCRYPT);
 
-        $stmt = Dbh::connect() ->PREPARE('UPDATE accounts SET password=? WHERE email = ?;');
+        $stmt = Dbh::connect() ->PREPARE("UPDATE accounts SET password=? WHERE email = ?;");
         $stmt->execute([$pw, $email]);
         if($stmt->rowCount()){
             return true;
@@ -108,7 +108,7 @@ class Account {
 
     //add a new account to the database
     public static function confirmSubscription($accountId, $subscription){
-        $stmt = Dbh::connect() ->PREPARE('UPDATE accounts SET subscription=? WHERE account_id = ?;');
+        $stmt = Dbh::connect() ->PREPARE("UPDATE accounts SET subscription=? WHERE account_id = ?;");
         $stmt->execute([$subscription, $accountId]);
         if($stmt->rowCount()){
             return true;
