@@ -9,7 +9,7 @@ import {
 import GetStarted from './Components/getStarted';
 import LoginPage from "./Login/loginpage";
 import LandingPage from "./Components/LandingPage";
-import CreateAccount from "./Login/CreateAccount";
+import CreateAccount from "./Login/createAccount";
 import Col from 'react-bootstrap/Col';
 import Row from 'react-bootstrap/Row';
 import Dashboard from './dashboard/Dashboard'
