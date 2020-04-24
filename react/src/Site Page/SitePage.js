@@ -35,27 +35,32 @@ class Popup extends Component {
     handleFormSubmit = event => {
         event.preventDefault();
         if (this.state.title !== "") {
-            let web = AjaxCall(
-                {
-                    function: "createWebsite",
-                    title: this.state.title,
-                    accountId: sessionStorage.getItem("id"),
-                    description: this.state.description,
-                },
-                function (response) {
-                    if (!response.toString().includes("false")) {
-                        console.log(response);
-                        let responseArray = JSON.parse(response.split('php-cgi')[1].trim());
-                        console.log(responseArray);
-                        let websiteId = responseArray.id;
-                        console.log(websiteId);
-                        backend.redirect(websiteId);
-                    } else {
-                        alert("Website failed to create");
+            var letters = /^[0-9a-zA-Z\s\_\-]+$/;
+            if(this.state.title.match(letters)){           
+                let web = AjaxCall(
+                    {
+                        function: "createWebsite",
+                        title: this.state.title,
+                        accountId: sessionStorage.getItem("id"),
+                        description: this.state.description,
+                    },
+                    function (response) {
+                        if (!response.toString().includes("false")) {
+                            console.log(response);
+                            let responseArray = JSON.parse(response.split('php-cgi')[1].trim());
+                            console.log(responseArray);
+                            let websiteId = responseArray.id;
+                            console.log(websiteId);
+                            backend.redirect(websiteId);
+                        } else {
+                            alert("Website failed to create");
+                        }
                     }
-                }
-            );
-            this.props.closePopup();
+                );
+                this.props.closePopup();
+            } else {
+                alert('Please input alphanumeric characters only');
+            }
         }
         else {
             alert("Please enter a title for the website!")
