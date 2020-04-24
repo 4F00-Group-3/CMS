@@ -116,7 +116,7 @@ class GetStarted extends Component {
               <ListGroup className="list-group-flush">
                 <ListGroupItem>Visual Editor</ListGroupItem>
                 <ListGroupItem>Platform Security</ListGroupItem>
-                <ListGroupItem>Manage Unlimited Sites</ListGroupItem>
+                <ListGroupItem>Manage up to 5 Sites</ListGroupItem>
               </ListGroup>
               <Card.Body className='sign-up-container'>
                 {this.state.showSignUp ?
