@@ -68,12 +68,13 @@ class Users extends Component {
         this.props.backend.clearUsers();
         var arr = [];
         AjaxCall({ function: 'getUsersData', websiteId: sessionStorage.getItem('siteId') },
-            function (response) {
+            (response) => {
                 console.log(response);
                 let responseArray = JSON.parse(response.split('php-cgi')[1].trim());
                 arr = responseArray;
+                this.initUsers(arr)
         });
-        setTimeout(()=> this.initUsers(arr), 2000);
+        // setTimeout(()=> this.initUsers(arr), 2000);
     }
 
     initUsers(users) {
@@ -96,16 +97,17 @@ class Users extends Component {
     getUsers(){
         var arr = [];
         AjaxCall({function: 'getUsersData', websiteId: sessionStorage.getItem('siteId')},
-            function (response) {
+            (response) => {
             console.log(response);
             let responseArray = JSON.parse(response.split('php-cgi')[1].trim());
             arr = responseArray;
             console.log(arr);
-
+            this.props.backend.clearUsers();
+            this.updateUsers(arr);
         });
-        this.props.backend.clearUsers();
-        console.log(this.props.backend.users);
-        setTimeout(()=> this.updateUsers(arr), 2000);
+        
+        // console.log(this.props.backend.users);
+        // setTimeout(()=> , 2000);
     }
 
     updateUsers(users){
@@ -137,14 +139,15 @@ class Users extends Component {
         //All console logs are for testing purposes
         var arr = [];
         AjaxCall({function: 'deleteUser', websiteId: sessionStorage.getItem('siteId'), userId: id},
-            function (response) {
+            (response) => {
                 console.log(response);
                 let responseArray = JSON.parse(response.split('php-cgi')[1].trim());
                 console.log(responseArray);
                 arr = responseArray;
+                this.getUsers()
             });
         //END OF BACKEND CALL
-        setTimeout(()=> this.getUsers(), 1000);
+        // setTimeout(()=> , 1000);
     }
 
     render() {
@@ -183,14 +186,15 @@ class Users extends Component {
         var arr = [];
         AjaxCall({function: 'addUser', websiteId: sessionStorage.getItem('siteId'), firstName: uname, lastName: 'test', 
         password: 'test123', email: 'test@testing.com', type:'Admin'},
-            function (response) {
+            (response) => {
                 console.log(response);
                 let responseArray = JSON.parse(response.split('php-cgi')[1].trim());
                 console.log(responseArray);
                 arr = responseArray;
+                this.getUsers()
             });
         console.log(arr);
-        setTimeout(()=> this.getUsers(), 1000);
+        // setTimeout(()=> , 1000);
     }
 }
 
