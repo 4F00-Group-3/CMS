@@ -93,7 +93,9 @@ class VideoEditorMenu extends Component {
     }
   }
 
-
+  /**
+   * This method renders the video editor menu onto the editor sidebar.
+   */
   render() {
     return (<>
       <Form className=" rounded p-1 editor-menu" onSubmit={this.handleSubmit}>

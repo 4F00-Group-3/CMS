@@ -71,8 +71,8 @@ class IconEditorMenu extends Component {
     }
 
     /**
- * This method toggles the section background colour picker
- */
+    * This method toggles the section background colour picker
+    */
     handleBGColorPicker = () => {
         if (this.state.sectionBgColorPickerActive === false) {
             this.setState({ sectionBgColorPickerActive: true });
@@ -104,6 +104,9 @@ class IconEditorMenu extends Component {
         }
     }
 
+    /**
+     * This method renders the icon editor menu onto the editor sidebar.
+     */
     render() {
         return (<>
             <div className=""></div>

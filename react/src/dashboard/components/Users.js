@@ -7,8 +7,10 @@ import Col from 'react-bootstrap/Col'
 import Container from 'react-bootstrap/Container'
 import { Button } from 'react-bootstrap';
 
-/*Popup class for the add page pop up, handles opening the popup and passing
-information from it back to the add User part */
+/**
+ * Popup class for the add page pop up, handles opening the popup and passing 
+ * information from it back to the add User part 
+ */
 class Popup extends Component {
 
     getNameOfUser = () => {

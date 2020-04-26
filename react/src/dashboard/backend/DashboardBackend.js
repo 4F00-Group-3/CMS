@@ -82,19 +82,30 @@ class DashboardBackend {
   }
 
 
-  /*Receives id of page to delete, then loops through all pages to find matching
-  page and removes it.
-  Each const page is the id of a page -1, so by subtracting one from id on
-  the comparison, we get an effective compare and the page is removed from pages
-  */
+  /**
+   * Receives id of page to delete, then loops through all pages to find matching page and removes it. 
+   * Each const page is the id of a page -1, so by subtracting one from id on the comparison, we get
+   * an effective compare and the page is removed from pages
+   * unused
+   * @param {*} id 
+   */
   delete(id) {
 
   }
 
+  /**
+   * unused
+   * @param {} id 
+   * @param {*} field 
+   * @param {*} value 
+   */
   update(id, field, value) {
     this.updates.push([id, field, value]);
   }
 
+  /**
+   * unused
+   */
   updatePages = (id, name, segment, body) => {
 
   }

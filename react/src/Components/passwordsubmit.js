@@ -3,6 +3,9 @@ import Container from "@material-ui/core/Container";
 import Card from "@material-ui/core/Card";
 import "./LandingPage.css";
 
+/**
+ * unused
+ */
 class passwordsubmit extends Component {
   render() {
     return (

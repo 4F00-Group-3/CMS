@@ -13,6 +13,9 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { ChromePicker } from 'react-color';
 import { Button } from 'react-bootstrap';
 
+/**
+ * The following classes are inputs or components used in the editor menus.
+ */
 export class NumericInput extends Component {
     render() {
         return (
