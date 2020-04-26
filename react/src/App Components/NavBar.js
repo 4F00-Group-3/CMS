@@ -4,6 +4,9 @@ import {
     Navigation
 } from "react-mdl";
 
+/**
+ * unused, I think
+ */
 class NavBar extends Component{
     render(){
         return (

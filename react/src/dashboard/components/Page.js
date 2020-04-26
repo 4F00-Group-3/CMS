@@ -1,7 +1,5 @@
 import React, { Component } from 'react';
 import ListItem from '../components/ListItem';
-import Editor from '../../editor/Editor';
-import NewWindow from 'react-new-window'
 
 
 class Page extends Component {
@@ -11,20 +9,31 @@ class Page extends Component {
         this.handlePageDelete = this.handlePageDelete.bind(this);
     }
 
-
+    /**
+     * This method handles when the edit button is clicked.
+     */
     handlePageEdit() {
         this.props.loadEditor(this.props.page)
     }
 
+    /**
+     * This method handles when the delete button is clicked.
+     */
     handlePageDelete(id) {
-        // console.log("time to delete a page " + this.props.id);
         this.props.onPageDelete(this.props.id)
     }
 
+    /**
+     * This handles the editor closing.  
+     * unused
+     */
     onEditorUnload = () => {
         this.setState({isEditing: false})
     }
 
+    /**
+     * This method renders a list item onto the display representing a page.
+     */
     render() {
         var result = <ListItem
                 type={"page"}

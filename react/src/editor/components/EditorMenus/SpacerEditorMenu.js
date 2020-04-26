@@ -19,8 +19,8 @@ class SpacerEditor extends Component {
     }
 
     /**
-* This method toggles the section background colour picker
-*/
+    * This method toggles the section background colour picker
+    */
     handleBGColorPicker = () => {
         if (this.state.sectionBgColorPickerActive === false) {
             this.setState({ sectionBgColorPickerActive: true });
@@ -52,6 +52,9 @@ class SpacerEditor extends Component {
         }
     }
 
+    /**
+     * This method renders the spacer editor menu onto the editor sidebar.
+     */
     render() {
         return (
             <Form className=" rounded p-1 editor-menu">

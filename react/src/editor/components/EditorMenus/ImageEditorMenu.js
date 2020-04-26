@@ -33,14 +33,26 @@ class ImageEditorMenu extends Component {
         }.bind(this), 1000)
     }
 
+    /**
+     * This method handles when the user chooses to change the margin units
+     * @param {string} value px, em, %, vh, etc
+     */
     onMarginUnitChange(value) {
         this.setState({ marginUnits: value })
     }
 
+    /**
+    * This method handles when the user chooses to change the width units
+    * @param {string} value px, em, %, vh, etc
+    */
     onWidthUnitChange(value) {
         this.setState({ widthUnits: value })
     }
 
+    /**
+    * This method handles when the user chooses to change the border radius units
+    * @param {string} value px, em, %, vh, etc
+    */
     onBorderRadiusUnitChange(value) {
         this.setState({ borderRadiusUnits: value })
     }
@@ -50,14 +62,16 @@ class ImageEditorMenu extends Component {
         this.setState({ showImageGallery: !this.state.showImageGallery });
     }
 
-
+    /**
+     * Ajax call to get user images.
+     */
     getImages = () => {
         AjaxCall(
             { function: "getAccountMedia", accountId: sessionStorage.getItem('id') || 0 },
             (response) => {
                 console.log(response);
                 if (!response.toString().includes("false")) {
-                    
+
                     let responseArray = JSON.parse(response.split('php-cgi')[1].trim());
                     this.setState({ images: responseArray });
 
@@ -117,6 +131,9 @@ class ImageEditorMenu extends Component {
         }
     }
 
+    /**
+     * This method toggles the background colour picker and if it should be shown or not.
+     */
     handleBGColorPicker = () => {
         if (this.state.bgColorPickerActive === false) {
             this.setState({ bgColorPickerActive: true });
@@ -148,6 +165,9 @@ class ImageEditorMenu extends Component {
         }
     }
 
+    /**
+     * This method renders the image editor menu onto the editor sidebar.
+     */
     render() {
         return (<>
             <Form className=" rounded p-1 editor-menu" onSubmit={this.handleSubmit}>

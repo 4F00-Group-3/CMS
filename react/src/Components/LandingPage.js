@@ -21,6 +21,9 @@ class LandingPage extends Component {
     });
   };
 
+  /**
+   * This method renders the footer onto the landing page
+   */
   Footer() {
     return (
       <div style={{ paddingbottom: "60px" }}>
@@ -37,7 +40,10 @@ class LandingPage extends Component {
       </div>);
   }
 
-
+  /**
+   * This method renders the landing page onto the display.
+   * This class is to be called inside the homepage class.
+   */
   render() {
     return (
       <>
