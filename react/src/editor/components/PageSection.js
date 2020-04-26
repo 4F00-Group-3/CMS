@@ -17,6 +17,9 @@ import YouTube from 'react-youtube';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 
+/**
+ * This class represents an individual element/component inside editor
+ */
 export default class PageSection extends Component {
 
     /**
@@ -230,12 +233,13 @@ export default class PageSection extends Component {
     render() {
         // this clicked methid here is used to height the selected page section
         const isClicked = this.props.clicked;
+        // this surrounds the component in a highlight to indicate that it is currently being edited buy the user
         var classList = isClicked ? "pageSectionClick page-section" : "pageSection page-section";
         return (
             <div className={classList + " page-section"} onClick={e => {
                 this.props.onClick(this.props.page.id)
                 this.props.onSectionPush(this.props.page.id, this.props.page.type, this.props.page.style[0]);
-                e.stopPropagation();
+                e.stopPropagation(); // this stops react from being weird when it comes to elements inside columns
             }}>
                 {this.returnElement()}
             </div>

@@ -21,6 +21,9 @@ import EditMenuNav from './EditorMenus/EditorMenuNav';
 import SpacerEditorMenu from './EditorMenus/SpacerEditorMenu';
 import RowEditorMenu from './EditorMenus/RowEditorMenu';
 
+/**
+ * This class represents the menus of the user selected component, these menus are displayed inside the Editor
+ */
 export default class EditorSideBar extends Component {
     constructor(props) {
         super(props);
