@@ -1,20 +1,34 @@
 #!/usr/bin/php-cgi
 <?php
+//import PHP constants and required files
 require_once ('header_functions.php');
-//require_once ('payment.php');
 
+//array of ajax handler functions implemented below
 $functions = array('test', 'currentUser', 'updateUser','currentUserId', 'addUser', 'getAllPages', 'getAllUsers', 'getMedia', 'getPage',
     'addMedia', 'addPage', 'deletePage', 'deleteUser', 'login', 'createAccount', 'createWebsite', 'getWebsiteData',
     'getPagesData','getUsersData','getAccountMedia', 'deleteUser', 'deletePage', 'deleteWebsite', 'addUser','addPage',
     'updateAccountPassword', 'confirmSubscription', 'checkWebsites', 'savePage');
 
+//execute the function if it exists in the above array
 if(isset($_POST['function']) && in_array($_POST['function'], $functions)){
     $_POST['function']();
 }
 
-function display10payment(){
-}
+/**
+ * All functions below handle asynchronous HTTP requests made from the 
+ * React application
+ */
 
+/**
+ * Handles the "Create Account" form submission
+ * 
+ * @param string $_POST['email'] The new user's email
+ * @param string $_POST['first_name'] The new user's first name
+ * @param string $_POST['last_name'] The new user's last name
+ * @param string $_POST['password'] The new user's password
+ * 
+ * @return string "false" on failure, otherwise the data pertaining to the new account
+ */
 function createAccount(){
     if (!empty($_POST)) {
         $account = Account::addAccount($_POST['email'], $_POST['first_name'], $_POST['last_name'], 'ADMIN', $_POST['password']);
@@ -27,6 +41,15 @@ function createAccount(){
     die;
 }
 
+/**
+ * Handles the "Create Website" form submission
+ * 
+ * @param string $_POST['accountId'] the ID of the logged in user
+ * @param string $_POST['title'] The title of the website
+ * @param string $_POST['description'] The description for the new site
+ * 
+ * @return string "false" on failure, otherwise the data pertaining to the new website
+ */
 function createWebsite(){
     if (!empty($_POST)) {
         $website = Website::createWebsite($_POST['accountId'], "sites/".$_POST['accountId']."/".$_POST['title']."/html/home.html", $_POST['title'], $_POST['description']);
@@ -41,6 +64,14 @@ function createWebsite(){
     die;
 }
 
+/**
+ * Handles the "Delete Website" onclick
+ * 
+ * @param string $_POST['accountId'] the ID of the logged in user
+ * @param string $_POST['websiteId'] the ID of the website to be deleted
+ * 
+ * @return string "false" on failure, otherwise "true"
+ */
 function deleteWebsite(){
     $success = Website::deleteWebsite($_POST['accountId'], $_POST['websiteId']);
     if ($success) {
@@ -51,6 +82,15 @@ function deleteWebsite(){
     die;
 }
 
+/**
+ * Handles the "Login" form submission
+ * 
+ * @param string $_POST['email'] the email of the user
+ * @param string $_POST['password'] the password of the user
+
+ * 
+ * @return string "false" on failure, otherwise the data pertaining to the user
+ */
 function login(){
     $success = false;
     if (!empty($_POST)) {
@@ -78,6 +118,14 @@ function login(){
     die;
 }
 
+/**
+ * Handles the "Forgot Password" form submission
+ * 
+ * @param string $_POST['email'] the email of the user
+ * @param string $_POST['password'] the new password of the user
+ * 
+ * @return string whether or not the password was changed
+ */
 function updateAccountPassword(){
     $success = false;
     if (!empty($_POST['email']) && !empty($_POST['password'])) {
@@ -92,6 +140,15 @@ function updateAccountPassword(){
     die;
 }
 
+/**
+ * Handler to check if the user has payed for a subscription
+ *
+ * @param string $_POST['accountId'] the ID of the user
+ * @param string $_POST['subscription'] the subscription tier (1-3)
+ * 
+ * @return string whether or not the user has made a payment
+ * 
+ */
 function confirmSubscription(){
     $success = false;
     if (!empty($_POST['accountId']) && !empty($_POST['subscription'])) {
@@ -105,6 +162,13 @@ function confirmSubscription(){
     die;
 }
 
+/**
+ * Handler for the getting the data pertaining to a selected website
+ * 
+ * @param string $_POST['accountId'] the ID of the user
+ * 
+ * @return string "false" on failure, otherwise the website data
+ */
 function getWebsiteData(){
     $success = false;
     if (!empty($_POST['accountId'])) {
@@ -124,6 +188,15 @@ function getWebsiteData(){
     die;
 }
 
+/**
+ * Handler for the check that takes place when a user cretes a website, to check
+ * if their subscription level allows them to add another site
+ * 
+ * @param string $_POST['accountId'] the ID of the user
+ * @param string $_POST['subscription'] the subscription tier (1-3)
+ * 
+ * @return string whether or not the user can add a new site
+ */
 function checkWebsites(){
     if (!empty($_POST['accountId'])) {
         $accountId = $_POST['accountId'];
@@ -148,6 +221,13 @@ function checkWebsites(){
     die;
 }
 
+/**
+ * Returns the pages belonging to a particular website
+ * 
+ * @param string $_POST['websiteId'] the ID of the website
+ * 
+ * @return string "false" on failure, or the page data
+ */
 function getPagesData(){
     $success = false;
     if (!empty($_POST['websiteId'])) {
@@ -166,6 +246,13 @@ function getPagesData(){
     die;
 }
 
+/**
+ * Returns the users belonging to a particular website
+ * 
+ * @param string $_POST['websiteId'] the ID of the website
+ * 
+ * @return string "false" on failure, or the user data
+ */
 function getUsersData(){
     $success = false;
     if (!empty($_POST['websiteId'])) {
@@ -184,6 +271,15 @@ function getUsersData(){
     die;
 }
 
+/**
+ * Handler for the new page onclick
+ * 
+ * @param string $_POST['websiteId'] the ID of the website
+ * @param string $_POST['pageName'] the title of the page
+ * @param string $_POST['accountId'] the ID of the logged in user
+ * 
+ * @return string whether the page was added
+ */
 function addPage(){
     $success = false;
     if (!empty($_POST['websiteId']) && !empty($_POST['pageName']) && !empty($_POST['accountId'])) {
@@ -203,6 +299,15 @@ function addPage(){
     die;
 }
 
+/**
+ * Adds a user to a website
+ * 
+ * @param string $_POST['websiteId'] the ID of the website
+ * @param string $_POST['firstName'] the user's first name
+ * @param string $_POST['lastName'] the user's last name
+ * 
+ * @return string whether the user was added
+ */
 function addUser(){
     $success = false;
     if (!empty($_POST['websiteId']) && !empty($_POST['firstName'])&& !empty($_POST['lastName'])
@@ -221,6 +326,15 @@ function addUser(){
     die;
 }
 
+/**
+ * Deletes a page from a website
+ * 
+ * @param string $_POST['websiteId'] the ID of the website
+ * @param string $_POST['pageId'] the ID of the page
+ * @param string $_POST['path'] the path to the page's HTML file
+ * 
+ * @return string whether the page was removed
+ */
 function deletePage(){
     $success = false;
     if (!empty($_POST['websiteId']) && !empty($_POST['pageId']) && !empty($_POST['path'])) {
@@ -238,6 +352,14 @@ function deletePage(){
     die;
 }
 
+/**
+ * Deletes a user from a website
+ * 
+ * @param string $_POST['websiteId'] the ID of the website
+ * @param string $_POST['userId'] the ID of the user
+ * 
+ * @return string whether the user was removed
+ */
 function deleteUser(){
     $success = false;
     if (!empty($_POST['websiteId']) && !empty($_POST['userId'])) {
@@ -255,7 +377,13 @@ function deleteUser(){
     die;
 }
 
-
+/**
+ * Handler to get all the images uploaded by a user
+ * 
+ * @param string $_POST['accountId'] the ID of the user
+ * 
+ * @return string "false" if no images, else image data
+ */
 function getAccountMedia(){
     $success = false;
     if (!empty($_POST['accountId'])) {
@@ -273,16 +401,13 @@ function getAccountMedia(){
     die;
 }
 
-function test(){
-    $message = $_POST['message'];
-    if($message == 'hello'){
-        echo 'hello';
-    } else {
-        echo 'good bye';
-    }    
-    die;
-}
-
+/**
+ * Handler to get info about the currently logged in user
+ * 
+ * @param string $_POST['accountId'] the ID of the user
+ * 
+ * @return string "false" if no user, else user data
+ */
 function currentUser(){
     $currentUser = Account::getAccountById($_POST['accountId']);
     if($currentUser != false){
@@ -294,6 +419,13 @@ function currentUser(){
     die;
 }
 
+/**
+ * Handler to update user data
+ * 
+ * @param string $_POST['accountId'] the ID of the user
+ * 
+ * @return string whether the user's info was updated
+ */
 function updateUser(){
     $accountId = $_POST['accountId'];
     unset($_POST['accountId']);
@@ -307,10 +439,13 @@ function updateUser(){
     }
 }
 
-function currentUserId(){
-
-}
-
+/**
+ * Returns the pages belonging to a particular website
+ * 
+ * @param string $_POST['websiteId'] the ID of the website
+ * 
+ * @return string "false" on failure, or the page JSON data
+ */
 function getAllPages(){
     $success = false;
     if (!empty($_POST['websiteId'])) {
@@ -329,20 +464,25 @@ function getAllPages(){
     die;
 }
 
+/**
+ * Returns all accounts that exist
+ * 
+ * @return string query rows or false if no data
+ */
 function getAllUsers(){
     $all_users = Account::getAllAccounts();
     echo json_encode($all_users);
     die;
 }
 
-function getMedia(){
-
-}
-
-function getPage(){
-
-}
-
+/**
+ * Adds an image upload to sandcastle and adds the URL to the database
+ * 
+ * @param string $_FILES['file'] uploaded file data
+ * @param string $_POST['accountId'] the ID of the user
+ * 
+ * @return string whether the image was uploaded 
+ */
 function addMedia(){
     $file = $_FILES['file'];
 
@@ -395,6 +535,12 @@ function addMedia(){
 
 }
 
+/**
+ * Updates the JSON data of a page 
+ * 
+ * @param string $_POST['data'] page name, path, contents.
+ * 
+ */
 function savePage(){
     if (!empty($_POST) && isset($_POST['data'])) {
         $data = $_POST['data'];
