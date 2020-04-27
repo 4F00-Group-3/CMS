@@ -4,6 +4,9 @@ import Col from 'react-bootstrap/Col';
 import Row from 'react-bootstrap/Row';
 import EditMenuNav from './EditorMenuNav';
 
+/**
+ * This class represents the RowMenu, which is called by the EditorSideBar when a Row is selected inside the Editor
+ */
 export default class RowEditorMenu extends Component {
 
     constructor(props) {

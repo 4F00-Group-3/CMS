@@ -4,8 +4,12 @@ import EditingPage from '../editor/components/EditingPage';
 import EditorBackend from './EditorBackend';
 import Button from 'react-bootstrap/Button'
 
+// Backend Connector for Editor
 const backend = new EditorBackend();
 
+/**
+ * This class represents the Editor page where the user is able to create and edit their pages
+ */
 class Editor extends Component {
     constructor(props) {
         super(props);

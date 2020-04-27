@@ -1,5 +1,8 @@
 import AjaxCall from "./../ajax";
 
+/**
+ * This class represents the backend functionality and logic for the editor
+ */
 class EditorBackend {
     constructor() {
         this.state = {
