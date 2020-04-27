@@ -30,6 +30,8 @@ let backend = new LoginBackend();
  * @see CreateAccount
  */
 class LoginPage extends Component {
+
+
   /**
    * Constructor handles login restrictions based on if a user is already logged in as well as initializing all properties
    * for the component
