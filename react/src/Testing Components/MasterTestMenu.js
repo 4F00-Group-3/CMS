@@ -8,14 +8,18 @@ import CreateAccount from '../Login/createAccount';
 import GetStarted from '../Components/getStarted';
 import Subscription from '../Site Page/Subscription.js';
 
+/**
+ * This class is used by the development team in order to quickly jump to and test individual pages
+ */
 class MasterTestMenu extends Component {
   constructor(props) {
     super(props);
 
     this.state = {
-      viewPage: ""
+      viewPage: "Editor"
     };
 
+    // The following code binds the individual handler methods to this class
     this.handleEditorClick = this.handleEditorClick.bind(this);
     this.handleHomeClick = this.handleHomeClick.bind(this);
     this.handleDashClick = this.handleDashClick.bind(this);
@@ -25,6 +29,8 @@ class MasterTestMenu extends Component {
     this.handleGetStartedClick = this.handleGetStartedClick.bind(this);
     this.handleUpgradePlan = this.handleUpgradePlan.bind(this);
   }
+
+  // The following handler methods change the page view to the user selected page
 
   handler() {
     this.setState({ viewPage: "Dash" });
@@ -63,8 +69,10 @@ class MasterTestMenu extends Component {
 
 
   render() {
+    sessionStorage.setItem('id',0);
     const view = this.state.viewPage;
     let page;
+    // Page is rendered based on this.state.viewPage
     switch (view) {
       case "Editor":
         page = <Editor handleHomeClick={this.handleHomeClick}/>;
