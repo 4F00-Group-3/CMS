@@ -1,21 +1,26 @@
 <?php
 /** 
  * Implements password hashing functions from PHP 5.5
- * older versions of PHP (ie on sandcastle) have vulnerabilities in their encryption methods
- * https://github.com/ircmaxell/password_compat
+ * older versions of PHP (i.e. on sandcastle) have vulnerabilities in their encryption methods
+ * SOURCE: https://github.com/ircmaxell/password_compat
 */
 require_once ('encrypt_functions.php');
 
 /**
- * Account class 
+ * Account class which defines information kept about a user and
+ * the functions a user can perform
  */
 class Account {
     public $accountId;
     public $email;
 	public $firstName;
-	public $lastName;  
-	public $type;
-	public $password;
+    public $lastName;
+    public $password;
+
+    //the account type ('ADMIN' by default)
+    public $type;
+    
+	//ranges from 1 to 3
 	public $subscription;
 
 	//initalize new account
@@ -29,7 +34,9 @@ class Account {
         $this->subscription = $sub;
 	}
 
-//	returns account data
+    /**
+     * Returns all data related to an account
+     */
 	public function get_account_data() {
         return array(
             'accountId' => $this->accountId,
@@ -41,12 +48,21 @@ class Account {
         );
     }
 	
-	//returns true if the account is a manager of the website
+	/**
+     * Returns true if the account is a manager of the website
+     */
 	public function is_admin(){
 		return $this->account_type == "manager";
 	}
 
-	//returns a new Account object or false if invalid ID was given
+    
+    /**
+     * Returns a new Account object or false if invalid ID was given
+     * 
+     * @param account_id the ID of the user to get
+     * 
+     * @return Account|boolean Account info or false on failure
+     */
     public static function getAccountById($account_id){
         $stmt = Dbh::connect() ->PREPARE("SELECT * FROM accounts WHERE account_id=?");
         $stmt->execute([$account_id]);
@@ -62,8 +78,14 @@ class Account {
 		}
     }
 
-	//returns a new Account object or false if invalid email was given
-	public static function getAccountByEmail($email){
+    /**
+     * Returns a new Account object or false if invalid email was given
+     * 
+     * @param email the email of the user to get
+     * 
+     * @return Account|boolean Account info or false on failure
+     */
+    public static function getAccountByEmail($email){
         $stmt = Dbh::connect() ->PREPARE("SELECT * FROM accounts WHERE email=?");
         $stmt->execute([$email]);
 
@@ -75,7 +97,17 @@ class Account {
         }
     }
 
-	//add a new account to the database
+    /**
+     * Adds a new account to the database
+     * 
+     * @param email the email of the user to get
+     * @param firstName the first name of the user to get
+     * @param lastName the last name of the user to get
+     * @param type the type of the user to get
+     * @param password the password of the user to get
+     * 
+     * @return Account|boolean Account info or false on failure
+     */
 	public static function addAccount($email, $firstName, $lastName, $type,  $password){
 		$data = array($email, $firstName, $lastName, $type);
         
@@ -93,7 +125,14 @@ class Account {
         return Account::getAccountById($accountId);
 	}
 
-    //add a new account to the database
+    /**
+     * Updates the password for an account
+     * 
+     * @param string email the email of the user to update
+     * @param string password the password of the user to update
+     * 
+     * @return boolean whether the password was updated 
+     */
     public static function updatePassword($email, $password){
         $pw = password_hash($password, PASSWORD_BCRYPT);
 
@@ -106,7 +145,14 @@ class Account {
         }
     }
 
-    //add a new account to the database
+    /**
+     * Confirms if the user has made a payment through PayPal
+     * 
+     * @param accountId the accountId of the user to update
+     * @param subscription the subscription of the user to update
+     * 
+     * @return boolean if a payment was successfully made
+     */
     public static function confirmSubscription($accountId, $subscription){
         $stmt = Dbh::connect() ->PREPARE("UPDATE accounts SET subscription=? WHERE account_id = ?;");
         $stmt->execute([$subscription, $accountId]);
@@ -117,7 +163,11 @@ class Account {
         }
     }
 
-	//queries the entire accounts table
+    /**
+     * Queries the entire accounts table
+     * 
+     * @return Account[] all users of the CMS
+     */
 	public static function getAllAccounts(){
 		$stmt = Dbh::connect()->query("SELECT * FROM accounts");
 		$accounts = array();
@@ -127,14 +177,26 @@ class Account {
         return $accounts;
 	}
 
+    /**
+     * Deletes an account
+     * 
+     * @param int account_id The ID of the account
+     * 
+     * @return int whether the account wa deleted
+     */
 	public static function deleteAccount($accountId = 0){
 		$stmt = Dbh::connect()->PREPARE("DELETE FROM accounts WHERE account_id=?");
 		$stmt->execute([$accountId]);
 
 		return $stmt->rowCount();
-	}
-
-    // Retrieve websites associated with account
+    }
+    
+    /**
+     * Retrieve websites associated with account
+     * @param int account_id the ID of the user
+     * 
+     * @return Website[]|boolean website lists or false on failure
+     */
     public static function getWebsiteData($account_id) {
         $stmt = Dbh::connect()
             ->PREPARE("SELECT * FROM websites WHERE account_id=?");
@@ -152,6 +214,13 @@ class Account {
         }
     }
 
+    /**
+     * Return the number of website a user has
+     * 
+     * @param int account_id the ID of the user
+     * 
+     * @return int the number of websites the user has
+     */
     public static function checkWebsites($account_id) {
         $stmt = Dbh::connect()
             ->PREPARE("SELECT * FROM websites WHERE account_id=?");
@@ -159,6 +228,14 @@ class Account {
         return $stmt->rowCount();
     }
 
+    /** 
+    * Updates the data for an account 
+    *
+    * @param int account_id the ID of the user
+    * @param array the database fields to update
+
+    * @return boolean if the account has updated
+    */
     function updateAccount($accountId, $userdata){
         $queryString = '';
         foreach($userdata as $key => $data){
@@ -166,7 +243,6 @@ class Account {
         }
 
         $queryString = substr($queryString, 0, strlen($queryString) - 1);
-        // echo "UPDATE ".DB_SCHEMA.".account SET ".$queryString." WHERE account_id = ".$accountId;
         $stmt = Dbh::connect()->PREPARE("UPDATE ".DB_SCHEMA.".accounts SET ".$queryString." WHERE account_id = ?");
         $stmt->execute([$accountId]);
 

@@ -53,7 +53,7 @@ class ForgotPassword extends Component {
                             </Row>
                             <Row>
                                 <Col>
-                                    <Form.Label htmlFor="pw2">New Password</Form.Label>
+                                    <Form.Label htmlFor="pw2">Confirm Password</Form.Label>
                                 </Col>
                                 <Col>
                                     <input
