@@ -14,7 +14,17 @@ import {
 } from "react-mdl";
 import Payments from "./payments";
 
+/**
+ * This component is used for handling account payments and displaying available subscription tiers
+ * This can redirect to SitePage
+ * @see SitePage
+ */
 class GetStarted extends Component {
+  /**
+   * Constructor handles payment restrictions as well as initializing all properties
+   * for the component
+   * @param props inherited parent component properties
+   */
   constructor(props) {
     super(props);
 
@@ -27,6 +37,9 @@ class GetStarted extends Component {
     }
   }
 
+  /**
+   * This is used to render the page footer
+   */
   Footer() {
     return (
       <div style={{ paddingbottom: "60px" }}>
@@ -43,7 +56,10 @@ class GetStarted extends Component {
       </div>);
   }
 
-
+  /**
+   * This is used to render the react component
+   * @returns {*}
+   */
   render() {
     return (
       <>

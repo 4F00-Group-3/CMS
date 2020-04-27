@@ -4,7 +4,16 @@ import Dashboard from "../dashboard/Dashboard";
 import { CardActions } from "@material-ui/core";
 import AjaxCall from "../ajax";
 
+/**
+ * This component is used for handling our PayPal payments
+ */
 export default class Payments extends React.Component {
+
+
+  /**
+   * Constructor handles initializing all properties for the component
+   * @param props inherited parent component properties
+   */
   constructor(props) {
     super(props);
     this.state = {
@@ -13,13 +22,18 @@ export default class Payments extends React.Component {
       activeButton: "",
     };
 
-    //  this.scrollDiv = createRef();
   }
 
+
   render() {
+    // payment amount
     var amount = this.props.amount;
 
 
+    /**
+     * This is used to handle successful payments
+     * @param payment: The payment object
+     */
     const onSuccess = (payment) => {
       // Congratulation, it came here means everything's fine!
       console.log("The payment has succeeded!", payment);
@@ -49,16 +63,20 @@ export default class Payments extends React.Component {
       );
     };
 
+    /**
+     * This is used to handle cancelled payments
+     * @param data: The payment object
+     */
     const onCancel = (data) => {
       // User pressed "cancel" or close Paypal's popup!
-      // alert("The payment was cancelled! " + data);
       console.log("The payment was cancelled!", data);
-      // You can bind the "data" object's value to your state or props or whatever here, please see below for sample returned data
     };
 
+    /**
+     * This is used to handle payments errors
+     * @param err: The returned error
+     */
     const onError = (err) => {
-      // The main Paypal's script cannot be loaded or somethings block the loading of that script!
-      // alert("Error! " + err);
       console.log("Error!", err);
       // Because the Paypal's main script is loaded asynchronously from "https://www.paypalobjects.com/api/checkout.js"
       // => sometimes it may take about 0.5 second for everything to get set, or for the button to appear
@@ -87,7 +105,9 @@ export default class Payments extends React.Component {
     // For production app-ID:
     //   => https://developer.paypal.com/docs/classic/lifecycle/goingLive/
 
-    // NB. You can also have many Paypal express checkout buttons on page, just pass in the correct amount and they will work!
+    /**
+     * This is used to render the react component
+     */
     return (
       <PaypalExpressBtn
         env={env}
