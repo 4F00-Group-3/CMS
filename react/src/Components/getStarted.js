@@ -3,14 +3,12 @@ import Row from 'react-bootstrap/Row';
 import Jumbotron from 'react-bootstrap/Jumbotron';
 import Card from 'react-bootstrap/Card';
 import ListGroup from 'react-bootstrap/ListGroup';
-import Button from 'react-bootstrap/Button';
 import ListGroupItem from 'react-bootstrap/ListGroupItem';
 import '../css/GetStarted.css';
 import {
   FooterSection,
   Footer,
   FooterLinkList,
-  Layout,
 } from "react-mdl";
 import Payments from "./payments";
 
@@ -27,10 +25,12 @@ class GetStarted extends Component {
     }
   }
 
+  /**
+   * This method returns the footer to be displayed on the bottom of the get started page
+   */
   Footer() {
     return (
       <div style={{ paddingbottom: "60px" }}>
-
         <Footer className='login-footer' size="mini">
           <FooterSection type="left" logo="North.">
             <FooterLinkList>
@@ -44,6 +44,10 @@ class GetStarted extends Component {
   }
 
 
+  /**
+   * This method renders the get started page onto the display
+   * This class is to be called in the homepage class
+   */
   render() {
     return (
       <>

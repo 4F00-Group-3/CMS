@@ -1,7 +1,5 @@
 import React, { Component } from "react";
 import Pages from "./components/Pages";
-import TopBar from "./components/TopBar";
-import SideBar from "./components/SideBar";
 import "../css/Dashboard.css";
 import Users from "./components/Users";
 import Settings from "./components/Settings";
@@ -36,8 +34,10 @@ class Dashboard extends Component {
     backend.getPages(this);
   }
 
+  /**
+   * This method handles when the user decides to return to the dashboard from the editor.
+   */
   returnToDash = () => {
-    console.log('returning to dash')
     this.setState({
       page: <Pages
         loadEditor={this.loadEditor}
@@ -46,6 +46,9 @@ class Dashboard extends Component {
     });
   }
 
+  /**
+   * This method loads the editor onto the display.
+   */
   loadEditor = (page) => {
     this.setState({
       page:
@@ -58,8 +61,10 @@ class Dashboard extends Component {
     )
   }
 
-  onPush = buttonName => {
-    console.log(buttonName);
+  /**
+   * This method is used for when the user chooses either users, pages, or log out.
+   */
+  onPush = (buttonName) => {
     switch (buttonName) {
       case "Pages": {
         this.setState({
@@ -89,8 +94,8 @@ class Dashboard extends Component {
   };
 
   /**
-     * This function returns the top navigation
-     */
+  * This function returns the top navigation
+  */
   TopNav() {
     return (
       <Header className={"dash-topnav"} transparent style={{ backgroundColor: "#000" }}>
@@ -104,13 +109,16 @@ class Dashboard extends Component {
               className={"button button-primary"}
             >
               Log Out
-                      </button>
+            </button>
           </Col>
         </Row>
       </Header>
     );
   }
 
+  /**
+   * This method either returns the editor, or the dashboard based on the users choice.
+   */
   render() {
     if (this.state.isEditing) {
       return <>{this.state.page}</>
@@ -132,8 +140,8 @@ class Dashboard extends Component {
                 </Col>
               </Row>
             </Container>
-              {this.state.page}
-              <Button onClick={this.props.handleSitePageClick} className="return-to-sites-btn">Return to Sites</Button>
+            {this.state.page}
+            <Button onClick={this.props.handleSitePageClick} className="return-to-sites-btn">Return to Sites</Button>
           </div>
         </>
       );

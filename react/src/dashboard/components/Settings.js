@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 
-
+/**
+ * unused
+ */
 class UserAdmin extends Component {
     render() {
         return (

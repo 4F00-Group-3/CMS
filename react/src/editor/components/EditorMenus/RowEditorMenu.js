@@ -36,6 +36,9 @@ export default class RowEditorMenu extends Component {
         this.props.onPush("Column", name, this.props.selectedId, this.state.columnId);
     }
 
+    /**
+     * This method renders the row editor menu onto the editor sidebar.
+     */
     render() {
         return (
             <div className=" rounded p-1 editor-menu">

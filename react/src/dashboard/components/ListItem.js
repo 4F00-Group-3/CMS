@@ -12,11 +12,11 @@ class ListItem extends Component {
     console.log(this.props);
   }
 
-  onClick() {
-    console.log(this.constructor.name + " was clicked");
-  }
-
+  /**
+   * This method returns a list item onto the display of the dashboard
+   */
   render() {
+    //if list item is of type page, page row is returned
     if (this.props.type === "page") {
       return (
         <Container className="PageListItem">
@@ -56,7 +56,9 @@ class ListItem extends Component {
           </Row>
         </Container>
       );
-    } else {
+    } 
+    //if list item is user, user row is returned
+    else {
       return (
         <Container className="UserListItem">
           <Row>

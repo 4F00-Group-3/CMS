@@ -2,6 +2,9 @@ import React, { Component } from "react";
 import "../../css/Dashboard.css";
 import { Navbar, NavbarBrand } from "reactstrap";
 
+/**
+ * unused, I think
+ */
 class TopBar extends Component {
   constructor(props) {
     super(props);

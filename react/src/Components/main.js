@@ -10,6 +10,9 @@ import securityCode from "./securityCode";
 import createAccount from "../Login/createAccount";
 import ImageEditor from "./ImageEditor";
 
+/**
+ * unused
+ */
 const Main = () => (
   <BrowserRouter>
     <Switch>

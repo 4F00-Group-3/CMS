@@ -6,8 +6,10 @@ import Row from 'react-bootstrap/Row'
 import Col from 'react-bootstrap/Col'
 import Container from 'react-bootstrap/Container'
 
-/*Popup class for the add page pop up, handles opening the popup and passing
-information from it back to the add Page part */
+/**
+ * Popup class for the add page pop up, handles opening the popup and passing 
+ * information from it back to the add Page part
+ */
 class Popup extends Component {
 
     getTitleOfPage = () => {
@@ -68,11 +70,11 @@ class Pages extends Component {
             showPopup: false,
             pageID: this.props.backend.pages.length + 1,
         }
-
-        // console.log(this.state.pages)
-
     }
 
+    /**
+     * unused
+     */
     componentDidMount() {
         //THIS IS A BACKEND CALL TO RETRIEVE ALL PAGES ASSOCIATED TO WEBSITEID
         //All console logs are for testing purposes
@@ -87,20 +89,18 @@ class Pages extends Component {
         // console.log(arr);
     }
 
+    /**
+     * This method toggles shows the popup if it is hidden, and hides it otherwise.
+     */
     togglePopup() {
         this.setState({
             showPopup: !this.state.showPopup
         });
     }
 
-    onClick() {
-        console.log(this.constructor.name + " was clicked");
-    }
-
-    handlePageEdit() {
-        console.log("handle page edSDFGJDFZGJXFGJXFGJit clicked");
-    }
-
+    /**
+     * This method deletes a page by id.
+     */
     handlePageDelete = (id) => {
         console.log(id);
         var c = window.confirm("Are you sure you want to delete this page?");
@@ -124,6 +124,12 @@ class Pages extends Component {
 
     }
 
+    /**
+     * unused, I think..........
+     * @param {*} id 
+     * @param {*} field 
+     * @param {*} value 
+     */
     handlePageUpdate(id, field, value) {
         this.props.backend.update(id, field, value);
         this.setState({
@@ -131,7 +137,9 @@ class Pages extends Component {
         })
     }
 
-
+    /**
+     * This method renders a collection of pages onto the display.
+     */
     render() {
         return (
             <>
@@ -169,6 +177,9 @@ class Pages extends Component {
         );
     }
 
+    /**
+     * This method creates a page for a website.
+     */
     createPage=(name)=> {
         var letters = /^[0-9a-zA-Z\s\_\-]+$/;
         if(name.match(letters)){
