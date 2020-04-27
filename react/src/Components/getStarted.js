@@ -12,7 +12,17 @@ import {
 } from "react-mdl";
 import Payments from "./payments";
 
+/**
+ * This component is used for handling account payments and displaying available subscription tiers
+ * This can redirect to SitePage
+ * @see SitePage
+ */
 class GetStarted extends Component {
+  /**
+   * Constructor handles payment restrictions as well as initializing all properties
+   * for the component
+   * @param props inherited parent component properties
+   */
   constructor(props) {
     super(props);
 

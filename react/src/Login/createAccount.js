@@ -11,7 +11,19 @@ import "../css/LandingPage.css";
 import CreateAccountBackend from "./backend/CreateAccountBackend";
 let backend = new CreateAccountBackend();
 
+
+/**
+ * This component is used for handling our account creation feature of the website
+ * This can redirect to getStarted
+ * @see GetStarted
+ */
 class CreateAccount extends Component {
+
+  /**
+   * Constructor handles createAccount restrictions based on if a user is already logged in as well as initializing all properties
+   * for the component
+   * @param props inherited parent component properties
+   */
   constructor(props) {
     super(props);
     this.state = {
@@ -27,9 +39,12 @@ class CreateAccount extends Component {
     }
   }
 
+  /**
+   * This is used to handle the submission of create account form to process the new account
+   * @param event: Form submit button pressed
+   */
   handleCreateAccountSubmit = event => {
     event.preventDefault();
-
     if(this.state.pw === this.state.pw2 && this.state.pw !== "" && this.state.pw2 !== ""){
       AjaxCall(
         {
@@ -58,6 +73,11 @@ class CreateAccount extends Component {
     
   };
 
+  /**
+   * This is used to update the state of the component for Email and Password
+   * If a user types into the email or password field the state will change
+   * @param event
+   */
   handleChange = event => {
     event.preventDefault();
     console.log(event);
@@ -68,6 +88,10 @@ class CreateAccount extends Component {
     });
   };
 
+  /**
+   * This is used to render the react component
+   * @returns {*}
+   */
   render() {
     return (
       <Jumbotron className='login-container'>

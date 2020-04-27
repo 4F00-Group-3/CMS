@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-// import axios from 'axios';
 import '../css/SitePage.css'
 import AjaxCall from '../ajax.js';
 import Login from '../Login/loginpage';
@@ -16,13 +15,19 @@ import {
     Content
 } from "react-mdl";
 import Jumbotron from 'react-bootstrap/Jumbotron';
-
-
 let backend = new SitePageBackend();
 
-/*Popup class for the add page pop up, handles opening the popup and passing
-information from it back to the add Page part */
+
+/**
+ * This component is used for handling our create new website popup form
+ * @see SitePage
+ */
 class Popup extends Component {
+
+    /**
+     * Constructor handles initializing all properties for the component
+     * @param props inherited parent component properties
+     */
     constructor(props) {
         super(props);
         this.state = {
@@ -32,6 +37,10 @@ class Popup extends Component {
         backend.f = props.handleDashClick;
     }
 
+    /**
+     * This is used to handle the create new website when the new website form is submitted
+     * @param event: Submission button pressed
+     */
     handleFormSubmit = event => {
         event.preventDefault();
         if (this.state.title !== "") {
@@ -69,6 +78,11 @@ class Popup extends Component {
         }
     };
 
+    /**
+     * This is used to update the state of the component for Email and Password
+     * If a user types into the email or password field the state will change
+     * @param event
+     */
     handleChange = event => {
         event.preventDefault();
         console.log(event);
@@ -79,6 +93,10 @@ class Popup extends Component {
         });
     };
 
+    /**
+     * This is used to render the react component
+     * @returns {*}
+     */
     render() {
         return (
             <div className='popup'>
@@ -132,14 +150,26 @@ class Popup extends Component {
     }
 }
 
+
+/**
+ * This component is used for handling our delete website popup form
+ * @see SitePage
+ */
 class PopupDelete extends Component {
+
+    /**
+     * Constructor handles initializing all properties for the component
+     * @param props inherited parent component properties
+     */
     constructor(props) {
         super(props);
         backend.f = this.props.handleHomeClick;
         backend.s = this.props.handleSitePageClick;
-        console.log(this.props);
     }
 
+    /**
+     * This is used to handle the delete website when the deletion form is submitted
+     */
     handleDeleteWebsite = () => {
         const state = this;
         AjaxCall({
@@ -160,7 +190,10 @@ class PopupDelete extends Component {
         );
     };
 
-
+    /**
+     * This is used to render the react component
+     * @returns {*}
+     */
     render() {
         return (
             <div className='popup'>
@@ -176,8 +209,19 @@ class PopupDelete extends Component {
     }
 }
 
+/**
+ * This component is used for handling our account dashboard
+ * This can redirect to Home, Website dashboard
+ * @see HomePage
+ * @see Dashboard
+ */
 class SitePage extends Component {
 
+    /**
+     * Constructor handles account dashboard restrictions as well as initializing all properties
+     * for the component
+     * @param props inherited parent component properties
+     */
     constructor(props) {
         super(props);
 
@@ -190,17 +234,15 @@ class SitePage extends Component {
         this.handleRedirectToAccoutingSettings = this.handleRedirectToAccoutingSettings.bind(this);
         this.handleUpgradePlan = this.handleUpgradePlan.bind(this);
 
-        //uncomment top
         if (sessionStorage.getItem("siteId") !== null) {
             sessionStorage.removeItem("siteId");
         }
-
-
-        // if (sessionStorage.getItem('id') !== null && sessionStorage.getItem('tier')===null) {
-        //     props.handleGetStartedClick();
-        // }
     }
 
+    /**
+     * This is used to set up the component when rendered
+     * The function will gather account data such as websites and tier
+     */
     componentDidMount() {
         const self = this;
         if (sessionStorage.getItem('id') !== null) {
@@ -237,8 +279,6 @@ class SitePage extends Component {
      * This method handles user log out
      */
     handleLogOut() {
-        // For testing purposes
-        // var id = sessionStorage.getItem('id');
         sessionStorage.clear();
         this.props.handleHomeClick();
     }
@@ -259,23 +299,37 @@ class SitePage extends Component {
         alert("Upgrading you to Supreme Overlord of the Universe!!");
     }
 
+    /**
+     * This method handles rendering the new website form popup component
+     * @see Popup
+     */
     togglePopup() {
         this.setState({
             showPopup: !this.state.showPopup
         });
     }
 
+    /**
+     * This method handles opening an account's website in a new tab
+     */
     handleViewWebsite = (info) => {
         console.log(info);
         window.location.assign('../../' + info.replace(" ", "_"));
     };
 
+    /**
+     * This method handles redirection to website dashboard for an account's specific website
+     */
     handleEditWebsite = (info) => {
         console.log(info);
         sessionStorage.setItem("siteId", info);
         this.props.handleDashClick();
     };
 
+    /**
+     * This method handles rendering the delete website form popup component
+     * @see PopupDelete
+     */
     handleDeleteWebsite = (info) => {
         sessionStorage.setItem("siteId", info);
         this.setState({
@@ -307,6 +361,10 @@ class SitePage extends Component {
         );
     }
 
+    /**
+     * This is used to render the react component
+     * @returns {*}
+     */
     render() {
         var userLoggedIn = this.state.userLoggedIn;
         return (
@@ -314,11 +372,6 @@ class SitePage extends Component {
                 {this.TopNav()}
                 {userLoggedIn ?
                     <div className="SitePage">
-                        {/* <div className="Menu">
-                            <p onClick={this.handleRedirectToAccoutingSettings}>Account Settings</p>
-                            <p onClick={this.handleLogOut}>Log Out</p>
-                            <p onClick={this.handleUpgradePlan}>Manage Subscription</p>
-                        </div> */}
                         <Container className="sitepage-jumbotron" fluid >
                             <h1 className="site-page-header">Manage Your Sites</h1>
                         </Container>
