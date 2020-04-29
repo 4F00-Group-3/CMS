@@ -4,7 +4,7 @@ Main repository for the group project CMS
 - Site Location: https://www.cosc.brocku.ca/~c4f00g03/react/build/
 - Stage 4 Technical Documents
    - Installation Manual: https://drive.google.com/file/d/16WQem14GcXLI9RV85jHxnM94oMy4omQq/view
-   - Maintenance Manual:
+   - Maintenance Manual: https://drive.google.com/file/d/1aBHjRLepg8-xIOkF8izcVP_W9P1IJteE/view
    - User Manual: https://drive.google.com/file/d/1bModZ1EzBEdGyZltHlMCmiW2o0fjjEmC/view
 
 - Our Stack:
@@ -26,5 +26,3 @@ Main repository for the group project CMS
     - Tokunbo O (Front-end Developer)
     - Jon (Front-end/Back-end Developer)
     - Steve B (Front-end/Back-end Developer)
-    - Greg (Front-end/Administrative)
-    - Ahmed M (Front End Developer)
