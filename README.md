@@ -6,6 +6,7 @@ Main repository for the group project CMS
    - Installation Manual: https://drive.google.com/file/d/16WQem14GcXLI9RV85jHxnM94oMy4omQq/view
    - Maintenance Manual: https://drive.google.com/file/d/1aBHjRLepg8-xIOkF8izcVP_W9P1IJteE/view
    - User Manual: https://drive.google.com/file/d/1bModZ1EzBEdGyZltHlMCmiW2o0fjjEmC/view
+   - Final SRS: https://drive.google.com/open?id=1YBV-BtgBwPiDPMu2kBruBtqNBxwegITx
 
 - Our Stack:
    - Front-end:
