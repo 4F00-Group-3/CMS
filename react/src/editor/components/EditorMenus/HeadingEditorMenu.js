@@ -20,6 +20,10 @@ class HeadingEditor extends Component {
         }
     }
 
+    /**
+     * This method determines whether or not the color picker for heading color should be shown 
+     * or hidden.  
+     */
     handleColorPicker = () => {
         if (this.state.colorPickerActive === false) {
             this.setState({ colorPickerActive: true });
@@ -29,6 +33,10 @@ class HeadingEditor extends Component {
         }
     }
 
+    /**
+    * This method determines whether or not the color picker for section background color should be shown 
+    * or hidden.  
+    */
     handleBGColorPicker = () => {
         if (this.state.bgColorPickerActive === false) {
             this.setState({ bgColorPickerActive: true });
@@ -77,6 +85,9 @@ class HeadingEditor extends Component {
         }
     }
 
+    /**
+     * This method renders the heading editor menu onto the editor sidebar.  
+     */
     render() {
         return (
             <>

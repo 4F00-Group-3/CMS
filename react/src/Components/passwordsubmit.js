@@ -3,7 +3,20 @@ import Container from "@material-ui/core/Container";
 import Card from "@material-ui/core/Card";
 import "./LandingPage.css";
 
+/**
+ * unused
+ *
+ *
+ * This component is used for rendering the passwordSubmit form for forgotPassword
+ * @see ForgotPassword
+ */
 class passwordsubmit extends Component {
+
+
+  /**
+   * This is used to render the react component
+   * @returns {*}
+   */
   render() {
     return (
       <div>

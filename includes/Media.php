@@ -5,11 +5,11 @@
  */
 class Media{
     public $mediaId;
-    public $fileType;
-	public $path;
-	public $userId;  
-	public $caption;
-	public $date;
+    public $fileType; //extension
+	public $path; //on sandcastle
+	public $userId;  //who uploaded 
+	public $caption; //alt text
+	public $date; //uploaded unix timestamp
 
     //initalize media file
 	function __construct($mediaId, $fileType, $path, $userId, $caption,  $date) {
@@ -21,12 +21,18 @@ class Media{
         $this->date = $date;
     }
     
-    //gets the name of the file from the path
+    /**
+     * Returns the name of the file with the extension
+     */
     public function getFileName(){
         return basename($this->path);
     }
 
-    //returns a new Media object or false on failure
+    /**
+     * returns a new Media object or false on failure
+     * 
+     * @param int accountId The account who's files to get 
+     */
     public static function getMediaByAccount($accountId){
         $stmt = Dbh::connect() ->PREPARE("SELECT * FROM account_media WHERE account_id=?");
         $stmt->execute([$accountId]);
@@ -36,14 +42,16 @@ class Media{
                 $imageData[] = $row;
             }
             return $imageData;
-//            $mediaInfo = $stmt->fetch(PDO::FETCH_ASSOC);
-//            return new Media($mediaInfo['media_id'], $mediaInfo['file_type'], $mediaInfo['path'], $mediaInfo['user_id'], $mediaInfo['caption'], $mediaInfo['date']);
         }else{
             return false;
         }
     }
 
-    //returns a new Media object or false on failure
+    /**
+     * returns a new Media object or false on failure
+     * 
+     * @param int mediaId The ID of the file 
+     */
     public static function getMediaById($mediaId){
         $stmt = Dbh::connect() ->PREPARE("SELECT * FROM account_media WHERE media_id=?");
         $stmt->execute([$mediaId]);
@@ -56,7 +64,16 @@ class Media{
         }
     }
 
-    //add a new file to the database
+    /**
+     * add a new file to the database
+     * 
+     * @param int $fileType type ID of the file 
+     * @param int $path The path of the file 
+     * @param int $accountId The ID of the file 
+     * @param int $caption The ID of the file 
+     * 
+     * @return Media|boolean file data or false on failure
+     */
     public static function addImage($fileType, $path, $accountId, $caption =''){
 //        $date = time();
         $data = array($fileType, $path, $caption, $accountId);
@@ -68,7 +85,12 @@ class Media{
 		return Media::getMediaById($mediaId);
     }
 
-    //queries the media table
+    /**
+     * queries the media table for all rows
+     * 
+     * 
+     * @return Media[]|boolean file data or false on failure
+     */
     public static function getAllImages(){
         $stmt = Dbh::connect()
             ->PREPARE("SELECT * FROM account_media");

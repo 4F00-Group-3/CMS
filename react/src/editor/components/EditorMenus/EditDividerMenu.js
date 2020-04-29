@@ -69,7 +69,9 @@ class EditDividerMenu extends Component {
     }
   }
 
-
+  /**
+   * This method handles the colour changing of the divider itself.
+   */
   handleColourChange = (colourString) => {
     // This is due to ColourString being undefined at the beginning when ColourPicker is first created
     try {
@@ -165,6 +167,9 @@ class EditDividerMenu extends Component {
     }
   }
 
+  /**
+   * This method renders the divider menu onto the editor sidebar.
+   */
   render() {
     return (
       <>

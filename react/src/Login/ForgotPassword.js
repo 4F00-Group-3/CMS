@@ -7,9 +7,15 @@ import Col from 'react-bootstrap/Col';
 import { Jumbotron } from "react-bootstrap";
 import '../css/LoginPage.css';
 
+/**
+ * This component is used for rendering the ForgotPassword form
+ */
 class ForgotPassword extends Component {
 
-
+    /**
+     * This is used to render the react component
+     * @returns {*}
+     */
     render() {
         return (
             <Jumbotron className='login-container'>
@@ -47,13 +53,12 @@ class ForgotPassword extends Component {
                                         pass="pw"
                                         className="create-account-form-input"
                                         name="pw"
-                                        
                                     />
                                 </Col>
                             </Row>
                             <Row>
                                 <Col>
-                                    <Form.Label htmlFor="pw2">New Password</Form.Label>
+                                    <Form.Label htmlFor="pw2">Confirm Password</Form.Label>
                                 </Col>
                                 <Col>
                                     <input

@@ -2,6 +2,9 @@ import React, { Component } from "react";
 import { Nav, NavItem } from "reactstrap";
 import "../../css/Dashboard.css";
 
+/**
+ * unused
+ */
 class SideBar extends Component {
   render() {
     return (

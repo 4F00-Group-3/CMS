@@ -1,13 +1,18 @@
 <?php
 
+/**
+ * The class represents a website, which contains a collection of pages
+ * made within the editor
+ */
 class Website{
 
-    private $account_id;
-    private $schema;
-    private $website_id;
-    private $path;
-    private $name;
+    private $account_id; //who created the page
+    private $schema; //the database schema belonging to the site
+    private $website_id; //id of the siite
+    private $path; //path to page files
+    private $name; //site title
 
+    //initalize a Website obeject
     function __construct($account_id, $website_id, $schema, $path, $name){
         $this->account_id = $account_id;
         $this->website_id = $website_id;
@@ -17,7 +22,14 @@ class Website{
     }
 
 
-
+    /**
+     * Attempts to insert a new website into the database and create the 
+     * related directories
+     * 
+     * @param int $accountId the user who owns the site
+     * 
+     * @return int #website_id the new site ID
+     */
     public static function createWebsite($accountId, $path, $siteName, $description){
         // Insert website data
         $siteName = str_replace(" ","_",$siteName);
@@ -155,7 +167,14 @@ class Website{
         return $websiteId;
     }
 
-
+    /**
+     * Deletes a website and related data
+     * 
+     * @param int $accountId the user who owns the site
+     * @param int $websiteId the user who owns the site
+     * 
+     * @return boolean if the website was removed
+     */
     public static function deleteWebsite($accountId, $websiteId){
         //Gather website name for deletion
         $stmt = Dbh::connect()
@@ -193,7 +212,15 @@ class Website{
     //********************* FUNCTIONS FOR WEBSITE USERS *****************************
 
 
-    // Retrieve user from website by arguments
+    /**
+     * Retrieve user from website by arguments
+     * 
+     * @param string $schema the schema the user belongs to
+     * @param string $email the email of the user
+     * @param string $psword the password of the user
+     * 
+     * @return Account[]|boolean user or false if no user
+     */
     public static function getUsersByLogin($schema, $email, $psword){
         $stmt = Dbh::connect()
             ->PREPARE("SELECT * FROM $schema.users WHERE email=? AND password=?");
@@ -208,7 +235,13 @@ class Website{
         }
     }
 
-    // Retrieve all users from website
+    /**
+     * Retrieve all users from website
+     * 
+     * @param string $schema the schema the user belongs to
+     * 
+     * @return Account[]|boolean user list or false if no users
+     */
     public static function getAllUsers($schema){
         $stmt = Dbh::connect()
             ->query("SELECT * FROM  $schema.users");
@@ -224,7 +257,18 @@ class Website{
         }
     }
 
-    // Add user to website
+    /**
+     * Retrieve user from website by arguments
+     * 
+     * @param string $schema the schema the user belongs to
+     * @param string $firstName the first name of the user
+     * @param string $lastName the  last name of the user
+     * @param string $password the password of the user
+     * @param string $email the email of the user
+     * @param string $userType the type of the user
+     * 
+     * @return boolean if the website was removed
+     */
     public static function addUser($schema, $firstName, $lastName, $password, $email, $userType){
         $stmt = Dbh::connect()
             ->PREPARE("INSERT INTO $schema.users(first_name, last_name, password, email, user_type) VALUES(:firstName, :lastName, :password, :email, :userType)");
@@ -247,6 +291,15 @@ class Website{
         }
     }
 
+    /**
+     * Deletes a user from the database
+     * 
+     * @param string $schema the schema the user belongs to
+     * @param string $userId the ID of the user
+
+     * 
+     * @return boolean if the user was removed
+     */
     public static function deleteUserById($userId, $schema){
         $stmt = Dbh::connect()->PREPARE("DELETE FROM $schema.users WHERE user_id=?");
         $stmt->execute([$userId]);
@@ -264,6 +317,13 @@ class Website{
 
     //********************* FUNCTIONS FOR WEBSITE PAGES *****************************
 
+    /**
+     * Gets all pages for a website 
+     * 
+     * @param string $schema the schema the pages belong to
+     * 
+     * @return array|boolean page list or false if no pages
+     */
     public static function getAllPages($schema){
         $stmt = Dbh::connect()
             ->query("SELECT * FROM  $schema.pages");
@@ -279,7 +339,13 @@ class Website{
         }
     }
 
-    //hey dont comment this out again it is actually useful
+    /**
+     * Gets all pages for a website 
+     * 
+     * @param string $schema the schema the pages belong to
+     * 
+     * @return array|boolean page list or false if no pages
+     */
     public static function getAllPagesJSON($schema){
         $stmt = Dbh::connect()
             ->query("SELECT * FROM  $schema.pages ORDER BY pages_id ASC");
@@ -290,6 +356,14 @@ class Website{
         return $pages;
     }
 
+    /**
+     * Gets a page by idea
+     * 
+     * @param string $schema the schema the pages belong to
+     * @param int $page_id the ID to get
+     * 
+     * @return array|string page data or false if no page
+     */
     public static function getPagesByPageId($schema, $page_id){
         $stmt = Dbh::connect()
             ->PREPARE("SELECT * FROM $schema.pages WHERE pages_id=?");
@@ -300,10 +374,21 @@ class Website{
                 return $row;
             }
         }else{
-            return "Incorrect credentials!";
+            return false;
         }
     }
 
+    /**
+     * Adds a page to the database if a page with the same name
+     * does not exist already
+     * 
+     * @param string $schema the schema the pages belong to
+     * @param string $pageName the name to add
+     * @param int the website to add the page to
+     * @param int the user who created the page
+     * 
+     * @return array|boolean the new page path and ID, or false on failure
+     */
     public static function addPage($schema, $pageName, $siteId,$accountId){
         $pageName = trim($pageName);
 
@@ -361,15 +446,14 @@ class Website{
         }
     }
 
-    public static function addPageJSON($schema, $content, $pageName){
-        $data = array($content, $pageName);
-
-		$stmt = Dbh::connect() ->PREPARE("INSERT INTO $schema.pages (content, name) VALUES (?, ?) ON CONFLICT DO NOTHING RETURNING pages_id");
-		$stmt->execute($data);
-
-		return $stmt->fetch(PDO::FETCH_ASSOC)['pages_id'];
-    }
-
+    /**
+     * Deletes a page from a website
+     * @param string $schema the schema the pages belong to
+     * @param int $pageId the page to delete
+     * @param string path to the page HTML
+     * 
+     * @return boolean if the page was deleted
+     */
     public static function deletePageById($schema, $pageId, $path){
         //delete pages table entry
         $stmt = Dbh::connect()->PREPARE("DELETE FROM $schema.pages WHERE pages_id=?");
@@ -389,6 +473,14 @@ class Website{
         }
     }
 
+    /**
+     * Save a page being changed in the editor
+     * @param string $schema the schema the pages belong to
+     * @param string $pageId the page to delete
+     * @param array $page page elements
+     * @param string $path path to the page HTML
+     * @param string $html the page's HTML to be written
+     */
     public static function savePage($schema, $pageId, $page, $path, $html){
         $stmt = Dbh::connect()
             ->PREPARE("UPDATE $schema.pages SET file =? WHERE pages_id=?");

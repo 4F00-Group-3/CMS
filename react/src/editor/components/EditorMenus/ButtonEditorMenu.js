@@ -143,7 +143,9 @@ class ButtonEditor extends Component {
         }
     }
 
-
+    /**
+     * This method renders the button editor menu onto the editor sidebar.
+     */
     render() {
         return (
             <Form className="editor-menu rounded p-1 ButtonEditorContainer">

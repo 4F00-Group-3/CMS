@@ -6,6 +6,9 @@ import update from 'immutability-helper'
 import ReactDOM from 'react-dom';
 import AjaxCall from './../../ajax';
 
+/**
+ * This class is used as a canvas to display user added components inside the Editor
+ */
 class EditingPage extends Component {
   constructor(props) {
     super(props);
@@ -16,9 +19,12 @@ class EditingPage extends Component {
   }
 
   componentDidUpdate() {
-    setTimeout(this.save, 1500);
+    setTimeout(this.save, 1500); // saves page every 1.5 seconds
   }
 
+  /**
+   * This method saves the user created page
+   */
   save = () => {
     // console.log(this.state.page);
     var _pageId = this.state.page.pages_id;
@@ -152,8 +158,8 @@ class EditingPage extends Component {
       /**
        * This method creates a PageSection component i.e. Header, Image etc
        * and wraps it inside a Card Component to allow verticle dragging
-       * @param {*} card 
-       * @param {*} index 
+       * @param {*} card card element
+       * @param {*} index card index
        */
       const renderCard = (card, index) => {
 
@@ -182,6 +188,7 @@ class EditingPage extends Component {
 
 
     return (
+      // ReactDND provided classes to allow drag and drop
       <DndProvider backend={Backend}>
         <Container />
       </DndProvider>

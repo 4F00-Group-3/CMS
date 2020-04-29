@@ -19,10 +19,24 @@ import {
   FooterLinkList
 } from "react-mdl";
 
+//The backend is used for handling page restrictions and redirection
 let backend = new LoginBackend();
 
-
+/**
+ * This component is used for handling our account login feature of the website
+ * This can redirect to SitePage, ForgotPassword, CreateAccount
+ * @see SitePage
+ * @see ForgotPassword
+ * @see CreateAccount
+ */
 class LoginPage extends Component {
+
+
+  /**
+   * Constructor handles login restrictions based on if a user is already logged in as well as initializing all properties
+   * for the component
+   * @param props inherited parent component properties
+   */
   constructor(props) {
     super(props);
     this.state = {
@@ -47,11 +61,16 @@ class LoginPage extends Component {
 
   }
 
+  /**
+   * This is used to handle the login functionality through the backend when the login form is submitted
+   * @param event Email and Password passed from form
+   */
   handleFormSubmit = event => {
     event.preventDefault();
     AjaxCall(
       { function: "login", email: this.state.email, password: this.state.pw },
       function (response) {
+        //SUCCESSFUL LOGIN
         if (!response.toString().includes("false")) {
           let responseArray = JSON.parse(response.split('php-cgi')[1].trim());
           console.log(responseArray);
@@ -59,9 +78,9 @@ class LoginPage extends Component {
           let subscription = responseArray.subscription;
           console.log(accountId);
           backend.redirect(accountId, subscription);
-          // REDIRECT TO ANOTHER PAGE AFTER THIS
-        } else {
-          //TODO::LOGIN FAILED DISPLAY ERROR MSG
+        }
+        //UNSUCCESSFUL LOGIN
+        else {
           alert("Incorrect login credentials. Please try again.")
         }
       }
@@ -69,6 +88,10 @@ class LoginPage extends Component {
     );
   };
 
+  /**
+   * This is used when a forgotPassword from is submitted to change account password.
+   * @param event Email and Password passed from form
+   */
   handlePasswordChangeSubmit = event => {
     event.preventDefault();
     AjaxCall(
@@ -78,13 +101,17 @@ class LoginPage extends Component {
         if (!response.toString().includes("false")) {
           backend.redirectNewPass();
         } else {
-          //TODO::LOGIN FAILED DISPLAY ERROR MSG
           alert("Incorrect email. Please try again.")
         }
       }
     );
   };
 
+  /**
+   * This is used to update the state of the component for Email and Password
+   * If a user types into the email or password field the state will change
+   * @param event
+   */
   handleChange = event => {
     event.preventDefault();
     console.log(event);
@@ -95,18 +122,30 @@ class LoginPage extends Component {
     });
   };
 
+  /**
+   * This is used to redirect to the createAccount page
+   */
   createAccountOnclick() {
     this.setState({ page: "create-account" })
   }
 
+  /**
+   * This is used to redirect to the forgotPassword page
+   */
   forgotPasswordOnclick() {
     this.setState({ page: "forgot" });
   }
 
+  /**
+   * This is used to redirect to the previous page
+   */
   back_OnClick = () => {
     this.setState({ page: "login" })
   }
 
+  /**
+   * This is used to render the page footer
+   */
   Footer() {
     return (
       <div style={{ paddingbottom: "60px" }}>
@@ -124,6 +163,10 @@ class LoginPage extends Component {
   }
 
 
+  /**
+   * This is used to render the react component
+   * @returns {*}
+   */
   render() {
     if (this.state.page === "forgot") {
       return (
@@ -152,7 +195,6 @@ class LoginPage extends Component {
       );
     }
     else {
-      // login page below 
       return (
         <>
           <Jumbotron className='login-container'>
